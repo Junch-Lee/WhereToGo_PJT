@@ -1,0 +1,27 @@
+{
+  "totalCount": 0,
+  "resultCode": "00",
+  "resultMsg": "성공",
+  "results": {
+    "id": "19982",
+    "shortname": "CAU_COSS4|2026_A1",
+    "name": "프로그래밍언어의이해",
+    "url": "https://www.kmooc.kr/view/course/detail/19982",
+    "course_image": "https://lms.kmooc.kr/course/thumb.php?id=19982",
+    "org": "CAUk",
+    "org_name": "중앙대학교",
+    "enrollment_start": "1772550000",
+    "enrollment_end": "1785509940",
+    "study_start": "1772550000",
+    "study_end": "1785509940",
+    "professor": "이호진",
+    "public_yn": "Y",
+    "summary": "<article><h6>프로그래밍언어의이해</h6></article><article><h6><span style=\"font-size:18pt;\"><br /></span></h6><h6><span style=\"font-size:18pt;\">강좌 소개</span></h6><h6>본 교과는 웹 프로그래밍 수업의 강의계획서로 HTML5, CSS3, 그리고 자바스크립트를 학습하는 데 중점을 둔다. 각 주제에 대한 깊은 이해를 제공해 학생들이 웹 개발에서 필요한 기술을 습득할 수 있도록 다음의 수업내용을 구성한다.</h6><h6><br /></h6></article><article><h6><span style=\"font-size:18pt;\">학습목표</span></h6><h6><span lang=\"en-us\" xml:lang=\"en-us\">1) HTML5 기초</span></h6><h6><span lang=\"en-us\" xml:lang=\"en-us\">2) CSS의 기본 개념과 선택자</span></h6><h6><span lang=\"en-us\" xml:lang=\"en-us\">3) 변수, 자료형, 연산자</span></h6><h6><br /></h6><h6><br /></h6><h6></h6><h6><span style=\"font-size:18pt;\">강좌 운영일정</span></h6><ul><li>수강신청기간 : 2025.11.12 ~ 2025.12.20</li><li>강좌운영기간 : 2025.11.12 ~ 2025.12.20</li></ul><br /><h6><br /></h6><h6></h6><h3><b>이수 및 평가 정보</b></h3><h6></h6><table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"144\"><colgroup><col width=\"72\" span=\"2\" /></colgroup><tbody><tr><td height=\"23\" width=\"72\">평가 항목</td><td width=\"72\">퀴즈</td></tr><tr><td height=\"22\">평가 비율</td><td>100%</td></tr><tr><td height=\"23\">이수증 발급 기준</td><td>70%</td></tr></tbody></table><h6><br /></h6><br /><h6></h6><h3><b>학습 자료</b></h3><h6>PDF 형태로 제공 예정</h6></article><article></article>",
+    "classfy_name": "사회",
+    "middle_classfy_name": "경영 · 경제",
+    "week": "6",
+    "course_playtime": 68400,
+    "vod_playtime": 30220,
+    "certificate_yn": "Y"
+  }
+}
