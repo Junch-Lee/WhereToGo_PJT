@@ -1,0 +1,71 @@
+candidate_name,suggested_parent_slug,suggested_depth,priority,aliases,decision_hint,note
+변수,programming-basic-syntax,3,P0,variable|Variables,approved_candidate,프로그래밍 입문 핵심
+자료형,programming-basic-syntax,3,P0,data type|data types,approved_candidate,
+조건문,programming-basic-syntax,3,P0,선택문|선택구조|if문|conditional statement,approved_candidate,샘플 데이터 등장
+반복문,programming-basic-syntax,3,P0,순환문|순환구조|loop|loops,approved_candidate,샘플 데이터 등장
+함수,programming-basic-syntax,3,P0,Function|함수 정의,approved_candidate,샘플 데이터 등장
+표현식,programming-basic-syntax,3,P1,expression,hold_candidate,너무 세부적인지 검토
+입출력,programming-basic-syntax,3,P1,input/output|I/O|입출력문,approved_candidate,
+배열,data-structures,3,P0,Array,approved_candidate,
+리스트,data-structures,3,P0,List,approved_candidate,
+스택,data-structures,3,P0,Stack,approved_candidate,
+큐,data-structures,3,P0,Queue,approved_candidate,
+트리,data-structures,3,P0,Tree,approved_candidate,
+그래프 자료구조,data-structures,3,P0,Graph,approved_candidate,그래프 이론과 구분 필요
+해시,data-structures,3,P0,Hash|Hash Table,approved_candidate,
+시간복잡도,algorithms,3,P0,Time Complexity,approved_candidate,
+공간복잡도,algorithms,3,P1,Space Complexity,approved_candidate,
+정렬,algorithms,3,P0,Sorting,approved_candidate,샘플 데이터 등장
+탐색,algorithms,3,P0,Searching,approved_candidate,샘플 데이터 등장
+재귀,algorithms,3,P0,Recursion,approved_candidate,
+동적 계획법,algorithms,3,P0,Dynamic Programming|DP,approved_candidate,
+그리디 알고리즘,algorithms,3,P1,Greedy Algorithm,approved_candidate,
+BFS,algorithms,3,P1,Breadth-First Search,approved_candidate,
+DFS,algorithms,3,P1,Depth-First Search,approved_candidate,
+프로토콜,networks,3,P0,Protocol|통신 프로토콜,approved_candidate,샘플 데이터 등장
+OSI 7계층,networks,3,P0,ISO OSI 7계층|OSI 7|OSI Model,approved_candidate,샘플 데이터 등장
+TCP/IP,networks,3,P0,TCP IP|TCP/IP 인터넷 프로토콜,approved_candidate,샘플 데이터 등장
+HTTP,networks,3,P0,HyperText Transfer Protocol,approved_candidate,
+DNS,networks,3,P1,Domain Name System,approved_candidate,
+라우팅,networks,3,P0,Routing,approved_candidate,샘플 데이터 등장
+인터넷,networks,3,P1,Internet,approved_candidate,
+쿼리,sql,3,P1,Query,approved_candidate,
+SELECT,sql,3,P1,select,approved_candidate,
+INSERT,sql,3,P1,insert,approved_candidate,
+UPDATE,sql,3,P1,update,approved_candidate,
+DELETE,sql,3,P1,delete,approved_candidate,
+JOIN,sql,3,P1,join,approved_candidate,
+GROUP BY,sql,3,P1,group by,approved_candidate,
+인덱스,database-design,3,P1,Index|Indexes,approved_candidate,
+ERD,data-modeling,3,P1,Entity Relationship Diagram,approved_candidate,
+벡터,linear-algebra,3,P0,Vector,approved_candidate,샘플 데이터 등장
+행렬,linear-algebra,3,P0,Matrix,approved_candidate,샘플 데이터 등장
+벡터공간,linear-algebra,3,P1,Vector Space,approved_candidate,샘플 데이터 등장
+선형변환,linear-algebra,3,P0,Linear Transformation,approved_candidate,샘플 데이터 등장
+역행렬,linear-algebra,3,P1,Inverse Matrix,approved_candidate,샘플 데이터 등장
+대각화,linear-algebra,3,P1,Diagonalization,approved_candidate,샘플 데이터 등장
+고윳값과 고유벡터,linear-algebra,3,P0,고유값|고윳값|고유벡터|Eigenvalue|Eigenvector,approved_candidate,
+특잇값 분해,linear-algebra,3,P1,SVD|Singular Value Decomposition|특이값분해,approved_candidate,
+표본추출,probability-statistics,3,P1,Sampling|표본 추출,approved_candidate,샘플 데이터 등장
+확률분포,probability-statistics,3,P1,Probability Distribution,approved_candidate,
+기댓값과 분산,probability-statistics,3,P1,Expectation and Variance|기대값|분산,approved_candidate,
+가설검정,statistical-inference,3,P1,Hypothesis Testing,approved_candidate,
+경사하강법,optimization,3,P1,Gradient Descent,approved_candidate,
+지도학습,machine-learning,3,P1,Supervised Learning,approved_candidate,
+비지도학습,machine-learning,3,P1,Unsupervised Learning,approved_candidate,
+분류,machine-learning,3,P1,Classification,approved_candidate,
+회귀,machine-learning,3,P1,Regression,approved_candidate,
+클러스터링,machine-learning,3,P1,Clustering,approved_candidate,
+과적합,machine-learning,3,P1,Overfitting,approved_candidate,
+교차 검증,model-evaluation,3,P1,Cross Validation|Cross-Validation,approved_candidate,
+신경망,deep-learning,3,P1,Neural Network,approved_candidate,
+역전파,deep-learning,3,P1,Backpropagation,approved_candidate,
+CNN,deep-learning,3,P1,Convolutional Neural Network,approved_candidate,
+RNN,deep-learning,3,P1,Recurrent Neural Network,approved_candidate,
+Transformer,deep-learning,3,P1,트랜스포머,approved_candidate,
+임베딩,generative-ai,3,P1,Embedding,approved_candidate,샘플 데이터 등장
+벡터 검색,generative-ai,3,P1,Vector Search,approved_candidate,샘플 데이터 등장
+벡터 데이터베이스,generative-ai,3,P1,Vector Database,approved_candidate,
+프롬프트 엔지니어링,generative-ai,3,P1,Prompt Engineering,approved_candidate,샘플 데이터 등장
+LLM,generative-ai,3,P1,Large Language Model,approved_candidate,
+RAG,generative-ai,3,P1,Retrieval-Augmented Generation,approved_candidate
