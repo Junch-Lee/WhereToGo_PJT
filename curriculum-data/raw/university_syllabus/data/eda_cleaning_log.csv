@@ -1,0 +1,10 @@
+﻿step,rows_before,rows_after,rows_removed,removal_ratio,cols_before,cols_after,note
+load_raw_data,0,67888,0,0.0,0,16,Loaded C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\한국교육학술정보원_대학학과커리큘럼_강의계획서_20221227.csv with encoding=cp949
+rename_columns,67888,67888,0,0.0,16,16,Renamed available Korean columns to English names.
+add_source_row_number,67888,67888,0,0.0,16,17,Added source_row_number as original index + 2.
+normalize_text,67888,67888,0,0.0,17,17,Normalized text columns. Changed rows=24196.
+target_domain_strict_filtering,67888,3857,64031,94.32,17,24,Kept only strict target-domain rows using conditions A/B/C.
+remove_general_education_and_noise_courses,3857,3082,775,20.09,24,24,Removed general education and obvious non-curricular noise courses.
+remove_duplicates,3082,2268,814,26.41,24,24,"Removed duplicate syllabus rows using columns=['course_name', 'grade', 'semester', 'credit', 'course_type', 'learning_objective', 'main_textbook', 'sub_textbook', 'reference_material', 'prerequisite_material']."
+strict_core_quality_filter,2268,1570,698,30.78,24,25,Keep only rows where both learning_objective and main_textbook exist. This improves curriculum-generation quality while avoiding overly strict removal based on optional columns.
+select_final_columns,1570,1570,0,0.0,25,14,Selected final recommendation columns and removed course_type plus analysis-only flags.

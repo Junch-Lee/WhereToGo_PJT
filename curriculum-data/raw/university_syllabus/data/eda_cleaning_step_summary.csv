@@ -1,0 +1,7 @@
+﻿step,file_name,rows,cols,rows_removed_from_previous,removal_ratio_from_previous,note
+raw_data,C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\한국교육학술정보원_대학학과커리큘럼_강의계획서_20221227.csv,67888,16,0,0.0,Original source data.
+step_01_target_domain_filtered,C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\data\step_01_target_domain_filtered.csv,3857,24,64031,94.32,Strict target-domain rows only.
+step_02_noise_removed,C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\data\step_02_noise_removed.csv,3082,24,775,20.09,General education and obvious noise removed.
+step_03_duplicate_removed,C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\data\step_03_duplicate_removed.csv,2268,24,814,26.41,Duplicate syllabus content removed.
+step_04_missing_cleaned,C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\data\step_04_missing_cleaned.csv,1570,25,698,30.78,Strict core quality filter: both learning_objective and main_textbook exist.
+final,C:\Users\SSAFY\Desktop\WhereToGo_PJT\curriculum-data\raw\university_syllabus\data\university_syllabus_eda_cleaned_final.csv,1570,14,0,0.0,Final columns selected and course_type removed.
