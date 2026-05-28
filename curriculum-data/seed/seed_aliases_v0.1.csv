@@ -6,6 +6,8 @@ python,Python 기초,mixed,variant,contains,P1,
 javascript,자바스크립트,ko,synonym,contains,P1,
 javascript,JS,en,abbreviation,exact,P1,
 java,자바,ko,synonym,contains,P1,
+java, 자바 프로그래밍, ko, variant, contains,P1,
+java, Java 프로그래밍, mixed, variant, contains, P1,
 c-language,C,en,abbreviation,exact,P0,C++와 혼동 주의
 c-language,C Programming,en,english,normalized_exact,P0,
 c-language,C 프로그래밍,mixed,variant,contains,P0,
