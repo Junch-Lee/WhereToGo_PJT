@@ -248,27 +248,27 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--curriculum",
         type=Path,
-        default=Path("data/raw/curriculum_data_sample_refactor.csv"),
+        default=Path("curriculum-data/processed/university_syllabus_eda_cleaned_final.csv"),
     )
     parser.add_argument(
         "--resources",
         type=Path,
-        default=Path("data/raw/learning_resource_sample_refactor.csv"),
+        default=Path("curriculum-data/processed/learning_resource_refactor.csv"),
     )
     parser.add_argument(
         "--output-curriculum",
         type=Path,
-        default=Path("data/processed/curriculum_courses_normalized.csv"),
+        default=Path("scripts/topic_pipeline/data/processed/curriculum_courses_normalized.csv"),
     )
     parser.add_argument(
         "--output-resources",
         type=Path,
-        default=Path("data/processed/learning_resources_normalized.csv"),
+        default=Path("scripts/topic_pipeline/data/processed/learning_resources_normalized.csv"),
     )
     parser.add_argument(
         "--output-report",
         type=Path,
-        default=Path("data/processed/normalization_report.json"),
+        default=Path("scripts/topic_pipeline/data/processed/normalization_report.json"),
     )
 
     return parser.parse_args()
