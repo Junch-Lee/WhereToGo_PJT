@@ -1,0 +1,133 @@
+﻿{
+  "status": "success",
+  "error_count": 0,
+  "warning_count": 1,
+  "errors": [],
+  "warnings": [
+    "[seed_aliases] Short aliases with contains policy may cause false positives. Use exact or normalized_exact instead. Risky rows: [{'topic_slug': 'python', 'alias_name': '파이썬', 'match_policy': 'contains'}, {'topic_slug': 'java', 'alias_name': '자바', 'match_policy': 'contains'}, {'topic_slug': 'c-language', 'alias_name': 'C언어', 'match_policy': 'contains'}, {'topic_slug': 'testing', 'alias_name': '테스팅', 'match_policy': 'contains'}, {'topic_slug': 'backend-development', 'alias_name': '백엔드', 'match_policy': 'contains'}, {'topic_slug': 'backend-development', 'alias_name': '백앤드', 'match_policy': 'contains'}, {'topic_slug': 'authentication-authorization', 'alias_name': '인증', 'match_policy': 'contains'}, {'topic_slug': 'authentication-authorization', 'alias_name': '인가', 'match_policy': 'contains'}, {'topic_slug': 'probability-statistics', 'alias_name': '통계학', 'match_policy': 'contains'}, {'topic_slug': 'data-preprocessing', 'alias_name': '전처리', 'match_policy': 'contains'}, {'topic_slug': 'data-visualization', 'alias_name': '시각화', 'match_policy': 'contains'}, {'topic_slug': 'github', 'alias_name': '깃허브', 'match_policy': 'contains'}, {'topic_slug': 'cli', 'alias_name': '터미널', 'match_policy': 'contains'}, {'topic_slug': 'cli', 'alias_name': '명령줄', 'match_policy': 'contains'}, {'topic_slug': 'linux', 'alias_name': '리눅스', 'match_policy': 'contains'}, {'topic_slug': 'server-basics', 'alias_name': '서버', 'match_policy': 'contains'}, {'topic_slug': 'docker', 'alias_name': '도커', 'match_policy': 'contains'}]"
+  ],
+  "input_paths": {
+    "seed_topics": "C:\\Users\\SSAFY\\Desktop\\PJT\\WhereToGo_PJT\\curriculum-data\\seed\\seed_topics_v0.2.csv",
+    "seed_aliases": "C:\\Users\\SSAFY\\Desktop\\PJT\\WhereToGo_PJT\\curriculum-data\\seed\\seed_aliases_v0.1.csv",
+    "depth3_candidates": "C:\\Users\\SSAFY\\Desktop\\PJT\\WhereToGo_PJT\\curriculum-data\\seed\\seed_depth3_candidate_terms_v0.1.csv",
+    "curriculum_courses": "C:\\Users\\SSAFY\\Desktop\\PJT\\WhereToGo_PJT\\curriculum-data\\raw\\university_syllabus\\data\\university_syllabus_eda_cleaned_final.csv",
+    "learning_resources": "C:\\Users\\SSAFY\\Desktop\\PJT\\WhereToGo_PJT\\curriculum-data\\raw\\learning_resources\\learning_resource_refactor.csv"
+  },
+  "datasets": [
+    {
+      "name": "seed_topics",
+      "row_count": 90,
+      "column_count": 8,
+      "columns": [
+        "slug",
+        "name",
+        "depth",
+        "parent_slug",
+        "topic_type",
+        "priority",
+        "is_active",
+        "note"
+      ]
+    },
+    {
+      "name": "seed_aliases",
+      "row_count": 208,
+      "column_count": 7,
+      "columns": [
+        "topic_slug",
+        "alias_name",
+        "language",
+        "alias_type",
+        "match_policy",
+        "priority",
+        "note"
+      ]
+    },
+    {
+      "name": "depth3_candidates",
+      "row_count": 70,
+      "column_count": 7,
+      "columns": [
+        "candidate_name",
+        "suggested_parent_slug",
+        "suggested_depth",
+        "priority",
+        "aliases",
+        "decision_hint",
+        "note"
+      ]
+    },
+    {
+      "name": "curriculum_courses",
+      "row_count": 1570,
+      "column_count": 14,
+      "columns": [
+        "source_row_number",
+        "university_name",
+        "college_name",
+        "department_name",
+        "course_name",
+        "grade",
+        "semester",
+        "credit",
+        "learning_objective",
+        "main_textbook",
+        "sub_textbook",
+        "reference_material",
+        "prerequisite_material",
+        "keep_reason"
+      ]
+    },
+    {
+      "name": "learning_resources",
+      "row_count": 123,
+      "column_count": 11,
+      "columns": [
+        "source_type",
+        "external_id",
+        "main_category",
+        "sub_category",
+        "title",
+        "description",
+        "provider_name",
+        "instructor_name",
+        "difficulty_level",
+        "url",
+        "content_type"
+      ]
+    }
+  ],
+  "seed_topic_summary": {
+    "depth_counts": {
+      "2": 81,
+      "1": 9
+    },
+    "priority_counts": {
+      "P1": 79,
+      "P0": 10,
+      "P2": 1
+    }
+  },
+  "alias_summary": {
+    "match_policy_counts": {
+      "contains": 98,
+      "normalized_exact": 93,
+      "exact": 17
+    },
+    "language_counts": {
+      "en": 112,
+      "ko": 86,
+      "mixed": 10
+    }
+  },
+  "depth3_candidate_summary": {
+    "priority_counts": {
+      "P1": 44,
+      "P0": 26
+    },
+    "decision_hint_counts": {
+      "approved_candidate": 69,
+      "hold_candidate": 1
+    }
+  }
+}
