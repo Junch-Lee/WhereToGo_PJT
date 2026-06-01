@@ -17,6 +17,7 @@ KEYWORD_MARKER_PATTERN = re.compile(
 
 SPLIT_KEYWORD_PATTERN = re.compile(r"[,;；、\n]+")
 
+<<<<<<< HEAD
 # 쉼표로 나뉜 뒤에도 한 항목 안에 여러 개념이 붙어 있는 경우가 있다.
 # 이 패턴은 "및", "과", "와" 같은 연결어를 기준으로 복합 키워드를 추가 분리한다.
 CONNECTOR_KEYWORD_PATTERN = re.compile(
@@ -43,12 +44,15 @@ STANDALONE_LEARNING_OUTCOME_WORDS = {
     "구현",
 }
 
+=======
+>>>>>>> origin/develop
 INVISIBLE_CHARS_PATTERN = re.compile(
     r"[\u200b\u200c\u200d\ufeff\u00a0]"
 )
 
 MULTI_SPACE_PATTERN = re.compile(r"\s+")
 
+<<<<<<< HEAD
 ''' 
 1. 키워드 추출을 위한 보조 함수 정의 구간
 - csv 로드 함수
@@ -57,14 +61,23 @@ MULTI_SPACE_PATTERN = re.compile(r"\s+")
 - 불규칙적 공백 정규화 
 
 '''
+=======
+>>>>>>> origin/develop
 
 def read_csv_safely(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(f"CSV file not found: {path}")
 
+<<<<<<< HEAD
     # 한글 데이터가 CP949로 재해석되며 손실되는 일을 막기 위해 UTF-8 계열만 허용한다.
     # utf-8-sig는 BOM이 있는 CSV와 없는 CSV를 모두 안전하게 읽을 수 있다.
     df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+=======
+    try:
+        df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+    except UnicodeDecodeError:
+        df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="cp949")
+>>>>>>> origin/develop
 
     df.columns = [col.strip() for col in df.columns]
 
@@ -109,6 +122,7 @@ def normalize_for_match(value: Any) -> str:
     return text
 
 
+<<<<<<< HEAD
 def remove_trailing_learning_outcome(text: str) -> str:
     """
     키워드 뒤에 붙은 학습성과 표현을 제거한다.
@@ -154,6 +168,8 @@ def split_keyword_by_connectors(keyword: str) -> list[str]:
     return refined_items
 
 
+=======
+>>>>>>> origin/develop
 def split_description_keyword_section(description: str) -> dict[str, Any]:
     """
     description에서 '키워드:' 또는 'Keywords:' 영역을 분리한다.
@@ -218,6 +234,7 @@ def split_keyword_items(keywords_raw: str) -> list[str]:
     seen: set[str] = set()
 
     for part in parts:
+<<<<<<< HEAD
         connector_split_items = split_keyword_by_connectors(part)
 
         for item in connector_split_items:
@@ -233,6 +250,22 @@ def split_keyword_items(keywords_raw: str) -> list[str]:
 
             seen.add(normalized_key)
             cleaned_items.append(item)
+=======
+        item = clean_text(part)
+
+        if not item:
+            continue
+
+        # 너무 긴 문장은 키워드가 아니라 설명일 가능성이 높음.
+        # 단, 지금은 제거하지 않고 보수적으로 유지한다.
+        normalized_key = normalize_for_match(item)
+
+        if normalized_key in seen:
+            continue
+
+        seen.add(normalized_key)
+        cleaned_items.append(item)
+>>>>>>> origin/develop
 
     return cleaned_items
 
@@ -352,6 +385,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input-resources",
         type=Path,
+<<<<<<< HEAD
         default=Path("scripts/topic_pipeline/data/processed/learning_resources_normalized.csv"),
     )
 
@@ -374,6 +408,24 @@ def parse_args() -> argparse.Namespace:
         "--output-report",
         type=Path,
         default=Path("scripts/topic_pipeline/data/keywords/keyword_extraction_report.json"),
+=======
+        default=Path("data/processed/learning_resources_normalized.csv"),
+    )
+    parser.add_argument(
+        "--output-resources",
+        type=Path,
+        default=Path("data/processed/learning_resources_keywords_extracted.csv"),
+    )
+    parser.add_argument(
+        "--output-keywords",
+        type=Path,
+        default=Path("data/processed/learning_resource_keywords_exploded.csv"),
+    )
+    parser.add_argument(
+        "--output-report",
+        type=Path,
+        default=Path("data/processed/keyword_extraction_report.json"),
+>>>>>>> origin/develop
     )
 
     return parser.parse_args()
