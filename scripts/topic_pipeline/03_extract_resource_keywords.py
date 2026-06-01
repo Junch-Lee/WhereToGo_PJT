@@ -17,21 +17,67 @@ KEYWORD_MARKER_PATTERN = re.compile(
 
 SPLIT_KEYWORD_PATTERN = re.compile(r"[,;；、\n]+")
 
+<<<<<<< HEAD
+# 쉼표로 나뉜 뒤에도 한 항목 안에 여러 개념이 붙어 있는 경우가 있다.
+# 이 패턴은 "및", "과", "와" 같은 연결어를 기준으로 복합 키워드를 추가 분리한다.
+CONNECTOR_KEYWORD_PATTERN = re.compile(
+    r"\s+(?:및|그리고|또는|또|혹은)\s+|(?<=[가-힣A-Za-z0-9\)])(?:과|와)\s+"
+)
+
+# "에 대한 이해", "역량 습득"처럼 강의 목표 문장에 붙는 끝 표현은
+# 키워드 자체가 아니므로 분리 후 제거해 짧고 재사용 가능한 키워드로 만든다.
+TRAILING_LEARNING_OUTCOME_PATTERN = re.compile(
+    r"\s*(?:에\s*대한\s*)?"
+    r"(?:(?:활용|문제\s*해결)\s*)?"
+    r"(?:능력|역량|기술|전략)?\s*"
+    r"(?:이해|습득|배양|경험|탐색|학습)\s*$"
+)
+
+STANDALONE_LEARNING_OUTCOME_WORDS = {
+    "이해",
+    "습득",
+    "배양",
+    "경험",
+    "탐색",
+    "학습",
+    "활용",
+    "구현",
+}
+
+=======
+>>>>>>> origin/develop
 INVISIBLE_CHARS_PATTERN = re.compile(
     r"[\u200b\u200c\u200d\ufeff\u00a0]"
 )
 
 MULTI_SPACE_PATTERN = re.compile(r"\s+")
 
+<<<<<<< HEAD
+''' 
+1. 키워드 추출을 위한 보조 함수 정의 구간
+- csv 로드 함수
+- 유니코드 정규화
+- 안전 문자 및 공백 제거 
+- 불규칙적 공백 정규화 
+
+'''
+=======
+>>>>>>> origin/develop
 
 def read_csv_safely(path: Path) -> pd.DataFrame:
     if not path.exists():
         raise FileNotFoundError(f"CSV file not found: {path}")
 
+<<<<<<< HEAD
+    # 한글 데이터가 CP949로 재해석되며 손실되는 일을 막기 위해 UTF-8 계열만 허용한다.
+    # utf-8-sig는 BOM이 있는 CSV와 없는 CSV를 모두 안전하게 읽을 수 있다.
+    df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="utf-8-sig")
+=======
     try:
         df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="utf-8-sig")
     except UnicodeDecodeError:
         df = pd.read_csv(path, dtype=str, keep_default_na=False, encoding="cp949")
+>>>>>>> origin/develop
 
     df.columns = [col.strip() for col in df.columns]
 
@@ -76,6 +122,54 @@ def normalize_for_match(value: Any) -> str:
     return text
 
 
+<<<<<<< HEAD
+def remove_trailing_learning_outcome(text: str) -> str:
+    """
+    키워드 뒤에 붙은 학습성과 표현을 제거한다.
+
+    예:
+    '윤리적 쟁점에 대한 이해' -> '윤리적 쟁점'
+    '리스크 관리 역량 습득' -> '리스크 관리'
+    """
+    text = clean_text(text)
+    if not text:
+        return ""
+
+    cleaned = TRAILING_LEARNING_OUTCOME_PATTERN.sub("", text).strip()
+    return cleaned or text
+
+
+def split_keyword_by_connectors(keyword: str) -> list[str]:
+    """
+    쉼표로 분리된 키워드 안에 남아 있는 연결어를 기준으로 한 번 더 분리한다.
+
+    예:
+    'AI 시스템 보안 및 리스크 관리 역량 습득'
+    -> ['AI 시스템 보안', '리스크 관리']
+    """
+    keyword = clean_text(keyword)
+    if not keyword:
+        return []
+
+    parts = CONNECTOR_KEYWORD_PATTERN.split(keyword)
+    refined_items: list[str] = []
+
+    for part in parts:
+        item = remove_trailing_learning_outcome(part)
+
+        # "및 활용", "및 구현 경험"처럼 연결어 뒤에 행위어만 남은 경우는
+        # 독립 키워드로 쓰기 어렵기 때문에 제외한다.
+        if normalize_for_match(item) in STANDALONE_LEARNING_OUTCOME_WORDS:
+            continue
+
+        if item:
+            refined_items.append(item)
+
+    return refined_items
+
+
+=======
+>>>>>>> origin/develop
 def split_description_keyword_section(description: str) -> dict[str, Any]:
     """
     description에서 '키워드:' 또는 'Keywords:' 영역을 분리한다.
@@ -140,6 +234,23 @@ def split_keyword_items(keywords_raw: str) -> list[str]:
     seen: set[str] = set()
 
     for part in parts:
+<<<<<<< HEAD
+        connector_split_items = split_keyword_by_connectors(part)
+
+        for item in connector_split_items:
+            if not item:
+                continue
+
+            # 연결어와 학습성과 표현을 제거한 뒤 동일 키워드가 반복될 수 있으므로
+            # 비교용 정규화 문자열로 중복을 제거해 exploded 결과의 노이즈를 줄인다.
+            normalized_key = normalize_for_match(item)
+
+            if normalized_key in seen:
+                continue
+
+            seen.add(normalized_key)
+            cleaned_items.append(item)
+=======
         item = clean_text(part)
 
         if not item:
@@ -154,6 +265,7 @@ def split_keyword_items(keywords_raw: str) -> list[str]:
 
         seen.add(normalized_key)
         cleaned_items.append(item)
+>>>>>>> origin/develop
 
     return cleaned_items
 
@@ -273,6 +385,30 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--input-resources",
         type=Path,
+<<<<<<< HEAD
+        default=Path("scripts/topic_pipeline/data/processed/learning_resources_normalized.csv"),
+    )
+
+    # 1. extracted : 키워드 존재 여부, 본문, 키워드 문자열, 키워드 리스트 JSON, 개수 컬럼 존재
+    parser.add_argument(
+        "--output-resources",
+        type=Path,
+        default=Path("scripts/topic_pipeline/data/keywords/learning_resources_keywords_extracted.csv"),
+    )
+
+    # 2. exploded : 키워드를 한 row씩 펼쳐둔 파일
+    parser.add_argument(
+        "--output-keywords",
+        type=Path,
+        default=Path("scripts/topic_pipeline/data/keywords/learning_resource_keywords_exploded.csv"),
+    )
+
+    # 3. 키워드 추출 report
+    parser.add_argument(
+        "--output-report",
+        type=Path,
+        default=Path("scripts/topic_pipeline/data/keywords/keyword_extraction_report.json"),
+=======
         default=Path("data/processed/learning_resources_normalized.csv"),
     )
     parser.add_argument(
@@ -289,6 +425,7 @@ def parse_args() -> argparse.Namespace:
         "--output-report",
         type=Path,
         default=Path("data/processed/keyword_extraction_report.json"),
+>>>>>>> origin/develop
     )
 
     return parser.parse_args()
