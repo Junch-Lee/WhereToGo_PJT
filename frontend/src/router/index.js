@@ -3,7 +3,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 const routes = [
   {
     path: '/',
-    redirect: '/signup',
+    name: 'Home',
+    component: () => import('@/pages/user/HomePage.vue'),
   },
   {
     path: '/signup',
@@ -15,6 +16,26 @@ const routes = [
     name: 'Login',
     component: () => import('@/pages/auth/LoginPage.vue'),
   },
+  // {
+  //   path: '/chat',
+  //   name: 'Chat',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
+  // {
+  //   path: '/learning',
+  //   name: 'Learning',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
+  // {
+  //   path: '/mypage',
+  //   name: 'MyPage',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
+  // {
+  //   path: '/curriculum/:id',
+  //   name: 'CurriculumDetail',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
 ];
 
 const router = createRouter({
