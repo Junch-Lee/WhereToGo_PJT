@@ -1,0 +1,19 @@
+{
+  "status": "success",
+  "input_rows": 59,
+  "decision_counts": {
+    "approved": 52,
+    "merged": 0,
+    "rejected": 1,
+    "hold": 0,
+    "pending": 6
+  },
+  "outputs": {
+    "approved_depth3_topics": 52,
+    "merged_candidates": 0,
+    "rejected_candidates": 1,
+    "hold_candidates": 0,
+    "pending_candidates": 6
+  },
+  "warnings": []
+}
