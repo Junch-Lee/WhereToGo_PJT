@@ -87,6 +87,23 @@ IT_SUB_CATEGORIES = {
     "데이터사이언스",
 }
 
+DEPTH3_CONTEXT_GATES = {
+    "함수": {
+        "python",
+        "c-language",
+        "java",
+        "javascript",
+        "programming-basic-syntax",
+    },
+    "탐색": {
+        "algorithms",
+        "data-structures",
+    },
+    "인터넷": {
+        "networks",
+    },
+}
+
 
 # -----------------------------------------------------------------------------
 # Basic utils
@@ -622,6 +639,85 @@ def match_resource_rows(
 
 
 # -----------------------------------------------------------------------------
+# Context gate
+# -----------------------------------------------------------------------------
+
+def apply_depth3_context_gate(raw_df: pd.DataFrame) -> tuple[pd.DataFrame, dict[str, Any]]:
+    if raw_df.empty:
+        return raw_df, {
+            "context_gate_removed_count": 0,
+            "context_gate_removed_by_candidate": {},
+        }
+
+    required_columns = {
+        "source_dataset",
+        "source_id",
+        "match_type",
+        "candidate_name",
+        "is_existing_topic",
+        "topic_slug",
+    }
+
+    if not required_columns.issubset(raw_df.columns):
+        return raw_df, {
+            "context_gate_removed_count": 0,
+            "context_gate_removed_by_candidate": {},
+        }
+
+    df = raw_df.copy()
+    source_context_topics: dict[tuple[str, str], set[str]] = {}
+
+    existing_topic_df = df[
+        (df["is_existing_topic"] == "true")
+        & (df["topic_slug"].astype(str) != "")
+    ]
+
+    for source_key, group in existing_topic_df.groupby(["source_dataset", "source_id"]):
+        source_context_topics[(str(source_key[0]), str(source_key[1]))] = set(
+            group["topic_slug"].astype(str)
+        )
+
+    remove_index: list[Any] = []
+
+    for idx, row in df.iterrows():
+        if row.get("match_type", "") != "depth3_candidate":
+            continue
+
+        candidate_name = str(row.get("candidate_name", ""))
+        allowed_context_slugs = DEPTH3_CONTEXT_GATES.get(candidate_name)
+
+        if not allowed_context_slugs:
+            continue
+
+        source_key = (str(row.get("source_dataset", "")), str(row.get("source_id", "")))
+        context_slugs = source_context_topics.get(source_key, set())
+
+        if not (context_slugs & allowed_context_slugs):
+            remove_index.append(idx)
+
+    if not remove_index:
+        return df, {
+            "context_gate_removed_count": 0,
+            "context_gate_removed_by_candidate": {},
+        }
+
+    removed_df = df.loc[remove_index]
+    removed_by_candidate = (
+        removed_df["candidate_name"]
+        .astype(str)
+        .value_counts()
+        .to_dict()
+    )
+
+    gated_df = df.drop(index=remove_index).reset_index(drop=True)
+
+    return gated_df, {
+        "context_gate_removed_count": int(len(remove_index)),
+        "context_gate_removed_by_candidate": removed_by_candidate,
+    }
+
+
+# -----------------------------------------------------------------------------
 # Aggregation
 # -----------------------------------------------------------------------------
 
@@ -689,6 +785,7 @@ def aggregate_matches(raw_df: pd.DataFrame) -> pd.DataFrame:
 
         is_auto_link_candidate = (
             is_existing_topic
+            and first["topic_depth"] != "1"
             and not needs_review
             and not only_main_textbook
             and not only_prerequisite
@@ -866,7 +963,10 @@ def build_report(
     limited_df: pd.DataFrame,
     curriculum_df: pd.DataFrame,
     resources_df: pd.DataFrame,
+    context_gate_report: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    context_gate_report = context_gate_report or {}
+
     course_source_ids = set(curriculum_df.get("source_row_number", pd.Series(dtype=str)).astype(str))
     resource_source_ids = set(resources_df.get("external_id", pd.Series(dtype=str)).astype(str))
 
@@ -918,6 +1018,13 @@ def build_report(
         "needs_review_count": int(
             (limited_df["needs_review"] == "true").sum()
         ) if not limited_df.empty else 0,
+        "context_gate_removed_count": int(
+            context_gate_report.get("context_gate_removed_count", 0)
+        ),
+        "context_gate_removed_by_candidate": context_gate_report.get(
+            "context_gate_removed_by_candidate",
+            {},
+        ),
         "field_match_counts": raw_df["source_field"].value_counts().to_dict()
         if not raw_df.empty else {},
         "match_type_counts": raw_df["match_type"].value_counts().to_dict()
@@ -1059,6 +1166,8 @@ def main() -> None:
             ]
         )
 
+    raw_df, context_gate_report = apply_depth3_context_gate(raw_df)
+
     aggregated_df = aggregate_matches(raw_df)
     limited_df = limit_candidates_per_source(aggregated_df)
 
@@ -1074,6 +1183,7 @@ def main() -> None:
         limited_df=limited_df,
         curriculum_df=curriculum_df,
         resources_df=resources_df,
+        context_gate_report=context_gate_report,
     )
 
     with args.output_report.open("w", encoding="utf-8") as f:

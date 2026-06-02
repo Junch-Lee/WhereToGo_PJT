@@ -2,34 +2,40 @@
   "status": "success",
   "course": {
     "total_rows": 1570,
-    "matched_rows": 982,
-    "unmatched_rows": 588,
-    "match_rate": 0.6255
+    "matched_rows": 950,
+    "unmatched_rows": 620,
+    "match_rate": 0.6051
   },
   "resource": {
     "total_rows": 123,
-    "matched_rows": 110,
-    "unmatched_rows": 13,
-    "match_rate": 0.8943
+    "matched_rows": 108,
+    "unmatched_rows": 15,
+    "match_rate": 0.878
   },
-  "raw_match_records": 4723,
-  "final_candidate_records": 2985,
-  "auto_link_candidate_count": 828,
-  "needs_review_count": 693,
+  "raw_match_records": 4624,
+  "final_candidate_records": 2903,
+  "auto_link_candidate_count": 482,
+  "needs_review_count": 609,
+  "context_gate_removed_count": 99,
+  "context_gate_removed_by_candidate": {
+    "인터넷": 40,
+    "탐색": 30,
+    "함수": 29
+  },
   "field_match_counts": {
-    "learning_objective_clean": 1809,
-    "course_name_clean": 727,
+    "learning_objective_clean": 1743,
+    "course_name_clean": 716,
     "main_textbook_clean": 665,
-    "prerequisite_material_clean": 655,
-    "description_body_clean": 399,
-    "description_keyword_items": 192,
-    "description_keywords_raw": 170,
-    "title_clean": 106
+    "prerequisite_material_clean": 650,
+    "description_body_clean": 392,
+    "description_keyword_items": 188,
+    "description_keywords_raw": 166,
+    "title_clean": 104
   },
   "match_type_counts": {
     "topic_name": 2700,
     "alias": 1160,
-    "depth3_candidate": 863
+    "depth3_candidate": 764
   },
   "top_matched_topics": {
     "프로그래밍": 427,
@@ -42,10 +48,10 @@
     "머신러닝": 87,
     "Java": 76,
     "네트워크": 68,
+    "데이터 분석": 66,
     "선형대수": 66,
-    "데이터 분석": 65,
     "컴퓨터구조": 61,
-    "데이터베이스": 57,
+    "데이터베이스": 58,
     "프로그래밍 기초 문법": 55,
     "딥러닝": 53,
     "운영체제": 50,
@@ -64,9 +70,6 @@
     "컴퓨터 비전": 15
   },
   "top_depth3_candidates": {
-    "함수": 44,
-    "인터넷": 44,
-    "탐색": 42,
     "변수": 40,
     "벡터": 32,
     "입출력": 31,
@@ -80,8 +83,11 @@
     "정렬": 20,
     "큐": 20,
     "분류": 20,
+    "인터넷": 18,
     "배열": 17,
+    "함수": 16,
     "그래프 자료구조": 12,
+    "탐색": 12,
     "해시": 11,
     "TCP/IP": 9,
     "CNN": 9,
