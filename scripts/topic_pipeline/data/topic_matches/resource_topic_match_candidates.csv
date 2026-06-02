@@ -1,0 +1,389 @@
+﻿external_id,title,provider_name,main_category,sub_category,topic_slug,topic_name,candidate_name,suggested_parent_slug,suggested_depth,relevance_score,matched_fields,match_types,is_existing_topic,needs_review,is_auto_link_candidate,evidence_count
+0fa44287c0998043,C프로그래밍 고급,한동대학교,공학,정보통신공학,programming,프로그래밍,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+0fa44287c0998043,C프로그래밍 고급,한동대학교,공학,정보통신공학,c-language,C언어,,,,0.82,description_body_clean,alias|topic_name,true,false,false,2
+0fa44287c0998043,C프로그래밍 고급,한동대학교,공학,정보통신공학,,,배열,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+0fa44287c0998043,C프로그래밍 고급,한동대학교,공학,정보통신공학,,,함수,programming-basic-syntax,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+0fa44287c0998043,C프로그래밍 고급,한동대학교,공학,정보통신공학,operating-systems,운영체제,,,,0.82,description_body_clean,topic_name,true,false,false,1
+0fa44287c0998043,C프로그래밍 고급,한동대학교,공학,정보통신공학,programming-basic-syntax,프로그래밍 기초 문법,,,,0.77,description_body_clean,alias,true,false,false,1
+10fc1ba125aa910c,의료보건빅데이터분석,인제대학교,공학,정보과학,artificial-intelligence,인공지능,,,,0.91,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+10fc1ba125aa910c,의료보건빅데이터분석,인제대학교,공학,정보과학,algorithms,알고리즘,,,,0.8,description_body_clean,topic_name,true,false,false,1
+14681297019d55cc,컴퓨터과학과 코딩,국립군산대학교,공학,컴퓨터과학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+14681297019d55cc,컴퓨터과학과 코딩,국립군산대학교,공학,컴퓨터과학,python,Python,,,,0.87,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+14681297019d55cc,컴퓨터과학과 코딩,국립군산대학교,공학,컴퓨터과학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+14681297019d55cc,컴퓨터과학과 코딩,국립군산대학교,공학,컴퓨터과학,programming-basic-syntax,프로그래밍 기초 문법,,,,0.77,description_body_clean,alias,true,false,false,1
+1759e84268558322,컴퓨터 활용,광주여자대학교,공학,컴퓨터과학,statistical-analysis,통계 분석,,,,0.82,description_body_clean,topic_name,true,false,false,1
+19562,웨어러블 컴퓨터 디자인,세종대학교,공학,컴퓨터 · 통신,,,리스트,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19568,데이터 분석 기초,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,data-analysis,데이터 분석,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19568,데이터 분석 기초,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19573,인공지능과문제해결,우석대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19573,인공지능과문제해결,우석대학교,공학,컴퓨터 · 통신,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.98,description_body_clean|title_clean,alias,true,false,true,2
+19573,인공지능과문제해결,우석대학교,공학,컴퓨터 · 통신,,,프롬프트 엔지니어링,generative-ai,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19573,인공지능과문제해결,우석대학교,공학,컴퓨터 · 통신,programming,프로그래밍,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19573,인공지능과문제해결,우석대학교,공학,컴퓨터 · 통신,python,Python,,,,0.75,description_body_clean,alias,true,false,false,2
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,,,Transformer,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,,,임베딩,generative-ai,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,,,기댓값과 분산,probability-statistics,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,,,재귀,algorithms,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19596,생성형 인공지능 입문,세종대학교,공학,컴퓨터 · 통신,networks,네트워크,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,machine-learning,머신러닝,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,과적합,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,벡터,linear-algebra,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,분류,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,변수,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,비지도학습,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,역전파,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19597,모두를 위한 머신러닝,세종대학교,공학,컴퓨터 · 통신,,,지도학습,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19600,데이터베이스 보안,세종대학교,공학,컴퓨터 · 통신,database,데이터베이스,,,,1.0,description_body_clean|title_clean,alias|topic_name,true,false,false,3
+19600,데이터베이스 보안,세종대학교,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19600,데이터베이스 보안,세종대학교,공학,컴퓨터 · 통신,relational-database,관계형 데이터베이스,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19600,데이터베이스 보안,세종대학교,공학,컴퓨터 · 통신,sql,SQL,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19600,데이터베이스 보안,세종대학교,공학,컴퓨터 · 통신,authentication-authorization,인증과 인가,,,,0.7,description_body_clean,alias,true,false,false,1
+19600,데이터베이스 보안,세종대학교,공학,컴퓨터 · 통신,server-basics,서버 기초,,,,0.7,description_body_clean,alias,true,false,false,1
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,deep-learning,딥러닝,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,,,Transformer,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,,,CNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,,,RNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,,,분류,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,,,역전파,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19643,현대 딥러닝 구조의 이해와 응용,성균관대학교,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,,,CNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,,,지도학습,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,database,데이터베이스,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,networks,네트워크,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19648,인공지능의 기초 이해,고려대학교,공학,컴퓨터 · 통신,python,Python,,,,0.8,description_body_clean,topic_name,true,false,false,1
+1966b264204f1a3e,라즈베리파이 실습,부산외국어대학교,공학,소프트웨어공학,software-design,소프트웨어 설계,,,,0.82,description_body_clean,topic_name,true,false,false,1
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,명지전문대학,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,명지전문대학,공학,컴퓨터 · 통신,deep-learning,딥러닝,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,명지전문대학,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,명지전문대학,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,명지전문대학,공학,컴퓨터 · 통신,data-collection,데이터 수집,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,명지전문대학,공학,컴퓨터 · 통신,data-visualization,데이터 시각화,,,,0.7,description_body_clean,alias,true,false,false,1
+19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,명지전문대학,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,명지전문대학,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,명지전문대학,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,명지전문대학,공학,컴퓨터 · 통신,generative-ai,생성형 AI,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,명지전문대학,공학,컴퓨터 · 통신,machine-learning,머신러닝,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19726,AI 기계학습,전주대학교,공학,컴퓨터 · 통신,machine-learning,머신러닝,,,,0.98,description_body_clean|title_clean,alias,true,false,true,2
+19726,AI 기계학습,전주대학교,공학,컴퓨터 · 통신,,,분류,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19726,AI 기계학습,전주대학교,공학,컴퓨터 · 통신,,,회귀,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,2
+19726,AI 기계학습,전주대학교,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19726,AI 기계학습,전주대학교,공학,컴퓨터 · 통신,optimization,최적화,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19726,AI 기계학습,전주대학교,공학,컴퓨터 · 통신,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.75,description_body_clean,alias,true,false,false,1
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,영남대학교,공학,컴퓨터 · 통신,data-analysis,데이터 분석,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,영남대학교,공학,컴퓨터 · 통신,data-visualization,데이터 시각화,,,,0.8,description_body_clean,alias|topic_name,true,false,false,2
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,영남대학교,공학,컴퓨터 · 통신,,,배열,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,영남대학교,공학,컴퓨터 · 통신,data-structures,자료구조,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,영남대학교,공학,컴퓨터 · 통신,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.75,description_body_clean,alias,true,false,false,1
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,영남대학교,공학,컴퓨터 · 통신,python,Python,,,,0.7,description_body_clean,alias,true,false,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,algorithms,알고리즘,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,,,경사하강법,optimization,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,,,그리디 알고리즘,algorithms,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,,,역전파,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,,,탐색,algorithms,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,,,함수,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19728,AI 알고리즘,한국연구재단 산업교육센터,공학,컴퓨터 · 통신,networks,네트워크,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19731,HCI와 함께하는 소프트웨어 공학,울산대학교,공학,컴퓨터 · 통신,data-analysis,데이터 분석,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19731,HCI와 함께하는 소프트웨어 공학,울산대학교,공학,컴퓨터 · 통신,software-design,소프트웨어 설계,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,data-preprocessing,데이터 전처리,,,,0.8,description_body_clean,alias|topic_name,true,false,false,2
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,python,Python,,,,0.8,description_body_clean,alias|topic_name,true,false,false,2
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,CNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,RNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,벡터,linear-algebra,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,분류,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19749,산업응용을 위한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,data-preprocessing,데이터 전처리,,,,0.8,description_body_clean,alias|topic_name,true,false,false,2
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,CNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,RNN,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,신경망,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,,,트리,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,code-review,코드 리뷰,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19750,설명 가능한 인공지능,세종대학교,공학,컴퓨터 · 통신,data-analysis,데이터 분석,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19773,고급 파이썬과 데이터 분석,한양대학교(ERICA),공학,컴퓨터 · 통신,data-analysis,데이터 분석,,,,0.95,title_clean,topic_name,true,false,false,1
+19773,고급 파이썬과 데이터 분석,한양대학교(ERICA),공학,컴퓨터 · 통신,python,Python,,,,0.93,description_body_clean|title_clean,alias,true,false,true,3
+19773,고급 파이썬과 데이터 분석,한양대학교(ERICA),공학,컴퓨터 · 통신,programming,프로그래밍,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19773,고급 파이썬과 데이터 분석,한양대학교(ERICA),공학,컴퓨터 · 통신,data-visualization,데이터 시각화,,,,0.7,description_body_clean,alias,true,false,false,1
+19812,컴퓨터 네트워크,전남대학교,공학,컴퓨터 · 통신,networks,네트워크,,,,1.0,description_body_clean|title_clean,alias|topic_name,true,false,true,4
+19812,컴퓨터 네트워크,전남대학교,공학,컴퓨터 · 통신,,,인터넷,networks,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19812,컴퓨터 네트워크,전남대학교,공학,컴퓨터 · 통신,,,프로토콜,networks,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19900,AI 프롬프트로 여는 메타버스 콘텐츠 기획,단국대학교,공학,컴퓨터 · 통신,,,프롬프트 엔지니어링,generative-ai,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19900,AI 프롬프트로 여는 메타버스 콘텐츠 기획,단국대학교,공학,컴퓨터 · 통신,generative-ai,생성형 AI,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19900,AI 프롬프트로 여는 메타버스 콘텐츠 기획,단국대학교,공학,컴퓨터 · 통신,optimization,최적화,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19919,인공지능을 위한 R과 Python,서강대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19919,인공지능을 위한 R과 Python,서강대학교,공학,컴퓨터 · 통신,python,Python,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+19919,인공지능을 위한 R과 Python,서강대학교,공학,컴퓨터 · 통신,probability-statistics,확률과 통계,,,,0.7,description_body_clean,alias,true,false,false,1
+19932,21세기의 놀이하는 인간 : 컴퓨터게임 개론,경희대학교,공학,컴퓨터 · 통신,,,입출력,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19932,21세기의 놀이하는 인간 : 컴퓨터게임 개론,경희대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,0.8,description_body_clean,topic_name,true,false,false,1
+19932,21세기의 놀이하는 인간 : 컴퓨터게임 개론,경희대학교,공학,컴퓨터 · 통신,authentication-authorization,인증과 인가,,,,0.7,description_body_clean,alias,true,false,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,리스트,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,배열,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,변수,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,스택,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,입출력,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,정렬,algorithms,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,큐,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19933,소프트웨어적 사유,경희대학교,공학,컴퓨터 · 통신,,,트리,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,python,Python,,,,0.93,description_body_clean|title_clean,alias|topic_name,true,false,true,3
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,data-visualization,데이터 시각화,,,,0.8,description_body_clean,alias|topic_name,true,false,false,2
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,,,리스트,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,,,반복문,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,,,변수,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,,,입출력,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,,,조건문,programming-basic-syntax,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19938,파이썬과 데이터마이닝,경희대학교,공학,컴퓨터 · 통신,,,클러스터링,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,machine-learning,머신러닝,,,,0.98,description_body_clean|title_clean,alias,true,false,true,2
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,python,Python,,,,0.8,description_body_clean,alias|topic_name,true,false,false,2
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,,,Transformer,deep-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,,,배열,data-structures,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,,,벡터,linear-algebra,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,,,임베딩,generative-ai,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+19939,인공지능을 위한 기계학습 입문,경희대학교,공학,컴퓨터 · 통신,,,행렬,linear-algebra,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+1bdcb8455a34f695,인터넷과 IoT의 이해,영남대학교,공학,컴퓨터공학,server-basics,서버 기초,,,,0.72,description_body_clean,alias,true,false,false,1
+1cc1be53983cd7c6,인공지능이해,경상국립대학교,공학,소프트웨어공학,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+1cc1be53983cd7c6,인공지능이해,경상국립대학교,공학,소프트웨어공학,machine-learning,머신러닝,,,,0.82,description_body_clean,topic_name,true,false,false,1
+1cc1be53983cd7c6,인공지능이해,경상국립대학교,공학,소프트웨어공학,python,Python,,,,0.82,description_body_clean,topic_name,true,false,false,1
+1e797f4b8f771ccd,프로그래밍기초,국립금오공과대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.97,title_clean,topic_name,true,false,false,1
+1e797f4b8f771ccd,프로그래밍기초,국립금오공과대학교,공학,소프트웨어공학,python,Python,,,,0.85,description_keyword_items|description_keywords_raw,alias,true,false,true,2
+1ef4460a52a60e13,개발자를 위한 운영체제,국립금오공과대학교,공학,컴퓨터공학,operating-systems,운영체제,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+1ef4460a52a60e13,개발자를 위한 운영체제,국립금오공과대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,false,3
+20854394f0e6b795,인공지능파운데이션,이화여자대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,false,5
+20f326d326f32a81,C 프로그래밍,국립한밭대학교,공학,소프트웨어공학,c-language,C언어,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,6
+20f326d326f32a81,C 프로그래밍,국립한밭대학교,공학,소프트웨어공학,programming,프로그래밍,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,6
+25225b6d979371ab,설계패턴,영남대학교,공학,컴퓨터공학,oop,객체지향 프로그래밍,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+25225b6d979371ab,설계패턴,영남대학교,공학,컴퓨터공학,object-oriented-design,객체지향 설계,,,,0.82,description_body_clean,topic_name,true,false,false,1
+25225b6d979371ab,설계패턴,영남대학교,공학,컴퓨터공학,software-design,소프트웨어 설계,,,,0.82,description_body_clean,topic_name,true,false,false,1
+257a39fba165829b,대형언어모델의 기초,영남대학교,공학,컴퓨터공학,,,Transformer,deep-learning,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+26567964a5001f42,인공지능의 이해,국립강릉원주대학교,공학,컴퓨터과학,artificial-intelligence,인공지능,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,4
+28e2956e327388bf,4차산업혁명과우리의미래,서원대학교,공학,정보과학,artificial-intelligence,인공지능,,,,0.91,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+2aad794cb56604e0,알고리즘,호서대학교,공학,컴퓨터공학,algorithms,알고리즘,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+2aad794cb56604e0,알고리즘,호서대학교,공학,컴퓨터공학,programming,프로그래밍,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+2aad794cb56604e0,알고리즘,호서대학교,공학,컴퓨터공학,c-language,C언어,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,4
+2d9dab730469959b,데이터베이스 실무,안양대학교,공학,컴퓨터공학,database,데이터베이스,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,false,4
+2d9dab730469959b,데이터베이스 실무,안양대학교,공학,컴퓨터공학,,,쿼리,sql,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+2d9dab730469959b,데이터베이스 실무,안양대학교,공학,컴퓨터공학,,,큐,data-structures,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+2d9dab730469959b,데이터베이스 실무,안양대학교,공학,컴퓨터공학,sql,SQL,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,3
+2f707a756c0c8e29,자바프로그래밍,국립금오공과대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+2f707a756c0c8e29,자바프로그래밍,국립금오공과대학교,공학,컴퓨터공학,java,Java,,,,0.97,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,4
+2f707a756c0c8e29,자바프로그래밍,국립금오공과대학교,공학,컴퓨터공학,,,반복문,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+2f707a756c0c8e29,자바프로그래밍,국립금오공과대학교,공학,컴퓨터공학,,,배열,data-structures,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+2f707a756c0c8e29,자바프로그래밍,국립금오공과대학교,공학,컴퓨터공학,,,변수,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+2f707a756c0c8e29,자바프로그래밍,국립금오공과대학교,공학,컴퓨터공학,,,조건문,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+307bccf36ae79e8e,데이터베이스 응용,안양대학교,공학,컴퓨터공학,database,데이터베이스,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,false,4
+307bccf36ae79e8e,데이터베이스 응용,안양대학교,공학,컴퓨터공학,,,쿼리,sql,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+307bccf36ae79e8e,데이터베이스 응용,안양대학교,공학,컴퓨터공학,sql,SQL,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,3
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,영남대학교,공학,소프트웨어공학,programming,프로그래밍,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,영남대학교,공학,소프트웨어공학,python,Python,,,,0.95,description_body_clean|title_clean,alias|topic_name,true,false,true,3
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,영남대학교,공학,소프트웨어공학,,,그래프 자료구조,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,영남대학교,공학,소프트웨어공학,numpy,NumPy,,,,0.82,description_body_clean,topic_name,true,false,false,1
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,영남대학교,공학,소프트웨어공학,pandas,Pandas,,,,0.82,description_body_clean,topic_name,true,false,false,1
+36b90eb27cc07422,인공지능과미래사회그리고법,경상국립대학교,공학,소프트웨어공학,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+378ba15b6d5def16,컴퓨팅적 사고와 문제해결,대진대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,false,3
+378ba15b6d5def16,컴퓨팅적 사고와 문제해결,대진대학교,공학,소프트웨어공학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.92,title_clean,alias,true,false,true,2
+378ba15b6d5def16,컴퓨팅적 사고와 문제해결,대진대학교,공학,소프트웨어공학,python,Python,,,,0.87,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,4
+42031d38fd0b7141,멀티코어 컴퓨팅,중앙대학교,공학,소프트웨어공학,java,Java,,,,0.87,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+42031d38fd0b7141,멀티코어 컴퓨팅,중앙대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+4b3ee5c0edde48a3,컴퓨팅 사고력(인문),삼육대학교,공학,컴퓨터공학,python,Python,,,,0.82,description_body_clean,alias|topic_name,true,false,false,2
+4b3ee5c0edde48a3,컴퓨팅 사고력(인문),삼육대학교,공학,컴퓨터공학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.77,description_body_clean,alias,true,false,false,1
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,차의과학대학교,공학,컴퓨터과학,data-visualization,데이터 시각화,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,5
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,차의과학대학교,공학,컴퓨터과학,generative-ai,생성형 AI,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,true,3
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,차의과학대학교,공학,컴퓨터과학,documentation,문서화,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,차의과학대학교,공학,컴퓨터과학,data-analysis,데이터 분석,,,,0.82,description_body_clean,topic_name,true,false,false,1
+5283a4a91cb8f649,홈페이지입문,호서대학교,공학,컴퓨터공학,html-css,HTML/CSS,,,,0.87,description_keyword_items,alias,true,false,true,2
+5283a4a91cb8f649,홈페이지입문,호서대학교,공학,컴퓨터공학,frontend-development,프론트엔드 개발,,,,0.77,description_body_clean,alias,true,false,false,1
+552cd7b5454ec100,데이터베이스,안양대학교,공학,정보과학,database,데이터베이스,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+552cd7b5454ec100,데이터베이스,안양대학교,공학,정보과학,sql,SQL,,,,0.93,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,true,3
+552cd7b5454ec100,데이터베이스,안양대학교,공학,정보과학,transactions,트랜잭션,,,,0.91,description_keyword_items|description_keywords_raw,topic_name,true,false,true,2
+56f8f300b2703f47,모바일 프로그래밍 및 실습,영남대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,3
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,false,3
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,python,Python,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,3
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,numpy,NumPy,,,,0.93,description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,4
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,pandas,Pandas,,,,0.93,description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,3
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,,,반복문,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,,,조건문,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,,,함수,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+5af573187812b3ef,데이터분석기초,숙명여자대학교,공학,소프트웨어공학,data-analysis,데이터 분석,,,,0.82,description_body_clean,topic_name,true,false,false,1
+5c0a11ef9365a78a,깃 & 깃허브,한양대학교,공학,컴퓨터공학,github,GitHub,,,,0.95,description_body_clean|title_clean,alias,true,false,true,2
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,programming,프로그래밍,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,4
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,oop,객체지향 프로그래밍,,,,0.93,description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,6
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,,,입출력,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,,,함수,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,,,배열,data-structures,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,,,변수,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,,,재귀,algorithms,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+5ee117f686775b98,코틀린프로그래밍 기초,영남대학교,공학,소프트웨어공학,,,정렬,algorithms,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,4
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,,,함수,programming-basic-syntax,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,5
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,,,반복문,programming-basic-syntax,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,,,변수,programming-basic-syntax,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,,,조건문,programming-basic-syntax,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,,,입출력,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+607f5aaa31467d55,프로그래밍개론,국립목포대학교,공학,컴퓨터공학,programming-basic-syntax,프로그래밍 기초 문법,,,,0.92,title_clean,alias,true,false,true,1
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,linear-algebra,선형대수,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,4
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,고윳값과 고유벡터,linear-algebra,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,대각화,linear-algebra,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,행렬,linear-algebra,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,벡터,linear-algebra,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,벡터공간,linear-algebra,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,선형변환,linear-algebra,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+61937b8ac6144a3e,전산수학1,고려대학교,공학,컴퓨터과학,,,역행렬,linear-algebra,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+697298849e0d1596,Git & Github,이화여자대학교,공학,컴퓨터공학,git,Git,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,true,5
+697298849e0d1596,Git & Github,이화여자대학교,공학,컴퓨터공학,github,GitHub,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+697298849e0d1596,Git & Github,이화여자대학교,공학,컴퓨터공학,,,기댓값과 분산,probability-statistics,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+6bdd67a8d95e389d,딥러닝 생성 모델의 원리와 구현,국립금오공과대학교,공학,컴퓨터공학,deep-learning,딥러닝,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+6bdd67a8d95e389d,딥러닝 생성 모델의 원리와 구현,국립금오공과대학교,공학,컴퓨터공학,,,Transformer,deep-learning,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+6bdd67a8d95e389d,딥러닝 생성 모델의 원리와 구현,국립금오공과대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,0.82,description_body_clean,topic_name,true,false,false,1
+6f2df2b14cadd73c,데이터마이닝,경상국립대학교,공학,컴퓨터공학,data-analysis,데이터 분석,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,false,3
+7252d764c1ecdfce,클라우드프로그래밍,인천대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,3
+7252d764c1ecdfce,클라우드프로그래밍,인천대학교,공학,컴퓨터공학,,,인터넷,networks,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+7252d764c1ecdfce,클라우드프로그래밍,인천대학교,공학,컴퓨터공학,database,데이터베이스,,,,0.82,description_body_clean,topic_name,true,false,false,1
+7252d764c1ecdfce,클라우드프로그래밍,인천대학교,공학,컴퓨터공학,networks,네트워크,,,,0.82,description_body_clean,topic_name,true,false,false,1
+7252d764c1ecdfce,클라우드프로그래밍,인천대학교,공학,컴퓨터공학,cloud-basics,클라우드 기초,,,,0.77,description_body_clean,alias,true,false,false,1
+7252d764c1ecdfce,클라우드프로그래밍,인천대학교,공학,컴퓨터공학,server-basics,서버 기초,,,,0.72,description_body_clean,alias,true,false,false,1
+747d712f12f6a25e,지능영상처리,국립한밭대학교,공학,소프트웨어공학,python,Python,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,true,3
+747d712f12f6a25e,지능영상처리,국립한밭대학교,공학,소프트웨어공학,computer-vision,컴퓨터 비전,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,3
+747d712f12f6a25e,지능영상처리,국립한밭대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+7518db4dec766f23,SW기초프로그래밍,경운대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+77b5b8f2d825bc0b,AI 리터러시,국립목포대학교,공학,정보통신공학,artificial-intelligence,인공지능,,,,1.0,description_body_clean|title_clean,alias|topic_name,true,false,false,2
+77b5b8f2d825bc0b,AI 리터러시,국립목포대학교,공학,정보통신공학,generative-ai,생성형 AI,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,3
+77b5b8f2d825bc0b,AI 리터러시,국립목포대학교,공학,정보통신공학,algorithms,알고리즘,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,true,2
+7b8364ecd863c062,운영체제 : 병행성,한국공학대학교,공학,컴퓨터공학,operating-systems,운영체제,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+7b8364ecd863c062,운영체제 : 병행성,한국공학대학교,공학,컴퓨터공학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+7c8983b3993474d7,컴퓨터네트워크,국립한국해양대학교,공학,정보통신공학,networks,네트워크,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,true,8
+7c8983b3993474d7,컴퓨터네트워크,국립한국해양대학교,공학,정보통신공학,,,프로토콜,networks,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,7
+7c8983b3993474d7,컴퓨터네트워크,국립한국해양대학교,공학,정보통신공학,,,인터넷,networks,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,4
+7c8983b3993474d7,컴퓨터네트워크,국립한국해양대학교,공학,정보통신공학,,,OSI 7계층,networks,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,6
+7c8983b3993474d7,컴퓨터네트워크,국립한국해양대학교,공학,정보통신공학,,,TCP/IP,networks,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,4
+7ca4a3a710569763,"코딩으로 푸는 수학, 기초 파이썬",국립군산대학교,공학,컴퓨터과학,python,Python,,,,0.97,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,4
+7ca4a3a710569763,"코딩으로 푸는 수학, 기초 파이썬",국립군산대학교,공학,컴퓨터과학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.77,description_body_clean,alias,true,false,false,1
+7e27c3057d198d03,풀스택(Full-stack) 웹개발 프로젝트,국립군산대학교,공학,소프트웨어공학,,,스택,data-structures,3,1.0,description_keyword_items|description_keywords_raw|title_clean,depth3_candidate,false,true,false,4
+7e27c3057d198d03,풀스택(Full-stack) 웹개발 프로젝트,국립군산대학교,공학,소프트웨어공학,frontend-development,프론트엔드 개발,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+7e27c3057d198d03,풀스택(Full-stack) 웹개발 프로젝트,국립군산대학교,공학,소프트웨어공학,backend-development,백엔드 개발,,,,0.87,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+80e706fcdd20870b,Orange3으로 배우는 기계학습,국립금오공과대학교,공학,컴퓨터공학,machine-learning,머신러닝,,,,1.0,description_body_clean|description_keywords_raw|title_clean,alias,true,false,true,3
+80e706fcdd20870b,Orange3으로 배우는 기계학습,국립금오공과대학교,공학,컴퓨터공학,,,분류,machine-learning,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+80e706fcdd20870b,Orange3으로 배우는 기계학습,국립금오공과대학교,공학,컴퓨터공학,,,회귀,machine-learning,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+80e706fcdd20870b,Orange3으로 배우는 기계학습,국립금오공과대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+80e706fcdd20870b,Orange3으로 배우는 기계학습,국립금오공과대학교,공학,컴퓨터공학,regression-analysis,회귀분석,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,true,2
+820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,이화여자대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,4
+820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,이화여자대학교,공학,컴퓨터공학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.92,title_clean,alias,true,false,true,1
+820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,이화여자대학교,공학,컴퓨터공학,python,Python,,,,0.87,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,이화여자대학교,공학,컴퓨터공학,programming-basic-syntax,프로그래밍 기초 문법,,,,0.77,description_body_clean,alias,true,false,false,1
+825c6640682fcc8c,SQL의 이해,영남대학교,공학,컴퓨터공학,sql,SQL,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,true,6
+825c6640682fcc8c,SQL의 이해,영남대학교,공학,컴퓨터공학,database,데이터베이스,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+879dd5084b1992eb,소프트웨어 산업의 이해,동명대학교,공학,소프트웨어공학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+879dd5084b1992eb,소프트웨어 산업의 이해,동명대학교,공학,소프트웨어공학,cloud-basics,클라우드 기초,,,,0.9,description_keyword_items|description_keywords_raw,alias,true,false,true,2
+8a551636cf84d050,데이터분석기본,숙명여자대학교,공학,소프트웨어공학,data-preprocessing,데이터 전처리,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,6
+8a551636cf84d050,데이터분석기본,숙명여자대학교,공학,소프트웨어공학,data-visualization,데이터 시각화,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,6
+8a551636cf84d050,데이터분석기본,숙명여자대학교,공학,소프트웨어공학,data-collection,데이터 수집,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,true,2
+8a551636cf84d050,데이터분석기본,숙명여자대학교,공학,소프트웨어공학,data-analysis,데이터 분석,,,,0.82,description_body_clean,topic_name,true,false,false,1
+8a551636cf84d050,데이터분석기본,숙명여자대학교,공학,소프트웨어공학,python,Python,,,,0.72,description_body_clean,alias,true,false,false,1
+8e1152a5ec9cbb20,챗GPT와 미래 일자리,울산/경남권역센터,공학,컴퓨터과학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,alias|topic_name,true,false,false,3
+9346d71e1be636b5,파이썬 기초실습 익히기,국립군산대학교,공학,컴퓨터과학,python,Python,,,,0.97,description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,3
+9346d71e1be636b5,파이썬 기초실습 익히기,국립군산대학교,공학,컴퓨터과학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.9,description_keyword_items|description_keywords_raw,alias,true,false,true,2
+9346d71e1be636b5,파이썬 기초실습 익히기,국립군산대학교,공학,컴퓨터과학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+9346d71e1be636b5,파이썬 기초실습 익히기,국립군산대학교,공학,컴퓨터과학,programming-basic-syntax,프로그래밍 기초 문법,,,,0.77,description_body_clean,alias,true,false,false,1
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,programming,프로그래밍,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,4
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,python,Python,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,4
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,,,함수,programming-basic-syntax,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,,,리스트,data-structures,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,,,반복문,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,,,조건문,programming-basic-syntax,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.92,title_clean,alias,true,false,true,1
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,숙명여자대학교,공학,소프트웨어공학,,,자료형,programming-basic-syntax,3,0.82,description_body_clean,depth3_candidate,false,true,false,2
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,국립군산대학교,공학,컴퓨터공학,networks,네트워크,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,true,6
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,국립군산대학교,공학,컴퓨터공학,,,인터넷,networks,3,0.95,description_body_clean|title_clean,depth3_candidate,false,true,false,2
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,국립군산대학교,공학,컴퓨터공학,,,OSI 7계층,networks,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,국립군산대학교,공학,컴퓨터공학,,,라우팅,networks,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,국립군산대학교,공학,컴퓨터공학,,,프로토콜,networks,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+95205bdbe29679bb,머신러닝 기법을 활용한 데이터분석,영남대학교,공학,컴퓨터공학,machine-learning,머신러닝,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+95205bdbe29679bb,머신러닝 기법을 활용한 데이터분석,영남대학교,공학,컴퓨터공학,,,트리,data-structures,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+95205bdbe29679bb,머신러닝 기법을 활용한 데이터분석,영남대학교,공학,컴퓨터공학,,,회귀,machine-learning,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+9b302bd29db2ee43,생성적 AI 마스터링: 개념에서 응용 프로그램까지,우송대학교,공학,컴퓨터과학,artificial-intelligence,인공지능,,,,0.95,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,true,false,false,4
+9b302bd29db2ee43,생성적 AI 마스터링: 개념에서 응용 프로그램까지,우송대학교,공학,컴퓨터과학,ai-ethics,AI 윤리,,,,0.9,description_keyword_items|description_keywords_raw,alias,true,false,true,2
+9ecc93b4bb71fa9b,리눅스 활용,부산외국어대학교,공학,소프트웨어공학,linux,Linux,,,,0.95,description_body_clean|title_clean,alias,true,false,true,2
+9ecc93b4bb71fa9b,리눅스 활용,부산외국어대학교,공학,소프트웨어공학,operating-systems,운영체제,,,,0.82,description_body_clean,topic_name,true,false,false,1
+9ed482b2d851c2d6,네트워크 보안 기초,영남대학교,공학,컴퓨터공학,networks,네트워크,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+a42e75a539ec521e,Python프로그래밍,신구대학교,공학,소프트웨어공학,python,Python,,,,1.0,description_body_clean|title_clean,alias|topic_name,true,false,true,2
+a42e75a539ec521e,Python프로그래밍,신구대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.97,title_clean,topic_name,true,false,false,1
+a42e75a539ec521e,Python프로그래밍,신구대학교,공학,소프트웨어공학,data-preprocessing,데이터 전처리,,,,0.82,description_body_clean,alias|topic_name,true,false,false,2
+ad1e47fe2c385320,클라우드 컴퓨팅의 기초,국립군산대학교,공학,컴퓨터공학,cloud-basics,클라우드 기초,,,,1.0,description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,3
+ad1e47fe2c385320,클라우드 컴퓨팅의 기초,국립군산대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,0.82,description_body_clean,topic_name,true,false,false,1
+af1cea2174ee88ea,리눅스실습,신구대학교,공학,소프트웨어공학,linux,Linux,,,,0.95,description_body_clean|title_clean,alias,true,false,true,2
+af1cea2174ee88ea,리눅스실습,신구대학교,공학,소프트웨어공학,deployment,배포,,,,0.82,description_body_clean,topic_name,true,false,false,1
+af1cea2174ee88ea,리눅스실습,신구대학교,공학,소프트웨어공학,operating-systems,운영체제,,,,0.82,description_body_clean,topic_name,true,false,false,1
+af1cea2174ee88ea,리눅스실습,신구대학교,공학,소프트웨어공학,server-basics,서버 기초,,,,0.72,description_body_clean,alias,true,false,false,1
+b2e63a58b0069219,강화학습,건양대학교,공학,컴퓨터과학,reinforcement-learning,강화학습,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+b2e63a58b0069219,강화학습,건양대학교,공학,컴퓨터과학,,,탐색,algorithms,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+b2e63a58b0069219,강화학습,건양대학교,공학,컴퓨터과학,algorithms,알고리즘,,,,0.82,description_body_clean,topic_name,true,false,false,1
+b2fcd698ff84272f,인공지능기초프로그래밍,목원대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,0.97,title_clean,alias|topic_name,true,false,false,2
+b2fcd698ff84272f,인공지능기초프로그래밍,목원대학교,공학,컴퓨터공학,programming,프로그래밍,,,,0.97,title_clean,topic_name,true,false,false,1
+b378166c66b80cfc,챗GPT 어디까지 써봤어,울산/경남권역센터,공학,컴퓨터과학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,alias|topic_name,true,false,false,3
+b574bb71edc73433,Language-C,동명대학교,공학,소프트웨어공학,c-language,C언어,,,,1.0,description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,3
+bf2c098f31ab79a7,생활속의 데이터베이스,부산외국어대학교,공학,소프트웨어공학,database,데이터베이스,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),국립군산대학교,공학,컴퓨터과학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.9,description_keyword_items|description_keywords_raw,alias,true,false,true,2
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),국립군산대학교,공학,컴퓨터과학,python,Python,,,,0.87,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),국립군산대학교,공학,컴퓨터과학,,,자료형,programming-basic-syntax,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),국립군산대학교,공학,컴퓨터과학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+c148257c2be01e3c,C++프로그래밍,한양대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_body_clean|title_clean,topic_name,true,false,false,2
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,국립금오공과대학교,공학,정보과학,algorithms,알고리즘,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,국립금오공과대학교,공학,정보과학,,,신경망,deep-learning,3,0.98,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,depth3_candidate,false,true,false,5
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,국립금오공과대학교,공학,정보과학,deep-learning,딥러닝,,,,0.93,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,true,3
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,국립금오공과대학교,공학,정보과학,optimization,최적화,,,,0.93,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,true,false,true,3
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,국립금오공과대학교,공학,정보과학,,,분류,machine-learning,3,0.8,description_body_clean,depth3_candidate,false,true,false,1
+c506594f05a3b027,"인공지능의 윤리, 거버넌스 및 사회적 영향",우송대학교,공학,컴퓨터과학,artificial-intelligence,인공지능,,,,1.0,description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,false,4
+c506594f05a3b027,"인공지능의 윤리, 거버넌스 및 사회적 영향",우송대학교,공학,컴퓨터과학,ai-ethics,AI 윤리,,,,0.93,description_keyword_items|description_keywords_raw,alias|topic_name,true,false,true,6
+c661a471d8d1a316,플러터를 활용한 멀티플랫폼 기반의 앱 개발,국립금오공과대학교,공학,소프트웨어공학,programming,프로그래밍,,,,0.82,description_body_clean,topic_name,true,false,false,1
+c6a52a637044722b,데이터베이스,영남대학교,공학,정보통신공학,database,데이터베이스,,,,0.97,title_clean,topic_name,true,false,false,1
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,국립군산대학교,공학,소프트웨어공학,deep-learning,딥러닝,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,국립군산대학교,공학,소프트웨어공학,machine-learning,머신러닝,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,true,4
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,국립군산대학교,공학,소프트웨어공학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,1.0,description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,3
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,국립군산대학교,공학,소프트웨어공학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+cbb458dca4fd2ddd,데이터과학,고려대학교,공학,컴퓨터과학,,,회귀,machine-learning,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+cbb458dca4fd2ddd,데이터과학,고려대학교,공학,컴퓨터과학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+cbb458dca4fd2ddd,데이터과학,고려대학교,공학,컴퓨터과학,,,분류,machine-learning,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+cbb458dca4fd2ddd,데이터과학,고려대학교,공학,컴퓨터과학,data-analysis,데이터 분석,,,,0.82,description_body_clean,topic_name,true,false,false,1
+cbb458dca4fd2ddd,데이터과학,고려대학교,공학,컴퓨터과학,data-visualization,데이터 시각화,,,,0.72,description_body_clean,alias,true,false,false,1
+da6602c011280fea,자연어처리,중앙대학교,공학,컴퓨터과학,natural-language-processing,자연어 처리,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,true,false,true,4
+da6602c011280fea,자연어처리,중앙대학교,공학,컴퓨터과학,,,Transformer,deep-learning,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+dacb7be8e0293524,소프트웨어중심세상,호서대학교,공학,컴퓨터과학,problem-solving-coding-basics,문제 해결과 코딩 기초,,,,0.77,description_body_clean,alias,true,false,false,1
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,artificial-intelligence,인공지능,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,false,5
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,,,LLM,generative-ai,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,,,벡터,linear-algebra,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,,,임베딩,generative-ai,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,,,프롬프트 엔지니어링,generative-ai,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,,,벡터 검색,generative-ai,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,,,벡터 데이터베이스,generative-ai,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+dc3da489762e213c,인공지능기초,건국대학교,공학,컴퓨터공학,database,데이터베이스,,,,0.82,description_body_clean,topic_name,true,false,false,1
+e2d083f56a5d3688,Swift 프로그래밍,건국대학교,공학,컴퓨터공학,programming,프로그래밍,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,true,false,false,4
+e2d083f56a5d3688,Swift 프로그래밍,건국대학교,공학,컴퓨터공학,oop,객체지향 프로그래밍,,,,0.92,description_body_clean|description_keyword_items|description_keywords_raw,alias,true,false,true,3
+e3cc0b689dcf3dcb,멀티모달 학습 개론,중앙대학교,공학,소프트웨어공학,,,Transformer,deep-learning,3,0.93,description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,2
+e3cc0b689dcf3dcb,멀티모달 학습 개론,중앙대학교,공학,소프트웨어공학,artificial-intelligence,인공지능,,,,0.82,description_body_clean,topic_name,true,false,false,1
+e5c4a840f444c0fd,반도체머신러닝,인제대학교,공학,소프트웨어공학,machine-learning,머신러닝,,,,1.0,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,true,false,true,4
+e5c4a840f444c0fd,반도체머신러닝,인제대학교,공학,소프트웨어공학,,,회귀,machine-learning,3,0.95,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,false,true,false,3
+e5c4a840f444c0fd,반도체머신러닝,인제대학교,공학,소프트웨어공학,artificial-intelligence,인공지능,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+e5c4a840f444c0fd,반도체머신러닝,인제대학교,공학,소프트웨어공학,optimization,최적화,,,,0.82,description_body_clean,topic_name,true,false,false,1
+e5e7b3f8151e56b7,경영데이터분석의 이론과 실제,안양대학교,공학,컴퓨터공학,data-analysis,데이터 분석,,,,0.93,description_keyword_items|description_keywords_raw,topic_name,true,false,false,2
+e5e7b3f8151e56b7,경영데이터분석의 이론과 실제,안양대학교,공학,컴퓨터공학,python,Python,,,,0.85,description_keyword_items|description_keywords_raw,alias,true,false,true,2
+e76007cb297a1139,데이터분석방법론,부산외국어대학교,공학,소프트웨어공학,data-analysis,데이터 분석,,,,0.82,description_body_clean,topic_name,true,false,false,1
+e76007cb297a1139,데이터분석방법론,부산외국어대학교,공학,소프트웨어공학,data-collection,데이터 수집,,,,0.82,description_body_clean,topic_name,true,false,false,1
+e76007cb297a1139,데이터분석방법론,부산외국어대학교,공학,소프트웨어공학,data-preprocessing,데이터 전처리,,,,0.72,description_body_clean,alias,true,false,false,1
+e76007cb297a1139,데이터분석방법론,부산외국어대학교,공학,소프트웨어공학,data-visualization,데이터 시각화,,,,0.72,description_body_clean,alias,true,false,false,1
+e82819c8467e6919,데이터 시각화,수도권역센터,공학,정보과학,data-visualization,데이터 시각화,,,,0.95,title_clean,alias|topic_name,true,false,true,2
+f3a2112bc7d0832b,임베디드시스템내 장치간 통신 프로토콜,영남대학교,공학,컴퓨터공학,,,프로토콜,networks,3,0.95,description_body_clean|title_clean,depth3_candidate,false,true,false,3
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,data-structures,자료구조,,,,1.0,description_body_clean|title_clean,topic_name,true,false,true,2
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,그래프 자료구조,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,리스트,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,배열,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,스택,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,정렬,algorithms,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,큐,data-structures,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
+f8edd794924fe2b4,자료구조,영남대학교,공학,컴퓨터공학,,,탐색,algorithms,3,0.82,description_body_clean,depth3_candidate,false,true,false,1
