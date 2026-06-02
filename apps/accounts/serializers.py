@@ -22,7 +22,7 @@ class SignupSerializer(serializers.ModelSerializer):
         write_only=True,
         error_messages={
             "blank": "비밀번호 확인을 입력해주세요.",
-            "require": "비밀번호 확인을 입력해주세요."
+            "required": "비밀번호 확인을 입력해주세요."
         }
     )
     
@@ -96,7 +96,7 @@ class SignupSerializer(serializers.ModelSerializer):
         
         if password != password_confirm:
             raise serializers.ValidationError({
-                "password_confrim": "비밀번호가 일치하지 않습니다."
+                "password_confirm": "비밀번호가 일치하지 않습니다."
             })
             
         validate_password(password)
