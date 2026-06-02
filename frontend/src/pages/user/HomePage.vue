@@ -40,6 +40,7 @@
               v-model="curriculumSearchKeyword"
               type="text"
               placeholder="내 커리큘럼 검색"
+              @focus="requireLoginForAction"
             />
           </div>
         </div>
@@ -119,12 +120,27 @@
         </div>
 
         <div class="sidebar-bottom">
-          <button type="button" class="sidebar-nav-item">
+          <button type="button" class="sidebar-nav-item" @click="handleNavigate('/settings')">
             <span class="nav-icon" v-html="icons.settings"></span>
             <span>설정</span>
           </button>
 
-          <button type="button" class="sidebar-nav-item" @click="handleLogout">
+          <button
+            v-if="!isLoggedIn"
+            type="button"
+            class="sidebar-nav-item"
+            @click="handleLogin"
+          >
+            <span class="nav-icon" v-html="icons.login"></span>
+            <span>로그인</span>
+          </button>
+
+          <button
+            v-else
+            type="button"
+            class="sidebar-nav-item"
+            @click="handleLogout"
+          >
             <span class="nav-icon" v-html="icons.logout"></span>
             <span>로그아웃</span>
           </button>
@@ -236,6 +252,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import './HomePage.css';
 
 const router = useRouter();
@@ -244,6 +261,7 @@ const route = useRoute();
 const sidebarOpen = ref(false);
 const input = ref('');
 const curriculumSearchKeyword = ref('');
+const isLoggedIn = ref(isAuthenticated());
 
 const icons = {
   user: `
@@ -263,6 +281,13 @@ const icons = {
     <svg viewBox="0 0 24 24" class="icon">
       <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z" fill="none" stroke="currentColor" stroke-width="2"/>
       <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.04.04a2.1 2.1 0 0 1-2.97 2.97l-.04-.04a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.65V21a2.1 2.1 0 1 1-4.2 0v-.06a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-1.98.36l-.04.04a2.1 2.1 0 0 1-2.97-2.97l.04-.04A1.8 1.8 0 0 0 4.6 15a1.8 1.8 0 0 0-1.65-1.1H3a2.1 2.1 0 1 1 0-4.2h.06A1.8 1.8 0 0 0 4.7 8.6a1.8 1.8 0 0 0-.36-1.98l-.04-.04a2.1 2.1 0 0 1 2.97-2.97l.04.04a1.8 1.8 0 0 0 1.98.36 1.8 1.8 0 0 0 1.1-1.65V3a2.1 2.1 0 1 1 4.2 0v.06a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 1.98-.36l.04-.04a2.1 2.1 0 0 1 2.97 2.97l-.04.04A1.8 1.8 0 0 0 19.4 9c.18.67.7 1.1 1.35 1.1H21a2.1 2.1 0 1 1 0 4.2h-.06A1.8 1.8 0 0 0 19.4 15Z" fill="none" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  login: `
+    <svg viewBox="0 0 24 24" class="icon">
+      <path d="M14 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19 12H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
     </svg>
   `,
   logout: `
@@ -289,6 +314,25 @@ const completedCurricula = [
   { id: '3', title: 'Python 기초 완성', progress: 100, updated: '1주 전' },
 ];
 
+const protectedPathPrefixes = ['/chat', '/mypage', '/learning', '/curriculum', '/settings'];
+
+const syncAuthState = () => {
+  isLoggedIn.value = isAuthenticated();
+};
+
+const isProtectedPath = (path) => {
+  return protectedPathPrefixes.some((prefix) => path.startsWith(prefix));
+};
+
+const requireLogin = (redirectPath = route.fullPath) => {
+  closeSidebar();
+
+  router.push({
+    path: '/login',
+    query: { redirect: redirectPath },
+  });
+};
+
 const filterCurricula = (curricula) => {
   const keyword = curriculumSearchKeyword.value.trim().toLowerCase();
 
@@ -303,6 +347,7 @@ const filteredInProgress = computed(() => filterCurricula(inProgressCurricula));
 const filteredCompleted = computed(() => filterCurricula(completedCurricula));
 
 const toggleSidebar = () => {
+  syncAuthState();
   sidebarOpen.value = !sidebarOpen.value;
 };
 
@@ -310,15 +355,37 @@ const closeSidebar = () => {
   sidebarOpen.value = false;
 };
 
+const handleLogin = () => {
+  closeSidebar();
+  router.push('/login');
+};
+
 const handleNavigate = (path) => {
+  if (isProtectedPath(path) && !isAuthenticated()) {
+    requireLogin(path);
+    return;
+  }
+
   router.push(path);
   closeSidebar();
+};
+
+const requireLoginForAction = () => {
+  if (!isAuthenticated()) {
+    requireLogin(route.fullPath);
+  }
 };
 
 const handleSubmit = () => {
   const goal = input.value.trim();
 
   if (!goal) return;
+
+  if (!isAuthenticated()) {
+    sessionStorage.setItem('pendingLearningGoal', goal);
+    requireLogin('/chat');
+    return;
+  }
 
   sessionStorage.setItem('initialLearningGoal', goal);
   router.push('/chat');
@@ -338,23 +405,24 @@ const handleEscKey = (event) => {
 };
 
 const handleLogout = () => {
-  localStorage.removeItem('accessToken');
-  localStorage.removeItem('refreshToken');
-  localStorage.removeItem('user');
-
-  sessionStorage.removeItem('accessToken');
-  sessionStorage.removeItem('refreshToken');
-  sessionStorage.removeItem('user');
-  sessionStorage.removeItem('initialLearningGoal');
+  clearAuthStorage();
+  syncAuthState();
+  closeSidebar();
 
   router.push('/login');
 };
 
 onMounted(() => {
   window.addEventListener('keydown', handleEscKey);
+  window.addEventListener('storage', syncAuthState);
+  window.addEventListener('focus', syncAuthState);
+
+  syncAuthState();
 });
 
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', handleEscKey);
+  window.removeEventListener('storage', syncAuthState);
+  window.removeEventListener('focus', syncAuthState);
 });
 </script>

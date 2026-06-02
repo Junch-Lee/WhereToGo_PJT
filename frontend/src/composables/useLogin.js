@@ -1,9 +1,10 @@
 import { reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { login } from '@/api/authApi';
 
 export function useLogin() {
   const router = useRouter();
+  const route = useRoute();
 
   const form = reactive({
     email: '',
@@ -51,7 +52,20 @@ export function useLogin() {
     return isValid;
   };
 
+  const clearPreviousAuthData = () => {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
+    localStorage.removeItem('rememberMe');
+
+    sessionStorage.removeItem('accessToken');
+    sessionStorage.removeItem('refreshToken');
+    sessionStorage.removeItem('user');
+  };
+
   const saveTokens = (data) => {
+    clearPreviousAuthData();
+
     const storage = form.rememberMe ? localStorage : sessionStorage;
 
     storage.setItem('accessToken', data.access);
@@ -59,17 +73,35 @@ export function useLogin() {
 
     localStorage.setItem('rememberMe', form.rememberMe ? 'true' : 'false');
 
-    if (form.rememberMe) {
-      sessionStorage.removeItem('accessToken');
-      sessionStorage.removeItem('refreshToken');
-    } else {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-    }
-
     if (data.user) {
       storage.setItem('user', JSON.stringify(data.user));
     }
+  };
+
+  const getRedirectPath = () => {
+    const redirect = route.query.redirect;
+
+    if (Array.isArray(redirect)) {
+      return redirect[0] || '/';
+    }
+
+    if (typeof redirect === 'string' && redirect.startsWith('/')) {
+      return redirect;
+    }
+
+    return '/';
+  };
+
+  const restorePendingGoalIfNeeded = (redirectPath) => {
+    const pendingGoal = sessionStorage.getItem('pendingLearningGoal');
+
+    if (!pendingGoal) return;
+
+    if (redirectPath.startsWith('/chat')) {
+      sessionStorage.setItem('initialLearningGoal', pendingGoal);
+    }
+
+    sessionStorage.removeItem('pendingLearningGoal');
   };
 
   const handleSubmit = async () => {
@@ -85,7 +117,11 @@ export function useLogin() {
 
       saveTokens(data);
 
-      router.push('/');
+      const redirectPath = getRedirectPath();
+
+      restorePendingGoalIfNeeded(redirectPath);
+
+      router.push(redirectPath);
     } catch (error) {
       errors.nonField =
         error?.message || '로그인 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.';
