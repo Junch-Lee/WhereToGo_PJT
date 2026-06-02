@@ -10,11 +10,11 @@ const routes = [
     name: 'Signup',
     component: () => import('@/pages/auth/SignupPage.vue'),
   },
-  // {
-  //   path: '/login',
-  //   name: 'Login',
-  //   component: () => import('@/pages/auth/LoginPage.vue'),
-  // },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/pages/auth/LoginPage.vue'),
+  },
 ];
 
 const router = createRouter({
