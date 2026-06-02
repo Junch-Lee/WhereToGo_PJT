@@ -300,4 +300,13 @@ pip-selfcheck.json
 .history
 .ionide
 
+# Node / Vue
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Optional local env files
+frontend/.env.local
+frontend/.env.*.local
+
 # End of https://www.toptal.com/developers/gitignore/api/python,venv,visualstudiocode,django
