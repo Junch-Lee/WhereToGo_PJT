@@ -2,8 +2,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 
-from .serializers import SignupSerializer
+from .serializers import SignupSerializer, LoginSerializer
 
 
 @api_view(["POST"])
@@ -30,3 +31,31 @@ def signup(request):
         serializer.errors,
         status=status.HTTP_400_BAD_REQUEST,
     )
+    
+    
+@api_view(["POST"])
+@permission_classes([AllowAny])
+def login(request):
+    serializer = LoginSerializer(
+        data=request.data,
+        context={"request": request},
+    )
+    
+    if serializer.is_valid():
+        user = serializer.validated_data["user"]
+        
+        refresh = RefreshToken.for_user(user) # user를 위한 JWT 토큰 생성
+        
+        return Response(
+            {
+                "message": "로그인에 성공했습니다.",
+                "access": str(refresh.access_token), # 실제 API 요청에 사용하는 짧은 수명 토큰
+                "refresh": str(refresh), # access token이 만료되었을 때 새 access token 받기 위한 긴 수명 토큰
+                "user": {
+                    "id": user.id,
+                    "email": user.email,
+                    "nickname": user.nickname
+                }
+            }, status=status.HTTP_200_OK)
+        
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

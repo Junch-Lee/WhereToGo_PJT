@@ -148,6 +148,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Swagger 설정
 REST_FRAMEWORK = {
+    # 기본 인증 방식을 JWT 인증 방식으로 설정
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
