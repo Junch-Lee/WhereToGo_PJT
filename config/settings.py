@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,6 +61,7 @@ MIDDLEWARE = [
 ]
 
 # Vue와 Django의 포트가 서로 다르기 때문에 CORS 설정을 해주어야 한다.
+# Vue(localhost:5173) Django(localhost:8000)
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
 ]
@@ -146,7 +148,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Swagger 설정
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": ("rest_framework_simplejwt.suthentication.JWTAuthentication"),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# JWT 만료 시간 설정
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7)
 }
 
 AUTH_USER_MODEL = "accounts.User"
