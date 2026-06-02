@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.db import IntegrityError, transaction
 from rest_framework import serializers
@@ -122,3 +123,46 @@ class SignupSerializer(serializers.ModelSerializer):
             })
         
         return user
+    
+
+class LoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(
+        required=True,
+        error_messages={
+            "required": "이메일을 입력해주세요.",
+            "blank": "이메일을 입력해주세요.",
+            "invalid": "올바른 이메일 형식이 아닙니다."
+        },
+    )
+    password = serializers.CharField(
+        write_only=True,
+        required=True,
+        trim_whitespace=False,
+        error_messages={
+            "required": "비밀번호를 입력해주세요.",
+            "blank": "비밀번호를 입력해주세요.",
+        }
+    )
+    
+    def validate(self, attrs):
+        email = attrs.get("email")
+        password = attrs.get("password")
+        
+        user = authenticate(
+            request=self.context.get("request"),
+            email=email,
+            password=password,
+        )
+        
+        if user is None:
+            raise serializers.ValidationError({
+                "non_field_errors": "이메일 또는 비밀번호가 올바르지 않습니다."
+            })
+
+        if not user.is_active or user.deleted_at is not None:
+            raise serializers.ValidationError({
+                "non_field_errors": "비활성화되었거나 탈퇴 처리된 계정입니다."
+            })
+            
+        attrs["user"] = user
+        return attrs
