@@ -59,6 +59,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Vue와 Django의 포트가 서로 다르기 때문에 CORS 설정을 해주어야 한다.
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -143,3 +148,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
+
+AUTH_USER_MODEL = "accounts.User"
