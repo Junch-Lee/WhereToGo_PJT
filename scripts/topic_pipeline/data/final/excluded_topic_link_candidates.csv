@@ -1,0 +1,1957 @@
+﻿source_dataset,source_lookup_key,source_title,candidate_name,suggested_parent_slug,topic_slug,topic_name,relevance_score,exclusion_reason
+course,10164,플랜트 빅데이터 분석 실습,,,data-analysis,데이터 분석,0.98,existing_topic_not_auto_link_candidate
+course,10164,플랜트 빅데이터 분석 실습,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,10164,플랜트 빅데이터 분석 실습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,10165,인공지능 및 기계학습 개론,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,10165,인공지능 및 기계학습 개론,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,10165,인공지능 및 기계학습 개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,10659,빅데이터 기초 실습,,,statistical-analysis,통계 분석,0.50,existing_topic_not_auto_link_candidate
+course,11503,데이터베이스 디자인,,,database,데이터베이스,0.95,existing_topic_not_auto_link_candidate
+course,11523,데이터분석론,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,11523,데이터분석론,,,data-preprocessing,데이터 전처리,0.70,existing_topic_not_auto_link_candidate
+course,11523,데이터분석론,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,11523,데이터분석론,,,pandas,Pandas,0.50,existing_topic_not_auto_link_candidate
+course,11523,데이터분석론,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,11525,데이터사이언스개론,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,11525,데이터사이언스개론,,,data-preprocessing,데이터 전처리,0.70,existing_topic_not_auto_link_candidate
+course,11525,데이터사이언스개론,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,11525,데이터사이언스개론,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,14304,수리적빅데이터개론(캡스톤디자인),,,python,Python,0.68,course_prerequisite_relation_excluded
+course,14357,데이터마이닝 및 실험,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,14357,데이터마이닝 및 실험,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,14357,데이터마이닝 및 실험,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14357,데이터마이닝 및 실험,,,regression-analysis,회귀분석,0.68,course_prerequisite_relation_excluded
+course,14357,데이터마이닝 및 실험,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,14357,데이터마이닝 및 실험,,,statistical-analysis,통계 분석,0.65,course_prerequisite_relation_excluded
+course,14358,데이터마이닝 및 실험,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,14358,데이터마이닝 및 실험,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,14363,빅데이터분석 및 실험,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,14647,생활속의통계,,,probability-statistics,확률과 통계,0.45,existing_topic_not_auto_link_candidate
+course,14659,C프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,14659,C프로그래밍과실습,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14659,C프로그래밍과실습,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,14659,C프로그래밍과실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,14660,C프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,14660,C프로그래밍과실습,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,14660,C프로그래밍과실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,14714,기초전기공학실험설계 2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14726,공학수학 2,,,calculus,미적분,0.80,existing_topic_not_auto_link_candidate
+course,14728,종합설계프로젝트1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14783,이산수학,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14788,이산수학,,,data-structures,자료구조,0.80,existing_topic_not_auto_link_candidate
+course,14788,이산수학,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,14789,자료구조,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14789,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14790,자료구조,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,14791,자료구조,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,14804,운영체제,,,linux,Linux,0.50,existing_topic_not_auto_link_candidate
+course,14804,운영체제,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,14804,운영체제,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,14805,운영체제,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,14805,운영체제,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,14807,운영체제,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,14807,운영체제,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,14808,알고리즘1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14808,알고리즘1,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,14810,알고리즘1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14815,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,14815,인공지능,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,14815,인공지능,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,14815,인공지능,,,python,Python,0.75,course_prerequisite_relation_excluded
+course,14815,인공지능,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14816,인공지능,,,artificial-intelligence,인공지능,0.98,existing_topic_not_auto_link_candidate
+course,14816,인공지능,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,14816,인공지능,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,14816,인공지능,,,python,Python,0.85,course_prerequisite_relation_excluded
+course,14817,빅데이터응용,,,deep-learning,딥러닝,0.83,existing_topic_not_auto_link_candidate
+course,14817,빅데이터응용,,,machine-learning,머신러닝,0.83,existing_topic_not_auto_link_candidate
+course,14817,빅데이터응용,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,14817,빅데이터응용,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,14817,빅데이터응용,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,14817,빅데이터응용,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,14817,빅데이터응용,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,14818,컴퓨터구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14823,소프트웨어공학,,,testing,테스트,0.80,existing_topic_not_auto_link_candidate
+course,14823,소프트웨어공학,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14823,소프트웨어공학,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,14823,소프트웨어공학,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,14825,C프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,14825,C프로그래밍과실습,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,14826,C프로그래밍과실습,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,14826,C프로그래밍과실습,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,14827,C프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,14827,C프로그래밍과실습,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,14827,C프로그래밍과실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,14828,C프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,14828,C프로그래밍과실습,,,c-language,C언어,0.78,existing_topic_not_auto_link_candidate
+course,14831,C프로그래밍과실습,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,14831,C프로그래밍과실습,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,14831,C프로그래밍과실습,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14834,C프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,14838,네트워크프로그래밍,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,14839,네트워크프로그래밍,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,14843,전자회로설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14844,전자회로설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14847,마이크로프로세서설계실험,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14847,마이크로프로세서설계실험,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,14848,마이크로프로세서설계실험,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,14848,마이크로프로세서설계실험,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,14852,마이크로프로세서설계실험,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,14852,마이크로프로세서설계실험,,,c-language,C언어,0.78,course_prerequisite_relation_excluded
+course,14853,임베디드시스템설계실험,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,14853,임베디드시스템설계실험,,,computer-architecture,컴퓨터구조,0.80,existing_topic_not_auto_link_candidate
+course,14853,임베디드시스템설계실험,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,14853,임베디드시스템설계실험,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,14914,확률과정,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,14915,확률과정,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,14920,확률과정,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,14921,확률과정,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,14922,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14923,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14925,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14926,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14927,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14929,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14930,기초전자실험 및 설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,14935,기초전자실험 및 설계,,,github,GitHub,0.50,existing_topic_not_auto_link_candidate
+course,14989,회로이론2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15016,논리회로,,,discrete-mathematics,이산수학,0.65,course_prerequisite_relation_excluded
+course,15019,논리회로,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,15020,논리회로,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,15025,전자공학실험1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15026,전자공학실험1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15028,전자공학실험1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15030,전자공학실험1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15039,전자공학실험2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15065,신호및시스템,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,15072,마이크로프로세서,,,programming,프로그래밍,0.71,course_prerequisite_relation_excluded
+course,15072,마이크로프로세서,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15073,마이크로프로세서,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15073,마이크로프로세서,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15074,마이크로프로세서,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15074,마이크로프로세서,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15080,통신이론,변수,programming-basic-syntax,,,0.65,review_candidate_not_approved
+course,15132,데이터마이닝응용,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,15140,기계학습시스템설계,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,15140,기계학습시스템설계,,,pandas,Pandas,0.80,existing_topic_not_auto_link_candidate
+course,15140,기계학습시스템설계,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,15140,기계학습시스템설계,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15140,기계학습시스템설계,,,github,GitHub,0.50,existing_topic_not_auto_link_candidate
+course,15140,기계학습시스템설계,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15143,사물컴퓨팅시스템설계,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,15143,사물컴퓨팅시스템설계,,,operating-systems,운영체제,0.85,course_prerequisite_relation_excluded
+course,15143,사물컴퓨팅시스템설계,,,data-structures,자료구조,0.83,course_prerequisite_relation_excluded
+course,15156,전자공학종합설계1,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15159,전자공학종합설계1,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15167,전자공학종합설계2,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,15169,전자공학종합설계2,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15170,파이썬프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15171,파이썬프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,15173,파이썬프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15173,파이썬프로그래밍,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15174,파이썬프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15175,파이썬프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15177,파이썬프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15179,파이썬프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15182,파이썬프로그래밍,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15182,파이썬프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15183,공학수학 1,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,15187,공학수학 1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15187,공학수학 1,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,15190,공학수학 1,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,15191,공학수학 1,,,calculus,미적분,0.65,course_prerequisite_relation_excluded
+course,15192,공학수학 1,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,15207,SoC설계 및 프로그래밍,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,15207,SoC설계 및 프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15207,SoC설계 및 프로그래밍,,,computer-architecture,컴퓨터구조,0.83,course_prerequisite_relation_excluded
+course,15208,휴스타 ICT 설계팀프로젝트1 (캡스톤디자인),,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15212,선형대수,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,15219,수치해석,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,15222,수치해석,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,15252,이산수학,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15259,자료구조,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,15259,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15260,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15261,자료구조,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,15261,자료구조,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15262,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15263,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15264,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15266,프로그래밍기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15266,프로그래밍기초,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,15267,프로그래밍기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15267,프로그래밍기초,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,15269,기초창의공학설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.78,course_prerequisite_relation_excluded
+course,15271,기초창의공학설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15272,자료구조응용,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,15272,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15273,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15274,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15275,자료구조응용,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,15275,자료구조응용,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15276,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15277,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15278,자바프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15279,자바프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15279,자바프로그래밍,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15279,자바프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,15282,자바프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15282,자바프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,15282,자바프로그래밍,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,15283,자바프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15283,자바프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,15283,자바프로그래밍,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,15285,소프트웨어설계,,,oop,객체지향 프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15285,소프트웨어설계,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15285,소프트웨어설계,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,15286,소프트웨어설계,,,object-oriented-design,객체지향 설계,0.80,existing_topic_not_auto_link_candidate
+course,15286,소프트웨어설계,,,oop,객체지향 프로그래밍,0.78,course_prerequisite_relation_excluded
+course,15288,운영체제,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15288,운영체제,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15288,운영체제,,,computer-architecture,컴퓨터구조,0.65,course_prerequisite_relation_excluded
+course,15288,운영체제,,,data-structures,자료구조,0.65,course_prerequisite_relation_excluded
+course,15289,운영체제,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15291,운영체제,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15291,운영체제,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15291,운영체제,,,computer-architecture,컴퓨터구조,0.65,course_prerequisite_relation_excluded
+course,15291,운영체제,,,data-structures,자료구조,0.65,course_prerequisite_relation_excluded
+course,15292,운영체제,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,15292,운영체제,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,15292,운영체제,,,computer-architecture,컴퓨터구조,0.65,course_prerequisite_relation_excluded
+course,15297,알고리즘1,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15298,알고리즘1,,,data-structures,자료구조,0.65,course_prerequisite_relation_excluded
+course,15299,알고리즘1,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15299,알고리즘1,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15299,알고리즘1,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,15300,알고리즘1,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,15300,알고리즘1,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15301,알고리즘2,,,algorithms,알고리즘,0.98,course_prerequisite_relation_excluded
+course,15301,알고리즘2,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15301,알고리즘2,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15301,알고리즘2,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,15313,모바일앱프로그래밍1,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15313,모바일앱프로그래밍1,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,15321,소프트웨어공학,,,git,Git,0.50,existing_topic_not_auto_link_candidate
+course,15321,소프트웨어공학,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,15325,컴퓨팅사고와 SW코딩,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,15326,컴퓨팅사고와 SW코딩,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15326,컴퓨팅사고와 SW코딩,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,15327,컴퓨팅사고와 SW코딩,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15328,네트워크프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15328,네트워크프로그래밍,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15329,네트워크프로그래밍,인터넷,networks,,,0.80,review_candidate_not_approved
+course,15329,네트워크프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15329,네트워크프로그래밍,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15330,네트워크프로그래밍,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,15330,네트워크프로그래밍,,,linux,Linux,0.68,course_prerequisite_relation_excluded
+course,15334,논리회로,,,computer-architecture,컴퓨터구조,0.75,existing_topic_not_auto_link_candidate
+course,15338,시스템프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15338,시스템프로그래밍,,,linux,Linux,0.83,existing_topic_not_auto_link_candidate
+course,15338,시스템프로그래밍,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,15339,시스템프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15339,시스템프로그래밍,,,linux,Linux,0.83,existing_topic_not_auto_link_candidate
+course,15339,시스템프로그래밍,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,15339,시스템프로그래밍,,,system-programming-basics,시스템 프로그래밍 기초,0.75,existing_topic_not_auto_link_candidate
+course,15342,시스템프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15342,시스템프로그래밍,,,linux,Linux,0.50,existing_topic_not_auto_link_candidate
+course,15346,공학수학 1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15357,자료구조프로그래밍,,,data-structures,자료구조,1.00,course_prerequisite_relation_excluded
+course,15357,자료구조프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15358,선형대수,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15362,수치해석,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15368,알고리즘,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15368,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15368,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15372,모바일앱프로그래밍,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,15372,모바일앱프로그래밍,,,database,데이터베이스,0.80,existing_topic_not_auto_link_candidate
+course,15374,설계프로젝트 1,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15374,설계프로젝트 1,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15377,머신러닝 응용,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,15379,머신러닝,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,15379,머신러닝,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15380,딥러닝,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,15380,딥러닝,,,pandas,Pandas,0.80,existing_topic_not_auto_link_candidate
+course,15380,딥러닝,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,15380,딥러닝,,,github,GitHub,0.50,existing_topic_not_auto_link_candidate
+course,15380,딥러닝,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15383,응용프로그래밍1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15413,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15414,자료구조,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,15414,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15415,자료구조,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15417,정보보호론,,,networks,네트워크,0.68,course_prerequisite_relation_excluded
+course,15417,정보보호론,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,15417,정보보호론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15418,프로그래밍기초,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,15418,프로그래밍기초,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,15418,프로그래밍기초,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,15419,프로그래밍기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15420,프로그래밍기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15420,프로그래밍기초,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,15421,프로그래밍기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,15421,프로그래밍기초,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,15422,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15423,자료구조응용,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,15423,자료구조응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15424,자료구조응용,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15425,자바프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15426,자바프로그래밍,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,15426,자바프로그래밍,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15426,자바프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15428,운영체제,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,15428,운영체제,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,15432,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,15432,인공지능,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15432,인공지능,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,15432,인공지능,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,15432,인공지능,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,15432,인공지능,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,15433,인공지능,,,artificial-intelligence,인공지능,0.98,existing_topic_not_auto_link_candidate
+course,15433,인공지능,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15433,인공지능,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,15433,인공지능,,,python,Python,0.71,course_prerequisite_relation_excluded
+course,15434,모바일앱프로그래밍1,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15434,모바일앱프로그래밍1,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,15438,컴퓨팅사고와 SW코딩,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,15438,컴퓨팅사고와 SW코딩,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,15438,컴퓨팅사고와 SW코딩,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,15439,컴퓨팅사고와 SW코딩,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.78,existing_topic_not_auto_link_candidate
+course,15439,컴퓨팅사고와 SW코딩,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,15439,컴퓨팅사고와 SW코딩,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15441,창의융합설계,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,15441,창의융합설계,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15444,오픈소스프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15444,오픈소스프로그래밍,,,git,Git,0.50,existing_topic_not_auto_link_candidate
+course,15446,오픈소스프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,15446,오픈소스프로그래밍,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,15448,알고리즘실습,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15448,알고리즘실습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15451,컴퓨터망프로그래밍,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,15451,컴퓨터망프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15451,컴퓨터망프로그래밍,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,15451,컴퓨터망프로그래밍,,,system-programming-basics,시스템 프로그래밍 기초,0.65,course_prerequisite_relation_excluded
+course,15459,고급웹프로그래밍,,,web-development,웹 개발,0.80,existing_topic_not_auto_link_candidate
+course,15459,고급웹프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,15459,고급웹프로그래밍,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,15463,기계학습개론,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15463,기계학습개론,,,artificial-intelligence,인공지능,0.68,course_prerequisite_relation_excluded
+course,15463,기계학습개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15464,기계학습개론,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,15464,기계학습개론,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,15466,컴퓨터비전,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,15466,컴퓨터비전,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,15466,컴퓨터비전,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,15466,컴퓨터비전,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,15466,컴퓨터비전,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,15468,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,15468,인공지능,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,15475,모바일앱프로그래밍2,,,design-patterns,디자인 패턴,0.80,existing_topic_not_auto_link_candidate
+course,15475,모바일앱프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,15475,모바일앱프로그래밍2,,,oop,객체지향 프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15482,종합설계프로젝트2,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,15994,데이터베이스시스템,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,15994,데이터베이스시스템,,,database-design,데이터베이스 설계,0.80,existing_topic_not_auto_link_candidate
+course,15994,데이터베이스시스템,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,16008,데이터마이닝,,,data-preprocessing,데이터 전처리,0.80,existing_topic_not_auto_link_candidate
+course,16008,데이터마이닝,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,16011,데이터베이스시스템종합설계및구현,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,16011,데이터베이스시스템종합설계및구현,,,database-design,데이터베이스 설계,0.80,existing_topic_not_auto_link_candidate
+course,16011,데이터베이스시스템종합설계및구현,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,16011,데이터베이스시스템종합설계및구현,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,16017,빅데이터분석,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,16017,빅데이터분석,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,16048,정보보안관리,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,16053,경영빅데이터분석개론,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,16053,경영빅데이터분석개론,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,16053,경영빅데이터분석개론,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,16053,경영빅데이터분석개론,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,16061,데이터분석모형과활용,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,16061,데이터분석모형과활용,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,17208,전기전자응용실험2,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,17314,AI기초,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,17314,AI기초,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,17314,AI기초,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,17328,통신시스템설계및실습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,17328,통신시스템설계및실습,,,python,Python,0.75,existing_topic_not_auto_link_candidate
+course,17345,통신시스템,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,17345,통신시스템,,,python,Python,0.75,existing_topic_not_auto_link_candidate
+course,17363,회로해석론1,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17367,공학수학1,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17367,공학수학1,,,calculus,미적분,0.80,existing_topic_not_auto_link_candidate
+course,17367,공학수학1,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,17367,공학수학1,,,numerical-analysis,수치해석,0.80,existing_topic_not_auto_link_candidate
+course,17384,프로그래밍실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,17384,프로그래밍실습,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,17393,제어공학1,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17402,제어공학2,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,17415,로봇공학,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,17423,디지털제어공학,표본추출,probability-statistics,,,0.80,review_candidate_not_approved
+course,17435,공학수학1,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,17455,제어계측프로그래밍1,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,17455,제어계측프로그래밍1,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,17459,제어계측프로그래밍2,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,17459,제어계측프로그래밍2,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17459,제어계측프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,17461,객체지향프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,17467,마이크로프로세서응용설계,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,17470,제어계측종합설계2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,17516,메카트로닉스1,,,artificial-intelligence,인공지능,0.83,existing_topic_not_auto_link_candidate
+course,17516,메카트로닉스1,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,17520,메카트로닉스2,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,17520,메카트로닉스2,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,17567,반도체소자설계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17605,컴퓨터프로그래밍언어,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17605,컴퓨터프로그래밍언어,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,17615,데이터베이스처리,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,17616,데이터베이스처리,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,17760,제품빅데이터분석,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,17763,품질빅데이터이해,,,data-preprocessing,데이터 전처리,0.80,existing_topic_not_auto_link_candidate
+course,17763,품질빅데이터이해,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,17763,품질빅데이터이해,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,17894,컴퓨터네트워크,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,17894,컴퓨터네트워크,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,17895,운영체제커널,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,17895,운영체제커널,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,17895,운영체제커널,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,17895,운영체제커널,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,17895,운영체제커널,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,17896,컴퓨터프로그래밍기초PBL,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,17896,컴퓨터프로그래밍기초PBL,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,17900,컴퓨터프로그래밍기초PBL,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,17900,컴퓨터프로그래밍기초PBL,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,17900,컴퓨터프로그래밍기초PBL,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,17902,컴퓨터프로그래밍기초실습PBL,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,17902,컴퓨터프로그래밍기초실습PBL,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,17903,컴퓨터프로그래밍기초실습PBL,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,17903,컴퓨터프로그래밍기초실습PBL,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,17903,컴퓨터프로그래밍기초실습PBL,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,17909,자료구조및알고리즘PBL,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,17909,자료구조및알고리즘PBL,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,17937,자동제어,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,17937,자동제어,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,17947,기계학습,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,17947,기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,17947,기계학습,,,data-preprocessing,데이터 전처리,0.70,existing_topic_not_auto_link_candidate
+course,17948,데이터베이스,,,database,데이터베이스,0.95,existing_topic_not_auto_link_candidate
+course,17948,데이터베이스,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+course,17959,수치해석,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,17959,수치해석,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,17979,항공기설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,17988,항공우주및소프트웨어공학개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,17994,컴퓨터구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,18003,임베디드하드웨어,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,18003,임베디드하드웨어,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,18014,객체지향프로그래밍,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,18014,객체지향프로그래밍,인덱스,database-design,,,0.80,review_candidate_not_approved
+course,18014,객체지향프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,18014,객체지향프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,18015,객체지향프로그래밍,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,18015,객체지향프로그래밍,인덱스,database-design,,,0.80,review_candidate_not_approved
+course,18015,객체지향프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,18018,객체지향프로그래밍실습,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,18018,객체지향프로그래밍실습,인덱스,database-design,,,0.80,review_candidate_not_approved
+course,18018,객체지향프로그래밍실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,18018,객체지향프로그래밍실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,18023,공학수학2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,18026,창의적기초공학설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,18027,창의적기초공학설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,18927,식품경제데이터분석기초,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,1913,정치와데이터분석,변수,programming-basic-syntax,,,0.65,review_candidate_not_approved
+course,20803,인공지능과윤리교육,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,20803,인공지능과윤리교육,,,authentication-authorization,인증과 인가,0.45,existing_topic_not_auto_link_candidate
+course,22110,심리데이터분석,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,22110,심리데이터분석,,,regression-analysis,회귀분석,0.80,existing_topic_not_auto_link_candidate
+course,23143,공학입문설계(어드벤처디자인),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,23147,에너지데이터분석,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,23147,에너지데이터분석,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,23147,에너지데이터분석,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,2604,인문학데이터마이닝,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,2604,인문학데이터마이닝,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,2604,인문학데이터마이닝,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,2604,인문학데이터마이닝,,,python,Python,0.65,course_prerequisite_relation_excluded
+course,26597,빅데이터정보처리,,,deep-learning,딥러닝,0.83,existing_topic_not_auto_link_candidate
+course,26597,빅데이터정보처리,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,26597,빅데이터정보처리,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,26597,빅데이터정보처리,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+course,26598,빅데이터입문,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,26598,빅데이터입문,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,26614,빅데이터분석,,,linux,Linux,0.73,existing_topic_not_auto_link_candidate
+course,26619,기계학습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,26619,기계학습,,,python,Python,0.78,existing_topic_not_auto_link_candidate
+course,26638,통계데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,26638,통계데이터베이스,,,probability-statistics,확률과 통계,0.70,existing_topic_not_auto_link_candidate
+course,26640,데이터마이닝,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,26640,데이터마이닝,,,statistical-analysis,통계 분석,0.75,existing_topic_not_auto_link_candidate
+course,26640,데이터마이닝,,,probability-statistics,확률과 통계,0.70,existing_topic_not_auto_link_candidate
+course,27267,웹프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,27267,웹프로그래밍,,,javascript,JavaScript,0.78,existing_topic_not_auto_link_candidate
+course,27267,웹프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,existing_topic_not_auto_link_candidate
+course,27267,웹프로그래밍,,,java,Java,0.70,existing_topic_not_auto_link_candidate
+course,27269,웹프로그래밍실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,27269,웹프로그래밍실습,,,javascript,JavaScript,0.78,existing_topic_not_auto_link_candidate
+course,27269,웹프로그래밍실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,existing_topic_not_auto_link_candidate
+course,27269,웹프로그래밍실습,,,java,Java,0.70,existing_topic_not_auto_link_candidate
+course,27270,웹프로그래밍실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,27270,웹프로그래밍실습,,,javascript,JavaScript,0.78,existing_topic_not_auto_link_candidate
+course,27270,웹프로그래밍실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,existing_topic_not_auto_link_candidate
+course,27270,웹프로그래밍실습,,,java,Java,0.70,existing_topic_not_auto_link_candidate
+course,27271,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,27271,인공지능,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,27271,인공지능,,,testing,테스트,0.80,existing_topic_not_auto_link_candidate
+course,27271,인공지능,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,27281,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,27281,데이터베이스,,,database-design,데이터베이스 설계,0.80,existing_topic_not_auto_link_candidate
+course,27281,데이터베이스,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,27283,데이터베이스실습,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,27283,데이터베이스실습,,,database-design,데이터베이스 설계,0.80,existing_topic_not_auto_link_candidate
+course,27283,데이터베이스실습,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,27285,컴퓨터네트워크,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,27296,빅데이터,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,27296,빅데이터,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,27296,빅데이터,,,machine-learning,머신러닝,0.78,existing_topic_not_auto_link_candidate
+course,27304,영상처리,,,data-preprocessing,데이터 전처리,0.70,existing_topic_not_auto_link_candidate
+course,27304,영상처리,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,27304,영상처리,,,oop,객체지향 프로그래밍,0.65,course_prerequisite_relation_excluded
+course,27313,소프트웨어설계PBL,,,documentation,문서화,0.78,existing_topic_not_auto_link_candidate
+course,27317,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,27317,C프로그래밍,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,27317,C프로그래밍,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,27317,C프로그래밍,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,27319,C프로그래밍실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,27319,C프로그래밍실습,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,27319,C프로그래밍실습,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,27319,C프로그래밍실습,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,27323,객체지향프로그래밍,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,27323,객체지향프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,27323,객체지향프로그래밍,,,oop,객체지향 프로그래밍,0.93,course_prerequisite_relation_excluded
+course,27323,객체지향프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,27326,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,27330,Java프로그래밍,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,27330,Java프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,27331,Java프로그래밍실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,27333,자료구조,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,27333,자료구조,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,27336,프로그래밍언어론,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,27336,프로그래밍언어론,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,27336,프로그래밍언어론,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,27336,프로그래밍언어론,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,27337,운영체제,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,27337,운영체제,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,27603,C언어실습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,27611,웹프로그래밍실습,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,27611,웹프로그래밍실습,,,javascript,JavaScript,0.78,existing_topic_not_auto_link_candidate
+course,27611,웹프로그래밍실습,,,java,Java,0.73,existing_topic_not_auto_link_candidate
+course,27611,웹프로그래밍실습,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+course,27615,확률과통계,,,probability-statistics,확률과 통계,0.83,existing_topic_not_auto_link_candidate
+course,27615,확률과통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,27885,인공지능을위한선형대수학,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,27889,인공지능기초및활용,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,28545,프로그래밍기초,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,28546,회로이론,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,28546,회로이론,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,28546,회로이론,,,calculus,미적분,0.80,existing_topic_not_auto_link_candidate
+course,28546,회로이론,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,28548,이산수학,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,28555,공학수학,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,28555,공학수학,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,28556,정보보안,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,28556,정보보안,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+course,28557,프로그래밍응용,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,28557,프로그래밍응용,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,28558,파이썬프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,28560,자료구조,,,algorithms,알고리즘,0.83,existing_topic_not_auto_link_candidate
+course,28560,자료구조,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,28560,자료구조,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,28562,확률및랜덤변수,변수,programming-basic-syntax,,,0.93,review_candidate_not_approved
+course,28566,인공지능개론,,,artificial-intelligence,인공지능,0.98,existing_topic_not_auto_link_candidate
+course,28566,인공지능개론,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,28568,정보보안실습,,,networks,네트워크,0.83,existing_topic_not_auto_link_candidate
+course,28568,정보보안실습,인터넷,networks,,,0.80,review_candidate_not_approved
+course,28568,정보보안실습,,,database,데이터베이스,0.80,existing_topic_not_auto_link_candidate
+course,28568,정보보안실습,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,28568,정보보안실습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,28569,객체지향프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,28571,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,28576,머신러닝,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,28576,머신러닝,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,28576,머신러닝,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,28576,머신러닝,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,28576,머신러닝,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,28591,모바일프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,28591,모바일프로그래밍,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,28591,모바일프로그래밍,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,28591,모바일프로그래밍,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,28598,임베디드시스템프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,28598,임베디드시스템프로그래밍,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,28601,디지털시스템설계,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,28601,디지털시스템설계,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,28601,디지털시스템설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,28610,영상처리및패턴인식,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,28614,고급인공지능창의융합PBL,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,28614,고급인공지능창의융합PBL,,,requirements-analysis,요구사항 분석,0.75,existing_topic_not_auto_link_candidate
+course,28803,인공지능개론,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,28803,인공지능개론,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,28803,인공지능개론,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,28803,인공지능개론,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,28877,웹크롤러개발,,,data-collection,데이터 수집,0.80,existing_topic_not_auto_link_candidate
+course,28877,웹크롤러개발,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,28877,웹크롤러개발,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,28879,자료구조,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,28882,데이터베이스,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,28882,데이터베이스,,,statistical-analysis,통계 분석,0.50,existing_topic_not_auto_link_candidate
+course,28884,딥러닝,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,28884,딥러닝,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,28885,빅데이터개론,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,28885,빅데이터개론,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,28885,빅데이터개론,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,28885,빅데이터개론,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,28888,프로그래밍기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,28888,프로그래밍기초,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,28891,기초통계학,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,28893,데이터마이닝,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,28893,데이터마이닝,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,machine-learning,머신러닝,0.83,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,28962,빅데이터와인공지능,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,29025,운영체제이해,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,29036,컴퓨터비전,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,29077,로봇AI프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,29084,로봇비전시스템설계및응용,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,29098,지식재산빅데이터,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,29098,지식재산빅데이터,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,29288,디지털전환시대의AI병법,,,artificial-intelligence,인공지능,0.83,existing_topic_not_auto_link_candidate
+course,29288,디지털전환시대의AI병법,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,29320,재미있게이해하는인공지능(AI)시대의주요이슈,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,29320,재미있게이해하는인공지능(AI)시대의주요이슈,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,29508,빅데이터공학,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,29508,빅데이터공학,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,29508,빅데이터공학,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,29508,빅데이터공학,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,29508,빅데이터공학,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,29542,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,29542,인공지능,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,29880,데이터베이스관리,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,29880,데이터베이스관리,,,data-modeling,데이터 모델링,0.80,existing_topic_not_auto_link_candidate
+course,29880,데이터베이스관리,,,database-design,데이터베이스 설계,0.80,existing_topic_not_auto_link_candidate
+course,29880,데이터베이스관리,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,30405,머신러닝및AI기반모델링,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,30405,머신러닝및AI기반모델링,,,optimization,최적화,0.68,course_prerequisite_relation_excluded
+course,30405,머신러닝및AI기반모델링,,,probability-statistics,확률과 통계,0.68,course_prerequisite_relation_excluded
+course,30947,프로그래밍언어,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,30947,프로그래밍언어,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,30947,프로그래밍언어,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,30947,프로그래밍언어,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,existing_topic_not_auto_link_candidate
+course,30947,프로그래밍언어,,,computer-vision,컴퓨터 비전,0.50,existing_topic_not_auto_link_candidate
+course,30953,컴퓨터구조,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,30958,제어공학(I),,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,30966,제어공학(II),,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,30966,제어공학(II),,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,30973,확률통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,30977,마이크로프로세서응용,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,30979,공학수학(II),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,30981,공학설계과제(I),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,30985,공학설계과제(I),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,30986,공학설계과제(II),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31010,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,31010,컴퓨터네트워크,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31010,컴퓨터네트워크,,,oop,객체지향 프로그래밍,0.65,course_prerequisite_relation_excluded
+course,31011,머신러닝,,,artificial-intelligence,인공지능,0.83,existing_topic_not_auto_link_candidate
+course,31011,머신러닝,,,deep-learning,딥러닝,0.83,existing_topic_not_auto_link_candidate
+course,31011,머신러닝,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31011,머신러닝,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31011,머신러닝,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31011,머신러닝,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,31019,지능형로봇공학,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31050,AI프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31050,AI프로그래밍,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,31050,AI프로그래밍,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,31081,수치해석,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,31084,공학수학(II),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31138,SoC설계개론,,,computer-architecture,컴퓨터구조,0.65,course_prerequisite_relation_excluded
+course,31142,머신러닝을 위한 기초수학,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31142,머신러닝을 위한 기초수학,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,31143,머신러닝을 위한 기초수학,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,31143,머신러닝을 위한 기초수학,,,calculus,미적분,0.80,existing_topic_not_auto_link_candidate
+course,31143,머신러닝을 위한 기초수학,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31152,설계CAD실습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31309,이산수학(I),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31310,이산수학(I),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31311,이산수학(I),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31315,컴퓨터및프로그래밍입문,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31315,컴퓨터및프로그래밍입문,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,31316,컴퓨터및프로그래밍입문,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31316,컴퓨터및프로그래밍입문,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,31318,컴퓨터및프로그래밍입문,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31318,컴퓨터및프로그래밍입문,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,31318,컴퓨터및프로그래밍입문,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,31318,컴퓨터및프로그래밍입문,,,data-structures,자료구조,0.80,existing_topic_not_auto_link_candidate
+course,31318,컴퓨터및프로그래밍입문,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,31319,컴퓨터및프로그래밍입문,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31319,컴퓨터및프로그래밍입문,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,31319,컴퓨터및프로그래밍입문,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,31320,프로그래밍원리와실습,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,31320,프로그래밍원리와실습,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,31321,프로그래밍원리와실습,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,31321,프로그래밍원리와실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,31323,프로그래밍원리와실습,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,31323,프로그래밍원리와실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,31323,프로그래밍원리와실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,course_prerequisite_relation_excluded
+course,31324,프로그래밍원리와실습,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,31324,프로그래밍원리와실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,31324,프로그래밍원리와실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,course_prerequisite_relation_excluded
+course,31325,프로그래밍원리와실습,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,31326,프로그래밍원리와실습,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,31326,프로그래밍원리와실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,31326,프로그래밍원리와실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.78,course_prerequisite_relation_excluded
+course,31336,자료구조,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31336,자료구조,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,31336,자료구조,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31337,자료구조,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31337,자료구조,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,31337,자료구조,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,31337,자료구조,함수,programming-basic-syntax,,,0.65,approved_depth3_relevance_below_threshold
+course,31337,자료구조,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,31338,자료구조,,,programming,프로그래밍,0.71,course_prerequisite_relation_excluded
+course,31338,자료구조,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,31339,자료구조,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31339,자료구조,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31343,컴퓨터알고리즘,,,data-structures,자료구조,0.65,course_prerequisite_relation_excluded
+course,31344,컴퓨터알고리즘,,,computer-vision,컴퓨터 비전,0.80,existing_topic_not_auto_link_candidate
+course,31344,컴퓨터알고리즘,,,software-design,소프트웨어 설계,0.80,existing_topic_not_auto_link_candidate
+course,31344,컴퓨터알고리즘,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31344,컴퓨터알고리즘,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+course,31344,컴퓨터알고리즘,,,programming,프로그래밍,0.85,course_prerequisite_relation_excluded
+course,31344,컴퓨터알고리즘,,,data-structures,자료구조,0.83,course_prerequisite_relation_excluded
+course,31344,컴퓨터알고리즘,,,python,Python,0.71,course_prerequisite_relation_excluded
+course,31344,컴퓨터알고리즘,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,31349,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,31349,인공지능,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31349,인공지능,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31350,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,31350,인공지능,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31350,인공지능,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31350,인공지능,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,31355,데이터통신,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,31357,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,31359,데이터베이스,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,31359,데이터베이스,,,programming,프로그래밍,0.83,existing_topic_not_auto_link_candidate
+course,31359,데이터베이스,,,sql,SQL,0.83,existing_topic_not_auto_link_candidate
+course,31359,데이터베이스,,,data-modeling,데이터 모델링,0.75,existing_topic_not_auto_link_candidate
+course,31359,데이터베이스,,,database-design,데이터베이스 설계,0.75,existing_topic_not_auto_link_candidate
+course,31359,데이터베이스,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,31361,확률통계,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,31361,확률통계,,,probability-statistics,확률과 통계,0.50,existing_topic_not_auto_link_candidate
+course,31361,확률통계,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,31362,확률통계,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,31362,확률통계,,,documentation,문서화,0.75,existing_topic_not_auto_link_candidate
+course,31362,확률통계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31363,확률통계,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,31364,운영체제,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31364,운영체제,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,31364,운영체제,,,linux,Linux,0.68,course_prerequisite_relation_excluded
+course,31365,운영체제,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31365,운영체제,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,31365,운영체제,,,linux,Linux,0.68,course_prerequisite_relation_excluded
+course,31366,운영체제,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,31370,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,31371,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,31380,소프트웨어설계및실험,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31380,소프트웨어설계및실험,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,31380,소프트웨어설계및실험,,,programming,프로그래밍,0.85,course_prerequisite_relation_excluded
+course,31380,소프트웨어설계및실험,,,oop,객체지향 프로그래밍,0.65,course_prerequisite_relation_excluded
+course,31380,소프트웨어설계및실험,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,31381,소프트웨어설계및실험,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,31381,소프트웨어설계및실험,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,31381,소프트웨어설계및실험,,,programming,프로그래밍,0.85,course_prerequisite_relation_excluded
+course,31381,소프트웨어설계및실험,,,oop,객체지향 프로그래밍,0.65,course_prerequisite_relation_excluded
+course,31381,소프트웨어설계및실험,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,31384,웹응용프로그래밍,,,javascript,JavaScript,0.80,existing_topic_not_auto_link_candidate
+course,31384,웹응용프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,31386,웹응용프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,31386,웹응용프로그래밍,,,javascript,JavaScript,0.83,course_prerequisite_relation_excluded
+course,31386,웹응용프로그래밍,,,html-css,HTML/CSS,0.68,course_prerequisite_relation_excluded
+course,31398,인터넷과웹기초,,,html-css,HTML/CSS,0.80,existing_topic_not_auto_link_candidate
+course,31398,인터넷과웹기초,,,javascript,JavaScript,0.80,existing_topic_not_auto_link_candidate
+course,31398,인터넷과웹기초,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.50,existing_topic_not_auto_link_candidate
+course,31398,인터넷과웹기초,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,31400,인터넷과웹기초,,,html-css,HTML/CSS,0.80,existing_topic_not_auto_link_candidate
+course,31400,인터넷과웹기초,,,javascript,JavaScript,0.80,existing_topic_not_auto_link_candidate
+course,31400,인터넷과웹기초,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.50,existing_topic_not_auto_link_candidate
+course,31400,인터넷과웹기초,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,31401,C++프로그래밍과실습,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,31405,C++프로그래밍과실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31405,C++프로그래밍과실습,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,31406,C++프로그래밍과실습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31406,C++프로그래밍과실습,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,31406,C++프로그래밍과실습,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,31406,C++프로그래밍과실습,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,31414,AI프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31414,AI프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31414,AI프로그래밍,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31414,AI프로그래밍,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,31415,AI프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31415,AI프로그래밍,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31415,AI프로그래밍,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,31415,AI프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,31416,AI프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31416,AI프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31416,AI프로그래밍,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,31416,AI프로그래밍,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,31421,프로그래밍언어론,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,31425,데이터마이닝,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31425,데이터마이닝,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,31425,데이터마이닝,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,31427,정보보안,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,31428,네트워크보안,,,networks,네트워크,1.00,course_prerequisite_relation_excluded
+course,31432,컴퓨터비전개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31454,데이터마이닝,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,31454,데이터마이닝,,,probability-statistics,확률과 통계,0.68,course_prerequisite_relation_excluded
+course,31454,데이터마이닝,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31454,데이터마이닝,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,31462,인공지능응용,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,31462,인공지능응용,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,31462,인공지능응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,31468,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,31468,데이터베이스,,,database-design,데이터베이스 설계,0.80,existing_topic_not_auto_link_candidate
+course,3193,알고리즘과수학,,,calculus,미적분,0.65,course_prerequisite_relation_excluded
+course,32006,인공지능과빅데이터,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,32006,인공지능과빅데이터,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,32595,사회조사와데이터분석,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,33295,운영체제,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,33305,데이터베이스(I),,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,33306,데이터베이스(II),,,database-design,데이터베이스 설계,0.83,existing_topic_not_auto_link_candidate
+course,33306,데이터베이스(II),,,database,데이터베이스,1.00,course_prerequisite_relation_excluded
+course,33321,인공지능응용,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,33321,인공지능응용,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,33321,인공지능응용,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,33321,인공지능응용,,,testing,테스트,0.50,existing_topic_not_auto_link_candidate
+course,33321,인공지능응용,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,3338,컴퓨터프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3338,컴퓨터프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3338,컴퓨터프로그래밍,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,3346,회로이론,행렬,linear-algebra,,,0.65,approved_depth3_relevance_below_threshold
+course,3380,고급컴퓨터프로그래밍,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,3380,고급컴퓨터프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,3406,로봇공학개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3406,로봇공학개론,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,3429,신호및시스템,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,3430,디지털통신,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,3430,디지털통신,,,probability-statistics,확률과 통계,0.65,course_prerequisite_relation_excluded
+course,3437,마이크로프로세서실험,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,3437,마이크로프로세서실험,,,computer-architecture,컴퓨터구조,0.65,course_prerequisite_relation_excluded
+course,3453,회로이론,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,3460,실시간신호처리,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,3460,실시간신호처리,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,3524,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3524,C프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3524,C프로그래밍,,,c-language,C언어,0.78,existing_topic_not_auto_link_candidate
+course,3525,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3525,C프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3525,C프로그래밍,,,c-language,C언어,0.78,existing_topic_not_auto_link_candidate
+course,3526,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3526,C프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3526,C프로그래밍,,,c-language,C언어,0.78,existing_topic_not_auto_link_candidate
+course,3527,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3528,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3528,C프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3528,C프로그래밍,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,3529,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3529,C프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3529,C프로그래밍,,,c-language,C언어,0.78,existing_topic_not_auto_link_candidate
+course,3530,C프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3530,C프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,3530,C프로그래밍,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,3532,자바프로그래밍1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3536,자바프로그래밍1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3537,자바프로그래밍1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3538,자바프로그래밍2,,,oop,객체지향 프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,3538,자바프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,3538,자바프로그래밍2,,,java,Java,0.95,course_prerequisite_relation_excluded
+course,3538,자바프로그래밍2,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,3538,자바프로그래밍2,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,3538,자바프로그래밍2,반복문,programming-basic-syntax,,,0.65,approved_depth3_relevance_below_threshold
+course,3539,자바프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,3539,자바프로그래밍2,,,java,Java,0.95,course_prerequisite_relation_excluded
+course,3539,자바프로그래밍2,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,3539,자바프로그래밍2,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,3539,자바프로그래밍2,반복문,programming-basic-syntax,,,0.65,approved_depth3_relevance_below_threshold
+course,3541,자바프로그래밍2,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,3541,자바프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,3541,자바프로그래밍2,,,java,Java,0.95,course_prerequisite_relation_excluded
+course,3550,자료구조,,,java,Java,0.70,existing_topic_not_auto_link_candidate
+course,3550,자료구조,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,3550,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3551,자료구조,,,java,Java,0.75,course_prerequisite_relation_excluded
+course,3551,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3551,자료구조,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,3554,선형대수학,,,calculus,미적분,0.80,existing_topic_not_auto_link_candidate
+course,3558,리눅스프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3558,리눅스프로그래밍,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,3558,리눅스프로그래밍,,,system-programming-basics,시스템 프로그래밍 기초,0.75,existing_topic_not_auto_link_candidate
+course,3564,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,3564,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3564,알고리즘,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,3568,마이크로프로세서,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,3568,마이크로프로세서,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,3568,마이크로프로세서,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,3570,문제해결프로그래밍,,,algorithms,알고리즘,0.83,existing_topic_not_auto_link_candidate
+course,3570,문제해결프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,3570,문제해결프로그래밍,,,data-structures,자료구조,0.83,course_prerequisite_relation_excluded
+course,3570,문제해결프로그래밍,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,3572,문제해결프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,3572,문제해결프로그래밍,,,algorithms,알고리즘,0.83,existing_topic_not_auto_link_candidate
+course,3573,시스템프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,3573,시스템프로그래밍,,,linux,Linux,0.68,course_prerequisite_relation_excluded
+course,3578,운영체제,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3578,운영체제,,,system-programming-basics,시스템 프로그래밍 기초,0.65,course_prerequisite_relation_excluded
+course,3578,운영체제,,,linux,Linux,0.60,course_prerequisite_relation_excluded
+course,3589,프로그래밍언어,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,3589,프로그래밍언어,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,3589,프로그래밍언어,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,3589,프로그래밍언어,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,3589,프로그래밍언어,,,oop,객체지향 프로그래밍,0.65,course_prerequisite_relation_excluded
+course,3593,컴퓨터구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3596,데이터베이스,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,3596,데이터베이스,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,3598,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,3598,인공지능,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,3598,인공지능,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,3600,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,3600,인공지능,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,3600,인공지능,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3601,임베디드시스템,,,programming,프로그래밍,0.83,existing_topic_not_auto_link_candidate
+course,3601,임베디드시스템,,,system-programming-basics,시스템 프로그래밍 기초,0.75,existing_topic_not_auto_link_candidate
+course,3601,임베디드시스템,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,3601,임베디드시스템,,,linux,Linux,0.60,course_prerequisite_relation_excluded
+course,3604,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,3604,컴퓨터네트워크,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,3604,컴퓨터네트워크,,,python,Python,0.65,course_prerequisite_relation_excluded
+course,3606,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,3612,소프트웨어공학,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,3612,소프트웨어공학,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,3612,소프트웨어공학,,,python,Python,0.73,course_prerequisite_relation_excluded
+course,3622,분산및병렬프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,3622,분산및병렬프로그래밍,,,python,Python,0.75,course_prerequisite_relation_excluded
+course,3622,분산및병렬프로그래밍,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,3622,분산및병렬프로그래밍,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,3622,분산및병렬프로그래밍,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,3623,영상통신,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,3629,C++프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,3629,C++프로그래밍,,,oop,객체지향 프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,36683,화학 빅데이터 분석법,,,data-analysis,데이터 분석,0.95,existing_topic_not_auto_link_candidate
+course,36776,데이터마이닝입문,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,36776,데이터마이닝입문,,,regression-analysis,회귀분석,0.68,course_prerequisite_relation_excluded
+course,36776,데이터마이닝입문,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,36780,빅데이터통계분석,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,36780,빅데이터통계분석,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,36780,빅데이터통계분석,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,36780,빅데이터통계분석,,,regression-analysis,회귀분석,0.68,course_prerequisite_relation_excluded
+course,36780,빅데이터통계분석,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,36785,데이터사이언스입문,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,36785,데이터사이언스입문,,,probability-statistics,확률과 통계,0.60,course_prerequisite_relation_excluded
+course,37021,인공지능과금융,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,37022,금융데이터마이닝,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,37022,금융데이터마이닝,,,python,Python,0.65,course_prerequisite_relation_excluded
+course,37182,데이터사이언스입문,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,37182,데이터사이언스입문,,,python,Python,0.85,course_prerequisite_relation_excluded
+course,37182,데이터사이언스입문,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,37182,데이터사이언스입문,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,37189,기계학습개론,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,37189,기계학습개론,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,37192,의생명데이터사이언스,,,probability-statistics,확률과 통계,0.65,course_prerequisite_relation_excluded
+course,37199,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,37199,인공지능,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,37201,객체지향프로그래밍,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,37201,객체지향프로그래밍,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,37201,객체지향프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,37208,알고리즘,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,37208,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,37576,조선해양기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,37576,조선해양기계학습,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,37576,조선해양기계학습,,,linear-algebra,선형대수,0.83,course_prerequisite_relation_excluded
+course,37576,조선해양기계학습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,37576,조선해양기계학습,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,37666,논리설계 및 실험,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,37676,프로그래밍방법론,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,37676,프로그래밍방법론,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,37685,자료구조의 기초,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,37685,자료구조의 기초,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,37686,자료구조의 기초,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,37686,자료구조의 기초,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,37687,아날로그전자회로,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,37696,확률변수 및 확률과정의 기초,변수,programming-basic-syntax,,,0.93,review_candidate_not_approved
+course,37697,확률변수 및 확률과정의 기초,변수,programming-basic-syntax,,,0.93,review_candidate_not_approved
+course,37698,확률변수 및 확률과정의 기초,변수,programming-basic-syntax,,,0.85,review_candidate_not_approved
+course,37709,알고리즘의 기초,,,database,데이터베이스,0.80,existing_topic_not_auto_link_candidate
+course,37709,알고리즘의 기초,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,37735,임베디드시스템설계,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,37735,임베디드시스템설계,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,37735,임베디드시스템설계,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,37754,딥러닝의 기초,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,37754,딥러닝의 기초,,,computer-vision,컴퓨터 비전,0.80,existing_topic_not_auto_link_candidate
+course,37754,딥러닝의 기초,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,37754,딥러닝의 기초,,,natural-language-processing,자연어 처리,0.80,existing_topic_not_auto_link_candidate
+course,37920,프로그래밍연습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,37920,프로그래밍연습,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,37920,프로그래밍연습,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,37930,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,37931,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,37936,알고리즘,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,37936,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,37936,알고리즘,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,37937,알고리즘,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,37937,알고리즘,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,37938,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,37951,논리설계,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,37956,자료구조,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,37956,자료구조,,,java,Java,0.45,existing_topic_not_auto_link_candidate
+course,38146,인공지능 반도체 회로 설계 프로젝트,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,4190,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,4190,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,4190,알고리즘,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,4191,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,4191,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,4191,알고리즘,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,4192,데이터분석프로그래밍,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,4192,데이터분석프로그래밍,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,4192,데이터분석프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,4192,데이터분석프로그래밍,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,4192,데이터분석프로그래밍,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,4192,데이터분석프로그래밍,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,4192,데이터분석프로그래밍,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,4197,데이터베이스,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,4197,데이터베이스,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,4199,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,4199,인공지능,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,4199,인공지능,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,4199,인공지능,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,4351,사이버보안관제,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+course,4351,사이버보안관제,,,networks,네트워크,0.85,course_prerequisite_relation_excluded
+course,43900,데이터마이닝 방법 및 실습,,,regression-analysis,회귀분석,0.80,existing_topic_not_auto_link_candidate
+course,4392,데이터사이언스개론,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,4392,데이터사이언스개론,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,4392,데이터사이언스개론,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,4394,데이터처리프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,4394,데이터처리프로그래밍,,,python,Python,0.78,existing_topic_not_auto_link_candidate
+course,4394,데이터처리프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,4399,빅데이터분석및활용,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,4399,빅데이터분석및활용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,4399,빅데이터분석및활용,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,44674,(공유)AI입문,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,44674,(공유)AI입문,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,44674,(공유)AI입문,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,44675,(공유)AI입문,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,44675,(공유)AI입문,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,44675,(공유)AI입문,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,44675,(공유)AI입문,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,45952,소프트웨어공학,,,testing,테스트,0.80,existing_topic_not_auto_link_candidate
+course,45954,수치해석,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,45954,수치해석,,,probability-statistics,확률과 통계,0.80,existing_topic_not_auto_link_candidate
+course,45954,수치해석,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,45954,수치해석,,,linear-algebra,선형대수,0.83,course_prerequisite_relation_excluded
+course,45954,수치해석,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,45955,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,45955,알고리즘,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,45955,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,45956,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,45956,알고리즘,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,45956,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,45957,영상처리,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,45957,영상처리,,,computer-vision,컴퓨터 비전,0.80,existing_topic_not_auto_link_candidate
+course,45957,영상처리,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,45957,영상처리,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,45958,운영체제,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,45958,운영체제,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,45958,운영체제,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,45958,운영체제,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,45958,운영체제,,,system-programming-basics,시스템 프로그래밍 기초,0.65,course_prerequisite_relation_excluded
+course,45960,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,45960,인공지능,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,45960,인공지능,,,python,Python,0.80,course_prerequisite_relation_excluded
+course,45961,자료구조,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,45961,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,45962,자료구조,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,45962,자료구조,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,45969,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,45969,컴퓨터네트워크,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,45969,컴퓨터네트워크,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,45969,컴퓨터네트워크,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,45971,프로그래밍언어론,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,45971,프로그래밍언어론,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,45971,프로그래밍언어론,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,45972,프로그래밍언어론,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,45972,프로그래밍언어론,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,45972,프로그래밍언어론,,,oop,객체지향 프로그래밍,0.78,course_prerequisite_relation_excluded
+course,46007,이산수학,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,46007,이산수학,,,data-structures,자료구조,0.80,existing_topic_not_auto_link_candidate
+course,46009,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,46009,데이터베이스,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,46009,데이터베이스,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,46009,데이터베이스,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,46011,데이터마이닝,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,46011,데이터마이닝,,,algorithms,알고리즘,0.83,course_prerequisite_relation_excluded
+course,46011,데이터마이닝,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,46011,데이터마이닝,,,python,Python,0.83,course_prerequisite_relation_excluded
+course,46011,데이터마이닝,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,46012,데이터통신,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,46012,데이터통신,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,46012,데이터통신,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,46014,정보보호,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,46015,모바일프로그래밍,,,database,데이터베이스,0.80,existing_topic_not_auto_link_candidate
+course,46015,모바일프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,46015,모바일프로그래밍,,,java,Java,0.73,course_prerequisite_relation_excluded
+course,46016,웹프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46017,C++프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46017,C++프로그래밍,,,oop,객체지향 프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46017,C++프로그래밍,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,46017,C++프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,46018,C++프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46018,C++프로그래밍,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,46018,C++프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,46018,C++프로그래밍,,,c-language,C언어,0.83,course_prerequisite_relation_excluded
+course,46020,JAVA프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46020,JAVA프로그래밍,,,oop,객체지향 프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46020,JAVA프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,46021,JAVA프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46021,JAVA프로그래밍,,,oop,객체지향 프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46021,JAVA프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,46022,JAVA프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46022,JAVA프로그래밍,,,oop,객체지향 프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46022,JAVA프로그래밍,,,software-design,소프트웨어 설계,0.80,existing_topic_not_auto_link_candidate
+course,46022,JAVA프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,46023,유닉스시스템프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46023,유닉스시스템프로그래밍,,,cli,CLI,0.80,existing_topic_not_auto_link_candidate
+course,46023,유닉스시스템프로그래밍,,,system-programming-basics,시스템 프로그래밍 기초,0.78,existing_topic_not_auto_link_candidate
+course,46023,유닉스시스템프로그래밍,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,46024,임베디드컴퓨팅,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46024,임베디드컴퓨팅,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,46024,임베디드컴퓨팅,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,46026,윈도우즈프로그래밍,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,46026,윈도우즈프로그래밍,,,software-design,소프트웨어 설계,0.80,existing_topic_not_auto_link_candidate
+course,46026,윈도우즈프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,46026,윈도우즈프로그래밍,,,oop,객체지향 프로그래밍,0.83,course_prerequisite_relation_excluded
+course,46026,윈도우즈프로그래밍,,,java,Java,0.83,course_prerequisite_relation_excluded
+course,46027,윈도우즈프로그래밍,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,46027,윈도우즈프로그래밍,,,software-design,소프트웨어 설계,0.80,existing_topic_not_auto_link_candidate
+course,46027,윈도우즈프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,46027,윈도우즈프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,46027,윈도우즈프로그래밍,,,oop,객체지향 프로그래밍,0.68,course_prerequisite_relation_excluded
+course,46027,윈도우즈프로그래밍,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,46030,논리설계,,,computer-architecture,컴퓨터구조,0.80,existing_topic_not_auto_link_candidate
+course,46031,소프트웨어개발프로젝트,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,46031,소프트웨어개발프로젝트,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,46031,소프트웨어개발프로젝트,,,java,Java,0.68,course_prerequisite_relation_excluded
+course,46031,소프트웨어개발프로젝트,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,46032,기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,46032,기계학습,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,46032,기계학습,,,computer-vision,컴퓨터 비전,0.75,existing_topic_not_auto_link_candidate
+course,46032,기계학습,,,natural-language-processing,자연어 처리,0.75,existing_topic_not_auto_link_candidate
+course,46032,기계학습,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,46139,빅데이터기초실습,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,46139,빅데이터기초실습,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,46141,웹프로그래밍실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,46141,웹프로그래밍실습,,,javascript,JavaScript,0.83,existing_topic_not_auto_link_candidate
+course,46141,웹프로그래밍실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,46141,웹프로그래밍실습,,,javascript-web-basics,JavaScript 웹 기초,0.50,existing_topic_not_auto_link_candidate
+course,4641,데이터분석,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,46462,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,46469,데이터베이스및실습,,,sql,SQL,0.83,existing_topic_not_auto_link_candidate
+course,46469,데이터베이스및실습,,,data-modeling,데이터 모델링,0.80,existing_topic_not_auto_link_candidate
+course,46469,데이터베이스및실습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46469,데이터베이스및실습,,,database,데이터베이스,1.00,course_prerequisite_relation_excluded
+course,46785,인공지능물리탐사,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,46785,인공지능물리탐사,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,46923,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,46923,인공지능,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,48871,네트워크사회와빅데이터저널리즘,인터넷,networks,,,0.80,review_candidate_not_approved
+course,49320,경제학데이터분석,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,49953,빅데이터분석과활용,,,statistical-analysis,통계 분석,0.80,existing_topic_not_auto_link_candidate
+course,49953,빅데이터분석과활용,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,50037,AI와약학,,,deep-learning,딥러닝,0.83,existing_topic_not_auto_link_candidate
+course,50037,AI와약학,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,50037,AI와약학,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,50037,AI와약학,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,51296,데이터베이스론,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,51296,데이터베이스론,,,database-design,데이터베이스 설계,0.83,existing_topic_not_auto_link_candidate
+course,51296,데이터베이스론,,,relational-database,관계형 데이터베이스,0.80,existing_topic_not_auto_link_candidate
+course,51296,데이터베이스론,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,51296,데이터베이스론,,,probability-statistics,확률과 통계,0.70,existing_topic_not_auto_link_candidate
+course,52534,통계데이터베이스,,,database,데이터베이스,0.95,existing_topic_not_auto_link_candidate
+course,52544,기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,52544,기계학습,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,52544,기계학습,,,regression-analysis,회귀분석,0.68,course_prerequisite_relation_excluded
+course,52544,기계학습,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,52544,기계학습,,,statistical-inference,통계적 추론,0.65,course_prerequisite_relation_excluded
+course,52544,기계학습,,,probability-statistics,확률과 통계,0.60,course_prerequisite_relation_excluded
+course,52604,빅데이터개론,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,52604,빅데이터개론,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+course,52604,빅데이터개론,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,52604,빅데이터개론,,,github,GitHub,0.50,existing_topic_not_auto_link_candidate
+course,53393,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,53393,인공지능,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,53433,알고리즘개론,표현식,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,53466,알고리즘,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,53466,알고리즘,,,data-structures,자료구조,0.71,course_prerequisite_relation_excluded
+course,53472,클라우드컴퓨팅개론및인공지능기초실습,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,53472,클라우드컴퓨팅개론및인공지능기초실습,,,cloud-basics,클라우드 기초,0.75,existing_topic_not_auto_link_candidate
+course,53478,딥러닝,,,probability-statistics,확률과 통계,0.70,existing_topic_not_auto_link_candidate
+course,53478,딥러닝,,,python,Python,0.73,course_prerequisite_relation_excluded
+course,53502,AI기반에너지안전공학,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,53502,AI기반에너지안전공학,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,5453,핸즈온딥러닝,,,numpy,NumPy,0.68,course_prerequisite_relation_excluded
+course,5453,핸즈온딥러닝,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,552,빅데이터자료분석및실습,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,552,빅데이터자료분석및실습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,552,빅데이터자료분석및실습,,,probability-statistics,확률과 통계,0.60,course_prerequisite_relation_excluded
+course,5708,수치해석프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,5708,수치해석프로그래밍,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,5711,전기기기실험,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,5723,선형대수프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,5723,선형대수프로그래밍,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,5723,선형대수프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,5734,전자회로2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,5735,전자회로설계,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,5737,신호및시스템,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,5741,마이크로프로세서1,,,computer-architecture,컴퓨터구조,0.75,existing_topic_not_auto_link_candidate
+course,5742,마이크로프로세서2,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,5744,확률이론및응용,,,probability-statistics,확률과 통계,0.83,existing_topic_not_auto_link_candidate
+course,5758,회로이론2,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,5758,회로이론2,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,5772,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,57861,무역 빅데이터분석 기초,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,57862,무역 빅데이터분석 심화,,,data-preprocessing,데이터 전처리,0.80,existing_topic_not_auto_link_candidate
+course,57862,무역 빅데이터분석 심화,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,57862,무역 빅데이터분석 심화,,,statistical-analysis,통계 분석,0.75,existing_topic_not_auto_link_candidate
+course,57862,무역 빅데이터분석 심화,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,5788,모바일프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,58116,조선공학을 위한 인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,58116,조선공학을 위한 인공지능,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,58116,조선공학을 위한 인공지능,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,58116,조선공학을 위한 인공지능,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58116,조선공학을 위한 인공지능,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,58125,조선공학도를 위한 인공지능 프로그래밍,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,58125,조선공학도를 위한 인공지능 프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,58125,조선공학도를 위한 인공지능 프로그래밍,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,58140,기계학습,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58200,선형대수,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,58207,전기회로1,,,calculus,미적분,0.65,course_prerequisite_relation_excluded
+course,58210,전기회로2,,,calculus,미적분,0.65,course_prerequisite_relation_excluded
+course,58213,수치해석,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58222,전기설비이론및설계,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,58252,컴퓨터프로그래밍2,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,58252,컴퓨터프로그래밍2,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,58257,공학수학1,,,calculus,미적분,0.65,course_prerequisite_relation_excluded
+course,58258,공학수학2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,58259,회로이론및실험1,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,58261,확률및랜덤변수,변수,programming-basic-syntax,,,0.93,review_candidate_not_approved
+course,58261,확률및랜덤변수,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,58261,확률및랜덤변수,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,58264,자료구조및알고리즘,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,58264,자료구조및알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58270,통신이론,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,58277,마이크로프로세서응용설계,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58277,마이크로프로세서응용설계,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,58283,종합설계1,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58288,딥러닝을 이용한 컴퓨터 비전,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58299,집적회로설계 2,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58301,컴퓨터네트워크,,,networks,네트워크,1.00,course_prerequisite_relation_excluded
+course,58309,기계학습입문,,,deep-learning,딥러닝,0.83,existing_topic_not_auto_link_candidate
+course,58309,기계학습입문,,,numpy,NumPy,0.80,existing_topic_not_auto_link_candidate
+course,58309,기계학습입문,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,58309,기계학습입문,,,python,Python,0.75,existing_topic_not_auto_link_candidate
+course,58309,기계학습입문,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,58369,선형대수,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58370,객체지향설계,,,design-patterns,디자인 패턴,0.80,existing_topic_not_auto_link_candidate
+course,58370,객체지향설계,,,java,Java,0.83,course_prerequisite_relation_excluded
+course,58370,객체지향설계,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58370,객체지향설계,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,58373,자료구조,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,58373,자료구조,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,58373,자료구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58373,자료구조,리스트,data-structures,,,0.65,approved_depth3_relevance_below_threshold
+course,58373,자료구조,스택,data-structures,,,0.65,approved_depth3_relevance_below_threshold
+course,58373,자료구조,정렬,algorithms,,,0.65,approved_depth3_relevance_below_threshold
+course,58374,컴퓨터프로그래밍3,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,58374,컴퓨터프로그래밍3,,,java,Java,0.83,course_prerequisite_relation_excluded
+course,58375,수치프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,58375,수치프로그래밍,,,calculus,미적분,0.80,existing_topic_not_auto_link_candidate
+course,58375,수치프로그래밍,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,58375,수치프로그래밍,,,numerical-analysis,수치해석,0.50,existing_topic_not_auto_link_candidate
+course,58375,수치프로그래밍,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58377,기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,58377,기계학습,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,58377,기계학습,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,58377,기계학습,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58377,기계학습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58379,컴퓨터프로그래밍 1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,58379,컴퓨터프로그래밍 1,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,58379,컴퓨터프로그래밍 1,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,58379,컴퓨터프로그래밍 1,,,java,Java,0.50,existing_topic_not_auto_link_candidate
+course,58380,컴퓨터프로그래밍 2,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,58380,컴퓨터프로그래밍 2,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,58380,컴퓨터프로그래밍 2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,58380,컴퓨터프로그래밍 2,,,java,Java,0.75,course_prerequisite_relation_excluded
+course,58381,기초프로젝트랩,,,testing,테스트,0.80,existing_topic_not_auto_link_candidate
+course,58382,AI를 위한 수학,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58382,AI를 위한 수학,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,58382,AI를 위한 수학,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58382,AI를 위한 수학,,,calculus,미적분,0.65,course_prerequisite_relation_excluded
+course,58382,AI를 위한 수학,,,probability-statistics,확률과 통계,0.65,course_prerequisite_relation_excluded
+course,58384,고급자연어처리,,,deep-learning,딥러닝,0.68,course_prerequisite_relation_excluded
+course,58384,고급자연어처리,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58384,고급자연어처리,,,machine-learning,머신러닝,0.68,course_prerequisite_relation_excluded
+course,58385,고급데이터베이스,,,database,데이터베이스,1.00,course_prerequisite_relation_excluded
+course,58387,객체지향시스템실무,,,oop,객체지향 프로그래밍,1.00,course_prerequisite_relation_excluded
+course,58387,객체지향시스템실무,,,java,Java,0.71,course_prerequisite_relation_excluded
+course,58387,객체지향시스템실무,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58391,고급정보보호,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+course,58391,고급정보보호,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58391,고급정보보호,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58391,고급정보보호,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,58393,기계학습특강,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,58393,기계학습특강,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,58394,고급디지털신호처리,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58394,고급디지털신호처리,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58395,고급프로그래밍언어론,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,58537,컴퓨터네트워크운용실습,,,networks,네트워크,1.00,course_prerequisite_relation_excluded
+course,58541,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,58542,선형대수,벡터,linear-algebra,,,0.65,approved_depth3_relevance_below_threshold
+course,58542,선형대수,행렬,linear-algebra,,,0.65,approved_depth3_relevance_below_threshold
+course,58543,창의설계입문,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,58547,객체지향프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,58547,객체지향프로그래밍,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,58549,자료구조및실습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58549,자료구조및실습,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,58555,운영체제,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,58555,운영체제,,,operating-systems,운영체제,1.00,course_prerequisite_relation_excluded
+course,58555,운영체제,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58555,운영체제,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,58556,알고리즘,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,58556,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58556,알고리즘,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,58557,마이크로파회로설계1,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,58558,확률및랜덤프로세스,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,58559,마이크로프로세서응용설계,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,58559,마이크로프로세서응용설계,,,computer-architecture,컴퓨터구조,0.75,existing_topic_not_auto_link_candidate
+course,58561,차세대 네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,58561,차세대 네트워크,,,networks,네트워크,1.00,course_prerequisite_relation_excluded
+course,58565,전파응용실험,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58567,무선통신시스템,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58569,컴퓨터통신응용,,,networks,네트워크,0.85,course_prerequisite_relation_excluded
+course,58582,민군용 초고주파수동회로,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,58629,시스템프로그래밍,,,operating-systems,운영체제,0.80,existing_topic_not_auto_link_candidate
+course,58629,시스템프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,58629,시스템프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,58630,웹프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,58630,웹프로그래밍,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58635,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,58636,소프트웨어공학,,,requirements-analysis,요구사항 분석,0.80,existing_topic_not_auto_link_candidate
+course,58636,소프트웨어공학,,,oop,객체지향 프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58636,소프트웨어공학,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58637,운영체제및실습,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,58637,운영체제및실습,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,58637,운영체제및실습,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58637,운영체제및실습,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,58637,운영체제및실습,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58637,운영체제및실습,,,system-programming-basics,시스템 프로그래밍 기초,0.65,course_prerequisite_relation_excluded
+course,58638,프로그래밍언어개론,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,58638,프로그래밍언어개론,,,discrete-mathematics,이산수학,0.68,course_prerequisite_relation_excluded
+course,58639,영상처리,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,58639,영상처리,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,58639,영상처리,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,58639,영상처리,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58639,영상처리,,,probability-statistics,확률과 통계,0.65,course_prerequisite_relation_excluded
+course,58640,디지털시스템설계,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,58646,전자회로,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58648,알고리즘응용,,,algorithms,알고리즘,1.00,course_prerequisite_relation_excluded
+course,58648,알고리즘응용,,,data-structures,자료구조,0.83,course_prerequisite_relation_excluded
+course,58648,알고리즘응용,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58648,알고리즘응용,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,58648,알고리즘응용,,,java,Java,0.60,course_prerequisite_relation_excluded
+course,58649,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,58649,데이터베이스,,,transactions,트랜잭션,0.80,existing_topic_not_auto_link_candidate
+course,58649,데이터베이스,,,java,Java,0.50,existing_topic_not_auto_link_candidate
+course,58649,데이터베이스,,,sql,SQL,0.50,existing_topic_not_auto_link_candidate
+course,58649,데이터베이스,,,programming,프로그래밍,0.71,course_prerequisite_relation_excluded
+course,58649,데이터베이스,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58650,데이터통신,,,networks,네트워크,0.83,existing_topic_not_auto_link_candidate
+course,58650,데이터통신,인터넷,networks,,,0.80,review_candidate_not_approved
+course,58650,데이터통신,,,data-structures,자료구조,0.71,course_prerequisite_relation_excluded
+course,58650,데이터통신,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,58651,이동통신,,,networks,네트워크,0.68,course_prerequisite_relation_excluded
+course,58652,정보보호,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,58652,정보보호,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58655,임베디드소프트웨어,,,operating-systems,운영체제,0.83,course_prerequisite_relation_excluded
+course,58655,임베디드소프트웨어,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58655,임베디드소프트웨어,,,c-language,C언어,0.65,course_prerequisite_relation_excluded
+course,58657,시스템및네트워크보안,,,computer-architecture,컴퓨터구조,0.68,course_prerequisite_relation_excluded
+course,58657,시스템및네트워크보안,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,58657,시스템및네트워크보안,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58657,시스템및네트워크보안,,,system-programming-basics,시스템 프로그래밍 기초,0.65,course_prerequisite_relation_excluded
+course,58659,데이터베이스설계,,,database-design,데이터베이스 설계,0.75,existing_topic_not_auto_link_candidate
+course,58659,데이터베이스설계,,,data-modeling,데이터 모델링,0.50,existing_topic_not_auto_link_candidate
+course,58659,데이터베이스설계,,,database,데이터베이스,1.00,course_prerequisite_relation_excluded
+course,58659,데이터베이스설계,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58659,데이터베이스설계,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,58660,딥러닝,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,58660,딥러닝,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58660,딥러닝,,,machine-learning,머신러닝,0.68,course_prerequisite_relation_excluded
+course,58660,딥러닝,,,numpy,NumPy,0.68,course_prerequisite_relation_excluded
+course,58660,딥러닝,,,pandas,Pandas,0.68,course_prerequisite_relation_excluded
+course,58663,논리회로,,,computer-architecture,컴퓨터구조,0.80,existing_topic_not_auto_link_candidate
+course,58664,디지털신호처리,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,58664,디지털신호처리,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,58738,농산업 빅데이터의 이해,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,58796,바이오시스템 인공지능 개론,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,58796,바이오시스템 인공지능 개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,58796,바이오시스템 인공지능 개론,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,58796,바이오시스템 인공지능 개론,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,58806,바이오시스템 기계학습,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,5902,벤처캡스톤디자인,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,5913,네트워크프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,5915,웹프로그래밍,,,java,Java,0.83,existing_topic_not_auto_link_candidate
+course,5915,웹프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,5932,디지털신호처리실험,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,5935,사물인터넷설계,인터넷,networks,,,0.85,review_candidate_not_approved
+course,5935,사물인터넷설계,,,networks,네트워크,0.50,existing_topic_not_auto_link_candidate
+course,5935,사물인터넷설계,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,5935,사물인터넷설계,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,5936,사물인터넷운영체제,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,5936,사물인터넷운영체제,,,python,Python,0.71,course_prerequisite_relation_excluded
+course,5936,사물인터넷운영체제,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,5936,사물인터넷운영체제,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,59364,머신러닝 개론,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,59364,머신러닝 개론,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,59364,머신러닝 개론,,,python,Python,0.71,course_prerequisite_relation_excluded
+course,59364,머신러닝 개론,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,59364,머신러닝 개론,,,probability-statistics,확률과 통계,0.68,course_prerequisite_relation_excluded
+course,59367,딥러닝 기초 및 응용,,,algorithms,알고리즘,0.50,existing_topic_not_auto_link_candidate
+course,59367,딥러닝 기초 및 응용,,,deep-learning,딥러닝,1.00,course_prerequisite_relation_excluded
+course,5937,사물인터넷프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,5937,사물인터넷프로그래밍,,,javascript,JavaScript,0.50,existing_topic_not_auto_link_candidate
+course,5940,확률과인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,5940,확률과인공지능,,,statistical-analysis,통계 분석,0.80,existing_topic_not_auto_link_candidate
+course,5943,딥러닝,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,5943,딥러닝,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,5943,딥러닝,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,5943,딥러닝,,,python,Python,0.68,course_prerequisite_relation_excluded
+course,5943,딥러닝,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,59509,컴퓨터구조,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,59513,창의공학설계프로젝트,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.65,course_prerequisite_relation_excluded
+course,59515,고급프로그래밍,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,59515,고급프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,59515,고급프로그래밍,,,c-language,C언어,0.68,course_prerequisite_relation_excluded
+course,59516,컴퓨터프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,59516,컴퓨터프로그래밍,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,59516,컴퓨터프로그래밍,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,59722,데이터사이언스개론,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,59733,데이터분석및시각화,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,59864,사회과학데이터분석,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,59864,사회과학데이터분석,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,59864,사회과학데이터분석,,,regression-analysis,회귀분석,0.50,existing_topic_not_auto_link_candidate
+course,59864,사회과학데이터분석,,,probability-statistics,확률과 통계,0.73,course_prerequisite_relation_excluded
+course,59929,공공외교와 Global Affairs,,,deployment,배포,0.50,existing_topic_not_auto_link_candidate
+course,60189,빅데이터분석과소비자,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,60281,패션데이터분석,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,60281,패션데이터분석,,,c-language,C언어,0.75,existing_topic_not_auto_link_candidate
+course,60281,패션데이터분석,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,60281,패션데이터분석,,,programming,프로그래밍,0.85,course_prerequisite_relation_excluded
+course,61974,암호론및실습,,,linear-algebra,선형대수,0.83,course_prerequisite_relation_excluded
+course,61974,암호론및실습,,,python,Python,0.60,course_prerequisite_relation_excluded
+course,61979,빅데이터해석및실습,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,61979,빅데이터해석및실습,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,61979,빅데이터해석및실습,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,62013,탐사적데이터분석,,,probability-statistics,확률과 통계,0.60,course_prerequisite_relation_excluded
+course,62017,다변량데이터분석,,,statistical-analysis,통계 분석,0.80,existing_topic_not_auto_link_candidate
+course,62017,다변량데이터분석,,,regression-analysis,회귀분석,0.68,course_prerequisite_relation_excluded
+course,62017,다변량데이터분석,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,62017,다변량데이터분석,,,statistical-inference,통계적 추론,0.65,course_prerequisite_relation_excluded
+course,62017,다변량데이터분석,,,probability-statistics,확률과 통계,0.60,course_prerequisite_relation_excluded
+course,6202,머신러닝을위한통계학2,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,6202,머신러닝을위한통계학2,,,regression-analysis,회귀분석,0.80,existing_topic_not_auto_link_candidate
+course,62026,빅데이터분석 및 실습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,62026,빅데이터분석 및 실습,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,62026,빅데이터분석 및 실습,,,regression-analysis,회귀분석,0.68,course_prerequisite_relation_excluded
+course,62026,빅데이터분석 및 실습,회귀,machine-learning,,,0.65,approved_depth3_relevance_below_threshold
+course,6223,고급프로그래밍언어,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,6223,고급프로그래밍언어,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,6227,데이터베이스2,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,6249,컴퓨터네트워크,,,operating-systems,운영체제,0.68,course_prerequisite_relation_excluded
+course,62519,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,62519,인공지능,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,62519,인공지능,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,62519,인공지능,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,6252,미디어통신공학,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,62574,공공의약데이터베이스의 활용,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,6258,객체지향프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,6258,객체지향프로그래밍,,,java,Java,0.50,existing_topic_not_auto_link_candidate
+course,6260,모바일프로그래밍,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,6262,웹프로그래밍,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,62691,생물정보데이터와 기계학습,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,62691,생물정보데이터와 기계학습,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,62691,생물정보데이터와 기계학습,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,62691,생물정보데이터와 기계학습,,,probability-statistics,확률과 통계,0.60,course_prerequisite_relation_excluded
+course,62876,스마트농업 인공지능 특론,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,62893,AI를 위한 기초 프로그래밍,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,62893,AI를 위한 기초 프로그래밍,,,python,Python,0.75,existing_topic_not_auto_link_candidate
+course,62893,AI를 위한 기초 프로그래밍,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,62893,AI를 위한 기초 프로그래밍,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,62905,기계학습및설계,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,62905,기계학습및설계,,,python,Python,0.73,course_prerequisite_relation_excluded
+course,62905,기계학습및설계,,,data-analysis,데이터 분석,0.71,course_prerequisite_relation_excluded
+course,62905,기계학습및설계,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,62906,산업 인공지능 및 실습2,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,62906,산업 인공지능 및 실습2,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,62906,산업 인공지능 및 실습2,,,linear-algebra,선형대수,0.68,course_prerequisite_relation_excluded
+course,62906,산업 인공지능 및 실습2,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,62906,산업 인공지능 및 실습2,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,62913,컴퓨터비전,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,62913,컴퓨터비전,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,62913,컴퓨터비전,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,62916,기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,62922,영상처리 및 딥러닝,,,computer-vision,컴퓨터 비전,0.50,existing_topic_not_auto_link_candidate
+course,62923,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,62942,생체데이터분석,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,62942,생체데이터분석,,,deep-learning,딥러닝,0.80,existing_topic_not_auto_link_candidate
+course,62942,생체데이터분석,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+course,62942,생체데이터분석,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+course,62966,알고리즘,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,62966,알고리즘,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,62966,알고리즘,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,62966,알고리즘,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,62982,빅데이터와 디지털 사고,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+course,63002,운영체제,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,63284,데이터베이스시스템,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,63285,데이터베이스시스템,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,64096,축산데이터분석법,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,64096,축산데이터분석법,,,probability-statistics,확률과 통계,0.45,existing_topic_not_auto_link_candidate
+course,64984,소비자빅데이터정보분석Ⅰ(캡스톤디자인),,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,64986,소비자빅데이터정보분석Ⅱ(캡스톤디자인),,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,65911,인공지능 활용 신약개발,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,65999,정보/조합/암호론,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,66023,데이터마이닝,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66024,기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66024,기계학습,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66110,공학수학 I,표현식,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66111,공학수학 I,표현식,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66115,수치해석 및 응용,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66120,공학수학 II,표현식,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66121,공학수학 II,표현식,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66144,디지털신호처리,표본추출,probability-statistics,,,0.80,review_candidate_not_approved
+course,66167,공학수학 II,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,66175,자료구조 및 알고리즘,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66175,자료구조 및 알고리즘,,,programming-basic-syntax,프로그래밍 기초 문법,0.75,existing_topic_not_auto_link_candidate
+course,66179,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66180,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66187,통신공학,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66192,마이크로프로세서,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66192,마이크로프로세서,,,computer-architecture,컴퓨터구조,0.75,existing_topic_not_auto_link_candidate
+course,66193,마이크로프로세서,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66193,마이크로프로세서,,,computer-architecture,컴퓨터구조,0.75,existing_topic_not_auto_link_candidate
+course,66197,디지털신호처리,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66206,로봇공학,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66224,프로그래밍프로젝트,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66232,반도체소자공정실험,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,66234,컴퓨터네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+course,66241,고급컴퓨터프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66241,고급컴퓨터프로그래밍,,,oop,객체지향 프로그래밍,0.75,existing_topic_not_auto_link_candidate
+course,66257,프로그래밍언어론,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66258,데이터베이스시스템,,,database,데이터베이스,0.98,existing_topic_not_auto_link_candidate
+course,66258,데이터베이스시스템,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,66261,데이터통신,,,networks,네트워크,0.50,existing_topic_not_auto_link_candidate
+course,66263,자료구조,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66263,자료구조,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,66265,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66266,프로그래밍언어론,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66267,데이터통신,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,66270,데이터베이스,,,database,데이터베이스,0.95,existing_topic_not_auto_link_candidate
+course,66270,데이터베이스,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,66271,인터넷프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,66277,정보보호,,,networks,네트워크,0.50,existing_topic_not_auto_link_candidate
+course,66285,오픈소스기초프로젝트,,,docker,Docker,0.80,existing_topic_not_auto_link_candidate
+course,66285,오픈소스기초프로젝트,,,git,Git,0.80,existing_topic_not_auto_link_candidate
+course,66285,오픈소스기초프로젝트,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,git,Git,0.80,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,numpy,NumPy,0.80,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,pandas,Pandas,0.80,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,66289,오픈소스개발프로젝트,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,66292,오픈소스전문프로젝트,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,66294,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,66294,인공지능,,,machine-learning,머신러닝,0.50,existing_topic_not_auto_link_candidate
+course,66301,데이터마이닝,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,66301,데이터마이닝,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,66302,컴퓨터프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66302,컴퓨터프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66302,컴퓨터프로그래밍,,,data-structures,자료구조,0.75,existing_topic_not_auto_link_candidate
+course,66302,컴퓨터프로그래밍,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,66303,고급컴퓨터프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66305,컴퓨터응용프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,66305,컴퓨터응용프로그래밍,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,66305,컴퓨터응용프로그래밍,,,data-structures,자료구조,0.50,existing_topic_not_auto_link_candidate
+course,66308,알고리즘,,,data-structures,자료구조,0.80,existing_topic_not_auto_link_candidate
+course,66308,알고리즘,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66309,객체지향프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66309,객체지향프로그래밍,,,java,Java,0.73,existing_topic_not_auto_link_candidate
+course,66312,인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,66317,머신러닝,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66317,머신러닝,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+course,66329,오픈소스기초프로젝트,,,c-language,C언어,0.83,existing_topic_not_auto_link_candidate
+course,66329,오픈소스기초프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66332,객체지향프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66333,객체지향프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66335,오픈소스개발프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66336,윈도우프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66345,객체지향 프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,66350,컴퓨터구조,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66354,시스템프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,66356,확률및통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66356,확률및통계,표본추출,probability-statistics,,,0.80,review_candidate_not_approved
+course,66357,확률및통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66357,확률및통계,표본추출,probability-statistics,,,0.80,review_candidate_not_approved
+course,66358,운영체제,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66358,운영체제,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,66361,객체지향 설계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66371,데이터베이스시스템,,,database,데이터베이스,0.95,existing_topic_not_auto_link_candidate
+course,66371,데이터베이스시스템,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66371,데이터베이스시스템,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,66372,데이터베이스시스템,,,database,데이터베이스,0.95,existing_topic_not_auto_link_candidate
+course,66372,데이터베이스시스템,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,66377,인공지능,,,artificial-intelligence,인공지능,0.98,existing_topic_not_auto_link_candidate
+course,66377,인공지능,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,66377,인공지능,,,testing,테스트,0.50,existing_topic_not_auto_link_candidate
+course,66378,인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,66381,펌웨어프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,66385,오픈소스개발프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66385,오픈소스개발프로젝트,,,java,Java,0.50,existing_topic_not_auto_link_candidate
+course,66386,오픈소스개발프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66386,오픈소스개발프로젝트,,,java,Java,0.50,existing_topic_not_auto_link_candidate
+course,66387,오픈소스전문프로젝트,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,66388,오픈소스전문프로젝트,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,66389,클라우드컴퓨팅,,,cloud-basics,클라우드 기초,0.50,existing_topic_not_auto_link_candidate
+course,66390,빅데이터시스템설계,,,nosql,NoSQL,0.80,existing_topic_not_auto_link_candidate
+course,66390,빅데이터시스템설계,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66391,기계학습,,,artificial-intelligence,인공지능,0.50,existing_topic_not_auto_link_candidate
+course,66391,기계학습,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,66391,기계학습,,,testing,테스트,0.50,existing_topic_not_auto_link_candidate
+course,66395,오픈소스기초프로젝트,,,python,Python,0.83,existing_topic_not_auto_link_candidate
+course,66395,오픈소스기초프로젝트,,,git,Git,0.80,existing_topic_not_auto_link_candidate
+course,66395,오픈소스기초프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66399,오픈소스 웹소프트웨어,,,javascript,JavaScript,0.83,existing_topic_not_auto_link_candidate
+course,66399,오픈소스 웹소프트웨어,표현식,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66399,오픈소스 웹소프트웨어,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,66399,오픈소스 웹소프트웨어,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,66399,오픈소스 웹소프트웨어,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,66400,오픈소스 웹소프트웨어,,,javascript,JavaScript,0.83,existing_topic_not_auto_link_candidate
+course,66400,오픈소스 웹소프트웨어,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66400,오픈소스 웹소프트웨어,,,react,React,0.80,existing_topic_not_auto_link_candidate
+course,66437,확률및통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66438,확률및통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66442,공학수학 II,,,linear-algebra,선형대수,0.80,existing_topic_not_auto_link_candidate
+course,66448,통신공학,인덱스,database-design,,,0.80,review_candidate_not_approved
+course,66449,통신공학,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66450,통신공학,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66459,디지털통신,표본추출,probability-statistics,,,0.80,review_candidate_not_approved
+course,66460,디지털통신,표본추출,probability-statistics,,,0.80,review_candidate_not_approved
+course,66465,인터넷통신설계,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66465,인터넷통신설계,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,66465,인터넷통신설계,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66470,자바프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66470,자바프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,66473,임베디드소프트웨어실습,,,c-language,C언어,0.80,existing_topic_not_auto_link_candidate
+course,66473,임베디드소프트웨어실습,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66476,모바일프로그래밍및실습,,,programming,프로그래밍,0.98,existing_topic_not_auto_link_candidate
+course,66476,모바일프로그래밍및실습,,,design-patterns,디자인 패턴,0.80,existing_topic_not_auto_link_candidate
+course,66476,모바일프로그래밍및실습,,,javascript,JavaScript,0.80,existing_topic_not_auto_link_candidate
+course,66476,모바일프로그래밍및실습,,,react,React,0.80,existing_topic_not_auto_link_candidate
+course,66476,모바일프로그래밍및실습,,,java,Java,0.70,existing_topic_not_auto_link_candidate
+course,66500,오픈소스 전문프로젝트,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,66500,오픈소스 전문프로젝트,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66500,오픈소스 전문프로젝트,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,66500,오픈소스 전문프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66500,오픈소스 전문프로젝트,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66500,오픈소스 전문프로젝트,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,66502,오픈소스 전문프로젝트,,,linux,Linux,0.80,existing_topic_not_auto_link_candidate
+course,66502,오픈소스 전문프로젝트,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+course,66502,오픈소스 전문프로젝트,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+course,66502,오픈소스 전문프로젝트,,,github,GitHub,0.80,existing_topic_not_auto_link_candidate
+course,66502,오픈소스 전문프로젝트,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+course,66502,오픈소스 전문프로젝트,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,66508,빅데이터시스템설계,인덱스,database-design,,,0.80,review_candidate_not_approved
+course,66508,빅데이터시스템설계,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,66508,빅데이터시스템설계,,,database,데이터베이스,0.50,existing_topic_not_auto_link_candidate
+course,66511,캡스톤디자인,SELECT,sql,,,0.80,review_candidate_not_approved
+course,66512,캡스톤디자인,SELECT,sql,,,0.80,review_candidate_not_approved
+course,66516,임베디드IoT응용실험,,,deep-learning,딥러닝,0.50,existing_topic_not_auto_link_candidate
+course,66517,임베디드IoT응용실험,,,javascript,JavaScript,0.50,existing_topic_not_auto_link_candidate
+course,66517,임베디드IoT응용실험,,,programming,프로그래밍,0.50,existing_topic_not_auto_link_candidate
+course,66517,임베디드IoT응용실험,,,java,Java,0.45,existing_topic_not_auto_link_candidate
+course,66526,객체지향 프로그래밍(C++),,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,66534,고급컴퓨터프로그래밍,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+course,66534,고급컴퓨터프로그래밍,,,data-structures,자료구조,0.83,existing_topic_not_auto_link_candidate
+course,66534,고급컴퓨터프로그래밍,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,66534,고급컴퓨터프로그래밍,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,66542,확률및통계,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+course,66549,인공지능과 기계학습,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,66551,운영체제의이해,,,networks,네트워크,0.83,existing_topic_not_auto_link_candidate
+course,66551,운영체제의이해,,,linux,Linux,0.73,existing_topic_not_auto_link_candidate
+course,66552,빅데이터이해와분석,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,66552,빅데이터이해와분석,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,66554,인공지능 융합의 이해,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,67814,취약점분석 및 모의해킹,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,67814,취약점분석 및 모의해킹,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+course,67815,정보보호컨설팅,,,authentication-authorization,인증과 인가,0.45,existing_topic_not_auto_link_candidate
+course,7185,데이터분석프로그래밍,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,7185,데이터분석프로그래밍,,,python,Python,0.73,existing_topic_not_auto_link_candidate
+course,7185,데이터분석프로그래밍,,,programming,프로그래밍,0.98,course_prerequisite_relation_excluded
+course,7185,데이터분석프로그래밍,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,7198,인공지능과법,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,7201,머신러닝을이용한재난통계,,,programming,프로그래밍,0.83,course_prerequisite_relation_excluded
+course,7904,빅데이터와금융,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,8290,경영데이터분석,,,data-analysis,데이터 분석,0.83,existing_topic_not_auto_link_candidate
+course,8290,경영데이터분석,,,data-collection,데이터 수집,0.80,existing_topic_not_auto_link_candidate
+course,8290,경영데이터분석,,,database,데이터베이스,0.68,course_prerequisite_relation_excluded
+course,8291,경영데이터분석,,,data-collection,데이터 수집,0.80,existing_topic_not_auto_link_candidate
+course,8291,경영데이터분석,,,data-analysis,데이터 분석,0.50,existing_topic_not_auto_link_candidate
+course,8291,경영데이터분석,,,python,Python,0.45,existing_topic_not_auto_link_candidate
+course,8291,경영데이터분석,,,database,데이터베이스,0.68,course_prerequisite_relation_excluded
+course,8295,데이터베이스입문,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,8295,데이터베이스입문,,,normalization,정규화,0.80,existing_topic_not_auto_link_candidate
+course,8295,데이터베이스입문,,,relational-database,관계형 데이터베이스,0.80,existing_topic_not_auto_link_candidate
+course,8296,데이터베이스입문,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,8296,데이터베이스입문,,,normalization,정규화,0.80,existing_topic_not_auto_link_candidate
+course,8298,데이터베이스입문,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,deep-learning,딥러닝,0.83,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,computer-vision,컴퓨터 비전,0.80,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,natural-language-processing,자연어 처리,0.80,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,machine-learning,머신러닝,0.75,existing_topic_not_auto_link_candidate
+course,881,인공지능개론,,,testing,테스트,0.50,existing_topic_not_auto_link_candidate
+course,8922,공학응용인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,8922,공학응용인공지능,,,python,Python,0.50,existing_topic_not_auto_link_candidate
+course,8924,공학응용인공지능,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+course,8925,공학응용인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,8925,공학응용인공지능,,,reinforcement-learning,강화학습,0.80,existing_topic_not_auto_link_candidate
+course,9170,공학수학 1,,,calculus,미적분,0.68,course_prerequisite_relation_excluded
+course,9171,공학수학 2,,,calculus,미적분,0.83,existing_topic_not_auto_link_candidate
+course,923,풀사료자원과빅데이터,,,probability-statistics,확률과 통계,0.70,existing_topic_not_auto_link_candidate
+course,971,인공지능과동물산업,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,971,인공지능과동물산업,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,971,인공지능과동물산업,,,programming-basic-syntax,프로그래밍 기초 문법,0.65,course_prerequisite_relation_excluded
+course,9783,컴퓨터구조개론,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,9785,인공지능개론,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+course,9785,인공지능개론,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,9786,프로그래밍언어1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,9786,프로그래밍언어1,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,9787,프로그래밍언어2,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,9787,프로그래밍언어2,,,c-language,C언어,0.50,existing_topic_not_auto_link_candidate
+course,9789,객체지향언어,,,programming,프로그래밍,0.83,existing_topic_not_auto_link_candidate
+course,9789,객체지향언어,,,data-structures,자료구조,0.68,course_prerequisite_relation_excluded
+course,9790,JAVA1,,,java,Java,0.45,existing_topic_not_auto_link_candidate
+course,9794,데이터베이스개론,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+course,9794,데이터베이스개론,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+course,9795,기계학습응용,,,artificial-intelligence,인공지능,0.71,course_prerequisite_relation_excluded
+course,9801,응용소프트웨어설계,,,oop,객체지향 프로그래밍,0.65,course_prerequisite_relation_excluded
+course,9807,컴퓨터통신,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+course,9807,컴퓨터통신,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,9808,정보보안기술,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+course,9809,웹프로그래밍1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,9809,웹프로그래밍1,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,9809,웹프로그래밍1,,,javascript,JavaScript,0.50,existing_topic_not_auto_link_candidate
+course,9809,웹프로그래밍1,,,javascript-web-basics,JavaScript 웹 기초,0.50,existing_topic_not_auto_link_candidate
+course,9809,웹프로그래밍1,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,9810,웹프로그래밍1,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+course,9810,웹프로그래밍1,,,java,Java,0.80,existing_topic_not_auto_link_candidate
+course,9810,웹프로그래밍1,,,javascript,JavaScript,0.50,existing_topic_not_auto_link_candidate
+course,9810,웹프로그래밍1,,,javascript-web-basics,JavaScript 웹 기초,0.50,existing_topic_not_auto_link_candidate
+course,9810,웹프로그래밍1,,,programming-basic-syntax,프로그래밍 기초 문법,0.50,existing_topic_not_auto_link_candidate
+course,9811,웹프로그래밍2,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+course,9811,웹프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,9812,웹프로그래밍2,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+course,9812,웹프로그래밍2,,,programming,프로그래밍,1.00,course_prerequisite_relation_excluded
+course,9813,모바일소프트웨어,,,programming,프로그래밍,0.71,course_prerequisite_relation_excluded
+course,9814,모바일소프트웨어,,,programming,프로그래밍,0.71,course_prerequisite_relation_excluded
+course,9816,소프트웨어프로젝트2,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+course,9816,소프트웨어프로젝트2,,,algorithms,알고리즘,0.68,course_prerequisite_relation_excluded
+course,9816,소프트웨어프로젝트2,,,database,데이터베이스,0.68,course_prerequisite_relation_excluded
+course,9816,소프트웨어프로젝트2,,,programming,프로그래밍,0.68,course_prerequisite_relation_excluded
+course,9816,소프트웨어프로젝트2,,,computer-architecture,컴퓨터구조,0.65,course_prerequisite_relation_excluded
+resource,0fa44287c0998043,C프로그래밍 고급,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,0fa44287c0998043,C프로그래밍 고급,,,c-language,C언어,0.82,existing_topic_not_auto_link_candidate
+resource,0fa44287c0998043,C프로그래밍 고급,,,operating-systems,운영체제,0.82,existing_topic_not_auto_link_candidate
+resource,0fa44287c0998043,C프로그래밍 고급,,,programming-basic-syntax,프로그래밍 기초 문법,0.77,existing_topic_not_auto_link_candidate
+resource,10fc1ba125aa910c,의료보건빅데이터분석,,,artificial-intelligence,인공지능,0.91,existing_topic_not_auto_link_candidate
+resource,10fc1ba125aa910c,의료보건빅데이터분석,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+resource,14681297019d55cc,컴퓨터과학과 코딩,,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,14681297019d55cc,컴퓨터과학과 코딩,,,programming-basic-syntax,프로그래밍 기초 문법,0.77,existing_topic_not_auto_link_candidate
+resource,1759e84268558322,컴퓨터 활용,,,statistical-analysis,통계 분석,0.82,existing_topic_not_auto_link_candidate
+resource,19568,데이터 분석 기초,,,data-analysis,데이터 분석,1.00,existing_topic_not_auto_link_candidate
+resource,19568,데이터 분석 기초,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+resource,19573,인공지능과문제해결,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19573,인공지능과문제해결,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+resource,19573,인공지능과문제해결,,,python,Python,0.75,existing_topic_not_auto_link_candidate
+resource,19596,생성형 인공지능 입문,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19596,생성형 인공지능 입문,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+resource,19597,모두를 위한 머신러닝,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+resource,19600,데이터베이스 보안,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+resource,19600,데이터베이스 보안,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+resource,19600,데이터베이스 보안,,,relational-database,관계형 데이터베이스,0.80,existing_topic_not_auto_link_candidate
+resource,19600,데이터베이스 보안,,,sql,SQL,0.80,existing_topic_not_auto_link_candidate
+resource,19600,데이터베이스 보안,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+resource,19600,데이터베이스 보안,,,server-basics,서버 기초,0.70,existing_topic_not_auto_link_candidate
+resource,19643,현대 딥러닝 구조의 이해와 응용,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+resource,19648,인공지능의 기초 이해,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19648,인공지능의 기초 이해,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+resource,19648,인공지능의 기초 이해,,,database,데이터베이스,0.80,existing_topic_not_auto_link_candidate
+resource,19648,인공지능의 기초 이해,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+resource,19648,인공지능의 기초 이해,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+resource,1966b264204f1a3e,라즈베리파이 실습,,,software-design,소프트웨어 설계,0.82,existing_topic_not_auto_link_candidate
+resource,19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+resource,19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,,,data-collection,데이터 수집,0.80,existing_topic_not_auto_link_candidate
+resource,19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+resource,19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+resource,19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,,,generative-ai,생성형 AI,0.80,existing_topic_not_auto_link_candidate
+resource,19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,,,machine-learning,머신러닝,0.80,existing_topic_not_auto_link_candidate
+resource,19726,AI 기계학습,,,algorithms,알고리즘,0.80,existing_topic_not_auto_link_candidate
+resource,19726,AI 기계학습,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+resource,19726,AI 기계학습,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+resource,19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,,,data-analysis,데이터 분석,1.00,existing_topic_not_auto_link_candidate
+resource,19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,,,data-visualization,데이터 시각화,0.80,existing_topic_not_auto_link_candidate
+resource,19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,,,data-structures,자료구조,0.80,existing_topic_not_auto_link_candidate
+resource,19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.75,existing_topic_not_auto_link_candidate
+resource,19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,,,python,Python,0.70,existing_topic_not_auto_link_candidate
+resource,19728,AI 알고리즘,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+resource,19728,AI 알고리즘,,,networks,네트워크,0.80,existing_topic_not_auto_link_candidate
+resource,19731,HCI와 함께하는 소프트웨어 공학,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+resource,19731,HCI와 함께하는 소프트웨어 공학,,,software-design,소프트웨어 설계,0.80,existing_topic_not_auto_link_candidate
+resource,19749,산업응용을 위한 인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19749,산업응용을 위한 인공지능,,,data-preprocessing,데이터 전처리,0.80,existing_topic_not_auto_link_candidate
+resource,19749,산업응용을 위한 인공지능,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+resource,19750,설명 가능한 인공지능,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19750,설명 가능한 인공지능,,,data-preprocessing,데이터 전처리,0.80,existing_topic_not_auto_link_candidate
+resource,19750,설명 가능한 인공지능,,,code-review,코드 리뷰,0.80,existing_topic_not_auto_link_candidate
+resource,19750,설명 가능한 인공지능,,,data-analysis,데이터 분석,0.80,existing_topic_not_auto_link_candidate
+resource,19773,고급 파이썬과 데이터 분석,,,data-analysis,데이터 분석,0.95,existing_topic_not_auto_link_candidate
+resource,19773,고급 파이썬과 데이터 분석,,,programming,프로그래밍,0.80,existing_topic_not_auto_link_candidate
+resource,19773,고급 파이썬과 데이터 분석,,,data-visualization,데이터 시각화,0.70,existing_topic_not_auto_link_candidate
+resource,19812,컴퓨터 네트워크,인터넷,networks,,,0.80,review_candidate_not_approved
+resource,19900,AI 프롬프트로 여는 메타버스 콘텐츠 기획,,,generative-ai,생성형 AI,0.80,existing_topic_not_auto_link_candidate
+resource,19900,AI 프롬프트로 여는 메타버스 콘텐츠 기획,,,optimization,최적화,0.80,existing_topic_not_auto_link_candidate
+resource,19919,인공지능을 위한 R과 Python,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19919,인공지능을 위한 R과 Python,,,probability-statistics,확률과 통계,0.70,existing_topic_not_auto_link_candidate
+resource,19932,21세기의 놀이하는 인간 : 컴퓨터게임 개론,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+resource,19932,21세기의 놀이하는 인간 : 컴퓨터게임 개론,,,artificial-intelligence,인공지능,0.80,existing_topic_not_auto_link_candidate
+resource,19932,21세기의 놀이하는 인간 : 컴퓨터게임 개론,,,authentication-authorization,인증과 인가,0.70,existing_topic_not_auto_link_candidate
+resource,19933,소프트웨어적 사유,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+resource,19933,소프트웨어적 사유,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+resource,19938,파이썬과 데이터마이닝,,,data-visualization,데이터 시각화,0.80,existing_topic_not_auto_link_candidate
+resource,19938,파이썬과 데이터마이닝,변수,programming-basic-syntax,,,0.80,review_candidate_not_approved
+resource,19938,파이썬과 데이터마이닝,입출력,programming-basic-syntax,,,0.80,review_candidate_not_approved
+resource,19939,인공지능을 위한 기계학습 입문,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,19939,인공지능을 위한 기계학습 입문,,,python,Python,0.80,existing_topic_not_auto_link_candidate
+resource,1bdcb8455a34f695,인터넷과 IoT의 이해,,,server-basics,서버 기초,0.72,existing_topic_not_auto_link_candidate
+resource,1cc1be53983cd7c6,인공지능이해,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,1cc1be53983cd7c6,인공지능이해,,,machine-learning,머신러닝,0.82,existing_topic_not_auto_link_candidate
+resource,1cc1be53983cd7c6,인공지능이해,,,python,Python,0.82,existing_topic_not_auto_link_candidate
+resource,1e797f4b8f771ccd,프로그래밍기초,,,programming,프로그래밍,0.97,existing_topic_not_auto_link_candidate
+resource,1ef4460a52a60e13,개발자를 위한 운영체제,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+resource,20854394f0e6b795,인공지능파운데이션,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,20f326d326f32a81,C 프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,25225b6d979371ab,설계패턴,,,object-oriented-design,객체지향 설계,0.82,existing_topic_not_auto_link_candidate
+resource,25225b6d979371ab,설계패턴,,,software-design,소프트웨어 설계,0.82,existing_topic_not_auto_link_candidate
+resource,26567964a5001f42,인공지능의 이해,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,28e2956e327388bf,4차산업혁명과우리의미래,,,artificial-intelligence,인공지능,0.91,existing_topic_not_auto_link_candidate
+resource,2aad794cb56604e0,알고리즘,,,programming,프로그래밍,0.93,existing_topic_not_auto_link_candidate
+resource,2d9dab730469959b,데이터베이스 실무,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+resource,2f707a756c0c8e29,자바프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,2f707a756c0c8e29,자바프로그래밍,변수,programming-basic-syntax,,,0.93,review_candidate_not_approved
+resource,307bccf36ae79e8e,데이터베이스 응용,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+resource,32ecf25e8cdf7e65,파이썬 고급 프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,32ecf25e8cdf7e65,파이썬 고급 프로그래밍,,,numpy,NumPy,0.82,existing_topic_not_auto_link_candidate
+resource,32ecf25e8cdf7e65,파이썬 고급 프로그래밍,,,pandas,Pandas,0.82,existing_topic_not_auto_link_candidate
+resource,36b90eb27cc07422,인공지능과미래사회그리고법,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,378ba15b6d5def16,컴퓨팅적 사고와 문제해결,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+resource,42031d38fd0b7141,멀티코어 컴퓨팅,,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,4b3ee5c0edde48a3,컴퓨팅 사고력(인문),,,python,Python,0.82,existing_topic_not_auto_link_candidate
+resource,4b3ee5c0edde48a3,컴퓨팅 사고력(인문),,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.77,existing_topic_not_auto_link_candidate
+resource,526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,,,data-analysis,데이터 분석,0.82,existing_topic_not_auto_link_candidate
+resource,5283a4a91cb8f649,홈페이지입문,,,frontend-development,프론트엔드 개발,0.77,existing_topic_not_auto_link_candidate
+resource,552cd7b5454ec100,데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+resource,56f8f300b2703f47,모바일 프로그래밍 및 실습,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,5af573187812b3ef,데이터분석기초,,,programming,프로그래밍,0.95,existing_topic_not_auto_link_candidate
+resource,5af573187812b3ef,데이터분석기초,,,data-analysis,데이터 분석,0.82,existing_topic_not_auto_link_candidate
+resource,5ee117f686775b98,코틀린프로그래밍 기초,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,5ee117f686775b98,코틀린프로그래밍 기초,입출력,programming-basic-syntax,,,0.93,review_candidate_not_approved
+resource,5ee117f686775b98,코틀린프로그래밍 기초,변수,programming-basic-syntax,,,0.93,review_candidate_not_approved
+resource,607f5aaa31467d55,프로그래밍개론,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,607f5aaa31467d55,프로그래밍개론,변수,programming-basic-syntax,,,0.95,review_candidate_not_approved
+resource,607f5aaa31467d55,프로그래밍개론,입출력,programming-basic-syntax,,,0.93,review_candidate_not_approved
+resource,6bdd67a8d95e389d,딥러닝 생성 모델의 원리와 구현,,,artificial-intelligence,인공지능,0.82,existing_topic_not_auto_link_candidate
+resource,6f2df2b14cadd73c,데이터마이닝,,,data-analysis,데이터 분석,0.95,existing_topic_not_auto_link_candidate
+resource,7252d764c1ecdfce,클라우드프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,7252d764c1ecdfce,클라우드프로그래밍,인터넷,networks,,,0.82,review_candidate_not_approved
+resource,7252d764c1ecdfce,클라우드프로그래밍,,,database,데이터베이스,0.82,existing_topic_not_auto_link_candidate
+resource,7252d764c1ecdfce,클라우드프로그래밍,,,networks,네트워크,0.82,existing_topic_not_auto_link_candidate
+resource,7252d764c1ecdfce,클라우드프로그래밍,,,cloud-basics,클라우드 기초,0.77,existing_topic_not_auto_link_candidate
+resource,7252d764c1ecdfce,클라우드프로그래밍,,,server-basics,서버 기초,0.72,existing_topic_not_auto_link_candidate
+resource,747d712f12f6a25e,지능영상처리,,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,7518db4dec766f23,SW기초프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,77b5b8f2d825bc0b,AI 리터러시,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,7b8364ecd863c062,운영체제 : 병행성,,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,7c8983b3993474d7,컴퓨터네트워크,인터넷,networks,,,0.95,review_candidate_not_approved
+resource,7ca4a3a710569763,"코딩으로 푸는 수학, 기초 파이썬",,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.77,existing_topic_not_auto_link_candidate
+resource,80e706fcdd20870b,Orange3으로 배우는 기계학습,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,,,programming-basic-syntax,프로그래밍 기초 문법,0.77,existing_topic_not_auto_link_candidate
+resource,825c6640682fcc8c,SQL의 이해,,,database,데이터베이스,0.93,existing_topic_not_auto_link_candidate
+resource,879dd5084b1992eb,소프트웨어 산업의 이해,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,8a551636cf84d050,데이터분석기본,,,data-analysis,데이터 분석,0.82,existing_topic_not_auto_link_candidate
+resource,8a551636cf84d050,데이터분석기본,,,python,Python,0.72,existing_topic_not_auto_link_candidate
+resource,8e1152a5ec9cbb20,챗GPT와 미래 일자리,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,9346d71e1be636b5,파이썬 기초실습 익히기,,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,9346d71e1be636b5,파이썬 기초실습 익히기,,,programming-basic-syntax,프로그래밍 기초 문법,0.77,existing_topic_not_auto_link_candidate
+resource,946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,950abc12e2e19bb6,인터넷과 미래 네트워크 기술,인터넷,networks,,,0.95,review_candidate_not_approved
+resource,9b302bd29db2ee43,생성적 AI 마스터링: 개념에서 응용 프로그램까지,,,artificial-intelligence,인공지능,0.95,existing_topic_not_auto_link_candidate
+resource,9ecc93b4bb71fa9b,리눅스 활용,,,operating-systems,운영체제,0.82,existing_topic_not_auto_link_candidate
+resource,a42e75a539ec521e,Python프로그래밍,,,programming,프로그래밍,0.97,existing_topic_not_auto_link_candidate
+resource,a42e75a539ec521e,Python프로그래밍,,,data-preprocessing,데이터 전처리,0.82,existing_topic_not_auto_link_candidate
+resource,ad1e47fe2c385320,클라우드 컴퓨팅의 기초,,,artificial-intelligence,인공지능,0.82,existing_topic_not_auto_link_candidate
+resource,af1cea2174ee88ea,리눅스실습,,,deployment,배포,0.82,existing_topic_not_auto_link_candidate
+resource,af1cea2174ee88ea,리눅스실습,,,operating-systems,운영체제,0.82,existing_topic_not_auto_link_candidate
+resource,af1cea2174ee88ea,리눅스실습,,,server-basics,서버 기초,0.72,existing_topic_not_auto_link_candidate
+resource,b2e63a58b0069219,강화학습,,,algorithms,알고리즘,0.82,existing_topic_not_auto_link_candidate
+resource,b2fcd698ff84272f,인공지능기초프로그래밍,,,artificial-intelligence,인공지능,0.97,existing_topic_not_auto_link_candidate
+resource,b2fcd698ff84272f,인공지능기초프로그래밍,,,programming,프로그래밍,0.97,existing_topic_not_auto_link_candidate
+resource,b378166c66b80cfc,챗GPT 어디까지 써봤어,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,bf2c098f31ab79a7,생활속의 데이터베이스,,,database,데이터베이스,1.00,existing_topic_not_auto_link_candidate
+resource,c0edd79113aa1e83,컴퓨터과학과 코딩(심화),,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,c148257c2be01e3c,C++프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,c506594f05a3b027,"인공지능의 윤리, 거버넌스 및 사회적 영향",,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,c661a471d8d1a316,플러터를 활용한 멀티플랫폼 기반의 앱 개발,,,programming,프로그래밍,0.82,existing_topic_not_auto_link_candidate
+resource,c6a52a637044722b,데이터베이스,,,database,데이터베이스,0.97,existing_topic_not_auto_link_candidate
+resource,c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,cbb458dca4fd2ddd,데이터과학,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,cbb458dca4fd2ddd,데이터과학,,,data-analysis,데이터 분석,0.82,existing_topic_not_auto_link_candidate
+resource,cbb458dca4fd2ddd,데이터과학,,,data-visualization,데이터 시각화,0.72,existing_topic_not_auto_link_candidate
+resource,dacb7be8e0293524,소프트웨어중심세상,,,problem-solving-coding-basics,문제 해결과 코딩 기초,0.77,existing_topic_not_auto_link_candidate
+resource,dc3da489762e213c,인공지능기초,,,artificial-intelligence,인공지능,1.00,existing_topic_not_auto_link_candidate
+resource,dc3da489762e213c,인공지능기초,,,database,데이터베이스,0.82,existing_topic_not_auto_link_candidate
+resource,e2d083f56a5d3688,Swift 프로그래밍,,,programming,프로그래밍,1.00,existing_topic_not_auto_link_candidate
+resource,e3cc0b689dcf3dcb,멀티모달 학습 개론,,,artificial-intelligence,인공지능,0.82,existing_topic_not_auto_link_candidate
+resource,e5c4a840f444c0fd,반도체머신러닝,,,artificial-intelligence,인공지능,0.93,existing_topic_not_auto_link_candidate
+resource,e5c4a840f444c0fd,반도체머신러닝,,,optimization,최적화,0.82,existing_topic_not_auto_link_candidate
+resource,e5e7b3f8151e56b7,경영데이터분석의 이론과 실제,,,data-analysis,데이터 분석,0.93,existing_topic_not_auto_link_candidate
+resource,e76007cb297a1139,데이터분석방법론,,,data-analysis,데이터 분석,0.82,existing_topic_not_auto_link_candidate
+resource,e76007cb297a1139,데이터분석방법론,,,data-collection,데이터 수집,0.82,existing_topic_not_auto_link_candidate
+resource,e76007cb297a1139,데이터분석방법론,,,data-preprocessing,데이터 전처리,0.72,existing_topic_not_auto_link_candidate
+resource,e76007cb297a1139,데이터분석방법론,,,data-visualization,데이터 시각화,0.72,existing_topic_not_auto_link_candidate

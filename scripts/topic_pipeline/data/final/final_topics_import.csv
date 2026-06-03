@@ -1,0 +1,143 @@
+﻿topic_slug,parent_topic_slug,name,depth,topic_type,is_learning_unit,is_assessable,description,is_active,source
+ai-ethics,artificial-intelligence,AI 윤리,2,subject,false,true,,true,seed
+algorithms,computer-science-basics,알고리즘,2,subject,false,true,,true,seed
+api-design,software-engineering,API 설계,2,subject,false,true,,true,seed
+array,data-structures,배열,3,concept,true,true,프로그래밍/자료구조 기초 개념으로 승인,true,review
+artificial-intelligence,,인공지능,1,domain,false,false,,true,seed
+authentication-authorization,web-development,인증과 인가,2,subject,false,true,,true,seed
+backend-development,web-development,백엔드 개발,2,subject,false,true,,true,seed
+backpropagation,deep-learning,역전파,3,concept,true,true,딥러닝 학습 알고리즘 핵심 개념으로 승인,true,review
+c-language,programming,C언어,2,subject,false,true,C++는 표준 Topic으로 추가하지 않음,true,seed
+calculus,math-statistics,미적분,2,subject,false,true,,true,seed
+ci-cd,devtools-devops,CI/CD,2,subject,false,true,특수문자 예외 허용,true,seed
+classification,machine-learning,분류,3,concept,true,true,머신러닝 관련 source가 반복되어 지도학습 세부 개념으로 승인,true,review
+cli,devtools-devops,CLI,2,subject,false,true,,true,seed
+cloud-basics,devtools-devops,클라우드 기초,2,subject,false,true,클라우드 컴퓨팅은 alias 처리,true,seed
+clustering,machine-learning,클러스터링,3,concept,true,true,머신러닝 비지도학습 세부 개념으로 승인,true,review
+cnn,deep-learning,CNN,3,concept,true,true,딥러닝 대표 구조로 승인,true,review
+code-quality-refactoring,software-engineering,코드 품질과 리팩토링,2,subject,false,true,,true,seed
+code-review,devtools-devops,코드 리뷰,2,subject,false,true,,true,seed
+collaboration-workflow,devtools-devops,협업 워크플로우,2,subject,false,true,,true,seed
+computer-architecture,computer-science-basics,컴퓨터구조,2,subject,false,true,,true,seed
+computer-science-basics,,컴퓨터공학 기초,1,domain,false,false,MVP 핵심 대분류,true,seed
+computer-vision,artificial-intelligence,컴퓨터 비전,2,subject,false,true,띄어쓰기 표준,true,seed
+conditional-statement,programming-basic-syntax,조건문,3,concept,true,true,프로그래밍 기본 문법 개념으로 승인,true,review
+data-analysis,,데이터 분석,1,domain,false,false,,true,seed
+data-analysis-project,data-analysis,데이터 분석 프로젝트,2,subject,false,true,,true,seed
+data-collection,data-analysis,데이터 수집,2,subject,false,true,,true,seed
+data-modeling,database,데이터 모델링,2,subject,false,true,,true,seed
+data-preprocessing,data-analysis,데이터 전처리,2,subject,false,true,,true,seed
+data-structures,computer-science-basics,자료구조,2,subject,false,true,,true,seed
+data-type,programming-basic-syntax,자료형,3,concept,true,true,프로그래밍 기본 문법 개념으로 승인,true,review
+data-visualization,data-analysis,데이터 시각화,2,subject,false,true,,true,seed
+database,,데이터베이스,1,domain,false,false,,true,seed
+database-design,database,데이터베이스 설계,2,subject,false,true,,true,seed
+deep-learning,artificial-intelligence,딥러닝,2,subject,false,true,,true,seed
+deployment,devtools-devops,배포,2,subject,false,true,,true,seed
+design-patterns,software-engineering,디자인 패턴,2,subject,false,true,,true,seed
+devtools-devops,,개발 도구 및 DevOps,1,domain,false,false,,true,seed
+diagonalization,linear-algebra,대각화,3,concept,true,true,선형대수 세부 개념으로 승인,true,review
+discrete-mathematics,math-statistics,이산수학,2,subject,false,true,컴퓨터공학 기초에서는 제거,true,seed
+django,web-development,Django,2,subject,false,true,,true,seed
+dns,networks,DNS,3,concept,true,true,네트워크 핵심 서비스 개념으로 승인,true,review
+docker,devtools-devops,Docker,2,subject,false,true,,true,seed
+documentation,devtools-devops,문서화,2,subject,false,true,,true,seed
+dynamic-programming,algorithms,동적 계획법,3,concept,true,true,알고리즘 핵심 기법으로 승인,true,review
+eigenvalue-eigenvector,linear-algebra,고윳값과 고유벡터,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,review
+embedding,generative-ai,임베딩,3,concept,true,true,생성형 AI/머신러닝 핵심 표현 학습 개념으로 승인,true,review
+expectation-variance,probability-statistics,기댓값과 분산,3,concept,true,true,확률통계 핵심 세부 개념으로 승인,true,review
+exploratory-data-analysis,data-analysis,탐색적 데이터 분석,2,subject,false,true,,true,seed
+feature-engineering,data-analysis,피처 엔지니어링,2,subject,false,true,,true,seed
+frontend-development,web-development,프론트엔드 개발,2,subject,false,true,,true,seed
+function,programming-basic-syntax,함수,3,concept,true,true,프로그래밍 관련 source가 명확하게 반복되어 승인,true,review
+generative-ai,artificial-intelligence,생성형 AI,2,subject,false,true,혼합 표기 허용,true,seed
+git,devtools-devops,Git,2,subject,false,true,,true,seed
+github,devtools-devops,GitHub,2,subject,false,true,,true,seed
+gradient-descent,optimization,경사하강법,3,concept,true,true,최적화와 머신러닝 학습 핵심 기법으로 승인,true,review
+graph-data-structure,data-structures,그래프 자료구조,3,concept,true,true,자료구조와 알고리즘의 핵심 세부 개념으로 승인,true,review
+greedy-algorithm,algorithms,그리디 알고리즘,3,concept,true,true,알고리즘 핵심 기법으로 승인,true,review
+hash,data-structures,해시,3,concept,true,true,자료구조 핵심 개념으로 승인,true,review
+html-css,web-development,HTML/CSS,2,subject,false,true,특수문자 예외 허용,true,seed
+http,networks,HTTP,3,concept,true,true,네트워크/Web 프로토콜 핵심 개념으로 승인,true,review
+ide,devtools-devops,IDE,2,subject,false,true,,true,seed
+inverse-matrix,linear-algebra,역행렬,3,concept,true,true,선형대수 세부 개념으로 승인,true,review
+issue-management,devtools-devops,이슈 관리,2,subject,false,true,,true,seed
+java,programming,Java,2,subject,false,true,,true,seed
+javascript,programming,JavaScript,2,subject,false,true,,true,seed
+javascript-web-basics,web-development,JavaScript 웹 기초,2,subject,false,true,,true,seed
+linear-algebra,math-statistics,선형대수,2,subject,false,true,,true,seed
+linear-transformation,linear-algebra,선형변환,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,review
+linux,devtools-devops,Linux,2,subject,false,true,,true,seed
+list,data-structures,리스트,3,concept,true,true,자료구조 핵심 개념으로 승인,true,review
+llm,generative-ai,LLM,3,concept,true,true,생성형 AI 핵심 개념이므로 전략적 수용,true,review
+loop,programming-basic-syntax,반복문,3,concept,true,true,프로그래밍 기본 문법 개념으로 승인,true,review
+machine-learning,artificial-intelligence,머신러닝,2,subject,false,true,,true,seed
+math-statistics,,수학 및 통계,1,domain,false,false,,true,seed
+matrix,linear-algebra,행렬,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,review
+mlops-basics,artificial-intelligence,MLOps 기초,2,subject,false,true,,true,seed
+model-evaluation,artificial-intelligence,모델 평가,2,subject,false,true,,true,seed
+natural-language-processing,artificial-intelligence,자연어 처리,2,subject,false,true,띄어쓰기 표준,true,seed
+networks,computer-science-basics,네트워크,2,subject,false,true,,true,seed
+neural-network,deep-learning,신경망,3,concept,true,true,딥러닝 핵심 세부 개념으로 승인,true,review
+normalization,database,정규화,2,subject,false,true,,true,seed
+nosql,database,NoSQL,2,subject,false,true,,true,seed
+numerical-analysis,math-statistics,수치해석,2,subject,false,true,샘플 데이터 반복 등장으로 추가,true,seed
+numpy,data-analysis,NumPy,2,subject,false,true,,true,seed
+object-oriented-design,software-engineering,객체지향 설계,2,subject,false,true,,true,seed
+oop,programming,객체지향 프로그래밍,2,subject,false,true,,true,seed
+operating-systems,computer-science-basics,운영체제,2,subject,false,true,,true,seed
+optimization,math-statistics,최적화,2,subject,false,true,,true,seed
+orm,database,ORM,2,subject,false,true,,true,seed
+osi-7-layer,networks,OSI 7계층,3,concept,true,true,네트워크 계층 모델 핵심 개념으로 승인,true,review
+overfitting,machine-learning,과적합,3,concept,true,true,머신러닝 모델 평가와 일반화 핵심 개념으로 승인,true,review
+pandas,data-analysis,Pandas,2,subject,false,true,,true,seed
+probability-distribution,probability-statistics,확률분포,3,concept,true,true,확률통계 핵심 세부 개념으로 승인,true,review
+probability-statistics,math-statistics,확률과 통계,2,subject,false,true,,true,seed
+problem-solving-coding-basics,programming,문제 해결과 코딩 기초,2,subject,false,true,,true,seed
+programming,,프로그래밍,1,domain,false,false,MVP 핵심 대분류,true,seed
+programming-basic-syntax,programming,프로그래밍 기초 문법,2,subject,false,true,,true,seed
+project-structuring,software-engineering,프로젝트 구조화,2,subject,false,true,,true,seed
+prompt-engineering,generative-ai,프롬프트 엔지니어링,3,concept,true,true,생성형 AI 핵심 실무 개념으로 승인,true,review
+protocol,networks,프로토콜,3,concept,true,true,네트워크 핵심 세부 개념으로 승인,true,review
+python,programming,Python,2,subject,false,true,,true,seed
+query,sql,쿼리,3,concept,true,true,SQL/데이터베이스 실무 핵심 개념으로 승인,true,review
+queue,data-structures,큐,3,concept,true,true,자료구조 핵심 개념으로 승인,true,review
+react,web-development,React,2,subject,false,true,,true,seed
+recommender-systems,artificial-intelligence,추천 시스템,2,subject,false,true,,true,seed
+recursion,algorithms,재귀,3,concept,true,true,알고리즘/프로그래밍 핵심 세부 개념으로 승인,true,review
+regression,machine-learning,회귀,3,concept,true,true,통계 과목과 문맥 상 잘 매칭되었기 때문,true,review
+regression-analysis,math-statistics,회귀분석,2,subject,false,true,,true,seed
+reinforcement-learning,artificial-intelligence,강화학습,2,subject,false,true,,true,seed
+relational-database,database,관계형 데이터베이스,2,subject,false,true,,true,seed
+requirements-analysis,software-engineering,요구사항 분석,2,subject,false,true,,true,seed
+rest-api,web-development,REST API,2,subject,false,true,특수문자 예외 허용,true,seed
+rnn,deep-learning,RNN,3,concept,true,true,딥러닝 대표 구조로 승인,true,review
+routing,networks,라우팅,3,concept,true,true,네트워크 핵심 세부 개념으로 승인,true,review
+searching,algorithms,탐색,3,concept,true,true,자료구조/알고리즘 문맥 source가 반복되어 승인,true,review
+server-basics,devtools-devops,서버 기초,2,subject,false,true,,true,seed
+singular-value-decomposition,linear-algebra,특잇값 분해,3,concept,true,true,선형대수/차원축소 핵심 기법으로 승인,true,review
+software-design,software-engineering,소프트웨어 설계,2,subject,false,true,,true,seed
+software-engineering,,SW 공학,1,domain,false,false,,true,seed
+sorting,algorithms,정렬,3,concept,true,true,알고리즘 핵심 세부 개념으로 승인,true,review
+space-complexity,algorithms,공간복잡도,3,concept,true,true,알고리즘 분석 핵심 개념으로 승인,true,review
+spring-boot,web-development,Spring Boot,2,subject,false,true,,true,seed
+sql,database,SQL,2,subject,false,true,,true,seed
+stack,data-structures,스택,3,concept,true,true,자료구조 핵심 개념으로 승인,true,review
+statistical-analysis,data-analysis,통계 분석,2,subject,false,true,,true,seed
+statistical-inference,math-statistics,통계적 추론,2,subject,false,true,,true,seed
+supervised-learning,machine-learning,지도학습,3,concept,true,true,머신러닝 핵심 학습 유형으로 승인,true,review
+system-programming-basics,computer-science-basics,시스템 프로그래밍 기초,2,subject,false,true,,true,seed
+tcp-ip,networks,TCP/IP,3,concept,true,true,네트워크 표준 프로토콜 주제로 승인,true,review
+testing,software-engineering,테스트,2,subject,false,true,,true,seed
+time-complexity,algorithms,시간복잡도,3,concept,true,true,알고리즘 분석 핵심 개념으로 승인,true,review
+transactions,database,트랜잭션,2,subject,false,true,,true,seed
+transformer,deep-learning,Transformer,3,concept,true,true,현대 딥러닝/생성형 AI 핵심 구조로 승인,true,review
+tree,data-structures,트리,3,concept,true,true,자료구조 핵심 개념으로 승인,true,review
+unsupervised-learning,machine-learning,비지도학습,3,concept,true,true,머신러닝 핵심 학습 유형으로 승인,true,review
+vector,linear-algebra,벡터,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,review
+vector-database,generative-ai,벡터 데이터베이스,3,concept,true,true,생성형 AI/RAG 인프라 핵심 개념으로 승인,true,review
+vector-search,generative-ai,벡터 검색,3,concept,true,true,생성형 AI/RAG 핵심 검색 개념으로 승인,true,review
+vector-space,linear-algebra,벡터공간,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,review
+vue,web-development,Vue,2,subject,false,true,,true,seed
+web-development,,웹 개발,1,domain,false,false,,true,seed
+web-security-basics,web-development,웹 보안 기초,2,subject,false,true,,true,seed
