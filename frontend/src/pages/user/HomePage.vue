@@ -1,5 +1,7 @@
 <template>
-  <div class="home-page">
+  <LandingPage v-if="!isLoggedIn" />
+
+  <div v-else class="home-page">
     <aside
       class="home-sidebar"
       :class="{ 'is-open': sidebarOpen }"
@@ -40,7 +42,6 @@
               v-model="curriculumSearchKeyword"
               type="text"
               placeholder="내 커리큘럼 검색"
-              @focus="requireLoginForAction"
             />
           </div>
         </div>
@@ -126,17 +127,6 @@
           </button>
 
           <button
-            v-if="!isLoggedIn"
-            type="button"
-            class="sidebar-nav-item"
-            @click="handleLogin"
-          >
-            <span class="nav-icon" v-html="icons.login"></span>
-            <span>로그인</span>
-          </button>
-
-          <button
-            v-else
             type="button"
             class="sidebar-nav-item"
             @click="handleLogout"
@@ -252,6 +242,7 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import LandingPage from '@/pages/user/LandingPage.vue';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import './HomePage.css';
 
@@ -283,13 +274,6 @@ const icons = {
       <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.04.04a2.1 2.1 0 0 1-2.97 2.97l-.04-.04a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.65V21a2.1 2.1 0 1 1-4.2 0v-.06a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-1.98.36l-.04.04a2.1 2.1 0 0 1-2.97-2.97l.04-.04A1.8 1.8 0 0 0 4.6 15a1.8 1.8 0 0 0-1.65-1.1H3a2.1 2.1 0 1 1 0-4.2h.06A1.8 1.8 0 0 0 4.7 8.6a1.8 1.8 0 0 0-.36-1.98l-.04-.04a2.1 2.1 0 0 1 2.97-2.97l.04.04a1.8 1.8 0 0 0 1.98.36 1.8 1.8 0 0 0 1.1-1.65V3a2.1 2.1 0 1 1 4.2 0v.06a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 1.98-.36l.04-.04a2.1 2.1 0 0 1 2.97 2.97l-.04.04A1.8 1.8 0 0 0 19.4 9c.18.67.7 1.1 1.35 1.1H21a2.1 2.1 0 1 1 0 4.2h-.06A1.8 1.8 0 0 0 19.4 15Z" fill="none" stroke="currentColor" stroke-width="2"/>
     </svg>
   `,
-  login: `
-    <svg viewBox="0 0 24 24" class="icon">
-      <path d="M14 7l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M19 12H7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  `,
   logout: `
     <svg viewBox="0 0 24 24" class="icon">
       <path d="M10 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -314,25 +298,6 @@ const completedCurricula = [
   { id: '3', title: 'Python 기초 완성', progress: 100, updated: '1주 전' },
 ];
 
-const protectedPathPrefixes = ['/chat', '/mypage', '/learning', '/curriculum', '/settings'];
-
-const syncAuthState = () => {
-  isLoggedIn.value = isAuthenticated();
-};
-
-const isProtectedPath = (path) => {
-  return protectedPathPrefixes.some((prefix) => path.startsWith(prefix));
-};
-
-const requireLogin = (redirectPath = route.fullPath) => {
-  closeSidebar();
-
-  router.push({
-    path: '/login',
-    query: { redirect: redirectPath },
-  });
-};
-
 const filterCurricula = (curricula) => {
   const keyword = curriculumSearchKeyword.value.trim().toLowerCase();
 
@@ -346,8 +311,19 @@ const filterCurricula = (curricula) => {
 const filteredInProgress = computed(() => filterCurricula(inProgressCurricula));
 const filteredCompleted = computed(() => filterCurricula(completedCurricula));
 
+const syncAuthState = () => {
+  isLoggedIn.value = isAuthenticated();
+
+  if (!isLoggedIn.value) {
+    closeSidebar();
+  }
+};
+
 const toggleSidebar = () => {
   syncAuthState();
+
+  if (!isLoggedIn.value) return;
+
   sidebarOpen.value = !sidebarOpen.value;
 };
 
@@ -355,37 +331,15 @@ const closeSidebar = () => {
   sidebarOpen.value = false;
 };
 
-const handleLogin = () => {
-  closeSidebar();
-  router.push('/login');
-};
-
 const handleNavigate = (path) => {
-  if (isProtectedPath(path) && !isAuthenticated()) {
-    requireLogin(path);
-    return;
-  }
-
   router.push(path);
   closeSidebar();
-};
-
-const requireLoginForAction = () => {
-  if (!isAuthenticated()) {
-    requireLogin(route.fullPath);
-  }
 };
 
 const handleSubmit = () => {
   const goal = input.value.trim();
 
   if (!goal) return;
-
-  if (!isAuthenticated()) {
-    sessionStorage.setItem('pendingLearningGoal', goal);
-    requireLogin('/chat');
-    return;
-  }
 
   sessionStorage.setItem('initialLearningGoal', goal);
   router.push('/chat');
@@ -409,7 +363,7 @@ const handleLogout = () => {
   syncAuthState();
   closeSidebar();
 
-  router.push('/login');
+  router.push('/');
 };
 
 onMounted(() => {
