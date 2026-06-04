@@ -4,12 +4,11 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from .models import Topic, UserProfile
+from .models import UserProfile
 from .serializers import (
     LoginSerializer,
     PasswordChangeSerializer,
     SignupSerializer,
-    TopicSerializer,
     UserMeSerializer,
     UserProfileSerializer,
 )
@@ -127,11 +126,3 @@ def my_profile(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(["GET"])
-@permission_classes([IsAuthenticated])
-def topics(request):
-    queryset = Topic.objects.filter(is_active=True).order_by("id")
-    serializer = TopicSerializer(queryset, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)

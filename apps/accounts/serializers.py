@@ -217,7 +217,7 @@ class PasswordChangeSerializer(serializers.Serializer):
         return user
 
 
-class TopicSerializer(serializers.ModelSerializer):
+class UserProfileTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
         fields = (
@@ -249,7 +249,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
             interested_users__user=obj.user,
             is_active=True,
         ).order_by("id")
-        return TopicSerializer(topics, many=True).data
+        return UserProfileTopicSerializer(topics, many=True).data
 
     def validate_available_weekly_hours(self, value):
         if value < 0 or value > 168:
