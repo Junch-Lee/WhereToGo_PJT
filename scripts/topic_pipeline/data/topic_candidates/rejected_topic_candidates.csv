@@ -1,0 +1,2 @@
+﻿candidate_name,suggested_parent_slug,suggested_depth,occurrence_count,course_occurrence_count,resource_occurrence_count,max_relevance_score,avg_relevance_score,matched_source_titles,matched_fields,match_types,decision,merge_target_topic_slug,reviewer_note
+입출력,programming-basic-syntax,3,31,26,5,0.9300,0.8084,임베디드시스템설계실험 | 신호및시스템 | 운영체제 | 시스템프로그래밍 | 제어계측프로그래밍2,learning_objective_clean|description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,rejected,,프로그래밍 기본 문법 Topic으로 쓰기에는 장치/신호/시스템 문맥이 혼재되어 MVP Topic에서 제외

@@ -1,0 +1,218 @@
+﻿learning_resource_lookup_key,title,topic_lookup_key,topic_name,topic_depth,parent_topic_slug,relevance_score,extraction_method,is_primary,matched_fields,match_types,link_type
+0fa44287c0998043,C프로그래밍 고급,array,배열,3,data-structures,0.82,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+0fa44287c0998043,C프로그래밍 고급,function,함수,3,programming-basic-syntax,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+14681297019d55cc,컴퓨터과학과 코딩,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.92,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+14681297019d55cc,컴퓨터과학과 코딩,python,Python,,,0.87,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+19562,웨어러블 컴퓨터 디자인,list,리스트,3,data-structures,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19573,인공지능과문제해결,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.98,keyword,true,description_body_clean|title_clean,alias,existing_topic
+19573,인공지능과문제해결,prompt-engineering,프롬프트 엔지니어링,3,generative-ai,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19596,생성형 인공지능 입문,embedding,임베딩,3,generative-ai,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19596,생성형 인공지능 입문,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19596,생성형 인공지능 입문,neural-network,신경망,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19596,생성형 인공지능 입문,recursion,재귀,3,algorithms,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19596,생성형 인공지능 입문,transformer,Transformer,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19597,모두를 위한 머신러닝,machine-learning,머신러닝,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+19597,모두를 위한 머신러닝,backpropagation,역전파,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19597,모두를 위한 머신러닝,classification,분류,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19597,모두를 위한 머신러닝,overfitting,과적합,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19597,모두를 위한 머신러닝,supervised-learning,지도학습,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19597,모두를 위한 머신러닝,unsupervised-learning,비지도학습,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19597,모두를 위한 머신러닝,vector,벡터,3,linear-algebra,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19643,현대 딥러닝 구조의 이해와 응용,deep-learning,딥러닝,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+19643,현대 딥러닝 구조의 이해와 응용,backpropagation,역전파,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19643,현대 딥러닝 구조의 이해와 응용,classification,분류,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19643,현대 딥러닝 구조의 이해와 응용,cnn,CNN,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19643,현대 딥러닝 구조의 이해와 응용,neural-network,신경망,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19643,현대 딥러닝 구조의 이해와 응용,rnn,RNN,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19643,현대 딥러닝 구조의 이해와 응용,transformer,Transformer,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19648,인공지능의 기초 이해,cnn,CNN,3,deep-learning,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19648,인공지능의 기초 이해,neural-network,신경망,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19648,인공지능의 기초 이해,supervised-learning,지도학습,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,algorithms,알고리즘,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,deep-learning,딥러닝,,,1.00,keyword,false,description_body_clean|title_clean,topic_name,existing_topic
+19674,데이터의 힘 : 뇌를 닮은 알고리즘과 딥러닝 탐험,neural-network,신경망,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19675,AI와의 첫 만남 : 생성형 인공지능으로 보는 미래,neural-network,신경망,3,deep-learning,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19726,AI 기계학습,machine-learning,머신러닝,,,0.98,keyword,true,description_body_clean|title_clean,alias,existing_topic
+19726,AI 기계학습,classification,분류,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19726,AI 기계학습,regression,회귀,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19727,AI기반 빅데이터 분석을 통한 지역 재생 정보 활용,array,배열,3,data-structures,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19728,AI 알고리즘,algorithms,알고리즘,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+19728,AI 알고리즘,backpropagation,역전파,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19728,AI 알고리즘,function,함수,3,programming-basic-syntax,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19728,AI 알고리즘,gradient-descent,경사하강법,3,optimization,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19728,AI 알고리즘,greedy-algorithm,그리디 알고리즘,3,algorithms,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19728,AI 알고리즘,searching,탐색,3,algorithms,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19749,산업응용을 위한 인공지능,classification,분류,3,machine-learning,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19749,산업응용을 위한 인공지능,cnn,CNN,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19749,산업응용을 위한 인공지능,neural-network,신경망,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19749,산업응용을 위한 인공지능,rnn,RNN,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19749,산업응용을 위한 인공지능,vector,벡터,3,linear-algebra,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19750,설명 가능한 인공지능,cnn,CNN,3,deep-learning,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19750,설명 가능한 인공지능,neural-network,신경망,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19750,설명 가능한 인공지능,rnn,RNN,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19750,설명 가능한 인공지능,tree,트리,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19773,고급 파이썬과 데이터 분석,python,Python,,,0.93,keyword,true,description_body_clean|title_clean,alias,existing_topic
+19812,컴퓨터 네트워크,networks,네트워크,,,1.00,keyword,true,description_body_clean|title_clean,alias|topic_name,existing_topic
+19812,컴퓨터 네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19900,AI 프롬프트로 여는 메타버스 콘텐츠 기획,prompt-engineering,프롬프트 엔지니어링,3,generative-ai,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19919,인공지능을 위한 R과 Python,python,Python,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+19933,소프트웨어적 사유,array,배열,3,data-structures,0.80,keyword,true,description_body_clean,depth3_candidate,approved_depth3
+19933,소프트웨어적 사유,list,리스트,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19933,소프트웨어적 사유,queue,큐,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19933,소프트웨어적 사유,sorting,정렬,3,algorithms,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19933,소프트웨어적 사유,stack,스택,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19933,소프트웨어적 사유,tree,트리,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19938,파이썬과 데이터마이닝,python,Python,,,0.93,keyword,true,description_body_clean|title_clean,alias|topic_name,existing_topic
+19938,파이썬과 데이터마이닝,clustering,클러스터링,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19938,파이썬과 데이터마이닝,conditional-statement,조건문,3,programming-basic-syntax,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19938,파이썬과 데이터마이닝,list,리스트,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19938,파이썬과 데이터마이닝,loop,반복문,3,programming-basic-syntax,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19939,인공지능을 위한 기계학습 입문,machine-learning,머신러닝,,,0.98,keyword,true,description_body_clean|title_clean,alias,existing_topic
+19939,인공지능을 위한 기계학습 입문,array,배열,3,data-structures,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19939,인공지능을 위한 기계학습 입문,embedding,임베딩,3,generative-ai,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19939,인공지능을 위한 기계학습 입문,matrix,행렬,3,linear-algebra,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19939,인공지능을 위한 기계학습 입문,transformer,Transformer,3,deep-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+19939,인공지능을 위한 기계학습 입문,vector,벡터,3,linear-algebra,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+1e797f4b8f771ccd,프로그래밍기초,python,Python,,,0.85,keyword,true,description_keyword_items|description_keywords_raw,alias,existing_topic
+1ef4460a52a60e13,개발자를 위한 운영체제,operating-systems,운영체제,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+20f326d326f32a81,C 프로그래밍,c-language,C언어,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+25225b6d979371ab,설계패턴,oop,객체지향 프로그래밍,,,0.92,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+257a39fba165829b,대형언어모델의 기초,transformer,Transformer,3,deep-learning,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+2aad794cb56604e0,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+2aad794cb56604e0,알고리즘,c-language,C언어,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+2d9dab730469959b,데이터베이스 실무,query,쿼리,3,sql,0.93,keyword,true,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+2d9dab730469959b,데이터베이스 실무,queue,큐,3,data-structures,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+2d9dab730469959b,데이터베이스 실무,sql,SQL,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+2f707a756c0c8e29,자바프로그래밍,java,Java,,,0.97,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+2f707a756c0c8e29,자바프로그래밍,array,배열,3,data-structures,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+2f707a756c0c8e29,자바프로그래밍,conditional-statement,조건문,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+2f707a756c0c8e29,자바프로그래밍,loop,반복문,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+307bccf36ae79e8e,데이터베이스 응용,query,쿼리,3,sql,0.93,keyword,true,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+307bccf36ae79e8e,데이터베이스 응용,sql,SQL,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,python,Python,,,0.95,keyword,true,description_body_clean|title_clean,alias|topic_name,existing_topic
+32ecf25e8cdf7e65,파이썬 고급 프로그래밍,graph-data-structure,그래프 자료구조,3,data-structures,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+378ba15b6d5def16,컴퓨팅적 사고와 문제해결,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.92,keyword,true,title_clean,alias,existing_topic
+378ba15b6d5def16,컴퓨팅적 사고와 문제해결,python,Python,,,0.87,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+42031d38fd0b7141,멀티코어 컴퓨팅,java,Java,,,0.87,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,data-visualization,데이터 시각화,,,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,generative-ai,생성형 AI,,,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,existing_topic
+526ac5bed223dd44,대학생이라면 꼭 알아야 할 ICT 활용 특강,documentation,문서화,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+5283a4a91cb8f649,홈페이지입문,html-css,HTML/CSS,,,0.87,keyword,true,description_keyword_items,alias,existing_topic
+552cd7b5454ec100,데이터베이스,sql,SQL,,,0.93,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,existing_topic
+552cd7b5454ec100,데이터베이스,transactions,트랜잭션,,,0.91,keyword,false,description_keyword_items|description_keywords_raw,topic_name,existing_topic
+5af573187812b3ef,데이터분석기초,python,Python,,,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+5af573187812b3ef,데이터분석기초,conditional-statement,조건문,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5af573187812b3ef,데이터분석기초,function,함수,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5af573187812b3ef,데이터분석기초,loop,반복문,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5af573187812b3ef,데이터분석기초,numpy,NumPy,,,0.93,keyword,false,description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+5af573187812b3ef,데이터분석기초,pandas,Pandas,,,0.93,keyword,false,description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+5c0a11ef9365a78a,깃 & 깃허브,github,GitHub,,,0.95,keyword,true,description_body_clean|title_clean,alias,existing_topic
+5ee117f686775b98,코틀린프로그래밍 기초,array,배열,3,data-structures,0.93,keyword,true,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5ee117f686775b98,코틀린프로그래밍 기초,function,함수,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5ee117f686775b98,코틀린프로그래밍 기초,recursion,재귀,3,algorithms,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5ee117f686775b98,코틀린프로그래밍 기초,sorting,정렬,3,algorithms,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+5ee117f686775b98,코틀린프로그래밍 기초,oop,객체지향 프로그래밍,,,0.93,keyword,false,description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+607f5aaa31467d55,프로그래밍개론,conditional-statement,조건문,3,programming-basic-syntax,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+607f5aaa31467d55,프로그래밍개론,function,함수,3,programming-basic-syntax,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+607f5aaa31467d55,프로그래밍개론,loop,반복문,3,programming-basic-syntax,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+607f5aaa31467d55,프로그래밍개론,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+607f5aaa31467d55,프로그래밍개론,programming-basic-syntax,프로그래밍 기초 문법,,,0.92,keyword,false,title_clean,alias,existing_topic
+61937b8ac6144a3e,전산수학1,diagonalization,대각화,3,linear-algebra,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+61937b8ac6144a3e,전산수학1,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+61937b8ac6144a3e,전산수학1,matrix,행렬,3,linear-algebra,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+61937b8ac6144a3e,전산수학1,linear-algebra,선형대수,,,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+61937b8ac6144a3e,전산수학1,linear-transformation,선형변환,3,linear-algebra,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+61937b8ac6144a3e,전산수학1,vector,벡터,3,linear-algebra,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+61937b8ac6144a3e,전산수학1,vector-space,벡터공간,3,linear-algebra,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+61937b8ac6144a3e,전산수학1,inverse-matrix,역행렬,3,linear-algebra,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+697298849e0d1596,Git & Github,git,Git,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,existing_topic
+697298849e0d1596,Git & Github,github,GitHub,,,1.00,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+697298849e0d1596,Git & Github,expectation-variance,기댓값과 분산,3,probability-statistics,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+6bdd67a8d95e389d,딥러닝 생성 모델의 원리와 구현,deep-learning,딥러닝,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+6bdd67a8d95e389d,딥러닝 생성 모델의 원리와 구현,transformer,Transformer,3,deep-learning,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+747d712f12f6a25e,지능영상처리,python,Python,,,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,existing_topic
+747d712f12f6a25e,지능영상처리,computer-vision,컴퓨터 비전,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+77b5b8f2d825bc0b,AI 리터러시,generative-ai,생성형 AI,,,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+77b5b8f2d825bc0b,AI 리터러시,algorithms,알고리즘,,,0.93,keyword,false,description_keyword_items|description_keywords_raw,topic_name,existing_topic
+7b8364ecd863c062,운영체제 : 병행성,operating-systems,운영체제,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+7c8983b3993474d7,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,existing_topic
+7c8983b3993474d7,컴퓨터네트워크,protocol,프로토콜,3,networks,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+7c8983b3993474d7,컴퓨터네트워크,osi-7-layer,OSI 7계층,3,networks,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+7c8983b3993474d7,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+7ca4a3a710569763,"코딩으로 푸는 수학, 기초 파이썬",python,Python,,,0.97,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+7e27c3057d198d03,풀스택(Full-stack) 웹개발 프로젝트,stack,스택,3,data-structures,1.00,keyword,true,description_keyword_items|description_keywords_raw|title_clean,depth3_candidate,approved_depth3
+7e27c3057d198d03,풀스택(Full-stack) 웹개발 프로젝트,frontend-development,프론트엔드 개발,,,0.92,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+7e27c3057d198d03,풀스택(Full-stack) 웹개발 프로젝트,backend-development,백엔드 개발,,,0.87,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+80e706fcdd20870b,Orange3으로 배우는 기계학습,machine-learning,머신러닝,,,1.00,keyword,true,description_body_clean|description_keywords_raw|title_clean,alias,existing_topic
+80e706fcdd20870b,Orange3으로 배우는 기계학습,classification,분류,3,machine-learning,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+80e706fcdd20870b,Orange3으로 배우는 기계학습,regression,회귀,3,machine-learning,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+80e706fcdd20870b,Orange3으로 배우는 기계학습,regression-analysis,회귀분석,,,0.93,keyword,false,description_keyword_items|description_keywords_raw,topic_name,existing_topic
+820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.92,keyword,true,title_clean,alias,existing_topic
+820c9118231ae6b9,프로그래밍을 위한 컴퓨팅적 사고,python,Python,,,0.87,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+825c6640682fcc8c,SQL의 이해,sql,SQL,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,existing_topic
+879dd5084b1992eb,소프트웨어 산업의 이해,cloud-basics,클라우드 기초,,,0.90,keyword,true,description_keyword_items|description_keywords_raw,alias,existing_topic
+8a551636cf84d050,데이터분석기본,data-preprocessing,데이터 전처리,,,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+8a551636cf84d050,데이터분석기본,data-visualization,데이터 시각화,,,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+8a551636cf84d050,데이터분석기본,data-collection,데이터 수집,,,0.93,keyword,false,description_keyword_items|description_keywords_raw,topic_name,existing_topic
+9346d71e1be636b5,파이썬 기초실습 익히기,python,Python,,,0.97,keyword,true,description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+9346d71e1be636b5,파이썬 기초실습 익히기,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.90,keyword,false,description_keyword_items|description_keywords_raw,alias,existing_topic
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,function,함수,3,programming-basic-syntax,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,python,Python,,,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,conditional-statement,조건문,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,list,리스트,3,data-structures,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,loop,반복문,3,programming-basic-syntax,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.92,keyword,false,title_clean,alias,existing_topic
+946001105e33e413,프로그래밍을 위한 컴퓨팅적 사고,data-type,자료형,3,programming-basic-syntax,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,networks,네트워크,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,existing_topic
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,osi-7-layer,OSI 7계층,3,networks,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,protocol,프로토콜,3,networks,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+950abc12e2e19bb6,인터넷과 미래 네트워크 기술,routing,라우팅,3,networks,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+95205bdbe29679bb,머신러닝 기법을 활용한 데이터분석,machine-learning,머신러닝,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+95205bdbe29679bb,머신러닝 기법을 활용한 데이터분석,regression,회귀,3,machine-learning,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+95205bdbe29679bb,머신러닝 기법을 활용한 데이터분석,tree,트리,3,data-structures,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+9b302bd29db2ee43,생성적 AI 마스터링: 개념에서 응용 프로그램까지,ai-ethics,AI 윤리,,,0.90,keyword,true,description_keyword_items|description_keywords_raw,alias,existing_topic
+9ecc93b4bb71fa9b,리눅스 활용,linux,Linux,,,0.95,keyword,true,description_body_clean|title_clean,alias,existing_topic
+9ed482b2d851c2d6,네트워크 보안 기초,networks,네트워크,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+a42e75a539ec521e,Python프로그래밍,python,Python,,,1.00,keyword,true,description_body_clean|title_clean,alias|topic_name,existing_topic
+ad1e47fe2c385320,클라우드 컴퓨팅의 기초,cloud-basics,클라우드 기초,,,1.00,keyword,true,description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+af1cea2174ee88ea,리눅스실습,linux,Linux,,,0.95,keyword,true,description_body_clean|title_clean,alias,existing_topic
+b2e63a58b0069219,강화학습,reinforcement-learning,강화학습,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+b2e63a58b0069219,강화학습,searching,탐색,3,algorithms,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+b574bb71edc73433,Language-C,c-language,C언어,,,1.00,keyword,true,description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.90,keyword,true,description_keyword_items|description_keywords_raw,alias,existing_topic
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),python,Python,,,0.87,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+c0edd79113aa1e83,컴퓨터과학과 코딩(심화),data-type,자료형,3,programming-basic-syntax,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,algorithms,알고리즘,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,neural-network,신경망,3,deep-learning,0.98,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,depth3_candidate,approved_depth3
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,deep-learning,딥러닝,,,0.93,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,existing_topic
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,optimization,최적화,,,0.93,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,topic_name,existing_topic
+c3da9d9864bfcf9c,인공신경망 알고리즘 이해 및 실습,classification,분류,3,machine-learning,0.80,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+c506594f05a3b027,"인공지능의 윤리, 거버넌스 및 사회적 영향",ai-ethics,AI 윤리,,,0.93,keyword,true,description_keyword_items|description_keywords_raw,alias|topic_name,existing_topic
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,deep-learning,딥러닝,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,machine-learning,머신러닝,,,1.00,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,topic_name,existing_topic
+c7d9cfebea954a24,딥러닝과 머신러닝으로 문제해결하기,problem-solving-coding-basics,문제 해결과 코딩 기초,,,1.00,keyword,false,description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+cbb458dca4fd2ddd,데이터과학,regression,회귀,3,machine-learning,0.93,keyword,true,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+cbb458dca4fd2ddd,데이터과학,classification,분류,3,machine-learning,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+da6602c011280fea,자연어처리,natural-language-processing,자연어 처리,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias,existing_topic
+da6602c011280fea,자연어처리,transformer,Transformer,3,deep-learning,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+dc3da489762e213c,인공지능기초,embedding,임베딩,3,generative-ai,0.95,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+dc3da489762e213c,인공지능기초,llm,LLM,3,generative-ai,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+dc3da489762e213c,인공지능기초,prompt-engineering,프롬프트 엔지니어링,3,generative-ai,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+dc3da489762e213c,인공지능기초,vector,벡터,3,linear-algebra,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+dc3da489762e213c,인공지능기초,vector-search,벡터 검색,3,generative-ai,0.93,keyword,false,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+dc3da489762e213c,인공지능기초,vector-database,벡터 데이터베이스,3,generative-ai,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+e2d083f56a5d3688,Swift 프로그래밍,oop,객체지향 프로그래밍,,,0.92,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw,alias,existing_topic
+e3cc0b689dcf3dcb,멀티모달 학습 개론,transformer,Transformer,3,deep-learning,0.93,keyword,true,description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+e5c4a840f444c0fd,반도체머신러닝,machine-learning,머신러닝,,,1.00,keyword,true,description_body_clean|description_keyword_items|description_keywords_raw|title_clean,alias|topic_name,existing_topic
+e5c4a840f444c0fd,반도체머신러닝,regression,회귀,3,machine-learning,0.95,keyword,false,description_body_clean|description_keyword_items|description_keywords_raw,depth3_candidate,approved_depth3
+e5e7b3f8151e56b7,경영데이터분석의 이론과 실제,python,Python,,,0.85,keyword,true,description_keyword_items|description_keywords_raw,alias,existing_topic
+e82819c8467e6919,데이터 시각화,data-visualization,데이터 시각화,,,0.95,keyword,true,title_clean,alias|topic_name,existing_topic
+f3a2112bc7d0832b,임베디드시스템내 장치간 통신 프로토콜,protocol,프로토콜,3,networks,0.95,keyword,true,description_body_clean|title_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,data-structures,자료구조,,,1.00,keyword,true,description_body_clean|title_clean,topic_name,existing_topic
+f8edd794924fe2b4,자료구조,array,배열,3,data-structures,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,graph-data-structure,그래프 자료구조,3,data-structures,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,list,리스트,3,data-structures,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,queue,큐,3,data-structures,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,searching,탐색,3,algorithms,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,sorting,정렬,3,algorithms,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3
+f8edd794924fe2b4,자료구조,stack,스택,3,data-structures,0.82,keyword,false,description_body_clean,depth3_candidate,approved_depth3

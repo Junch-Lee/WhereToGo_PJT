@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "inputs": {
+    "seed_topics": 90,
+    "seed_aliases": 210,
+    "approved_depth3_topics": 52
+  },
+  "outputs": {
+    "final_topics": 142,
+    "final_topic_aliases": 210
+  },
+  "summary": {
+    "topic_depth_counts": {
+      "2": 81,
+      "3": 52,
+      "1": 9
+    },
+    "topic_type_counts": {
+      "subject": 81,
+      "concept": 52,
+      "domain": 9
+    },
+    "topic_source_counts": {
+      "seed": 90,
+      "review": 52
+    },
+    "alias_source_counts": {
+      "seed": 210
+    },
+    "invalid_parent_topic_count": 0,
+    "excluded_topic_count": 0,
+    "excluded_alias_count": 0
+  },
+  "warnings": []
+}
