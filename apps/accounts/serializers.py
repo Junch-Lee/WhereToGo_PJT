@@ -4,6 +4,8 @@ from django.contrib.auth.password_validation import validate_password
 from django.db import IntegrityError, transaction
 from rest_framework import serializers
 
+from .models import Topic, UserInterestTopic, UserProfile
+
 
 
 User = get_user_model()
@@ -166,3 +168,122 @@ class LoginSerializer(serializers.Serializer):
             
         attrs["user"] = user
         return attrs
+
+
+class UserMeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("id", "email", "nickname", "created_at")
+        read_only_fields = ("id", "email", "created_at")
+
+    def validate_nickname(self, value):
+        nickname = value.strip()
+
+        if not nickname:
+            raise serializers.ValidationError("nickname을 입력해주세요.")
+
+        return nickname
+
+
+class PasswordChangeSerializer(serializers.Serializer):
+    current_password = serializers.CharField(write_only=True, trim_whitespace=False)
+    new_password = serializers.CharField(write_only=True, trim_whitespace=False)
+    new_password_confirm = serializers.CharField(write_only=True, trim_whitespace=False)
+
+    def validate_current_password(self, value):
+        user = self.context["request"].user
+
+        if not user.check_password(value):
+            raise serializers.ValidationError("현재 비밀번호가 올바르지 않습니다.")
+
+        return value
+
+    def validate(self, attrs):
+        new_password = attrs.get("new_password")
+        new_password_confirm = attrs.get("new_password_confirm")
+
+        if new_password != new_password_confirm:
+            raise serializers.ValidationError({
+                "new_password_confirm": "새 비밀번호가 일치하지 않습니다."
+            })
+
+        validate_password(new_password, self.context["request"].user)
+        return attrs
+
+    def save(self, **kwargs):
+        user = self.context["request"].user
+        user.set_password(self.validated_data["new_password"])
+        user.save(update_fields=["password"])
+        return user
+
+
+class UserProfileTopicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Topic
+        fields = (
+            "id",
+            "name",
+            "parent_topic",
+            "depth",
+            "topic_type",
+            "is_learning_unit",
+            "is_assessable",
+            "description",
+        )
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    interest_topics = serializers.SerializerMethodField()
+    topic_ids = serializers.ListField(
+        child=serializers.IntegerField(),
+        write_only=True,
+        required=False,
+    )
+
+    class Meta:
+        model = UserProfile
+        fields = ("available_weekly_hours", "interest_topics", "topic_ids")
+
+    def get_interest_topics(self, obj):
+        topics = Topic.objects.filter(
+            interested_users__user=obj.user,
+            is_active=True,
+        ).order_by("id")
+        return UserProfileTopicSerializer(topics, many=True).data
+
+    def validate_available_weekly_hours(self, value):
+        if value < 0 or value > 168:
+            raise serializers.ValidationError("주간 학습 가능 시간은 0 이상 168 이하로 입력해주세요.")
+
+        return value
+
+    def validate_topic_ids(self, value):
+        unique_ids = list(dict.fromkeys(value))
+        found_ids = set(
+            Topic.objects.filter(id__in=unique_ids, is_active=True)
+            .values_list("id", flat=True)
+        )
+        missing_ids = [topic_id for topic_id in unique_ids if topic_id not in found_ids]
+
+        if missing_ids:
+            raise serializers.ValidationError(
+                f"존재하지 않는 topic id가 포함되어 있습니다: {missing_ids}"
+            )
+
+        return unique_ids
+
+    def update(self, instance, validated_data):
+        topic_ids = validated_data.pop("topic_ids", None)
+        instance = super().update(instance, validated_data)
+
+        if topic_ids is not None:
+            user = instance.user
+            UserInterestTopic.objects.filter(user=user).delete()
+            UserInterestTopic.objects.bulk_create(
+                [
+                    UserInterestTopic(user=user, topic_id=topic_id)
+                    for topic_id in topic_ids
+                ]
+            )
+
+        return instance
