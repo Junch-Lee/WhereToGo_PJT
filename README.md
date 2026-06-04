@@ -8,19 +8,18 @@ SSAFY 15기 1학기 관통 프로젝트 - 서울 1반 (Python)
 
 WhereToGo_PJT
 │
+├── apps
+├── config
 ├── curriculum-data
-│
-│
-│
-│
-│
+├── frontend
 │
 ├── scripts
-│   ├── topic_pipeline
+│   └── topic_pipeline
 │       ├── data 
 │       ├── 01_load_validate.py
 │       ├── 02_normalize_text.py
 │
+├── manage.py
 ├── .gitignore
 ├── README.md
 └── requirements.txt
