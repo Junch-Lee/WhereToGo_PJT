@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
@@ -47,3 +48,72 @@ class User(AbstractBaseUser):
         
     def __str__(self):
         return self.email
+
+
+class Topic(models.Model):
+    class TopicType(models.TextChoices):
+        CATEGORY = "CATEGORY", "Category"
+        SUBJECT = "SUBJECT", "Subject"
+        SKILL = "SKILL", "Skill"
+
+    parent_topic = models.ForeignKey(
+        "self",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="children",
+    )
+    name = models.CharField(max_length=100)
+    depth = models.IntegerField(default=0)
+    topic_type = models.CharField(
+        max_length=30,
+        choices=TopicType.choices,
+        default=TopicType.SKILL,
+    )
+    is_learning_unit = models.BooleanField(default=True)
+    is_assessable = models.BooleanField(default=False)
+    description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "topics"
+
+    def __str__(self):
+        return self.name
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="profile",
+    )
+    available_weekly_hours = models.PositiveSmallIntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "user_profiles"
+
+    def __str__(self):
+        return f"{self.user.email} profile"
+
+
+class UserInterestTopic(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="interest_topics",
+    )
+    topic = models.ForeignKey(
+        Topic,
+        on_delete=models.CASCADE,
+        related_name="interested_users",
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "user_interest_topics"
+        unique_together = ("user", "topic")
