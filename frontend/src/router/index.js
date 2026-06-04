@@ -17,6 +17,12 @@ const routes = [
     name: 'Login',
     component: () => import('@/pages/auth/LoginPage.vue'),
   },
+  {
+    path: '/mypage',
+    name: 'MyPage',
+    component: () => import('@/pages/user/MyPage.vue'),
+    meta: { requiresAuth: true },
+  },
   // {
   //   path: '/chat',
   //   name: 'Chat',
@@ -25,11 +31,6 @@ const routes = [
   // {
   //   path: '/learning',
   //   name: 'Learning',
-  //   component: () => import('@/pages/user/HomePage.vue'),
-  // },
-  // {
-  //   path: '/mypage',
-  //   name: 'MyPage',
   //   component: () => import('@/pages/user/HomePage.vue'),
   // },
   // {
