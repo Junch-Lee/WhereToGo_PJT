@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "inputs": {
+    "course_candidates": 2515,
+    "resource_candidates": 388,
+    "approved_depth3_topics": 52
+  },
+  "outputs": {
+    "final_topics_depth3": 52,
+    "final_course_topic_links": 730,
+    "final_resource_topic_links": 217,
+    "excluded_topic_link_candidates": 1956
+  },
+  "summary": {
+    "course_linked_rows": 730,
+    "resource_linked_rows": 217,
+    "existing_topic_links": 463,
+    "approved_depth3_links": 484,
+    "primary_course_links": 450,
+    "primary_resource_links": 81
+  },
+  "top_topics": {
+    "머신러닝": 46,
+    "자료구조": 45,
+    "알고리즘": 42,
+    "컴퓨터구조": 35,
+    "네트워크": 35,
+    "벡터": 31,
+    "선형대수": 30,
+    "운영체제": 29,
+    "행렬": 28,
+    "트리": 27
+  },
+  "warnings": []
+}

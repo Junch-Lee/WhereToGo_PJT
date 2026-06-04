@@ -1,0 +1,53 @@
+﻿topic_slug,parent_topic_slug,name,depth,topic_type,is_learning_unit,is_assessable,description,is_active,source_candidate_name,occurrence_count,max_relevance_score,avg_relevance_score,reviewer_note
+vector,linear-algebra,벡터,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,벡터,32,0.9500,0.8059,선형대수 핵심 세부 개념으로 승인
+matrix,linear-algebra,행렬,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,행렬,30,0.9500,0.7980,선형대수 핵심 세부 개념으로 승인
+regression,machine-learning,회귀,3,concept,true,true,통계 과목과 문맥 상 잘 매칭되었기 때문,true,회귀,27,0.9500,0.7756,통계 과목과 문맥 상 잘 매칭되었기 때문
+tree,data-structures,트리,3,concept,true,true,자료구조 핵심 개념으로 승인,true,트리,27,0.9300,0.8048,자료구조 핵심 개념으로 승인
+protocol,networks,프로토콜,3,concept,true,true,네트워크 핵심 세부 개념으로 승인,true,프로토콜,26,0.9500,0.8177,네트워크 핵심 세부 개념으로 승인
+list,data-structures,리스트,3,concept,true,true,자료구조 핵심 개념으로 승인,true,리스트,26,0.9300,0.8000,자료구조 핵심 개념으로 승인
+neural-network,deep-learning,신경망,3,concept,true,true,딥러닝 핵심 세부 개념으로 승인,true,신경망,23,0.9800,0.8078,딥러닝 핵심 세부 개념으로 승인
+stack,data-structures,스택,3,concept,true,true,자료구조 핵심 개념으로 승인,true,스택,20,1.0000,0.8035,자료구조 핵심 개념으로 승인
+sorting,algorithms,정렬,3,concept,true,true,알고리즘 핵심 세부 개념으로 승인,true,정렬,20,0.9300,0.8000,알고리즘 핵심 세부 개념으로 승인
+queue,data-structures,큐,3,concept,true,true,자료구조 핵심 개념으로 승인,true,큐,20,0.9300,0.8075,자료구조 핵심 개념으로 승인
+classification,machine-learning,분류,3,concept,true,true,머신러닝 관련 source가 반복되어 지도학습 세부 개념으로 승인,true,분류,20,0.9300,0.8075,머신러닝 관련 source가 반복되어 지도학습 세부 개념으로 승인
+array,data-structures,배열,3,concept,true,true,프로그래밍/자료구조 기초 개념으로 승인,true,배열,17,0.9300,0.8176,프로그래밍/자료구조 기초 개념으로 승인
+function,programming-basic-syntax,함수,3,concept,true,true,프로그래밍 관련 source가 명확하게 반복되어 승인,true,함수,16,0.9500,0.8269,프로그래밍 관련 source가 명확하게 반복되어 승인
+searching,algorithms,탐색,3,concept,true,true,자료구조/알고리즘 문맥 source가 반복되어 승인,true,탐색,12,0.8200,0.8033,자료구조/알고리즘 문맥 source가 반복되어 승인
+graph-data-structure,data-structures,그래프 자료구조,3,concept,true,true,자료구조와 알고리즘의 핵심 세부 개념으로 승인,true,그래프 자료구조,12,0.8200,0.8033,자료구조와 알고리즘의 핵심 세부 개념으로 승인
+hash,data-structures,해시,3,concept,true,true,자료구조 핵심 개념으로 승인,true,해시,11,0.8000,0.8000,자료구조 핵심 개념으로 승인
+conditional-statement,programming-basic-syntax,조건문,3,concept,true,true,프로그래밍 기본 문법 개념으로 승인,true,조건문,9,0.9500,0.8600,프로그래밍 기본 문법 개념으로 승인
+tcp-ip,networks,TCP/IP,3,concept,true,true,네트워크 표준 프로토콜 주제로 승인,true,TCP/IP,9,0.9300,0.8144,네트워크 표준 프로토콜 주제로 승인
+expectation-variance,probability-statistics,기댓값과 분산,3,concept,true,true,확률통계 핵심 세부 개념으로 승인,true,기댓값과 분산,9,0.9300,0.8167,확률통계 핵심 세부 개념으로 승인
+cnn,deep-learning,CNN,3,concept,true,true,딥러닝 대표 구조로 승인,true,CNN,9,0.8000,0.8000,딥러닝 대표 구조로 승인
+rnn,deep-learning,RNN,3,concept,true,true,딥러닝 대표 구조로 승인,true,RNN,9,0.8000,0.8000,딥러닝 대표 구조로 승인
+transformer,deep-learning,Transformer,3,concept,true,true,현대 딥러닝/생성형 AI 핵심 구조로 승인,true,Transformer,8,0.9500,0.8700,현대 딥러닝/생성형 AI 핵심 구조로 승인
+eigenvalue-eigenvector,linear-algebra,고윳값과 고유벡터,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,고윳값과 고유벡터,8,0.9500,0.8188,선형대수 핵심 세부 개념으로 승인
+loop,programming-basic-syntax,반복문,3,concept,true,true,프로그래밍 기본 문법 개념으로 승인,true,반복문,8,0.9500,0.8300,프로그래밍 기본 문법 개념으로 승인
+linear-transformation,linear-algebra,선형변환,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,선형변환,8,0.9300,0.8163,선형대수 핵심 세부 개념으로 승인
+vector-space,linear-algebra,벡터공간,3,concept,true,true,선형대수 핵심 세부 개념으로 승인,true,벡터공간,7,0.9300,0.8186,선형대수 핵심 세부 개념으로 승인
+supervised-learning,machine-learning,지도학습,3,concept,true,true,머신러닝 핵심 학습 유형으로 승인,true,지도학습,6,0.8000,0.8000,머신러닝 핵심 학습 유형으로 승인
+probability-distribution,probability-statistics,확률분포,3,concept,true,true,확률통계 핵심 세부 개념으로 승인,true,확률분포,6,0.8000,0.8000,확률통계 핵심 세부 개념으로 승인
+recursion,algorithms,재귀,3,concept,true,true,알고리즘/프로그래밍 핵심 세부 개념으로 승인,true,재귀,5,0.9300,0.8320,알고리즘/프로그래밍 핵심 세부 개념으로 승인
+dynamic-programming,algorithms,동적 계획법,3,concept,true,true,알고리즘 핵심 기법으로 승인,true,동적 계획법,5,0.8000,0.8000,알고리즘 핵심 기법으로 승인
+unsupervised-learning,machine-learning,비지도학습,3,concept,true,true,머신러닝 핵심 학습 유형으로 승인,true,비지도학습,5,0.8000,0.8000,머신러닝 핵심 학습 유형으로 승인
+http,networks,HTTP,3,concept,true,true,네트워크/Web 프로토콜 핵심 개념으로 승인,true,HTTP,5,0.8000,0.8000,네트워크/Web 프로토콜 핵심 개념으로 승인
+routing,networks,라우팅,3,concept,true,true,네트워크 핵심 세부 개념으로 승인,true,라우팅,4,0.9300,0.8325,네트워크 핵심 세부 개념으로 승인
+query,sql,쿼리,3,concept,true,true,SQL/데이터베이스 실무 핵심 개념으로 승인,true,쿼리,4,0.9300,0.8650,SQL/데이터베이스 실무 핵심 개념으로 승인
+data-type,programming-basic-syntax,자료형,3,concept,true,true,프로그래밍 기본 문법 개념으로 승인,true,자료형,4,0.8200,0.8100,프로그래밍 기본 문법 개념으로 승인
+backpropagation,deep-learning,역전파,3,concept,true,true,딥러닝 학습 알고리즘 핵심 개념으로 승인,true,역전파,4,0.8000,0.8000,딥러닝 학습 알고리즘 핵심 개념으로 승인
+embedding,generative-ai,임베딩,3,concept,true,true,생성형 AI/머신러닝 핵심 표현 학습 개념으로 승인,true,임베딩,3,0.9500,0.8500,생성형 AI/머신러닝 핵심 표현 학습 개념으로 승인
+prompt-engineering,generative-ai,프롬프트 엔지니어링,3,concept,true,true,생성형 AI 핵심 실무 개념으로 승인,true,프롬프트 엔지니어링,3,0.9500,0.8500,생성형 AI 핵심 실무 개념으로 승인
+diagonalization,linear-algebra,대각화,3,concept,true,true,선형대수 세부 개념으로 승인,true,대각화,3,0.9500,0.8500,선형대수 세부 개념으로 승인
+osi-7-layer,networks,OSI 7계층,3,concept,true,true,네트워크 계층 모델 핵심 개념으로 승인,true,OSI 7계층,3,0.9300,0.8867,네트워크 계층 모델 핵심 개념으로 승인
+greedy-algorithm,algorithms,그리디 알고리즘,3,concept,true,true,알고리즘 핵심 기법으로 승인,true,그리디 알고리즘,3,0.8000,0.8000,알고리즘 핵심 기법으로 승인
+clustering,machine-learning,클러스터링,3,concept,true,true,머신러닝 비지도학습 세부 개념으로 승인,true,클러스터링,3,0.8000,0.8000,머신러닝 비지도학습 세부 개념으로 승인
+inverse-matrix,linear-algebra,역행렬,3,concept,true,true,선형대수 세부 개념으로 승인,true,역행렬,2,0.8200,0.8100,선형대수 세부 개념으로 승인
+dns,networks,DNS,3,concept,true,true,네트워크 핵심 서비스 개념으로 승인,true,DNS,2,0.8000,0.8000,네트워크 핵심 서비스 개념으로 승인
+llm,generative-ai,LLM,3,concept,true,true,생성형 AI 핵심 개념이므로 전략적 수용,true,LLM,1,0.9500,0.9500,생성형 AI 핵심 개념이므로 전략적 수용
+vector-search,generative-ai,벡터 검색,3,concept,true,true,생성형 AI/RAG 핵심 검색 개념으로 승인,true,벡터 검색,1,0.9300,0.9300,생성형 AI/RAG 핵심 검색 개념으로 승인
+vector-database,generative-ai,벡터 데이터베이스,3,concept,true,true,생성형 AI/RAG 인프라 핵심 개념으로 승인,true,벡터 데이터베이스,1,0.8200,0.8200,생성형 AI/RAG 인프라 핵심 개념으로 승인
+space-complexity,algorithms,공간복잡도,3,concept,true,true,알고리즘 분석 핵심 개념으로 승인,true,공간복잡도,1,0.8000,0.8000,알고리즘 분석 핵심 개념으로 승인
+time-complexity,algorithms,시간복잡도,3,concept,true,true,알고리즘 분석 핵심 개념으로 승인,true,시간복잡도,1,0.8000,0.8000,알고리즘 분석 핵심 개념으로 승인
+singular-value-decomposition,linear-algebra,특잇값 분해,3,concept,true,true,선형대수/차원축소 핵심 기법으로 승인,true,특잇값 분해,1,0.8000,0.8000,선형대수/차원축소 핵심 기법으로 승인
+overfitting,machine-learning,과적합,3,concept,true,true,머신러닝 모델 평가와 일반화 핵심 개념으로 승인,true,과적합,1,0.8000,0.8000,머신러닝 모델 평가와 일반화 핵심 개념으로 승인
+gradient-descent,optimization,경사하강법,3,concept,true,true,최적화와 머신러닝 학습 핵심 기법으로 승인,true,경사하강법,1,0.8000,0.8000,최적화와 머신러닝 학습 핵심 기법으로 승인

@@ -1,0 +1,731 @@
+﻿curriculum_course_lookup_key,course_name,topic_lookup_key,topic_name,topic_depth,parent_topic_slug,relevance_score,extraction_method,is_primary,matched_fields,match_types,link_type
+10164,플랜트 빅데이터 분석 실습,data-analysis-project,데이터 분석 프로젝트,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+10165,인공지능 및 기계학습 개론,machine-learning,머신러닝,,,0.93,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+14660,C프로그래밍과실습,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+14726,공학수학 2,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+14731,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14731,선형대수,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14731,선형대수,inverse-matrix,역행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14731,선형대수,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14731,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14731,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14731,선형대수,vector-space,벡터공간,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14732,수치해석,numerical-analysis,수치해석,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+14781,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+14781,이산수학,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14781,이산수학,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14782,이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14782,이산수학,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14782,이산수학,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14783,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+14785,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+14788,이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14789,자료구조,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14790,자료구조,data-structures,자료구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+14790,자료구조,searching,탐색,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+14791,자료구조,data-structures,자료구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+14792,자료구조,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14804,운영체제,operating-systems,운영체제,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+14805,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+14807,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+14808,알고리즘1,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14810,알고리즘1,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14818,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14819,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14838,네트워크프로그래밍,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14839,네트워크프로그래밍,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+14920,확률과정,probability-distribution,확률분포,3,probability-statistics,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+14921,확률과정,probability-distribution,확률분포,3,probability-statistics,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+15136,이동통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+15140,기계학습시스템설계,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+15170,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+15171,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+15173,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15174,파이썬프로그래밍,python,Python,,,0.93,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+15175,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+15177,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15179,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+15182,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+15212,선형대수,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+15213,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15213,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15214,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15214,선형대수,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15214,선형대수,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15214,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15214,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15215,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15217,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15217,선형대수,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15217,선형대수,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15217,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15217,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15219,수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15220,수치해석,numerical-analysis,수치해석,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+15221,수치해석,numerical-analysis,수치해석,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+15222,수치해석,numerical-analysis,수치해석,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+15248,소셜네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+15251,이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15252,이산수학,discrete-mathematics,이산수학,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+15253,이산수학,discrete-mathematics,이산수학,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+15254,이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15257,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+15258,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+15259,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+15260,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15260,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15260,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15260,자료구조,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15260,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15260,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15261,자료구조,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15262,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15262,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15262,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15262,자료구조,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15262,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15262,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15263,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15263,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15263,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15263,자료구조,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15263,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15263,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15264,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15264,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15264,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15264,자료구조,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15264,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15264,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15272,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+15273,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15273,자료구조응용,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15273,자료구조응용,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15273,자료구조응용,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15273,자료구조응용,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15273,자료구조응용,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15274,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15274,자료구조응용,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15274,자료구조응용,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15274,자료구조응용,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15274,자료구조응용,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15274,자료구조응용,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15275,자료구조응용,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15276,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15276,자료구조응용,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15276,자료구조응용,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15276,자료구조응용,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15276,자료구조응용,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15276,자료구조응용,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15277,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15277,자료구조응용,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15277,자료구조응용,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15277,자료구조응용,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15277,자료구조응용,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15277,자료구조응용,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15278,자바프로그래밍,java,Java,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15279,자바프로그래밍,java,Java,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15282,자바프로그래밍,java,Java,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15283,자바프로그래밍,java,Java,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15288,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15289,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15291,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15292,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15297,알고리즘1,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15298,알고리즘1,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15299,알고리즘1,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15300,알고리즘1,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15310,데이타통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+15311,데이타통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+15317,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15319,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15328,네트워크프로그래밍,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15328,네트워크프로그래밍,tcp-ip,TCP/IP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15329,네트워크프로그래밍,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15330,네트워크프로그래밍,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15358,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15359,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15362,수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15368,알고리즘,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15377,머신러닝 응용,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15378,머신러닝 응용,machine-learning,머신러닝,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15379,머신러닝,machine-learning,머신러닝,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15380,딥러닝,deep-learning,딥러닝,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+15407,이산수학,discrete-mathematics,이산수학,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+15409,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+15410,확률및통계,probability-statistics,확률과 통계,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+15411,확률및통계,probability-statistics,확률과 통계,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+15412,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+15413,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15413,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15413,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15413,자료구조,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15413,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15413,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15414,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+15414,자료구조,searching,탐색,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15415,자료구조,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15422,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15422,자료구조응용,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15422,자료구조응용,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15422,자료구조응용,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15422,자료구조응용,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15422,자료구조응용,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15423,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+15424,자료구조응용,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15425,자바프로그래밍,java,Java,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15426,자바프로그래밍,java,Java,,,0.88,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+15428,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15429,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+15435,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+15438,컴퓨팅사고와 SW코딩,searching,탐색,3,algorithms,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+15438,컴퓨팅사고와 SW코딩,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15448,알고리즘실습,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15451,컴퓨터망프로그래밍,tcp-ip,TCP/IP,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+15463,기계학습개론,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+15464,기계학습개론,machine-learning,머신러닝,,,0.93,keyword,true,course_name_clean|main_textbook_clean,alias,existing_topic
+15466,컴퓨터비전,computer-vision,컴퓨터 비전,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+15466,컴퓨터비전,classification,분류,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+15476,무선네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+15477,무선네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+16008,데이터마이닝,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+16053,경영빅데이터분석개론,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+16053,경영빅데이터분석개론,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+16061,데이터분석모형과활용,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17281,공학수학1,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17287,공학수학2,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17314,AI기초,cnn,CNN,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17314,AI기초,rnn,RNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17349,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+17367,공학수학1,matrix,행렬,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17367,공학수학1,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17380,선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+17380,선형대수학,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17380,선형대수학,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17415,로봇공학,matrix,행렬,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17435,공학수학1,matrix,행렬,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17459,제어계측프로그래밍2,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17461,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+17509,전자장수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+17894,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+17895,운영체제커널,operating-systems,운영체제,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+17909,자료구조및알고리즘PBL,data-structures,자료구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+17909,자료구조및알고리즘PBL,algorithms,알고리즘,,,0.95,keyword,false,course_name_clean,topic_name,existing_topic
+17909,자료구조및알고리즘PBL,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17947,기계학습,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+17947,기계학습,classification,분류,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17947,기계학습,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+17948,데이터베이스,query,쿼리,3,sql,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+17959,수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+17987,공학수학1/이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+17994,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+18014,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+18014,객체지향프로그래밍,http,HTTP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+18015,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+18015,객체지향프로그래밍,http,HTTP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+18018,객체지향프로그래밍실습,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+18018,객체지향프로그래밍실습,http,HTTP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+18023,공학수학2,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+22110,심리데이터분석,regression,회귀,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+26619,기계학습,machine-learning,머신러닝,,,0.93,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+26640,데이터마이닝,neural-network,신경망,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+26640,데이터마이닝,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+26640,데이터마이닝,supervised-learning,지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+26640,데이터마이닝,unsupervised-learning,비지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+27271,인공지능,neural-network,신경망,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+27285,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+27285,컴퓨터네트워크,osi-7-layer,OSI 7계층,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+27285,컴퓨터네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+27288,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+27317,C프로그래밍,array,배열,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+27317,C프로그래밍,function,함수,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+27319,C프로그래밍실습,array,배열,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+27319,C프로그래밍실습,function,함수,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+27326,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+27330,Java프로그래밍,java,Java,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+27331,Java프로그래밍실습,java,Java,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+27333,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+27336,프로그래밍언어론,data-type,자료형,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+27337,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+27341,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+27348,기계학습,machine-learning,머신러닝,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+27603,C언어실습,c-language,C언어,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+27615,확률과통계,probability-distribution,확률분포,3,probability-statistics,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+27885,인공지능을위한선형대수학,linear-algebra,선형대수,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+28548,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+28549,선형대수,linear-algebra,선형대수,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+28549,선형대수,diagonalization,대각화,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28549,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28549,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28558,파이썬프로그래밍,python,Python,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+28560,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+28566,인공지능개론,neural-network,신경망,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+28569,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+28571,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+28571,컴퓨터네트워크,dns,DNS,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28571,컴퓨터네트워크,http,HTTP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28571,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28576,머신러닝,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+28576,머신러닝,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28595,모바일네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+28601,디지털시스템설계,matrix,행렬,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+28603,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+28803,인공지능개론,cnn,CNN,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+28803,인공지능개론,rnn,RNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28879,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+28879,자료구조,array,배열,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28879,자료구조,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28879,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28879,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28879,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28879,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28884,딥러닝,deep-learning,딥러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+28884,딥러닝,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28885,빅데이터개론,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+28885,빅데이터개론,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+28891,기초통계학,probability-statistics,확률과 통계,,,0.93,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+29025,운영체제이해,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+29036,컴퓨터비전,computer-vision,컴퓨터 비전,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+29508,빅데이터공학,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+30405,머신러닝및AI기반모델링,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+30953,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+30978,수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31009,집적회로및시스템설계,hash,해시,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+31010,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+31011,머신러닝,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+31011,머신러닝,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31045,공학선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+31045,공학선형대수학,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31045,공학선형대수학,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31045,공학선형대수학,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31045,공학선형대수학,vector-space,벡터공간,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31079,통신공학,hash,해시,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+31080,통신공학,hash,해시,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+31081,수치해석,numerical-analysis,수치해석,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+31142,머신러닝을 위한 기초수학,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+31143,머신러닝을 위한 기초수학,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31309,이산수학(I),discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31310,이산수학(I),discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31311,이산수학(I),discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31318,컴퓨터및프로그래밍입문,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+31318,컴퓨터및프로그래밍입문,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31318,컴퓨터및프로그래밍입문,searching,탐색,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31336,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+31337,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31338,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+31339,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31343,컴퓨터알고리즘,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31344,컴퓨터알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31344,컴퓨터알고리즘,dynamic-programming,동적 계획법,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31344,컴퓨터알고리즘,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31344,컴퓨터알고리즘,space-complexity,공간복잡도,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31345,컴퓨터알고리즘,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31345,컴퓨터알고리즘,dynamic-programming,동적 계획법,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31346,이산수학(II),discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31347,이산수학(II),discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31347,이산수학(II),graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31349,인공지능,searching,탐색,3,algorithms,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+31364,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31365,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31366,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31370,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31371,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31372,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+31374,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+31407,공학선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+31409,공학선형대수학,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+31409,공학선형대수학,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31409,공학선형대수학,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31425,데이터마이닝,cnn,CNN,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+31425,데이터마이닝,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31425,데이터마이닝,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31425,데이터마이닝,rnn,RNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+31430,머신러닝,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+31432,컴퓨터비전개론,computer-vision,컴퓨터 비전,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+3193,알고리즘과수학,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+33295,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+33948,컴퓨터비전,computer-vision,컴퓨터 비전,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+3423,선형대수,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+3424,선형대수,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+3450,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+3532,자바프로그래밍1,java,Java,,,0.93,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+3536,자바프로그래밍1,java,Java,,,0.88,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+3537,자바프로그래밍1,java,Java,,,0.93,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+3546,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+3550,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+3551,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+3554,선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+3558,리눅스프로그래밍,linux,Linux,,,0.93,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+3562,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+3563,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+3564,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+3565,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+3570,문제해결프로그래밍,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+3572,문제해결프로그래밍,problem-solving-coding-basics,문제 해결과 코딩 기초,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+3578,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+3591,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+3592,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+3593,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+3600,인공지능,neural-network,신경망,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+3604,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+3605,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+3606,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+3606,컴퓨터네트워크,routing,라우팅,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+3622,분산및병렬프로그래밍,expectation-variance,기댓값과 분산,3,probability-statistics,0.93,keyword,true,course_name_clean|learning_objective_clean,depth3_candidate,approved_depth3
+37189,기계학습개론,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+37201,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+37208,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+37576,조선해양기계학습,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+37576,조선해양기계학습,classification,분류,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37576,조선해양기계학습,cnn,CNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37576,조선해양기계학습,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37576,조선해양기계학습,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37576,조선해양기계학습,rnn,RNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37683,전기시스템선형대수,linear-algebra,선형대수,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+37683,전기시스템선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37683,전기시스템선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37685,자료구조의 기초,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+37685,자료구조의 기초,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37685,자료구조의 기초,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37685,자료구조의 기초,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37685,자료구조의 기초,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37686,자료구조의 기초,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+37686,자료구조의 기초,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37686,자료구조의 기초,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37686,자료구조의 기초,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37686,자료구조의 기초,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37709,알고리즘의 기초,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+37709,알고리즘의 기초,dynamic-programming,동적 계획법,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37709,알고리즘의 기초,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37754,딥러닝의 기초,deep-learning,딥러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+37754,딥러닝의 기초,cnn,CNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37754,딥러닝의 기초,rnn,RNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37919,이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+37930,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+37931,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+37936,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+37936,알고리즘,greedy-algorithm,그리디 알고리즘,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37936,알고리즘,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37936,알고리즘,recursion,재귀,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37936,알고리즘,searching,탐색,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37936,알고리즘,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37936,알고리즘,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37937,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+37937,알고리즘,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37937,알고리즘,recursion,재귀,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37937,알고리즘,searching,탐색,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37937,알고리즘,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37937,알고리즘,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37956,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+37956,자료구조,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37956,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37956,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+37956,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+40105,공간정보분석 2: 머신러닝,machine-learning,머신러닝,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+4190,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+4191,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+4195,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+4196,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+4199,인공지능,neural-network,신경망,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+4351,사이버보안관제,protocol,프로토콜,3,networks,0.83,keyword,true,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+43900,데이터마이닝 방법 및 실습,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+43900,데이터마이닝 방법 및 실습,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+44674,(공유)AI입문,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+44675,(공유)AI입문,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+44675,(공유)AI입문,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45896,신재생에너지실험,hash,해시,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+45950,선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+45950,선형대수학,matrix,행렬,3,linear-algebra,0.83,keyword,false,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+45950,선형대수학,vector,벡터,3,linear-algebra,0.83,keyword,false,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+45951,선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+45951,선형대수학,matrix,행렬,3,linear-algebra,0.83,keyword,false,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+45951,선형대수학,vector,벡터,3,linear-algebra,0.83,keyword,false,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+45954,수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+45954,수치해석,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45954,수치해석,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45955,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+45956,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+45958,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+45961,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+45961,자료구조,array,배열,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45961,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45961,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45961,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45961,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45962,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+45962,자료구조,array,배열,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45962,자료구조,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45962,자료구조,queue,큐,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45962,자료구조,stack,스택,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45962,자료구조,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45965,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+45966,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+45967,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+45969,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+45969,컴퓨터네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45969,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45970,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+45970,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+45971,프로그래밍언어론,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+45972,프로그래밍언어론,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+45973,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+45974,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+46007,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+46007,이산수학,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+46011,데이터마이닝,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+46011,데이터마이닝,clustering,클러스터링,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+46011,데이터마이닝,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+46011,데이터마이닝,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+46013,데이터통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+46020,JAVA프로그래밍,java,Java,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+46021,JAVA프로그래밍,java,Java,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+46022,JAVA프로그래밍,java,Java,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+46032,기계학습,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+4691,머신러닝,machine-learning,머신러닝,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+48871,네트워크사회와빅데이터저널리즘,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+51296,데이터베이스론,queue,큐,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+52544,기계학습,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+52604,빅데이터개론,regression,회귀,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+52951,딥러닝과신약개발,deep-learning,딥러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+53393,인공지능,clustering,클러스터링,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+53393,인공지능,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53393,인공지능,rnn,RNN,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53393,인공지능,supervised-learning,지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53393,인공지능,unsupervised-learning,비지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53393,인공지능,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53433,알고리즘개론,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+53433,알고리즘개론,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53433,알고리즘개론,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53433,알고리즘개론,searching,탐색,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53433,알고리즘개론,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+53466,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+53478,딥러닝,deep-learning,딥러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+53478,딥러닝,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+5453,핸즈온딥러닝,deep-learning,딥러닝,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+5708,수치해석프로그래밍,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+5723,선형대수프로그래밍,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+5723,선형대수프로그래밍,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+5723,선형대수프로그래밍,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+5773,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+57862,무역 빅데이터분석 심화,list,리스트,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58140,기계학습,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+58200,선형대수,linear-algebra,선형대수,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+58200,선형대수,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58200,선형대수,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58200,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58200,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58200,선형대수,vector-space,벡터공간,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58213,수치해석,numerical-analysis,수치해석,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58218,제어공학개론,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58250,선형대수,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58250,선형대수,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58250,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58250,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58250,선형대수,vector-space,벡터공간,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58257,공학수학1,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58257,공학수학1,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58263,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+58264,자료구조및알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58264,자료구조및알고리즘,data-structures,자료구조,,,1.00,keyword,false,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+58288,딥러닝을 이용한 컴퓨터 비전,computer-vision,컴퓨터 비전,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58288,딥러닝을 이용한 컴퓨터 비전,deep-learning,딥러닝,,,1.00,keyword,false,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58301,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58309,기계학습입문,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+58309,기계학습입문,data-type,자료형,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58309,기계학습입문,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58368,이산수학,discrete-mathematics,이산수학,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+58369,선형대수,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58370,객체지향설계,oop,객체지향 프로그래밍,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+58372,확률 및 통계,probability-statistics,확률과 통계,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+58373,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+58373,자료구조,recursion,재귀,3,algorithms,0.83,keyword,false,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+58377,기계학습,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+58384,고급자연어처리,natural-language-processing,자연어 처리,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+58384,고급자연어처리,transformer,Transformer,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58393,기계학습특강,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+58540,데이터 통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58541,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+58541,컴퓨터네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58542,선형대수,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+58547,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+58549,자료구조및실습,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+58556,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+58561,차세대 네트워크,dns,DNS,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58561,차세대 네트워크,http,HTTP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58561,차세대 네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58563,이동 및 위성통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58569,컴퓨터통신응용,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58628,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+58635,컴퓨터네트워크,networks,네트워크,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+58635,컴퓨터네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58637,운영체제및실습,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+58651,이동통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58652,정보보호,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+58657,시스템및네트워크보안,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+58657,시스템및네트워크보안,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58660,딥러닝,deep-learning,딥러닝,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+58660,딥러닝,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+58806,바이오시스템 기계학습,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+5913,네트워크프로그래밍,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+5936,사물인터넷운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+59364,머신러닝 개론,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+59367,딥러닝 기초 및 응용,neural-network,신경망,3,deep-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+5943,딥러닝,deep-learning,딥러닝,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+5943,딥러닝,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+59509,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+59516,컴퓨터프로그래밍,array,배열,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+59516,컴퓨터프로그래밍,conditional-statement,조건문,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+59516,컴퓨터프로그래밍,loop,반복문,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+59733,데이터분석및시각화,data-visualization,데이터 시각화,,,0.93,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+62017,다변량데이터분석,matrix,행렬,3,linear-algebra,0.83,keyword,true,learning_objective_clean|prerequisite_material_clean,depth3_candidate,approved_depth3
+6202,머신러닝을위한통계학2,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+6202,머신러닝을위한통계학2,probability-statistics,확률과 통계,,,0.88,keyword,false,course_name_clean|main_textbook_clean,alias,existing_topic
+6202,머신러닝을위한통계학2,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+6202,머신러닝을위한통계학2,regression,회귀,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+6202,머신러닝을위한통계학2,supervised-learning,지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+6202,머신러닝을위한통계학2,unsupervised-learning,비지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+6249,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+6258,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+62691,생물정보데이터와 기계학습,machine-learning,머신러닝,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+62905,기계학습및설계,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+62913,컴퓨터비전,computer-vision,컴퓨터 비전,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+62916,기계학습,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+62916,기계학습,backpropagation,역전파,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+62916,기계학습,neural-network,신경망,3,deep-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+62916,기계학습,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+62922,영상처리 및 딥러닝,deep-learning,딥러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+62966,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+63002,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+66024,기계학습,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+66114,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66115,수치해석 및 응용,numerical-analysis,수치해석,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66175,자료구조 및 알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+66175,자료구조 및 알고리즘,data-structures,자료구조,,,1.00,keyword,false,course_name_clean|learning_objective_clean,topic_name,existing_topic
+66179,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+66180,컴퓨터구조,computer-architecture,컴퓨터구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+66205,정보통신공학,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66222,반도체패키징테스팅,testing,테스트,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+66223,반도체패키징테스팅,testing,테스트,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+66234,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+66234,컴퓨터네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66239,선형대수,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66239,선형대수,eigenvalue-eigenvector,고윳값과 고유벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66239,선형대수,linear-transformation,선형변환,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66239,선형대수,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66239,선형대수,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66241,고급컴퓨터프로그래밍,array,배열,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66241,고급컴퓨터프로그래밍,conditional-statement,조건문,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66244,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66244,확률및통계,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66244,확률및통계,probability-distribution,확률분포,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66251,이산수학,discrete-mathematics,이산수학,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+66251,이산수학,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66253,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66254,선형대수학,linear-algebra,선형대수,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+66254,선형대수학,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66256,운영체제,operating-systems,운영체제,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+66259,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+66260,컴퓨터비전,computer-vision,컴퓨터 비전,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66263,자료구조,data-structures,자료구조,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+66264,이산수학,discrete-mathematics,이산수학,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+66265,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+66268,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+66269,컴퓨터네트워크,networks,네트워크,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+66269,컴퓨터네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66274,알고리즘,algorithms,알고리즘,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+66296,머신러닝,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+66302,컴퓨터프로그래밍,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66305,컴퓨터응용프로그래밍,array,배열,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66305,컴퓨터응용프로그래밍,list,리스트,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66305,컴퓨터응용프로그래밍,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66305,컴퓨터응용프로그래밍,tree,트리,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66306,확률및통계,probability-statistics,확률과 통계,,,0.93,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+66308,알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+66309,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66317,머신러닝,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+66329,오픈소스기초프로젝트,list,리스트,3,data-structures,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66332,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+66332,객체지향프로그래밍,array,배열,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66332,객체지향프로그래밍,conditional-statement,조건문,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66333,객체지향프로그래밍,oop,객체지향 프로그래밍,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+66333,객체지향프로그래밍,array,배열,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66333,객체지향프로그래밍,conditional-statement,조건문,3,programming-basic-syntax,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66337,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66339,신호및시스템,classification,분류,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66340,선형대수학,linear-algebra,선형대수,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+66340,선형대수학,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66340,선형대수학,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66343,자료구조,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66343,자료구조,sorting,정렬,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66343,자료구조,time-complexity,시간복잡도,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66345,객체지향 프로그래밍,oop,객체지향 프로그래밍,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+66347,선형대수학,linear-algebra,선형대수,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+66347,선형대수학,diagonalization,대각화,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66347,선형대수학,matrix,행렬,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66347,선형대수학,singular-value-decomposition,특잇값 분해,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66349,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+66350,컴퓨터구조,computer-architecture,컴퓨터구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66356,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66356,확률및통계,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66356,확률및통계,probability-distribution,확률분포,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66357,확률및통계,probability-statistics,확률과 통계,,,0.93,keyword,true,course_name_clean|main_textbook_clean,alias|topic_name,existing_topic
+66357,확률및통계,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66357,확률및통계,probability-distribution,확률분포,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66358,운영체제,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+66359,운영체제,operating-systems,운영체제,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66360,객체지향 설계,object-oriented-design,객체지향 설계,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66360,객체지향 설계,oop,객체지향 프로그래밍,,,0.90,keyword,false,course_name_clean,alias,existing_topic
+66361,객체지향 설계,object-oriented-design,객체지향 설계,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66361,객체지향 설계,oop,객체지향 프로그래밍,,,0.90,keyword,false,course_name_clean,alias,existing_topic
+66363,알고리즘,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66363,알고리즘,dynamic-programming,동적 계획법,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66363,알고리즘,greedy-algorithm,그리디 알고리즘,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66364,알고리즘,algorithms,알고리즘,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66364,알고리즘,dynamic-programming,동적 계획법,3,algorithms,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66370,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+66370,컴퓨터네트워크,routing,라우팅,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66370,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66390,빅데이터시스템설계,query,쿼리,3,sql,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66391,기계학습,machine-learning,머신러닝,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66399,오픈소스 웹소프트웨어,function,함수,3,programming-basic-syntax,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66410,이산수학,discrete-mathematics,이산수학,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66410,이산수학,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66411,이산수학,discrete-mathematics,이산수학,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+66411,이산수학,graph-data-structure,그래프 자료구조,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66437,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66437,확률및통계,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66438,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66442,공학수학 II,matrix,행렬,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66442,공학수학 II,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66443,공학수학 II,matrix,행렬,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66443,공학수학 II,vector,벡터,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66451,자료구조,data-structures,자료구조,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66454,데이터통신설계,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66459,디지털통신,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66459,디지털통신,vector-space,벡터공간,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66460,디지털통신,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+66460,디지털통신,vector-space,벡터공간,3,linear-algebra,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66461,컴퓨터네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+66461,컴퓨터네트워크,routing,라우팅,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66461,컴퓨터네트워크,tcp-ip,TCP/IP,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66470,자바프로그래밍,java,Java,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+66518,지능형네트워크,networks,네트워크,,,0.95,keyword,true,course_name_clean,topic_name,existing_topic
+66518,지능형네트워크,protocol,프로토콜,3,networks,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+66526,객체지향 프로그래밍(C++),oop,객체지향 프로그래밍,,,0.95,keyword,true,course_name_clean,alias|topic_name,existing_topic
+66542,확률및통계,probability-statistics,확률과 통계,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66549,인공지능과 기계학습,machine-learning,머신러닝,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+66551,운영체제의이해,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean,topic_name,existing_topic
+67813,정보보호 관리체계 구축 및 인증,authentication-authorization,인증과 인가,,,0.95,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias,existing_topic
+7201,머신러닝을이용한재난통계,machine-learning,머신러닝,,,1.00,keyword,true,course_name_clean|learning_objective_clean,alias|topic_name,existing_topic
+8922,공학응용인공지능,unsupervised-learning,비지도학습,3,machine-learning,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+9171,공학수학 2,vector,벡터,3,linear-algebra,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+9783,컴퓨터구조개론,computer-architecture,컴퓨터구조,,,0.98,keyword,true,course_name_clean|main_textbook_clean,topic_name,existing_topic
+9785,인공지능개론,searching,탐색,3,algorithms,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+9789,객체지향언어,oop,객체지향 프로그래밍,,,0.90,keyword,true,course_name_clean,alias,existing_topic
+9793,정보처리알고리즘,algorithms,알고리즘,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,topic_name,existing_topic
+9795,기계학습응용,machine-learning,머신러닝,,,0.98,keyword,true,course_name_clean|learning_objective_clean,alias,existing_topic
+9795,기계학습응용,supervised-learning,지도학습,3,machine-learning,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
+9796,운영체제론,operating-systems,운영체제,,,1.00,keyword,true,course_name_clean|learning_objective_clean|main_textbook_clean,alias|topic_name,existing_topic
+9807,컴퓨터통신,protocol,프로토콜,3,networks,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+9808,정보보안기술,expectation-variance,기댓값과 분산,3,probability-statistics,0.80,keyword,true,learning_objective_clean,depth3_candidate,approved_depth3
+9808,정보보안기술,hash,해시,3,data-structures,0.80,keyword,false,learning_objective_clean,depth3_candidate,approved_depth3
