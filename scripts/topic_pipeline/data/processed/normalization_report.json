@@ -1,0 +1,61 @@
+{
+  "status": "success",
+  "curriculum_courses": {
+    "input_rows": 1570,
+    "output_rows": 1570,
+    "input_columns": 14,
+    "output_columns": 24,
+    "field_stats": {
+      "course_name": {
+        "exists": true,
+        "non_empty_original": 1570,
+        "non_empty_clean": 1570,
+        "emptied_by_cleaning": 0
+      },
+      "learning_objective": {
+        "exists": true,
+        "non_empty_original": 1570,
+        "non_empty_clean": 1570,
+        "emptied_by_cleaning": 0
+      },
+      "prerequisite_material": {
+        "exists": true,
+        "non_empty_original": 908,
+        "non_empty_clean": 816,
+        "emptied_by_cleaning": 92
+      },
+      "main_textbook": {
+        "exists": true,
+        "non_empty_original": 1570,
+        "non_empty_clean": 1562,
+        "emptied_by_cleaning": 8
+      },
+      "reference_material": {
+        "exists": true,
+        "non_empty_original": 339,
+        "non_empty_clean": 338,
+        "emptied_by_cleaning": 1
+      }
+    }
+  },
+  "learning_resources": {
+    "input_rows": 123,
+    "output_rows": 123,
+    "input_columns": 11,
+    "output_columns": 15,
+    "field_stats": {
+      "title": {
+        "exists": true,
+        "non_empty_original": 123,
+        "non_empty_clean": 123,
+        "emptied_by_cleaning": 0
+      },
+      "description": {
+        "exists": true,
+        "non_empty_original": 123,
+        "non_empty_clean": 123,
+        "emptied_by_cleaning": 0
+      }
+    }
+  }
+}

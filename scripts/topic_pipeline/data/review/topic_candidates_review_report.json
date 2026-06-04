@@ -1,0 +1,66 @@
+{
+  "status": "success",
+  "input": {
+    "course_candidate_rows": 2515,
+    "resource_candidate_rows": 388,
+    "course_review_rows": 468,
+    "resource_review_rows": 141
+  },
+  "output": {
+    "unique_candidate_count": 59,
+    "total_occurrence_count": 609
+  },
+  "summary": {
+    "top_candidates": {
+      "변수": 40,
+      "벡터": 32,
+      "입출력": 31,
+      "행렬": 30,
+      "트리": 27,
+      "회귀": 27,
+      "프로토콜": 26,
+      "리스트": 26,
+      "신경망": 23,
+      "분류": 20,
+      "스택": 20,
+      "큐": 20,
+      "정렬": 20,
+      "인터넷": 18,
+      "배열": 17,
+      "함수": 16,
+      "그래프 자료구조": 12,
+      "탐색": 12,
+      "해시": 11,
+      "TCP/IP": 9,
+      "조건문": 9,
+      "기댓값과 분산": 9,
+      "CNN": 9,
+      "RNN": 9,
+      "반복문": 8,
+      "Transformer": 8,
+      "고윳값과 고유벡터": 8,
+      "선형변환": 8,
+      "벡터공간": 7,
+      "지도학습": 6
+    },
+    "parent_counts": {
+      "linear-algebra": 8,
+      "programming-basic-syntax": 7,
+      "data-structures": 7,
+      "networks": 7,
+      "algorithms": 7,
+      "machine-learning": 6,
+      "deep-learning": 5,
+      "generative-ai": 5,
+      "probability-statistics": 3,
+      "sql": 2,
+      "database-design": 1,
+      "optimization": 1
+    },
+    "course_resource_distribution": {
+      "course_only": 12,
+      "resource_only": 7,
+      "both": 40
+    }
+  }
+}
