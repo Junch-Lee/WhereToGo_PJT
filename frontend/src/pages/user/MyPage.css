@@ -36,7 +36,8 @@
 }
 
 .sidebar-logo-section,
-.sidebar-nav {
+.sidebar-nav,
+.sidebar-search-section {
   padding: 16px;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -95,7 +96,7 @@
 }
 
 .sidebar-bottom {
-  margin-top: auto;
+  margin-top: 0;
   padding: 16px;
   border-top: 1px solid #e2e8f0;
 }
@@ -120,6 +121,134 @@
 .sidebar-nav-item.active {
   background: rgba(34, 197, 94, 0.1);
   color: #16a34a;
+}
+
+.sidebar-search-box {
+  position: relative;
+}
+
+.sidebar-search-box input {
+  width: 100%;
+  height: 38px;
+  padding: 0 12px 0 36px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  color: #0f172a;
+  outline: none;
+  font-size: 14px;
+}
+
+.sidebar-search-box input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.12);
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  color: #64748b;
+  transform: translateY(-50%);
+}
+
+.sidebar-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.curriculum-section {
+  margin-bottom: 24px;
+}
+
+.curriculum-section h3 {
+  margin: 0 0 8px;
+  padding: 0 8px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.sidebar-content .curriculum-item {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar-content .curriculum-item:hover {
+  background: #f1f5f9;
+}
+
+.sidebar-content .curriculum-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.sidebar-content .curriculum-main p {
+  margin: 0;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sidebar-content .curriculum-meta {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.sidebar-content .progress-track {
+  width: 64px;
+  height: 4px;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.sidebar-content .progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #22c55e;
+}
+
+.sidebar-content .curriculum-item.completed .curriculum-main p,
+.sidebar-content .completed-date {
+  color: #64748b;
+}
+
+.sidebar-content .chevron {
+  color: #64748b;
+  font-size: 22px;
+  opacity: 0;
+}
+
+.sidebar-content .curriculum-item:hover .chevron {
+  opacity: 1;
+}
+
+.empty-search {
+  padding: 32px 0;
+  color: #64748b;
+  font-size: 14px;
+  text-align: center;
 }
 
 .nav-icon {

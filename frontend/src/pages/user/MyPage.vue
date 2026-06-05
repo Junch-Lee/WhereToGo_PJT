@@ -19,30 +19,112 @@
 
             <div class="sidebar-logo-text">
               <strong>Where To Go</strong>
-              <span>AI 학습 커넥트</span>
+              <span>AI 학습 컨설턴트</span>
             </div>
           </button>
         </div>
 
+        <div class="sidebar-search-section">
+          <div class="sidebar-search-box">
+            <svg viewBox="0 0 24 24" class="search-icon">
+              <path
+                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+
+            <input
+              v-model="curriculumSearchKeyword"
+              type="text"
+              placeholder="내 커리큘럼 검색"
+            />
+          </div>
+        </div>
+
         <nav class="sidebar-nav">
           <button
-            type="button"
-            class="sidebar-nav-item active"
-            @click="navigateTo('/mypage')"
-          >
-            <span class="nav-icon" v-html="icons.user"></span>
-            <span>마이페이지</span>
-          </button>
-
-          <button
+            v-for="item in menuItems"
+            :key="item.path"
             type="button"
             class="sidebar-nav-item"
-            @click="navigateTo('/learning')"
+            :class="{ active: route.path === item.path }"
+            @click="navigateTo(item.path)"
           >
-            <span class="nav-icon" v-html="icons.chart"></span>
-            <span>학습 대시보드</span>
+            <span class="nav-icon" v-html="item.icon"></span>
+            <span>{{ item.label }}</span>
           </button>
         </nav>
+
+        <div class="sidebar-content">
+          <div v-if="isLoadingCurricula" class="empty-search">
+            커리큘럼을 불러오는 중입니다...
+          </div>
+
+          <div v-else-if="curriculumLoadError" class="empty-search">
+            커리큘럼 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
+          </div>
+
+          <div v-else-if="hasNoCurriculums" class="empty-search">
+            아직 생성한 커리큘럼이 없습니다.
+          </div>
+
+          <div v-else-if="hasNoFilteredCurriculums" class="empty-search">
+            검색 결과가 없습니다.
+          </div>
+
+          <div v-else>
+            <section v-if="filteredInProgressCurricula.length > 0" class="curriculum-section">
+              <h3>진행 중인 커리큘럼</h3>
+
+              <button
+                v-for="item in filteredInProgressCurricula"
+                :key="item.id"
+                type="button"
+                class="curriculum-item"
+                @click="navigateTo(`/curriculum/${item.id}`)"
+              >
+                <div class="curriculum-main">
+                  <p>{{ item.title }}</p>
+
+                  <div class="curriculum-meta">
+                    <span class="progress-track">
+                      <span
+                        class="progress-fill"
+                        :style="{ width: `${item.progress}%` }"
+                      ></span>
+                    </span>
+                    <span>{{ item.statusLabel }}</span>
+                    <span>{{ item.updated }}</span>
+                  </div>
+                </div>
+
+                <span class="chevron">›</span>
+              </button>
+            </section>
+
+            <section v-if="filteredCompletedCurricula.length > 0" class="curriculum-section">
+              <h3>완료한 커리큘럼</h3>
+
+              <button
+                v-for="item in filteredCompletedCurricula"
+                :key="item.id"
+                type="button"
+                class="curriculum-item completed"
+                @click="navigateTo(`/curriculum/${item.id}`)"
+              >
+                <div class="curriculum-main">
+                  <p>{{ item.title }}</p>
+                  <span class="completed-date">{{ item.statusLabel }} · {{ item.updated }}</span>
+                </div>
+
+                <span class="chevron">›</span>
+              </button>
+            </section>
+          </div>
+        </div>
 
         <div class="sidebar-bottom">
           <button type="button" class="sidebar-nav-item" @click="navigateTo('/settings')">
@@ -178,7 +260,19 @@
           <section class="mypage-card">
             <h2 class="section-title">생성한 커리큘럼</h2>
 
-            <div class="curriculum-list">
+            <p v-if="isLoadingCurricula" class="empty-topic-text">
+              커리큘럼을 불러오는 중입니다...
+            </p>
+
+            <p v-else-if="curriculumLoadError" class="modal-error">
+              커리큘럼 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
+            </p>
+
+            <p v-else-if="curricula.length === 0" class="empty-topic-text">
+              아직 생성한 커리큘럼이 없습니다.
+            </p>
+
+            <div v-else class="curriculum-list">
               <div
                 v-for="curriculum in curricula"
                 :key="curriculum.id"
@@ -189,18 +283,13 @@
                   <p>{{ curriculum.title }}</p>
 
                   <div class="curriculum-meta">
-                    <span>{{ curriculum.status }}</span>
-
-                    <div class="progress-wrap">
-                      <div class="progress-track">
-                        <div
-                          class="progress-fill"
-                          :style="{ width: `${curriculum.progress}%` }"
-                        ></div>
-                      </div>
-
-                      <strong>{{ curriculum.progress }}%</strong>
-                    </div>
+                    <span>{{ curriculum.goal }}</span>
+                    <span>{{ getStatusLabel(curriculum.status) }}</span>
+                    <span>{{ curriculum.target_weeks }}주</span>
+                    <span>주 {{ curriculum.weekly_available_hours }}시간</span>
+                    <span>{{ getLearningStyleLabel(curriculum.preferred_learning_style) }}</span>
+                    <span>생성 {{ formatDate(curriculum.created_at) }}</span>
+                    <span>수정 {{ formatDate(curriculum.updated_at) }}</span>
                   </div>
                 </div>
 
@@ -216,12 +305,12 @@
 
             <div class="stats-grid">
               <div class="stat-card">
-                <strong>3</strong>
+                <strong>{{ curricula.length }}</strong>
                 <span>생성한 커리큘럼</span>
               </div>
 
               <div class="stat-card">
-                <strong>1</strong>
+                <strong>{{ completedCurriculumCount }}</strong>
                 <span>완료한 커리큘럼</span>
               </div>
 
@@ -473,7 +562,8 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
+import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage } from '@/utils/auth';
 import {
   changePassword,
@@ -486,6 +576,7 @@ import {
 import './MyPage.css';
 
 const router = useRouter();
+const route = useRoute();
 
 const sidebarOpen = ref(false);
 const pageError = ref('');
@@ -503,6 +594,10 @@ const passwordModalError = ref('');
 const passwordModalMessage = ref('');
 const profileModalError = ref('');
 const topicSearchKeyword = ref('');
+const curriculumSearchKeyword = ref('');
+const curricula = ref([]);
+const isLoadingCurricula = ref(false);
+const curriculumLoadError = ref('');
 
 const accountInfo = reactive({
   email: '',
@@ -543,6 +638,13 @@ const learningStyleOptions = [
   { value: 'balanced', label: '균형형' },
 ];
 
+const statusLabels = {
+  DRAFT: '초안',
+  ACTIVE: '진행 중',
+  COMPLETED: '완료',
+  ARCHIVED: '보관됨',
+};
+
 const icons = {
   user: `
     <svg viewBox="0 0 24 24" class="icon">
@@ -578,10 +680,9 @@ const icons = {
   `,
 };
 
-const curricula = [
-  { id: 'new', title: '데이터 분석 8주 로드맵', status: '진행중', progress: 35 },
-  { id: '1', title: 'Django 백엔드 입문', status: '진행중', progress: 20 },
-  { id: '3', title: 'Python 기초 완성', status: '완료', progress: 100 },
+const menuItems = [
+  { icon: icons.user, label: '마이페이지', path: '/mypage' },
+  { icon: icons.chart, label: '학습 대시보드', path: '/learning' },
 ];
 
 const selectedTopicNames = computed(() => {
@@ -591,6 +692,57 @@ const selectedTopicNames = computed(() => {
 
   return selected.map((topic) => topic.name).join(', ');
 });
+
+const completedCurriculumCount = computed(() => {
+  return curricula.value.filter((curriculum) => curriculum.status === 'COMPLETED').length;
+});
+
+const filterSidebarCurricula = (items) => {
+  const keyword = curriculumSearchKeyword.value.trim().toLowerCase();
+
+  if (!keyword) return items;
+
+  return items.filter((curriculum) =>
+    curriculum.title.toLowerCase().includes(keyword),
+  );
+};
+
+const mapCurriculumForSidebar = (curriculum) => ({
+  id: curriculum.id,
+  title: curriculum.title,
+  status: curriculum.status,
+  statusLabel: getStatusLabel(curriculum.status),
+  progress: curriculum.status === 'COMPLETED' ? 100 : 0,
+  updated: formatDate(curriculum.updated_at || curriculum.created_at),
+});
+
+const inProgressCurricula = computed(() =>
+  curricula.value
+    .filter((curriculum) => curriculum.status !== 'COMPLETED')
+    .map(mapCurriculumForSidebar),
+);
+
+const completedCurricula = computed(() =>
+  curricula.value
+    .filter((curriculum) => curriculum.status === 'COMPLETED')
+    .map(mapCurriculumForSidebar),
+);
+
+const filteredInProgressCurricula = computed(() =>
+  filterSidebarCurricula(inProgressCurricula.value),
+);
+
+const filteredCompletedCurricula = computed(() =>
+  filterSidebarCurricula(completedCurricula.value),
+);
+
+const hasNoCurriculums = computed(() => curricula.value.length === 0);
+const hasNoFilteredCurriculums = computed(
+  () =>
+    Boolean(curriculumSearchKeyword.value.trim()) &&
+    filteredInProgressCurricula.value.length === 0 &&
+    filteredCompletedCurricula.value.length === 0,
+);
 
 const preferredLearningStyleLabel = computed(() => {
   const selected = learningStyleOptions.find(
@@ -614,7 +766,26 @@ const filteredTopics = computed(() => {
   );
 });
 
+const loadCurriculums = async () => {
+  curriculumLoadError.value = '';
+  isLoadingCurricula.value = true;
+
+  try {
+    const curriculumList = await getMyCurriculums();
+    curricula.value = Array.isArray(curriculumList) ? curriculumList : [];
+  } catch (error) {
+    curriculumLoadError.value =
+      error?.message || '커리큘럼 목록을 불러오지 못했습니다.';
+  } finally {
+    isLoadingCurricula.value = false;
+  }
+};
+
 const toggleSidebar = () => {
+  if (!sidebarOpen.value) {
+    loadCurriculums();
+  }
+
   sidebarOpen.value = !sidebarOpen.value;
 };
 
@@ -667,22 +838,39 @@ const setProfileInfo = (data) => {
   profileInfo.topic_ids = (data.interest_topics || []).map((topic) => topic.id);
 };
 
+const getStatusLabel = (status) => {
+  return statusLabels[status] || status || '-';
+};
+
+const getLearningStyleLabel = (value) => {
+  const selected = learningStyleOptions.find((style) => style.value === value);
+  return selected?.label || '-';
+};
+
 const loadMyPage = async () => {
   pageError.value = '';
+  curriculumLoadError.value = '';
+  isLoadingCurricula.value = true;
 
   try {
-    const [myInfo, myProfile, topicList] = await Promise.all([
+    const [myInfo, myProfile, topicList, curriculumList] = await Promise.all([
       getMyInfo(),
       getMyProfile(),
       getTopics(),
+      getMyCurriculums(),
     ]);
 
     setAccountInfo(myInfo);
     setProfileInfo(myProfile);
     topics.value = topicList;
+    curricula.value = Array.isArray(curriculumList) ? curriculumList : [];
   } catch (error) {
     pageError.value =
       error?.message || '마이페이지 정보를 불러오지 못했습니다.';
+    curriculumLoadError.value =
+      error?.message || '커리큘럼 목록을 불러오지 못했습니다.';
+  } finally {
+    isLoadingCurricula.value = false;
   }
 };
 
