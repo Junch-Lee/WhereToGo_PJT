@@ -167,6 +167,11 @@
                 <p>주간 학습 가능 시간</p>
                 <strong>주 {{ profileInfo.available_weekly_hours || 0 }}시간</strong>
               </div>
+
+              <div class="info-item">
+                <p>선호 학습 방식</p>
+                <strong>{{ preferredLearningStyleLabel }}</strong>
+              </div>
             </div>
           </section>
 
@@ -382,6 +387,20 @@
           />
         </label>
 
+        <label class="form-field">
+          <span>선호 학습 방식</span>
+          <select v-model="profileDraft.preferred_learning_style">
+            <option value="">선택하지 않음</option>
+            <option
+              v-for="style in learningStyleOptions"
+              :key="style.value"
+              :value="style.value"
+            >
+              {{ style.label }}
+            </option>
+          </select>
+        </label>
+
         <div class="topic-picker">
           <div class="selected-topic-area">
             <p class="field-label">선택한 관심 분야</p>
@@ -497,11 +516,13 @@ const accountDraft = reactive({
 
 const profileInfo = reactive({
   available_weekly_hours: 0,
+  preferred_learning_style: '',
   topic_ids: [],
 });
 
 const profileDraft = reactive({
   available_weekly_hours: 0,
+  preferred_learning_style: '',
   topic_ids: [],
 });
 
@@ -512,6 +533,15 @@ const passwordForm = reactive({
 });
 
 const topics = ref([]);
+
+const learningStyleOptions = [
+  { value: 'theory', label: '이론 중심' },
+  { value: 'practice', label: '실습 중심' },
+  { value: 'project', label: '프로젝트 중심' },
+  { value: 'video', label: '영상 강의 중심' },
+  { value: 'text', label: '문서/책 중심' },
+  { value: 'balanced', label: '균형형' },
+];
 
 const icons = {
   user: `
@@ -560,6 +590,14 @@ const selectedTopicNames = computed(() => {
   );
 
   return selected.map((topic) => topic.name).join(', ');
+});
+
+const preferredLearningStyleLabel = computed(() => {
+  const selected = learningStyleOptions.find(
+    (style) => style.value === profileInfo.preferred_learning_style,
+  );
+
+  return selected?.label || '선택한 선호 학습 방식이 없습니다.';
 });
 
 const draftSelectedTopics = computed(() => {
@@ -625,6 +663,7 @@ const setAccountInfo = (data) => {
 
 const setProfileInfo = (data) => {
   profileInfo.available_weekly_hours = data.available_weekly_hours || 0;
+  profileInfo.preferred_learning_style = data.preferred_learning_style || '';
   profileInfo.topic_ids = (data.interest_topics || []).map((topic) => topic.id);
 };
 
@@ -679,6 +718,7 @@ function closePasswordModal() {
 
 const openProfileModal = () => {
   profileDraft.available_weekly_hours = profileInfo.available_weekly_hours;
+  profileDraft.preferred_learning_style = profileInfo.preferred_learning_style;
   profileDraft.topic_ids = [...profileInfo.topic_ids];
   topicSearchKeyword.value = '';
   profileModalError.value = '';
@@ -690,6 +730,7 @@ function closeProfileModal() {
   profileModalError.value = '';
   topicSearchKeyword.value = '';
   profileDraft.available_weekly_hours = profileInfo.available_weekly_hours;
+  profileDraft.preferred_learning_style = profileInfo.preferred_learning_style;
   profileDraft.topic_ids = [...profileInfo.topic_ids];
 }
 
@@ -740,6 +781,7 @@ const saveProfileInfo = async () => {
   try {
     const updated = await updateMyProfile({
       available_weekly_hours: hours,
+      preferred_learning_style: profileDraft.preferred_learning_style || null,
       topic_ids: profileDraft.topic_ids,
     });
 

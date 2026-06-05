@@ -242,7 +242,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ("available_weekly_hours", "interest_topics", "topic_ids")
+        fields = (
+            "available_weekly_hours",
+            "preferred_learning_style",
+            "interest_topics",
+            "topic_ids",
+        )
 
     def get_interest_topics(self, obj):
         topics = Topic.objects.filter(
