@@ -64,6 +64,7 @@ class Topic(models.Model):
         related_name="children",
     )
     name = models.CharField(max_length=100)
+    slug = models.CharField(max_length=150, unique=True)
     depth = models.IntegerField(default=0)
     topic_type = models.CharField(
         max_length=30,
