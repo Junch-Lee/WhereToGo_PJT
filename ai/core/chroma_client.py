@@ -10,7 +10,7 @@ import chromadb
 from chromadb.api import ClientAPI
 from chromadb.api.models.Collection import Collection
 
-from ai.rag.config import RagSettings, settings
+from ai.core.config import RagSettings, settings
 
 logger = logging.getLogger(__name__)
 
