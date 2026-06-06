@@ -21,6 +21,17 @@ DEFAULT_COLLECTION_RESOURCES = "resources"
 DEFAULT_EMBEDDING_MODEL = "text-embedding-3-small"
 AI_ENV_FILE = Path(__file__).resolve().parents[1] / ".env"
 
+# config.py - 지금 미리 추가해두기
+class Settings:
+    # 기존
+    OPENAI_API_KEY: str
+    EMBEDDING_MODEL: str = "text-embedding-3-small"
+    
+    # GMS 대비 (미리 추가, 나중에 활성화)
+    OPENAI_BASE_URL: str = "https://api.openai.com/v1"  # 추후 GMS로 교체
+    # 또는
+    # OPENAI_BASE_URL: str = "https://gms.ssafy.io/gmsapi/api.openai.com/v1"
+
 
 @dataclass(frozen=True)
 class RagSettings:

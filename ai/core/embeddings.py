@@ -22,7 +22,16 @@ from tenacity import (
     wait_exponential,
 )
 
-from ai.core.config import RagSettings, settings
+from ai.core.config import RagSettings, settings, Settings
+
+# embeddings.py - base_url만 받도록 미리 설계
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=Settings.OPENAI_API_KEY,
+    base_url=Settings.OPENAI_BASE_URL,  # ← 이 한 줄만 있으면 전환 자유
+)
+
 
 logger = logging.getLogger(__name__)
 
