@@ -23,7 +23,9 @@ class LearningResource(models.Model):
     description = models.TextField(blank=True)
     url = models.URLField(blank=True)
     provider = models.CharField(max_length=100, blank=True)
+    provider_name = models.CharField(max_length=100, blank=True)
     resource_type = models.CharField(max_length=50, blank=True)
+    difficulty_level = models.CharField(max_length=30, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -36,6 +38,10 @@ class LearningResource(models.Model):
 
 class CurriculumCourse(models.Model):
     course_name = models.CharField(max_length=255)
+    university_name = models.CharField(max_length=100, blank=True)
+    department_name = models.CharField(max_length=100, blank=True)
+    grade = models.PositiveSmallIntegerField(null=True, blank=True)
+    semester = models.CharField(max_length=30, blank=True)
     learning_objective = models.TextField(blank=True)
     description = models.TextField(blank=True)
     source_row_number = models.BigIntegerField(null=True, blank=True)
@@ -87,7 +93,9 @@ class Curriculum(models.Model):
     class Status(models.TextChoices):
         DRAFT = "DRAFT", "Draft"
         ACTIVE = "ACTIVE", "Active"
+        PAUSED = "PAUSED", "Paused"
         COMPLETED = "COMPLETED", "Completed"
+        CANCELLED = "CANCELLED", "Cancelled"
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -107,6 +115,16 @@ class Curriculum(models.Model):
     difficulty_level = models.CharField(max_length=30, default="beginner")
     preferred_learning_style = models.CharField(max_length=30, default="balanced")
     recommendation_reason = models.TextField(blank=True)
+    current_step = models.ForeignKey(
+        "CurriculumStep",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="current_curricula",
+    )
+    started_at = models.DateTimeField(null=True, blank=True)
+    paused_at = models.DateTimeField(null=True, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -203,3 +221,130 @@ class CurriculumStepCourse(models.Model):
     class Meta:
         db_table = "curriculum_step_courses"
         unique_together = ("curriculum_step", "curriculum_course")
+
+
+class CurriculumStepProgress(models.Model):
+    class Status(models.TextChoices):
+        NOT_STARTED = "NOT_STARTED", "Not started"
+        IN_PROGRESS = "IN_PROGRESS", "In progress"
+        PAUSED = "PAUSED", "Paused"
+        COMPLETED = "COMPLETED", "Completed"
+        SKIPPED = "SKIPPED", "Skipped"
+
+    curriculum = models.ForeignKey(
+        Curriculum,
+        on_delete=models.CASCADE,
+        related_name="step_progresses",
+    )
+    curriculum_step = models.ForeignKey(
+        CurriculumStep,
+        on_delete=models.CASCADE,
+        related_name="progress_records",
+    )
+    status = models.CharField(
+        max_length=30,
+        choices=Status.choices,
+        default=Status.NOT_STARTED,
+    )
+    started_at = models.DateTimeField(null=True, blank=True)
+    paused_at = models.DateTimeField(null=True, blank=True)
+    resumed_at = models.DateTimeField(null=True, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    progress_rate = models.PositiveSmallIntegerField(default=0)
+    actual_minutes = models.PositiveIntegerField(default=0)
+    last_studied_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "curriculum_step_progresses"
+        unique_together = ("curriculum", "curriculum_step")
+
+    def __str__(self):
+        return f"{self.curriculum_step} - {self.status}"
+
+
+class LearningSchedule(models.Model):
+    class Status(models.TextChoices):
+        PLANNED = "PLANNED", "Planned"
+        DONE = "DONE", "Done"
+        CANCELLED = "CANCELLED", "Cancelled"
+        MISSED = "MISSED", "Missed"
+        RESCHEDULED = "RESCHEDULED", "Rescheduled"
+
+    curriculum_step = models.ForeignKey(
+        CurriculumStep,
+        on_delete=models.CASCADE,
+        related_name="learning_schedules",
+    )
+    step_progress = models.ForeignKey(
+        CurriculumStepProgress,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="schedules",
+    )
+    week_no = models.PositiveSmallIntegerField(default=1)
+    sequence_no = models.PositiveSmallIntegerField(default=1)
+    scheduled_date = models.DateField()
+    planned_hours = models.PositiveSmallIntegerField(default=1)
+    status = models.CharField(
+        max_length=30,
+        choices=Status.choices,
+        default=Status.PLANNED,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "learning_schedules"
+        ordering = ("scheduled_date", "sequence_no", "id")
+
+    def __str__(self):
+        return f"{self.curriculum_step} - {self.sequence_no}"
+
+
+class LearningProgress(models.Model):
+    class Status(models.TextChoices):
+        COMPLETED = "COMPLETED", "Completed"
+        PARTIAL = "PARTIAL", "Partial"
+
+    learning_schedule = models.ForeignKey(
+        LearningSchedule,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="learning_progresses",
+    )
+    curriculum_step = models.ForeignKey(
+        CurriculumStep,
+        on_delete=models.CASCADE,
+        related_name="learning_progresses",
+    )
+    step_progress = models.ForeignKey(
+        CurriculumStepProgress,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True,
+        related_name="learning_progresses",
+    )
+    status = models.CharField(
+        max_length=30,
+        choices=Status.choices,
+        default=Status.COMPLETED,
+    )
+    actual_minutes = models.PositiveIntegerField(default=0)
+    progress_rate = models.PositiveSmallIntegerField(default=0)
+    studied_at = models.DateField(null=True, blank=True)
+    started_at = models.DateTimeField(null=True, blank=True)
+    completed_at = models.DateTimeField(null=True, blank=True)
+    memo = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "learning_progresses"
+        ordering = ("-studied_at", "-id")
+
+    def __str__(self):
+        return f"{self.curriculum_step} - {self.status}"
