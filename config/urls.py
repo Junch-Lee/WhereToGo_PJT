@@ -10,7 +10,7 @@ from django.conf.urls.static import static
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
-from apps.curriculum.views import curriculums
+from apps.curriculum.views import curriculum_detail, curriculums
 
 
 urlpatterns = [
@@ -23,6 +23,11 @@ urlpatterns = [
         "api/curriculums/",
         curriculums,
         name="curriculum_list_create",
+    ),
+    path(
+        "api/curriculums/<int:curriculum_id>/",
+        curriculum_detail,
+        name="curriculum_detail",
     ),
 
     # Swagger / OpenAPI
