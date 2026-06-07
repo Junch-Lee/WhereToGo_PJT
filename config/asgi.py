@@ -1,10 +1,8 @@
 """
-ASGI config for config project.
+ASGI 애플리케이션 진입점.
 
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
+비동기 서버에서 Django 앱을 실행할 때 사용된다. 현재 프로젝트는 기본 settings 모듈을
+참조하며, 실제 callable은 application 변수로 노출된다.
 """
 
 import os

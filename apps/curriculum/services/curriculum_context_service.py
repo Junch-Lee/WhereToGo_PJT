@@ -1,3 +1,11 @@
+"""
+커리큘럼 생성에 필요한 입력 context를 구성하는 service.
+
+요청 body, 사용자 프로필 fallback, 목표 키워드, 관련 교육 데이터 후보를 한 곳에서 모은다.
+생성기와 저장 service는 이 context를 읽기만 하므로, fallback 우선순위나 검색 방식이 바뀌어도
+변경 범위를 이 파일로 제한할 수 있다.
+"""
+
 import re
 
 from django.db.models import Q

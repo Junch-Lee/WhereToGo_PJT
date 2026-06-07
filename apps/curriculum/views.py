@@ -29,7 +29,12 @@ from .serializers import (
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def topics(request):
-    """활성화된 학습 토픽 목록을 반환한다."""
+    """
+    GET /api/topics/
+
+    커리큘럼 생성 화면에서 선택하거나 참고할 수 있는 활성 토픽 목록을 반환한다.
+    인증된 사용자만 호출할 수 있으며, 토픽을 생성하거나 수정하지 않는 조회 전용 API다.
+    """
     queryset = Topic.objects.filter(is_active=True).order_by("id")
     serializer = TopicSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
@@ -39,14 +44,19 @@ def topics(request):
 @permission_classes([IsAuthenticated])
 def curriculums(request):
     """
-    인증된 사용자의 커리큘럼 목록 조회와 생성을 처리한다.
+    GET /api/curriculums/
+    POST /api/curriculums/
 
     GET:
-        현재 로그인한 사용자가 소유한 Curriculum만 최신순으로 반환한다.
+        현재 로그인한 사용자가 소유한 커리큘럼 목록만 최신순으로 반환한다.
 
     POST:
-        요청 body를 CurriculumCreateSerializer로 검증한 뒤, 실제 생성 흐름은
+        요청 body를 CurriculumCreateSerializer로 검증한 뒤, 커리큘럼 생성 흐름을
         create_curriculum_for_user service에 위임한다.
+
+    설계 경계:
+        view는 인증, 입력 검증, service 호출, 응답 직렬화만 담당한다. 목표 분석,
+        사용자 프로필 fallback, 단계 저장 같은 비즈니스 로직은 service 계층에 둔다.
     """
     if request.method == "GET":
         queryset = Curriculum.objects.filter(user=request.user).order_by(
@@ -71,20 +81,19 @@ def curriculums(request):
 @permission_classes([IsAuthenticated])
 def curriculum_detail(request, curriculum_id):
     """
-    인증된 사용자의 커리큘럼 상세 정보를 조회한다.
+    GET /api/curriculums/{curriculum_id}/
 
-    보안 기준:
-        URL의 curriculum_id가 존재하더라도 현재 로그인한 사용자의 커리큘럼이 아니면
-        404를 반환한다. 이렇게 하면 다른 사용자의 커리큘럼 id를 추측해 접근하는 것을
-        막을 수 있다.
+    커리큘럼 상세 페이지에서 사용하는 중첩 조회 API다. 커리큘럼 기본 정보, 카테고리,
+    전체 단계, 단계별 추천 자료/강의, 현재 단계의 진행 상태/일정/학습 기록을 함께 반환한다.
 
-    응답 범위:
-        커리큘럼 기본 정보, 카테고리, 전체 단계, 단계별 목표 토픽, 추천 자료, 추천 강의를
-        한 번에 반환한다. 현재 프로젝트에는 진행/일정/학습 기록 모델이 아직 없으므로
-        관련 필드는 serializer에서 None 또는 빈 배열로 내려준다.
+    권한 정책:
+        현재 로그인한 사용자의 커리큘럼만 조회한다. 다른 사용자의 curriculum_id로 접근해도
+        존재 여부가 노출되지 않도록 404를 반환한다.
 
-    주의:
-        상세 GET은 조회 전용이다. 학습 일정이나 진행 기록을 새로 만들거나 수정하지 않는다.
+    조회 전용 원칙:
+        이 API는 learning_schedules, learning_progresses, curriculum_step_progresses를
+        새로 만들거나 수정하지 않는다. 학습 시작, 일시정지, 재개, 완료 처리는 별도 API의
+        책임으로 남겨둔다.
     """
     step_progress_queryset = (
         CurriculumStepProgress.objects.select_related("curriculum_step")
@@ -126,6 +135,7 @@ def curriculum_detail(request, curriculum_id):
     )
 
     curriculum = get_object_or_404(
+        # user 조건을 queryset에 포함해 타인의 커리큘럼 존재 여부가 드러나지 않게 한다.
         Curriculum.objects.filter(user=request.user)
         .select_related("current_step")
         .prefetch_related(

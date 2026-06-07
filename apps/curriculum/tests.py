@@ -1,13 +1,18 @@
 from datetime import date
+from decimal import Decimal
+from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from django.contrib.auth import get_user_model
+from django.core.management import call_command
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from apps.accounts.models import Topic, UserProfile
+from apps.accounts.models import Topic, TopicAlias, UserProfile
 from apps.curriculum.models import (
     Category,
+    CourseTopic,
     Curriculum,
     CurriculumCourse,
     CurriculumCategory,
@@ -18,6 +23,7 @@ from apps.curriculum.models import (
     LearningProgress,
     LearningResource,
     LearningSchedule,
+    ResourceTopic,
 )
 
 
@@ -25,6 +31,13 @@ User = get_user_model()
 
 
 class CurriculumListCreateAPITest(APITestCase):
+    """
+    커리큘럼 목록 조회와 생성 API의 기본 동작을 검증한다.
+
+    프로필 fallback, 요청 body 우선순위, 잘못된 선호 학습 방식 검증, 사용자별 목록 분리를
+    확인한다.
+    """
+
     def setUp(self):
         self.user = User.objects.create_user(
             email="learner@example.com",
@@ -162,6 +175,13 @@ class CurriculumListCreateAPITest(APITestCase):
 
 
 class CurriculumDetailAPITest(APITestCase):
+    """
+    커리큘럼 상세 조회 API의 권한, 중첩 응답, 상태별 진행 데이터 반환 규칙을 검증한다.
+
+    상세 API는 조회 전용이어야 하므로 schedule/progress row 개수가 호출 전후로 변하지 않는지도
+    함께 확인한다.
+    """
+
     def setUp(self):
         self.user = User.objects.create_user(
             email="detail@example.com",
@@ -461,3 +481,90 @@ class CurriculumDetailAPITest(APITestCase):
         response = self.client.get(f"/api/curriculums/{self.curriculum.id}/")
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+
+class TopicPipelineImportCommandTest(APITestCase):
+    """
+    topic pipeline CSV import 명령이 공유 가능한 데이터 적재 절차로 동작하는지 검증한다.
+
+    실제 db.sqlite3 파일은 git에 포함되지 않으므로, 팀원들은 migration 후 이 management command로
+    CSV 데이터를 각자 import해야 한다. 이 테스트는 명령이 필요한 테이블에 데이터를 넣고, 같은
+    CSV를 다시 실행해도 중복 row를 만들지 않는지 확인한다.
+    """
+
+    def test_import_topic_pipeline_data_is_idempotent(self):
+        with TemporaryDirectory() as temp_dir:
+            data_dir = Path(temp_dir)
+            self.write_import_csvs(data_dir)
+
+            call_command("import_topic_pipeline_data", data_dir=str(data_dir))
+            call_command("import_topic_pipeline_data", data_dir=str(data_dir))
+
+        self.assertEqual(
+            Topic.objects.filter(slug__in=["programming", "python"]).count(),
+            2,
+        )
+        self.assertEqual(TopicAlias.objects.filter(alias_name="파이썬").count(), 1)
+        self.assertEqual(
+            CurriculumCourse.objects.filter(source_row_number=101).count(),
+            1,
+        )
+        self.assertEqual(LearningResource.objects.filter(lookup_key="resource-1").count(), 1)
+
+        topic = Topic.objects.get(slug="python")
+        alias = TopicAlias.objects.get(topic=topic)
+        course_topic = CourseTopic.objects.get(topic=topic)
+        resource_topic = ResourceTopic.objects.get(topic=topic)
+
+        self.assertEqual(CourseTopic.objects.filter(topic=topic).count(), 1)
+        self.assertEqual(ResourceTopic.objects.filter(topic=topic).count(), 1)
+
+        self.assertEqual(alias.alias_name, "파이썬")
+        self.assertEqual(course_topic.relevance_score, Decimal("0.90"))
+        self.assertTrue(course_topic.is_primary)
+        self.assertEqual(resource_topic.learning_resource.lookup_key, "resource-1")
+
+    def write_import_csvs(self, data_dir):
+        """
+        import command가 요구하는 final CSV 4종을 임시 디렉터리에 생성한다.
+
+        실제 pipeline CSV 전체를 테스트에 넣으면 느리고 취약해지므로, 관계 구조를 검증할 수 있는
+        최소 row만 사용한다.
+        """
+        (data_dir / "final_topics_import.csv").write_text(
+            "\n".join(
+                [
+                    "topic_slug,parent_topic_slug,name,depth,topic_type,is_learning_unit,is_assessable,description,is_active,source",
+                    "programming,,프로그래밍,1,domain,false,true,,true,test",
+                    "python,programming,Python,2,subject,true,true,,true,test",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (data_dir / "final_topic_aliases_import.csv").write_text(
+            "\n".join(
+                [
+                    "topic_lookup_key,alias_name,source,language,alias_type,match_policy,priority,note",
+                    "python,파이썬,test,ko,synonym,contains,P0,",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (data_dir / "final_course_topics_import.csv").write_text(
+            "\n".join(
+                [
+                    "curriculum_course_lookup_key,course_name,topic_lookup_key,topic_name,topic_depth,parent_topic_slug,relevance_score,extraction_method,is_primary,matched_fields,match_types,link_type",
+                    "101,Python 입문,python,Python,2,programming,0.90,keyword,true,course_name,alias,existing_topic",
+                ]
+            ),
+            encoding="utf-8",
+        )
+        (data_dir / "final_resource_topics_import.csv").write_text(
+            "\n".join(
+                [
+                    "learning_resource_lookup_key,title,topic_lookup_key,topic_name,topic_depth,parent_topic_slug,relevance_score,extraction_method,is_primary,matched_fields,match_types,link_type",
+                    "resource-1,Python 공식 문서,python,Python,2,programming,0.80,keyword,true,title,alias,existing_topic",
+                ]
+            ),
+            encoding="utf-8",
+        )

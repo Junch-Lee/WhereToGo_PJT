@@ -1,3 +1,11 @@
+"""
+임시 rule-based 커리큘럼 계획 생성기.
+
+현재는 AI/RAG/Agent를 직접 호출하지 않고, 목표 문자열과 context 후보 데이터를 바탕으로
+고정된 schema의 plan을 만든다. 저장 service는 이 schema를 기준으로 DB row를 생성하므로,
+나중에 실제 생성기로 교체하더라도 반환 구조를 유지하는 것이 중요하다.
+"""
+
 def build_step_titles(goal, target_weeks):
     """
     현재 임시 생성기에서 사용할 주차별 step 제목을 만든다.

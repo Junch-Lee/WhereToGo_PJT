@@ -17,6 +17,12 @@ from .serializers import (
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def signup(request):
+    """
+    POST /api/auth/signup/
+
+    비인증 사용자의 회원가입 요청을 처리한다. 입력 검증과 User 생성은 SignupSerializer가
+    담당하고, view는 성공/실패 응답 형태만 결정한다.
+    """
     serializer = SignupSerializer(data=request.data)
 
     if serializer.is_valid():
@@ -43,6 +49,12 @@ def signup(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def login(request):
+    """
+    POST /api/auth/login/
+
+    이메일과 비밀번호를 검증한 뒤 Simple JWT access/refresh 토큰을 발급한다. 인증 실패나
+    비활성 계정 처리는 LoginSerializer에서 수행한다.
+    """
     serializer = LoginSerializer(
         data=request.data,
         context={"request": request},
@@ -71,6 +83,12 @@ def login(request):
 @api_view(["GET", "PATCH"])
 @permission_classes([IsAuthenticated])
 def me(request):
+    """
+    GET/PATCH /api/users/me/
+
+    현재 로그인한 사용자의 기본 계정 정보를 조회하거나 수정한다. URL에 user_id를 받지 않고
+    request.user만 사용하므로 다른 사용자의 계정 정보에 접근할 수 없다.
+    """
     if request.method == "GET":
         serializer = UserMeSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -91,6 +109,12 @@ def me(request):
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
 def change_password(request):
+    """
+    PATCH /api/users/me/password/
+
+    현재 로그인한 사용자의 비밀번호를 변경한다. 현재 비밀번호 확인과 새 비밀번호 정책 검증은
+    PasswordChangeSerializer에서 처리한다.
+    """
     serializer = PasswordChangeSerializer(
         data=request.data,
         context={"request": request},
@@ -109,6 +133,12 @@ def change_password(request):
 @api_view(["GET", "PATCH"])
 @permission_classes([IsAuthenticated])
 def my_profile(request):
+    """
+    GET/PATCH /api/users/me/profile/
+
+    현재 로그인한 사용자의 학습 프로필을 조회하거나 수정한다. 프로필 row가 아직 없으면 생성해
+    빈 프로필도 안정적으로 조회할 수 있게 한다.
+    """
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "GET":

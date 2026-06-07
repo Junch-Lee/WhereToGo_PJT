@@ -9,6 +9,13 @@ User = get_user_model()
 
 
 class UserProfileAPITest(APITestCase):
+    """
+    내 학습 프로필 조회/수정 API를 검증한다.
+
+    관심 토픽, 주간 학습 가능 시간, 선호 학습 방식은 이후 커리큘럼 생성의 fallback 값으로
+    쓰이므로 응답 구조와 validation이 유지되는지 확인한다.
+    """
+
     def setUp(self):
         self.user = User.objects.create_user(
             email="learner@example.com",
