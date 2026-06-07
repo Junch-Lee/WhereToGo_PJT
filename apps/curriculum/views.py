@@ -1,11 +1,31 @@
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404
+from django.db.models import Prefetch
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from apps.accounts.models import Topic
+from apps.curriculum.models import (
+    Curriculum,
+    CurriculumCategory,
+    CurriculumStep,
+    CurriculumStepCourse,
+    CurriculumStepProgress,
+    CurriculumStepResource,
+    LearningProgress,
+    LearningSchedule,
+)
+from apps.curriculum.services.curriculum_create_service import create_curriculum_for_user
+
+from .serializers import (
+    CurriculumCreateSerializer,
+    CurriculumDetailSerializer,
+    CurriculumListSerializer,
+    TopicSerializer,
+)
 from apps.curriculum.models import (
     Curriculum,
     CurriculumCategory,

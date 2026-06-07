@@ -86,6 +86,7 @@ class Topic(models.Model):
     )
     name = models.CharField(max_length=100)
     slug = models.CharField(max_length=150, unique=True)
+    slug = models.CharField(max_length=150, unique=True)
     depth = models.IntegerField(default=0)
     topic_type = models.CharField(
         max_length=30,
@@ -122,12 +123,26 @@ class UserProfile(models.Model):
         TEXT = "text", "문서/책 중심"
         BALANCED = "balanced", "균형형"
 
+    class PreferredLearningStyle(models.TextChoices):
+        THEORY = "theory", "이론 중심"
+        PRACTICE = "practice", "실습 중심"
+        PROJECT = "project", "프로젝트 중심"
+        VIDEO = "video", "영상 강의 중심"
+        TEXT = "text", "문서/책 중심"
+        BALANCED = "balanced", "균형형"
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name="profile",
     )
     available_weekly_hours = models.PositiveSmallIntegerField(default=0)
+    preferred_learning_style = models.CharField(
+        max_length=30,
+        choices=PreferredLearningStyle.choices,
+        blank=True,
+        null=True,
+    )
     preferred_learning_style = models.CharField(
         max_length=30,
         choices=PreferredLearningStyle.choices,

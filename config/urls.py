@@ -25,6 +25,16 @@ urlpatterns = [
 
     # 토픽 API는 커리큘럼 생성 화면에서 학습 분야 선택용으로 사용한다.
     path("api/topics/", include("apps.curriculum.urls", namespace="curriculum")),
+    path(
+        "api/curriculums/",
+        curriculums,
+        name="curriculum_list_create",
+    ),
+    path(
+        "api/curriculums/<int:curriculum_id>/",
+        curriculum_detail,
+        name="curriculum_detail",
+    ),
 
     # 커리큘럼 목록/생성/상세 조회 API는 현재 함수형 view로 직접 연결한다.
     path(
