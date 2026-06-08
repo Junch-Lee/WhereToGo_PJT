@@ -48,13 +48,16 @@ class OpenAIEmbeddingFunction(EmbeddingFunction[Documents]):
         client: Any | None = None,
         batch_size: int = DEFAULT_BATCH_SIZE,
     ) -> None:
-        if not config.openai_api_key and client is None:
-            raise ValueError("OPENAI_API_KEY가 설정되어 있어야 임베딩을 생성할 수 있습니다.")
+        if not config.gms_key and client is None:
+            raise ValueError("GMS_KEY must be set to create embeddings.")
         if batch_size <= 0:
             raise ValueError("batch_size는 1 이상이어야 합니다.")
 
         self.config = config
-        self.client = client or OpenAI(api_key=config.openai_api_key)
+        self.client = client or OpenAI(
+            api_key=config.gms_key,
+            base_url=config.openai_base_url,
+        )
         self.batch_size = batch_size
 
     def __call__(self, input: Documents):

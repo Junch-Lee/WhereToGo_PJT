@@ -1,8 +1,9 @@
-"""토픽 매핑 CSV를 문서 생성용 dict로 변환하는 모듈."""
+"""Build topic-name lookup maps from reviewed topic mapping CSV files."""
 
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 import pandas as pd
 
@@ -12,25 +13,25 @@ TOPIC_NAME_COLUMN = "topic_name"
 
 
 def build_course_topic_map(csv_path: str | Path) -> dict:
-    """강의별 연결 토픽명을 쉼표 구분 문자열로 집계합니다.
+    """Return course lookup key to comma-separated topic names.
 
     Args:
-        csv_path: final_course_topics_import.csv 경로입니다.
+        csv_path: Path to final_course_topics_import.csv.
 
     Returns:
-        source_row_number(int)를 키로, 토픽명 문자열을 값으로 갖는 dict입니다.
+        Dict keyed by curriculum_courses.source_row_number.
     """
     return _build_topic_map(csv_path, COURSE_LOOKUP_COLUMN, cast_key_to_int=True)
 
 
 def build_resource_topic_map(csv_path: str | Path) -> dict:
-    """학습 자료별 연결 토픽명을 쉼표 구분 문자열로 집계합니다.
+    """Return resource lookup key to comma-separated topic names.
 
     Args:
-        csv_path: final_resource_topics_import.csv 경로입니다.
+        csv_path: Path to final_resource_topics_import.csv.
 
     Returns:
-        external_id(str)를 키로, 토픽명 문자열을 값으로 갖는 dict입니다.
+        Dict keyed by learning_resource.external_id.
     """
     return _build_topic_map(csv_path, RESOURCE_LOOKUP_COLUMN, cast_key_to_int=False)
 
@@ -40,10 +41,10 @@ def _build_topic_map(
     lookup_column: str,
     cast_key_to_int: bool,
 ) -> dict:
-    """토픽 매핑 CSV를 공통 규칙으로 집계합니다."""
+    """Load a mapping CSV and group topic names by source lookup key."""
     path = Path(csv_path)
     if not path.exists():
-        raise FileNotFoundError(f"토픽 매핑 CSV를 찾을 수 없습니다: {path}")
+        raise FileNotFoundError(f"Topic mapping CSV not found: {path}")
 
     df = pd.read_csv(path)
     if df.empty:
@@ -51,7 +52,7 @@ def _build_topic_map(
 
     missing_columns = {lookup_column, TOPIC_NAME_COLUMN} - set(df.columns)
     if missing_columns:
-        raise ValueError(f"토픽 매핑 CSV 필수 컬럼이 없습니다: {missing_columns}")
+        raise ValueError(f"Topic mapping CSV is missing columns: {missing_columns}")
 
     topic_map: dict = {}
     for _, row in df.iterrows():
@@ -69,8 +70,14 @@ def _build_topic_map(
 
 
 def _clean_text(value: object) -> str:
-    """NaN과 None을 빈 문자열로 정리합니다."""
-    if value is None or pd.isna(value):
+    """Normalize missing values to an empty string and trim text."""
+    if _is_missing_value(value):
         return ""
     return str(value).strip()
 
+
+def _is_missing_value(value: Any) -> bool:
+    """Return True for scalar values that pandas treats as missing."""
+    if value is None:
+        return True
+    return bool(pd.isna(value))

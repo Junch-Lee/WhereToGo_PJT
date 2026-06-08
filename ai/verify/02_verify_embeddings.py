@@ -23,10 +23,10 @@ def main() -> None:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 
     print("OpenAI 임베딩 모듈 검증을 시작합니다.")
-    if not settings.openai_api_key:
+    if not settings.gms_key:
         print(
-            "OPENAI_API_KEY가 설정되어 있지 않아 실제 임베딩 API 검증을 건너뜁니다. "
-            "ai/.env에 OPENAI_API_KEY를 설정한 뒤 다시 실행하세요."
+            "GMS_KEY가 설정되어 있지 않아 실제 임베딩 API 검증을 건너뜁니다. "
+            "ai/.env에 GMS_KEY를 설정한 뒤 다시 실행하세요."
         )
         return
 
