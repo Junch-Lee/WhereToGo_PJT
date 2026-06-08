@@ -1,3 +1,11 @@
+"""
+커리큘럼 생성 orchestration service.
+
+view에서 직접 생성 로직을 수행하지 않고, 입력 context 구성, 계획 생성, DB 저장 단계를
+순서대로 호출한다. 실제 AI/RAG 생성기로 교체하더라도 view와 API 계약 변경을 최소화하기
+위한 계층이다.
+"""
+
 from apps.curriculum.services.curriculum_context_service import (
     build_curriculum_context,
 )

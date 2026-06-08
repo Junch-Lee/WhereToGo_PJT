@@ -1,3 +1,11 @@
+"""
+생성된 커리큘럼 계획을 DB row로 저장하는 service.
+
+Curriculum, CurriculumStep, 카테고리/자료/강의 연결 row를 하나의 transaction 안에서 저장한다.
+학습 일정과 실제 진행 기록은 커리큘럼 생성 시점에 만들지 않고, 학습 시작/단계 시작 API의
+책임으로 남겨둔다.
+"""
+
 from django.db import transaction
 
 from apps.curriculum.models import (
