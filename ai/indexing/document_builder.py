@@ -6,6 +6,7 @@ import math
 
 import pandas as pd
 
+from typing import Any
 
 def build_course_documents(courses_df: pd.DataFrame, topic_map: dict) -> list[dict]:
     """강의 CSV 데이터를 ChromaDB 문서 dict 목록으로 변환합니다.
@@ -162,14 +163,14 @@ def _clean_metadata(metadata: dict) -> dict:
     return cleaned
 
 
-def _clean_text(value: object) -> str:
+def _clean_text(value: Any) -> str:
     """NaN, None, 공백 문자열을 빈 문자열로 정리합니다."""
     if value is None or pd.isna(value):
         return ""
     return str(value).strip()
 
 
-def _to_int(value: object) -> int:
+def _to_int(value: Any) -> int:
     """안전하게 int로 변환하고 실패 시 0을 반환합니다."""
     if value is None or pd.isna(value):
         return 0
