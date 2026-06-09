@@ -1,4 +1,4 @@
-"""WhereToGo RAG 문서 인덱싱 실행 모듈."""
+"""Index real RAG CSV data into persistent ChromaDB collections."""
 
 from __future__ import annotations
 
@@ -43,15 +43,7 @@ RESOURCE_TOPICS_CSV_PATH = (
 
 
 def index_courses(reset: bool = False, embedding_function: Any | None = None) -> dict:
-    """강의 데이터를 courses 컬렉션에 적재합니다.
-
-    Args:
-        reset: True이면 적재 전 courses 컬렉션을 삭제 후 재생성합니다.
-        embedding_function: ChromaDB 컬렉션에 주입할 임베딩 함수입니다.
-
-    Returns:
-        입력 수, 적재 수, 컬렉션 count를 담은 dict입니다.
-    """
+    """Index curriculum course documents into the courses collection."""
     documents = build_course_documents(
         _read_csv(COURSES_CSV_PATH),
         build_course_topic_map(COURSE_TOPICS_CSV_PATH),
@@ -65,15 +57,7 @@ def index_courses(reset: bool = False, embedding_function: Any | None = None) ->
 
 
 def index_resources(reset: bool = False, embedding_function: Any | None = None) -> dict:
-    """학습 자료 데이터를 resources 컬렉션에 적재합니다.
-
-    Args:
-        reset: True이면 적재 전 resources 컬렉션을 삭제 후 재생성합니다.
-        embedding_function: ChromaDB 컬렉션에 주입할 임베딩 함수입니다.
-
-    Returns:
-        입력 수, 적재 수, 컬렉션 count를 담은 dict입니다.
-    """
+    """Index learning resource documents into the resources collection."""
     documents = build_resource_documents(
         _read_csv(RESOURCES_CSV_PATH),
         build_resource_topic_map(RESOURCE_TOPICS_CSV_PATH),
@@ -87,15 +71,7 @@ def index_resources(reset: bool = False, embedding_function: Any | None = None) 
 
 
 def index_all(reset: bool = False, embedding_function: Any | None = None) -> dict:
-    """강의와 학습 자료를 모두 인덱싱합니다.
-
-    Args:
-        reset: True이면 각 컬렉션을 삭제 후 재생성합니다.
-        embedding_function: ChromaDB 컬렉션에 주입할 임베딩 함수입니다.
-
-    Returns:
-        courses/resources 결과를 담은 dict입니다.
-    """
+    """Index both course and resource documents with one embedding function."""
     embedding_function = embedding_function or create_openai_embedding_function()
     return {
         "courses": index_courses(reset=reset, embedding_function=embedding_function),
@@ -104,14 +80,14 @@ def index_all(reset: bool = False, embedding_function: Any | None = None) -> dic
 
 
 def _add_documents(collection: Any, documents: list[dict]) -> dict:
-    """문서 dict 목록을 ChromaDB 컬렉션에 100건 단위로 add합니다."""
+    """Add documents to a ChromaDB collection in fixed-size batches."""
     if not documents:
-        raise ValueError("인덱싱할 문서가 없습니다.")
+        raise ValueError("No documents to index.")
 
     before_count = int(collection.count())
     for start in range(0, len(documents), BATCH_SIZE):
         batch = documents[start : start + BATCH_SIZE]
-        logger.info("문서 적재 중: %s-%s/%s", start + 1, start + len(batch), len(documents))
+        logger.info("Indexing documents %s-%s/%s", start + 1, start + len(batch), len(documents))
         collection.add(
             ids=[document["id"] for document in batch],
             documents=[document["text"] for document in batch],
@@ -122,7 +98,7 @@ def _add_documents(collection: Any, documents: list[dict]) -> dict:
     loaded_count = count - before_count
     if loaded_count != len(documents):
         raise RuntimeError(
-            f"적재 수 검증 실패: loaded_count={loaded_count}, input_count={len(documents)}"
+            f"Index count mismatch: loaded_count={loaded_count}, input_count={len(documents)}"
         )
 
     sample = collection.get(limit=1, include=["documents", "metadatas"])
@@ -135,27 +111,27 @@ def _add_documents(collection: Any, documents: list[dict]) -> dict:
 
 
 def _read_csv(csv_path: Path) -> pd.DataFrame:
-    """CSV 파일을 읽고 비어 있지 않은지 확인합니다."""
+    """Read a non-empty CSV file."""
     if not csv_path.exists():
-        raise FileNotFoundError(f"CSV 파일을 찾을 수 없습니다: {csv_path}")
+        raise FileNotFoundError(f"CSV file not found: {csv_path}")
 
     df = pd.read_csv(csv_path)
     if df.empty:
-        raise ValueError(f"CSV 데이터가 비어 있습니다: {csv_path}")
+        raise ValueError(f"CSV file is empty: {csv_path}")
     return df
 
 
 def main() -> None:
-    """CLI 인덱싱 진입점입니다."""
+    """Run indexing from the command line."""
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
-    parser = argparse.ArgumentParser(description="WhereToGo RAG 데이터를 ChromaDB에 인덱싱합니다.")
+    parser = argparse.ArgumentParser(description="Index WhereToGo RAG CSV data into ChromaDB.")
     parser.add_argument(
         "--target",
         choices=["courses", "resources", "all"],
         default="all",
-        help="인덱싱할 대상입니다.",
+        help="Dataset to index.",
     )
-    parser.add_argument("--reset", action="store_true", help="적재 전 컬렉션을 초기화합니다.")
+    parser.add_argument("--reset", action="store_true", help="Recreate the target collection first.")
     args = parser.parse_args()
 
     embedding_function = create_openai_embedding_function()

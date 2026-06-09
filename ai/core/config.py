@@ -1,4 +1,4 @@
-"""RAG 파이프라인 환경 설정 관리 모듈."""
+"""Configuration for the RAG pipeline."""
 
 from __future__ import annotations
 
@@ -11,113 +11,69 @@ from dotenv import load_dotenv
 
 logger = logging.getLogger(__name__)
 
-# 기본 경로들
-# COLLECTION 설정 : 거리는 cosine 함수 (ChromaDB 기본 지원)
-# 성격이 다른 두 데이터를 별도의 컬렉션으로 관리
-
 DEFAULT_CHROMA_PERSIST_DIR = "./rag/data/chroma_db"
 DEFAULT_COLLECTION_COURSES = "courses"
 DEFAULT_COLLECTION_RESOURCES = "resources"
 DEFAULT_EMBEDDING_MODEL = "text-embedding-3-small"
+DEFAULT_OPENAI_BASE_URL = "https://api.openai.com/v1"
 AI_ENV_FILE = Path(__file__).resolve().parents[1] / ".env"
-
-# config.py - 지금 미리 추가해두기
-class Settings:
-    # 기존
-    OPENAI_API_KEY: str
-    EMBEDDING_MODEL: str = "text-embedding-3-small"
-    
-    # GMS 대비 (미리 추가, 나중에 활성화)
-    OPENAI_BASE_URL: str = "https://api.openai.com/v1"  # 추후 GMS로 교체
-    # 또는
-    # OPENAI_BASE_URL: str = "https://gms.ssafy.io/gmsapi/api.openai.com/v1"
 
 
 @dataclass(frozen=True)
 class RagSettings:
-    """RAG 설정값을 보관하고 기본 검증을 수행합니다.
+    """Runtime settings for ChromaDB and embedding calls."""
 
-    Attributes:
-        chroma_persist_dir: ChromaDB가 로컬 디스크에 데이터를 저장할 경로입니다.
-        collection_courses: 교육 과정 문서를 저장할 컬렉션명입니다.
-        collection_resources: 참고 자료 문서를 저장할 컬렉션명입니다.
-        embedding_model: 향후 임베딩 단계에서 사용할 모델명입니다.
-        openai_api_key: OpenAI API 키입니다. Task 1에서는 필수로 사용하지 않습니다.
-    """
-
-    chroma_persist_dir: Path = field(
-        default_factory=lambda: Path(DEFAULT_CHROMA_PERSIST_DIR)
-    )
+    chroma_persist_dir: Path = field(default_factory=lambda: Path(DEFAULT_CHROMA_PERSIST_DIR))
     collection_courses: str = DEFAULT_COLLECTION_COURSES
     collection_resources: str = DEFAULT_COLLECTION_RESOURCES
     embedding_model: str = DEFAULT_EMBEDDING_MODEL
-    openai_api_key: str | None = None
+    gms_key: str | None = None
+    openai_base_url: str = DEFAULT_OPENAI_BASE_URL
 
     def __post_init__(self) -> None:
-        """설정값의 형식과 최소 조건을 검증합니다."""
+        """Validate required non-secret settings."""
         self._validate_non_empty("COLLECTION_COURSES", self.collection_courses)
         self._validate_non_empty("COLLECTION_RESOURCES", self.collection_resources)
         self._validate_non_empty("EMBEDDING_MODEL", self.embedding_model)
+        self._validate_non_empty("OPENAI_BASE_URL", self.openai_base_url)
 
         if self.collection_courses == self.collection_resources:
-            raise ValueError("COLLECTION_COURSES와 COLLECTION_RESOURCES는 달라야 합니다.")
+            raise ValueError("COLLECTION_COURSES and COLLECTION_RESOURCES must differ.")
 
         if not str(self.chroma_persist_dir).strip():
-            raise ValueError("CHROMA_PERSIST_DIR는 비어 있을 수 없습니다.")
+            raise ValueError("CHROMA_PERSIST_DIR must not be empty.")
 
-        if not self.openai_api_key:
+        if not self.gms_key:
             logger.warning(
-                "OPENAI_API_KEY가 설정되지 않았습니다. Task 1 검증에는 필요하지 않지만 "
-                "임베딩 단계(Task 2)에서는 필요합니다."
+                "GMS_KEY is not set. ChromaDB setup can run, but embedding calls need it."
             )
 
     @staticmethod
     def _validate_non_empty(name: str, value: str) -> None:
-        """문자열 설정값이 비어 있지 않은지 확인합니다.
-
-        Args:
-            name: 환경 변수명입니다.
-            value: 검증할 설정값입니다.
-
-        Raises:
-            ValueError: 설정값이 비어 있으면 발생합니다.
-        """
+        """Raise when a required string setting is empty."""
         if not value.strip():
-            raise ValueError(f"{name}는 비어 있을 수 없습니다.")
+            raise ValueError(f"{name} must not be empty.")
 
     @property
     def chroma_persist_path(self) -> Path:
-        """확장된 ChromaDB 저장 경로를 반환합니다.
-
-        Returns:
-            사용자 홈 경로가 반영된 Path 객체입니다.
-        """
+        """Return the expanded ChromaDB persistence path."""
         return self.chroma_persist_dir.expanduser()
 
 
 def load_settings() -> RagSettings:
-    """`.env` 파일과 환경 변수에서 RAG 설정을 로드합니다.
-
-    Returns:
-        검증이 끝난 RagSettings 인스턴스입니다.
-    """
+    """Load RAG settings from ai/.env and process environment variables."""
     load_dotenv(dotenv_path=AI_ENV_FILE)
     load_dotenv()
 
     settings = RagSettings(
-        chroma_persist_dir=Path(
-            os.getenv("CHROMA_PERSIST_DIR", DEFAULT_CHROMA_PERSIST_DIR)
-        ),
-        collection_courses=os.getenv(
-            "COLLECTION_COURSES", DEFAULT_COLLECTION_COURSES
-        ),
-        collection_resources=os.getenv(
-            "COLLECTION_RESOURCES", DEFAULT_COLLECTION_RESOURCES
-        ),
+        chroma_persist_dir=Path(os.getenv("CHROMA_PERSIST_DIR", DEFAULT_CHROMA_PERSIST_DIR)),
+        collection_courses=os.getenv("COLLECTION_COURSES", DEFAULT_COLLECTION_COURSES),
+        collection_resources=os.getenv("COLLECTION_RESOURCES", DEFAULT_COLLECTION_RESOURCES),
         embedding_model=os.getenv("EMBEDDING_MODEL", DEFAULT_EMBEDDING_MODEL),
-        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        gms_key=os.getenv("GMS_KEY"),
+        openai_base_url=os.getenv("OPENAI_BASE_URL", DEFAULT_OPENAI_BASE_URL),
     )
-    logger.debug("RAG 설정 로드 완료: %s", settings)
+    logger.debug("RAG settings loaded: %s", settings)
     return settings
 
 
