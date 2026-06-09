@@ -85,8 +85,12 @@ def extract_unmatched_terms(goal_text: str, candidates: list[dict]) -> list[str]
 
     stopwords = {
         "배우고",
+        "싶고",
         "싶어요",
         "싶어",
+        "보완",
+        "보완하고",
+        "잘하고",
         "학습",
         "공부",
         "입문",
@@ -102,7 +106,12 @@ def extract_unmatched_terms(goal_text: str, candidates: list[dict]) -> list[str]
         "and",
     }
     terms = re.findall(r"[0-9a-zA-Z가-힣+#.]+", remaining)
-    return [term for term in terms if len(term) > 1 and term.lower() not in stopwords]
+    normalized_terms = [_strip_korean_suffixes(term) for term in terms]
+    return [
+        term
+        for term in normalized_terms
+        if len(term) > 1 and term.lower() not in stopwords
+    ]
 
 
 def _topic_terms(topic: dict) -> Iterable[str]:
@@ -132,9 +141,29 @@ def _normalize_text(value: str) -> str:
     return re.sub(r"\s+", " ", lowered).strip()
 
 
+def _strip_korean_suffixes(term: str) -> str:
+    """Remove common short Korean particles/endings from rough unmatched terms."""
+    suffixes = (
+        "으로",
+        "하고",
+        "도",
+        "은",
+        "는",
+        "이",
+        "가",
+        "을",
+        "를",
+        "과",
+        "와",
+    )
+    for suffix in suffixes:
+        if term.endswith(suffix) and len(term) > len(suffix) + 1:
+            return term[: -len(suffix)]
+    return term
+
+
 def _as_int(value, default: int = 0) -> int:
     try:
         return int(value)
     except (TypeError, ValueError):
         return default
-

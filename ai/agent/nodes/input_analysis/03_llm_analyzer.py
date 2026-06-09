@@ -6,14 +6,16 @@ from __future__ import annotations
 
 import json
 import logging
+import os
+from pathlib import Path
 import re
 from typing import Any
 
+from dotenv import load_dotenv
 from openai import OpenAI
 
-from ai.core.config import settings
-
 logger = logging.getLogger(__name__)
+AI_ENV_FILE = Path(__file__).resolve().parents[3] / ".env"
 
 COMPUTER_SCIENCE_KEYWORDS = (
     "ai",
@@ -56,6 +58,17 @@ OUT_OF_SCOPE_KEYWORDS = (
     "중국어",
 )
 
+MATH_PREREQUISITE_SLUGS = {
+    "mathematics-for-cs",
+    "linear-algebra",
+    "probability-statistics",
+    "calculus",
+}
+MATH_HEAVY_TARGET_SLUGS = {
+    "machine-learning",
+    "deep-learning",
+}
+
 
 def analyze_with_llm(
     goal_text: str,
@@ -69,10 +82,12 @@ def analyze_with_llm(
     fails, or the response is not valid JSON.
     """
     fallback = _fallback_analysis(goal_text, purpose, candidates, context_candidates)
-    if not settings.gms_key:
+    if not _has_gms_key():
         return fallback
 
     try:
+        from ai.core.config import settings
+
         client = OpenAI(api_key=settings.gms_key, base_url=settings.openai_base_url)
         response = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -104,6 +119,11 @@ def _fallback_analysis(
     needs_clarification = is_in_scope and not candidates
 
     target_topics = [_target_topic(candidate) for candidate in candidates]
+    prerequisite_topics = _split_prerequisite_topics(target_topics)
+    if prerequisite_topics:
+        prerequisite_slugs = {topic["slug"] for topic in prerequisite_topics}
+        target_topics = [topic for topic in target_topics if topic.get("slug") not in prerequisite_slugs]
+
     context_topics = [_context_topic(candidate) for candidate in context_candidates]
 
     if not is_in_scope:
@@ -119,11 +139,35 @@ def _fallback_analysis(
         "search_query": _build_search_query(goal_text, purpose, target_topics, context_topics),
         "target_topics": target_topics,
         "context_topics": context_topics,
-        "prerequisite_candidates": [],
+        "prerequisite_candidates": prerequisite_topics,
         "unmatched_terms": [],
         "needs_clarification": needs_clarification or not is_in_scope,
         "clarification_question": question,
     }
+
+
+def _has_gms_key() -> bool:
+    load_dotenv(dotenv_path=AI_ENV_FILE)
+    load_dotenv()
+    return bool(os.getenv("GMS_KEY"))
+
+
+def _split_prerequisite_topics(target_topics: list[dict]) -> list[dict]:
+    target_slugs = {topic.get("slug") for topic in target_topics}
+    if not target_slugs.intersection(MATH_HEAVY_TARGET_SLUGS):
+        return []
+
+    prerequisites: list[dict] = []
+    for topic in target_topics:
+        if topic.get("slug") in MATH_PREREQUISITE_SLUGS:
+            prerequisites.append(
+                {
+                    "slug": topic.get("slug"),
+                    "name": topic.get("name"),
+                    "reason": "Machine learning goals commonly need this math foundation.",
+                }
+            )
+    return prerequisites
 
 
 def _target_topic(candidate: dict) -> dict:
