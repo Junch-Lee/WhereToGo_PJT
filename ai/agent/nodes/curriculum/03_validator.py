@@ -138,7 +138,7 @@ def _clean_text(value: object) -> str:
     return str(value).strip() if value is not None else ""
 
 
-def _to_int(value: object) -> int | None:
+def _to_int(value) -> int | None:
     try:
         return int(value)
     except (TypeError, ValueError):

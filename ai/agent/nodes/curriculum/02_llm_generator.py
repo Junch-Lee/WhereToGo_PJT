@@ -8,14 +8,25 @@ import os
 import re
 
 from openai import OpenAI
+from openai.types.chat import ChatCompletionMessageParam
+from openai.types.chat.chat_completion import ChatCompletion
 
 logger = logging.getLogger(__name__)
 
 DEFAULT_CHAT_MODEL = "gpt-4o-mini"
 
 
-def generate_curriculum(messages: list[dict]) -> dict:
-    """LLM 응답을 커리큘럼 JSON dict로 반환한다."""
+def generate_curriculum(messages: list[ChatCompletionMessageParam]) -> dict:
+    """LLM 응답을 커리큘럼 JSON dict로 반환한다.
+    
+        주의 : client.chat.completions.create() 내부의 messages 인자는 list[dict] 형태의 자료형 중에서도
+        ChatCompletionMessageParam 형태의 dict가 되어야 한다.
+
+        예)
+
+        messages = [{"role": "system", "content":"너는 친절한 코딩 튜터야"}]
+    
+    """
     if not messages:
         raise ValueError("messages must not be empty.")
 

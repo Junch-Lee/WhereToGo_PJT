@@ -2,6 +2,10 @@
 
 from __future__ import annotations
 
+from typing import Any
+from openai.types.chat import ChatCompletionMessageParam
+from openai.types.chat.chat_completion import ChatCompletion
+
 import json
 
 
@@ -9,7 +13,8 @@ def build_curriculum_prompt(
     user_profile: dict,
     topic_analysis: dict,
     search_results: dict,
-) -> list[dict]:
+) -> list[ChatCompletionMessageParam]:
+    
     """LLM에 전달할 system/user messages를 만든다."""
     payload = {
         "user_profile": _compact_user_profile(user_profile),
@@ -145,7 +150,7 @@ def _clean_text(value: object) -> str:
     return str(value).strip() if value is not None else ""
 
 
-def _to_int(value: object, default: int) -> int:
+def _to_int(value: Any, default: int) -> int:
     try:
         return int(value)
     except (TypeError, ValueError):
