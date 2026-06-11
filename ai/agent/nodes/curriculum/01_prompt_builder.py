@@ -25,8 +25,11 @@ def build_curriculum_prompt(
         "output_schema": _output_schema(),
         "rules": [
             "Return only a JSON object.",
+            "Prefer Korean for user-facing text fields: title, recommendation_reason, step title, step description, and prerequisite_note.",
             "Use only course_source_row_numbers present in search_results.courses.",
             "Use only resource_external_ids present in search_results.resources.",
+            "When search results are available, every step should reference at least one relevant course_source_row_number or resource_external_id.",
+            "When beginner resources are available, use at least one relevant resource_external_id in the first step.",
             "Choose one target_topic_slug per step from the provided topic slugs.",
             "If no specific topic fits, use computer-science.",
             "Do not include Django model objects or database IDs.",
@@ -155,4 +158,3 @@ def _to_int(value: Any, default: int) -> int:
         return int(value)
     except (TypeError, ValueError):
         return default
-
