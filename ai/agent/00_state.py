@@ -18,4 +18,6 @@ class AgentState(TypedDict, total=False):
     is_in_scope: bool
     search_results: dict
     curriculum: dict
+    generation_status: str
+    message: str
 
