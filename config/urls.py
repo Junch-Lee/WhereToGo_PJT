@@ -14,7 +14,7 @@ from django.conf.urls.static import static
 
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
-from apps.curriculum.views import curriculum_detail, curriculums
+from apps.curriculum.views import curriculum_detail, curriculums, generate_curriculum
 
 
 urlpatterns = [
@@ -41,6 +41,11 @@ urlpatterns = [
         "api/curriculums/",
         curriculums,
         name="curriculum_list_create",
+    ),
+    path(
+        "api/curriculums/generate/",
+        generate_curriculum,
+        name="curriculum_generate",
     ),
     path(
         "api/curriculums/<int:curriculum_id>/",

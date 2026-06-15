@@ -2,6 +2,7 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from unittest.mock import patch
 
 from django.contrib.auth import get_user_model
 from django.core.management import call_command
@@ -348,6 +349,334 @@ class AICurriculumSaveServiceTest(APITestCase):
                     else ["resource-10164"],
                 }
             ],
+        }
+
+
+class CurriculumGenerateAPITest(APITestCase):
+    """AI 커리큘럼 생성 API가 MVP 6개 입력을 검증하고 orchestration만 담당하는지 검증한다."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            email="ai-generate@example.com",
+            password="testpass123",
+            nickname="ai-generate",
+            agree_terms=True,
+        )
+        self.client.force_authenticate(user=self.user)
+        self.url = "/api/curriculums/generate/"
+
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_success_saves_normalized_result(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+        save_ai_generated_curriculum_mock,
+    ):
+        catalog = [{"slug": "python", "name": "Python"}]
+        agent_result = {"generation_status": "generated"}
+        normalized_result = self._normalized_success_result()
+        saved_curriculum = Curriculum.objects.create(
+            user=self.user,
+            title="Python roadmap",
+            goal="Python 배우기",
+        )
+        build_topic_catalog_mock.return_value = catalog
+        run_agent_mock.return_value = agent_result
+        normalize_agent_response_mock.return_value = normalized_result
+        save_ai_generated_curriculum_mock.return_value = saved_curriculum
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(goal="Python 배우기"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data["status"], "success")
+        self.assertEqual(response.data["curriculum_id"], saved_curriculum.id)
+        build_topic_catalog_mock.assert_called_once_with()
+        run_agent_mock.assert_called_once_with(
+            {
+                "goal_text": "Python 배우기",
+                "purpose": "portfolio",
+                "level": "beginner",
+                "period": 8,
+                "weekly_hours": 10,
+                "learning_style": "project",
+                "concern": "",
+            },
+            catalog,
+        )
+        normalize_agent_response_mock.assert_called_once_with(agent_result)
+        save_ai_generated_curriculum_mock.assert_called_once_with(
+            self.user,
+            normalized_result,
+        )
+
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_maps_mvp_payload_to_ai_raw_input(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+        save_ai_generated_curriculum_mock,
+    ):
+        saved_curriculum = Curriculum.objects.create(
+            user=self.user,
+            title="Django roadmap",
+            goal="Django 배우기",
+        )
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.return_value = {"generation_status": "generated"}
+        normalize_agent_response_mock.return_value = self._normalized_success_result()
+        save_ai_generated_curriculum_mock.return_value = saved_curriculum
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(
+                goal="Django 배우기",
+                purpose="job",
+                difficulty_level="intermediate",
+                target_weeks=12,
+                weekly_available_hours=20,
+                preferred_learning_style="balanced",
+            ),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        raw_input = run_agent_mock.call_args.args[0]
+        self.assertEqual(raw_input["goal_text"], "Django 배우기")
+        self.assertEqual(raw_input["purpose"], "job")
+        self.assertEqual(raw_input["period"], 12)
+        self.assertEqual(raw_input["weekly_hours"], 20)
+        self.assertEqual(raw_input["level"], "intermediate")
+        self.assertEqual(raw_input["learning_style"], "balanced")
+        self.assertEqual(raw_input["concern"], "")
+
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_out_of_scope_does_not_save(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+        save_ai_generated_curriculum_mock,
+    ):
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.return_value = {"generation_status": "out_of_scope"}
+        normalize_agent_response_mock.return_value = {
+            "status": "out_of_scope",
+            "message": "컴퓨터공학 학습 목표만 지원합니다.",
+        }
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(goal="요리 배우기"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["status"], "out_of_scope")
+        save_ai_generated_curriculum_mock.assert_not_called()
+
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_needs_clarification_does_not_save(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+        save_ai_generated_curriculum_mock,
+    ):
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.return_value = {"topic_analysis": {"needs_clarification": True}}
+        normalize_agent_response_mock.return_value = {
+            "status": "needs_clarification",
+            "clarification_question": "어떤 개발 분야를 배우고 싶나요?",
+        }
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(goal="개발 배우기"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["status"], "needs_clarification")
+        self.assertEqual(response.data["clarification_question"], "어떤 개발 분야를 배우고 싶나요?")
+        save_ai_generated_curriculum_mock.assert_not_called()
+
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_no_results_does_not_save(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+        save_ai_generated_curriculum_mock,
+    ):
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.return_value = {"generation_status": "insufficient_search_results"}
+        normalize_agent_response_mock.return_value = {
+            "status": "no_results",
+            "message": "검색 결과가 부족합니다.",
+        }
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(goal="희귀한 주제 배우기"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["status"], "no_results")
+        save_ai_generated_curriculum_mock.assert_not_called()
+
+    @patch("apps.curriculum.views.logger")
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_agent_error_returns_502(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+        save_ai_generated_curriculum_mock,
+        logger_mock,
+    ):
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.side_effect = RuntimeError("agent failed")
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(goal="Python 배우기"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_502_BAD_GATEWAY)
+        self.assertEqual(response.data["status"], "error")
+        logger_mock.exception.assert_called_once_with("AI curriculum generation failed.")
+        normalize_agent_response_mock.assert_not_called()
+        save_ai_generated_curriculum_mock.assert_not_called()
+
+    def test_generate_curriculum_requires_goal(self):
+        response = self.client.post(
+            self.url,
+            {
+                "purpose": "portfolio",
+                "difficulty_level": "beginner",
+                "target_weeks": 8,
+                "weekly_available_hours": 10,
+                "preferred_learning_style": "project",
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("goal", response.data)
+
+    def test_generate_curriculum_rejects_invalid_purpose(self):
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(purpose="취업"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("purpose", response.data)
+
+    def test_generate_curriculum_rejects_invalid_difficulty_level(self):
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(difficulty_level="expert"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("difficulty_level", response.data)
+
+    def test_generate_curriculum_rejects_invalid_target_weeks(self):
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(target_weeks=16),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("target_weeks", response.data)
+
+    def test_generate_curriculum_rejects_invalid_weekly_available_hours(self):
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(weekly_available_hours=15),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("weekly_available_hours", response.data)
+
+    def test_generate_curriculum_rejects_invalid_preferred_learning_style(self):
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(preferred_learning_style="video"),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn("preferred_learning_style", response.data)
+
+    def _mvp_payload(
+        self,
+        goal="백엔드 개발",
+        purpose="portfolio",
+        difficulty_level="beginner",
+        target_weeks=8,
+        weekly_available_hours=10,
+        preferred_learning_style="project",
+    ):
+        """Generate API 테스트에서 사용하는 MVP 6개 질문 payload를 만든다.
+
+        모든 테스트가 같은 입력 계약을 공유해야 스키마 변경 시 누락을 빨리 발견할 수 있다.
+        ``concern``은 MVP 질문에서 제외되었으므로 helper에도 넣지 않는다.
+        """
+        return {
+            "goal": goal,
+            "purpose": purpose,
+            "difficulty_level": difficulty_level,
+            "target_weeks": target_weeks,
+            "weekly_available_hours": weekly_available_hours,
+            "preferred_learning_style": preferred_learning_style,
+        }
+
+    def _normalized_success_result(self):
+        """View 테스트에서 저장 service mock에 전달할 정규화 성공 응답을 만든다."""
+        return {
+            "status": "success",
+            "title": "Python roadmap",
+            "recommendation_reason": "학습 목표에 맞춘 추천입니다.",
+            "user_profile": {
+                "goal": "Python 배우기",
+                "target_weeks": 8,
+                "weekly_hours": 10,
+                "difficulty_level": "beginner",
+                "preferred_learning_style": "project",
+            },
+            "steps": [],
         }
 
 
