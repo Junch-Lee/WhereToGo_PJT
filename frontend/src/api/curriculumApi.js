@@ -88,3 +88,17 @@ export function createCurriculum(payload) {
     body: JSON.stringify(payload),
   });
 }
+
+/**
+ * AI Generate API로 MVP 질문 6개 답변을 전송해 커리큘럼 생성을 요청한다.
+ *
+ * 프론트는 AI 내부 raw_input(goal_text, level, period 등)을 직접 만들지 않는다.
+ * 백엔드 Generate Serializer가 검증과 raw_input 변환을 담당해야 API 계약이 한 곳에
+ * 모이고, 프론트 화면 표시용 label이 AI 입력 스키마와 섞이지 않는다.
+ */
+export function generateCurriculum(payload) {
+  return request('/api/curriculums/generate/', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
