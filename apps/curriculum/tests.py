@@ -26,6 +26,7 @@ from apps.curriculum.models import (
     ResourceTopic,
 )
 from apps.curriculum.services.agent_response_service import normalize_agent_response
+from apps.curriculum.services.curriculum_save_service import save_ai_generated_curriculum
 from apps.curriculum.services.topic_catalog_service import build_topic_catalog
 
 
@@ -181,6 +182,173 @@ class TopicCatalogServiceTest(APITestCase):
             "aliases",
         }
         self.assertEqual(set(by_slug["catalog-test-child"].keys()), required_keys)
+
+
+class AICurriculumSaveServiceTest(APITestCase):
+    """normalized AI 결과를 identifier 기반으로 저장하는 service를 검증한다."""
+
+    def setUp(self):
+        self.user = User.objects.create_user(
+            email="ai-save@example.com",
+            password="testpass123",
+            nickname="ai-save",
+            agree_terms=True,
+        )
+        self.topic = Topic.objects.create(
+            name="Python",
+            slug="python-ai-save",
+            depth=2,
+            topic_type=Topic.TopicType.SUBJECT,
+            is_active=True,
+        )
+        self.fallback_topic = Topic.objects.create(
+            name="Computer Science Basics",
+            slug="computer-science-basics",
+            depth=1,
+            topic_type=Topic.TopicType.DOMAIN,
+            is_active=True,
+        )
+        self.course = CurriculumCourse.objects.create(
+            course_name="Python Course",
+            source_row_number=10164,
+        )
+        self.resource = LearningResource.objects.create(
+            title="Python Resource",
+            lookup_key="resource-10164",
+        )
+
+    def test_save_success_ai_result_creates_curriculum_steps_and_links(self):
+        curriculum = save_ai_generated_curriculum(self.user, self._ai_result())
+
+        self.assertEqual(curriculum.user, self.user)
+        self.assertEqual(curriculum.title, "Python roadmap")
+        self.assertEqual(curriculum.goal, "Learn Python")
+        self.assertEqual(curriculum.target_weeks, 8)
+        self.assertEqual(curriculum.weekly_available_hours, 10)
+        self.assertEqual(curriculum.difficulty_level, "beginner")
+        self.assertEqual(curriculum.preferred_learning_style, "project")
+
+        step = CurriculumStep.objects.get(curriculum=curriculum)
+        self.assertEqual(step.step_order, 1)
+        self.assertEqual(step.target_topic, self.topic)
+
+        step_course = CurriculumStepCourse.objects.get(curriculum_step=step)
+        self.assertEqual(step_course.curriculum_course, self.course)
+
+        step_resource = CurriculumStepResource.objects.get(curriculum_step=step)
+        self.assertEqual(step_resource.learning_resource, self.resource)
+
+    def test_missing_identifier_targets_are_skipped_or_saved_as_null_topic(self):
+        ai_result = self._ai_result(
+            target_topic_slug="missing-topic",
+            course_source_row_numbers=[10164, 999999],
+            resource_external_ids=["resource-10164", "missing-resource"],
+        )
+
+        curriculum = save_ai_generated_curriculum(self.user, ai_result)
+        step = CurriculumStep.objects.get(curriculum=curriculum)
+
+        self.assertIsNone(step.target_topic)
+        self.assertEqual(CurriculumStepCourse.objects.filter(curriculum_step=step).count(), 1)
+        self.assertEqual(CurriculumStepResource.objects.filter(curriculum_step=step).count(), 1)
+
+    def test_computer_science_slug_uses_backend_fallback_mapping(self):
+        curriculum = save_ai_generated_curriculum(
+            self.user,
+            self._ai_result(target_topic_slug="computer-science"),
+        )
+
+        step = CurriculumStep.objects.get(curriculum=curriculum)
+        self.assertEqual(step.target_topic, self.fallback_topic)
+
+    def test_duplicate_course_and_resource_identifiers_are_linked_once(self):
+        curriculum = save_ai_generated_curriculum(
+            self.user,
+            self._ai_result(
+                course_source_row_numbers=[10164, 10164],
+                resource_external_ids=["resource-10164", "resource-10164"],
+            ),
+        )
+        step = CurriculumStep.objects.get(curriculum=curriculum)
+
+        self.assertEqual(CurriculumStepCourse.objects.filter(curriculum_step=step).count(), 1)
+        self.assertEqual(CurriculumStepResource.objects.filter(curriculum_step=step).count(), 1)
+
+    def test_non_success_status_does_not_save_curriculum(self):
+        with self.assertRaises(ValueError):
+            save_ai_generated_curriculum(
+                self.user,
+                {
+                    "status": "no_results",
+                    "message": "검색 결과가 부족합니다.",
+                },
+            )
+
+        self.assertEqual(Curriculum.objects.count(), 0)
+
+    def test_transaction_rolls_back_when_unexpected_error_occurs(self):
+        with self.assertRaises(Exception):
+            save_ai_generated_curriculum(
+                self.user,
+                self._ai_result(
+                    steps=[
+                        {
+                            "order": 1,
+                            "title": "First",
+                            "description": "First step",
+                            "target_topic_slug": "python-ai-save",
+                        },
+                        {
+                            "order": 1,
+                            "title": "Duplicate",
+                            "description": "Duplicate order",
+                            "target_topic_slug": "python-ai-save",
+                        },
+                    ],
+                ),
+            )
+
+        self.assertEqual(Curriculum.objects.count(), 0)
+        self.assertEqual(CurriculumStep.objects.count(), 0)
+
+    def _ai_result(
+        self,
+        target_topic_slug="python-ai-save",
+        course_source_row_numbers=None,
+        resource_external_ids=None,
+        steps=None,
+    ):
+        return {
+            "status": "success",
+            "title": "Python roadmap",
+            "recommendation_reason": "Python 학습 목표에 맞춘 추천입니다.",
+            "user_profile": {
+                "goal": "Learn Python",
+                "target_weeks": 8,
+                "weekly_hours": 10,
+                "difficulty_level": "beginner",
+                "preferred_learning_style": "project",
+            },
+            "steps": steps
+            if steps is not None
+            else [
+                {
+                    "order": 1,
+                    "title": "Python basics",
+                    "description": "Learn Python syntax.",
+                    "target_topic_slug": target_topic_slug,
+                    "difficulty_level": "beginner",
+                    "estimated_hours": 10,
+                    "prerequisite_note": "",
+                    "course_source_row_numbers": course_source_row_numbers
+                    if course_source_row_numbers is not None
+                    else [10164],
+                    "resource_external_ids": resource_external_ids
+                    if resource_external_ids is not None
+                    else ["resource-10164"],
+                }
+            ],
+        }
 
 
 class CurriculumListCreateAPITest(APITestCase):
