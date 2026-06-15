@@ -1,3 +1,4 @@
+import json
 import logging
 
 from django.db.models import Prefetch
@@ -14,11 +15,13 @@ from apps.accounts.models import Topic
 from apps.curriculum.models import (
     Curriculum,
     CurriculumCategory,
+    CurriculumCourse,
     CurriculumStep,
     CurriculumStepCourse,
     CurriculumStepProgress,
     CurriculumStepResource,
     LearningProgress,
+    LearningResource,
     LearningSchedule,
 )
 from apps.curriculum.services.curriculum_create_service import create_curriculum_for_user
@@ -36,11 +39,13 @@ from .serializers import (
 from apps.curriculum.models import (
     Curriculum,
     CurriculumCategory,
+    CurriculumCourse,
     CurriculumStep,
     CurriculumStepCourse,
     CurriculumStepProgress,
     CurriculumStepResource,
     LearningProgress,
+    LearningResource,
     LearningSchedule,
 )
 from apps.curriculum.services.curriculum_create_service import create_curriculum_for_user
@@ -55,6 +60,79 @@ from .serializers import (
 
 
 logger = logging.getLogger(__name__)
+
+
+def _apply_request_profile_to_generated_result(normalized_result, validated_data):
+    """사용자가 선택한 생성 조건을 미리보기 user_profile에 다시 반영한다.
+
+    AI가 내부 응답에서 ``target_weeks`` 같은 사용자 조건을 빠뜨리거나 기본값으로 되돌려도,
+    결과 페이지의 총 학습기간/예상 완료일은 실제 프론트 선택값을 기준으로 보여야 한다.
+    """
+    user_profile = dict(normalized_result.get("user_profile") or {})
+    for key in (
+        "goal",
+        "purpose",
+        "difficulty_level",
+        "target_weeks",
+        "weekly_available_hours",
+        "preferred_learning_style",
+    ):
+        if key in validated_data:
+            user_profile[key] = validated_data[key]
+
+    normalized_result["user_profile"] = user_profile
+    return normalized_result
+
+
+def _attach_preview_references(normalized_result):
+    """결과 페이지 미리보기용 추천 자료/강의 이름을 identifier에 붙인다.
+
+    AI는 저장 안정성을 위해 resource/course identifier만 반환한다. 하지만 결과 페이지에는
+    사용자가 읽을 수 있는 이름이 필요하므로, 저장 전 미리보기 응답에만 DB 표시 정보를 덧붙인다.
+    """
+    steps = normalized_result.get("steps") or []
+    resource_ids = {
+        external_id
+        for step in steps
+        for external_id in step.get("resource_external_ids", [])
+    }
+    course_row_numbers = {
+        row_number
+        for step in steps
+        for row_number in step.get("course_source_row_numbers", [])
+    }
+
+    resources_by_key = {
+        resource.lookup_key: resource
+        for resource in LearningResource.objects.filter(lookup_key__in=resource_ids)
+    }
+    courses_by_row_number = {
+        course.source_row_number: course
+        for course in CurriculumCourse.objects.filter(source_row_number__in=course_row_numbers)
+    }
+
+    for step in steps:
+        step["preview_resources"] = [
+            {
+                "external_id": external_id,
+                "title": resources_by_key[external_id].title,
+                "resource_type": resources_by_key[external_id].resource_type,
+                "provider_name": resources_by_key[external_id].provider_name,
+            }
+            for external_id in step.get("resource_external_ids", [])
+            if external_id in resources_by_key
+        ]
+        step["preview_courses"] = [
+            {
+                "source_row_number": row_number,
+                "course_name": courses_by_row_number[row_number].course_name,
+                "university_name": courses_by_row_number[row_number].university_name,
+            }
+            for row_number in step.get("course_source_row_numbers", [])
+            if row_number in courses_by_row_number
+        ]
+
+    return normalized_result
 
 
 @api_view(["GET"])
@@ -147,6 +225,12 @@ def generate_curriculum(request):
         catalog = build_topic_catalog()
         # run_agent는 AI graph 실행 지점이다. 개인정보가 섞일 수 있는 raw_input 전체는 로그에 남기지 않는다.
         agent_result = run_agent(raw_input, catalog)
+        # AI graph가 실제로 반환한 원본 결과를 그대로 확인하기 위한 개발용 로그다.
+        # 아래 normalized preview 로그와 비교하면 정규화 과정에서 어떤 값이 바뀌는지 볼 수 있다.
+        logger.warning(
+            "[AI_AGENT_RAW_RESULT] %s",
+            json.dumps(agent_result, ensure_ascii=False, default=str),
+        )
     except Exception:
         # TODO: 운영 단계에서는 AI timeout, vector search 실패 등 더 구체적인 예외로 좁히는 것이 좋다.
         logger.exception("AI curriculum generation failed.")
@@ -161,6 +245,12 @@ def generate_curriculum(request):
     try:
         # AI 내부 generation_status를 백엔드 API 계약 status로 변환한다.
         normalized_result = normalize_agent_response(agent_result)
+        if normalized_result.get("status") == "success":
+            normalized_result = _apply_request_profile_to_generated_result(
+                normalized_result,
+                serializer.validated_data,
+            )
+            normalized_result = _attach_preview_references(normalized_result)
     except ValueError:
         logger.exception("AI curriculum generation returned an unsupported status.")
         return Response(
@@ -173,16 +263,20 @@ def generate_curriculum(request):
 
     result_status = normalized_result["status"]
     if result_status == "success":
-        # success일 때만 저장한다. FK 조회와 transaction 처리는 저장 service가 담당한다.
-        curriculum = save_ai_generated_curriculum(request.user, normalized_result)
+        # 생성 직후에는 DB에 저장하지 않고 결과 페이지에서 보여줄 미리보기 데이터만 반환한다.
+        # FK 조회와 transaction 처리는 사용자가 저장 버튼을 누른 뒤 별도 저장 API에서 담당한다.
+        # 프론트의 CurriculumResult 페이지가 받는 값과 같은 payload를 확인할 수 있도록 로그에 남긴다.
+        logger.warning(
+            "[AI_GENERATED_CURRICULUM_PREVIEW] %s",
+            json.dumps(normalized_result, ensure_ascii=False, default=str),
+        )
         return Response(
             {
                 "status": "success",
-                "curriculum_id": curriculum.id,
                 "message": "커리큘럼 생성이 완료되었습니다.",
-                "curriculum": CurriculumDetailSerializer(curriculum).data,
+                "generated_curriculum": normalized_result,
             },
-            status=status.HTTP_201_CREATED,
+            status=status.HTTP_200_OK,
         )
 
     # 아래 status들은 저장 대상이 아니라 사용자 안내/추가 질문용 응답이다.
@@ -220,6 +314,58 @@ def generate_curriculum(request):
             "message": "AI 응답 상태를 해석할 수 없습니다.",
         },
         status=status.HTTP_502_BAD_GATEWAY,
+    )
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def save_generated_curriculum(request):
+    """AI 생성 결과를 사용자가 확정했을 때만 DB에 저장한다.
+
+    ``generate_curriculum``은 결과 페이지에서 렌더링할 미리보기 데이터만 반환한다.
+    이 view는 같은 normalized AI 결과를 받아 기존 저장 서비스에 위임하므로,
+    생성 완료 페이지의 버튼을 누르기 전까지는 Curriculum/Step row가 생기지 않는다.
+    """
+    generated_curriculum = request.data.get("generated_curriculum")
+
+    if not isinstance(generated_curriculum, dict):
+        return Response(
+            {
+                "status": "error",
+                "message": "저장할 커리큘럼 생성 결과가 필요합니다.",
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    if generated_curriculum.get("status") != "success":
+        return Response(
+            {
+                "status": "error",
+                "message": "성공적으로 생성된 커리큘럼만 저장할 수 있습니다.",
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    try:
+        curriculum = save_ai_generated_curriculum(request.user, generated_curriculum)
+    except ValueError as exc:
+        logger.warning("Invalid generated curriculum save request: %s", exc)
+        return Response(
+            {
+                "status": "error",
+                "message": "저장할 수 없는 커리큘럼 생성 결과입니다.",
+            },
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    return Response(
+        {
+            "status": "success",
+            "curriculum_id": curriculum.id,
+            "message": "커리큘럼이 저장되었습니다.",
+            "curriculum": CurriculumDetailSerializer(curriculum).data,
+        },
+        status=status.HTTP_201_CREATED,
     )
 
 

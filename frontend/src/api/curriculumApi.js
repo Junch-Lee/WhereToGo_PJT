@@ -102,3 +102,14 @@ export function generateCurriculum(payload) {
     body: JSON.stringify(payload),
   });
 }
+
+/**
+ * 생성 완료 페이지에서 사용자가 확정한 AI 커리큘럼 미리보기를 실제 Curriculum row로 저장한다.
+ * Generate API는 미리보기만 반환하므로 이 함수가 호출되기 전까지는 DB에 저장되지 않는다.
+ */
+export function saveGeneratedCurriculum(generatedCurriculum) {
+  return request('/api/curriculums/save-generated/', {
+    method: 'POST',
+    body: JSON.stringify({ generated_curriculum: generatedCurriculum }),
+  });
+}

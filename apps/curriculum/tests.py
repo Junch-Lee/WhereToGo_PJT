@@ -241,6 +241,22 @@ class AICurriculumSaveServiceTest(APITestCase):
         step_resource = CurriculumStepResource.objects.get(curriculum_step=step)
         self.assertEqual(step_resource.learning_resource, self.resource)
 
+    def test_save_success_ai_result_accepts_weekly_available_hours_key(self):
+        """AI가 새 user_profile key로 반환한 주간 학습 시간을 그대로 저장하는지 검증한다.
+
+        실제 Generate API의 ``to_raw_input()``과 최신 AI user_profile은 백엔드 필드명인
+        ``weekly_available_hours``를 사용한다. 저장 service가 과거 key인 ``weekly_hours``만
+        읽으면 사용자가 10시간을 선택해도 기본값 7시간으로 저장되는 통합 버그가 생기므로,
+        새 key를 우선 처리하는 계약을 테스트로 고정한다.
+        """
+        ai_result = self._ai_result()
+        ai_result["user_profile"].pop("weekly_hours")
+        ai_result["user_profile"]["weekly_available_hours"] = 10
+
+        curriculum = save_ai_generated_curriculum(self.user, ai_result)
+
+        self.assertEqual(curriculum.weekly_available_hours, 10)
+
     def test_missing_identifier_targets_are_skipped_or_saved_as_null_topic(self):
         """존재하지 않는 AI identifier가 있어도 저장 흐름이 중단되지 않는지 검증한다.
 
@@ -488,28 +504,23 @@ class CurriculumGenerateAPITest(APITestCase):
     @patch("apps.curriculum.views.normalize_agent_response")
     @patch("apps.curriculum.views.run_agent")
     @patch("apps.curriculum.views.build_topic_catalog")
-    def test_generate_curriculum_success_saves_normalized_result(
+    def test_generate_curriculum_success_returns_preview_without_saving(
         self,
         build_topic_catalog_mock,
         run_agent_mock,
         normalize_agent_response_mock,
         save_ai_generated_curriculum_mock,
     ):
-        """success 흐름에서 View가 PR1~PR3 서비스를 올바른 순서로 호출하는지 검증한다.
+        """success 흐름에서 View가 저장 없이 미리보기 결과를 반환하는지 검증한다.
 
         실제 ``run_agent``는 OpenAI, vector search 같은 외부 의존성을 가질 수 있으므로
         mock 처리한다. 이 테스트의 목적은 AI 품질이나 저장 service 내부 로직이 아니라,
         Generate API가 검증된 raw_input과 topic catalog를 AI에 넘기고, 정규화된 success
-        결과만 저장 service로 전달하는 orchestration 경계 검증이다.
+        결과를 결과 페이지용 미리보기 데이터로 반환하는 orchestration 경계 검증이다.
         """
         catalog = [{"slug": "python", "name": "Python"}]
         agent_result = {"generation_status": "generated"}
         normalized_result = self._normalized_success_result()
-        saved_curriculum = Curriculum.objects.create(
-            user=self.user,
-            title="Python roadmap",
-            goal="Python 배우기",
-        )
         # build_topic_catalog는 PR1에서 별도 검증했으므로 여기서는 반환 catalog를 고정한다.
         # 그래야 View가 catalog를 만든 뒤 run_agent의 두 번째 인자로 넘기는지만 확인할 수 있다.
         build_topic_catalog_mock.return_value = catalog
@@ -519,9 +530,7 @@ class CurriculumGenerateAPITest(APITestCase):
         # normalize_agent_response는 PR1 service 테스트가 담당한다.
         # 여기서는 View가 AI 내부 결과를 정규화 service에 넘기는지만 확인한다.
         normalize_agent_response_mock.return_value = normalized_result
-        # save_ai_generated_curriculum은 PR2에서 저장 세부 동작을 검증했다.
-        # API 테스트에서는 DB 저장 로직을 반복하지 않고 호출 여부와 응답 조립만 확인한다.
-        save_ai_generated_curriculum_mock.return_value = saved_curriculum
+        # Generate API는 이제 저장하지 않고 결과 페이지에서 사용할 미리보기 payload만 반환한다.
 
         response = self.client.post(
             self.url,
@@ -529,9 +538,9 @@ class CurriculumGenerateAPITest(APITestCase):
             format="json",
         )
 
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["status"], "success")
-        self.assertEqual(response.data["curriculum_id"], saved_curriculum.id)
+        self.assertEqual(response.data["generated_curriculum"], normalized_result)
         build_topic_catalog_mock.assert_called_once_with()
         run_agent_mock.assert_called_once_with(
             {
@@ -546,10 +555,7 @@ class CurriculumGenerateAPITest(APITestCase):
             catalog,
         )
         normalize_agent_response_mock.assert_called_once_with(agent_result)
-        save_ai_generated_curriculum_mock.assert_called_once_with(
-            self.user,
-            normalized_result,
-        )
+        save_ai_generated_curriculum_mock.assert_not_called()
 
     @patch("apps.curriculum.views.save_ai_generated_curriculum")
     @patch("apps.curriculum.views.normalize_agent_response")
@@ -568,15 +574,9 @@ class CurriculumGenerateAPITest(APITestCase):
         ``run_agent``에 들어가는지 확인한다. 이중 검증을 두는 이유는 View가 실수로
         ``request.data``나 ``validated_data``를 직접 넘기도록 바뀌는 회귀를 잡기 위해서다.
         """
-        saved_curriculum = Curriculum.objects.create(
-            user=self.user,
-            title="Django roadmap",
-            goal="Django 배우기",
-        )
         build_topic_catalog_mock.return_value = []
         run_agent_mock.return_value = {"generation_status": "generated"}
         normalize_agent_response_mock.return_value = self._normalized_success_result()
-        save_ai_generated_curriculum_mock.return_value = saved_curriculum
 
         response = self.client.post(
             self.url,
@@ -591,7 +591,7 @@ class CurriculumGenerateAPITest(APITestCase):
             format="json",
         )
 
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
         raw_input = run_agent_mock.call_args.args[0]
         self.assertEqual(raw_input["goal_text"], "Django 배우기")
         self.assertEqual(raw_input["purpose"], "job")
@@ -600,6 +600,88 @@ class CurriculumGenerateAPITest(APITestCase):
         self.assertEqual(raw_input["level"], "intermediate")
         self.assertEqual(raw_input["learning_style"], "balanced")
         self.assertEqual(raw_input["concern"], "")
+        save_ai_generated_curriculum_mock.assert_not_called()
+
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_preview_uses_requested_target_weeks(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+    ):
+        """1/2/3/6개월 선택값이 AI 기본값에 덮이지 않고 미리보기 기간에 반영되는지 검증한다."""
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.return_value = {"generation_status": "generated"}
+
+        for target_weeks in [4, 8, 12, 24]:
+            with self.subTest(target_weeks=target_weeks):
+                ai_result = self._normalized_success_result()
+                ai_result["user_profile"]["target_weeks"] = 8
+                normalize_agent_response_mock.return_value = ai_result
+
+                response = self.client.post(
+                    self.url,
+                    self._mvp_payload(target_weeks=target_weeks),
+                    format="json",
+                )
+
+                self.assertEqual(response.status_code, status.HTTP_200_OK)
+                self.assertEqual(
+                    response.data["generated_curriculum"]["user_profile"]["target_weeks"],
+                    target_weeks,
+                )
+
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_preview_includes_reference_names(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+    ):
+        """AI identifier에 매칭되는 자료/강의 이름을 결과 페이지 미리보기에 붙인다."""
+        LearningResource.objects.create(
+            lookup_key="resource-python-docs",
+            title="Python 공식 문서",
+            resource_type="document",
+            provider_name="Python",
+        )
+        CurriculumCourse.objects.create(
+            source_row_number=10164,
+            course_name="Python 프로그래밍 입문",
+            university_name="Where To Go University",
+        )
+        ai_result = self._normalized_success_result()
+        ai_result["steps"] = [
+            {
+                "order": 1,
+                "title": "Python 기초",
+                "description": "Python 문법을 학습합니다.",
+                "target_topic_slug": "python",
+                "difficulty_level": "beginner",
+                "estimated_hours": 8,
+                "prerequisite_note": "",
+                "course_source_row_numbers": [10164],
+                "resource_external_ids": ["resource-python-docs"],
+            }
+        ]
+        build_topic_catalog_mock.return_value = []
+        run_agent_mock.return_value = {"generation_status": "generated"}
+        normalize_agent_response_mock.return_value = ai_result
+
+        response = self.client.post(
+            self.url,
+            self._mvp_payload(),
+            format="json",
+        )
+
+        step = response.data["generated_curriculum"]["steps"][0]
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(step["preview_resources"][0]["title"], "Python 공식 문서")
+        self.assertEqual(step["preview_courses"][0]["course_name"], "Python 프로그래밍 입문")
 
     @patch("apps.curriculum.views.save_ai_generated_curriculum")
     @patch("apps.curriculum.views.normalize_agent_response")
@@ -806,6 +888,50 @@ class CurriculumGenerateAPITest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("preferred_learning_style", response.data)
+
+    @patch("apps.curriculum.views.save_ai_generated_curriculum")
+    def test_save_generated_curriculum_persists_preview_result(
+        self,
+        save_ai_generated_curriculum_mock,
+    ):
+        """결과 페이지에서 확정한 미리보기 결과만 저장 service로 전달하는지 검증한다."""
+        normalized_result = self._normalized_success_result()
+        saved_curriculum = Curriculum.objects.create(
+            user=self.user,
+            title="Python roadmap",
+            goal="Python 배우기",
+        )
+        save_ai_generated_curriculum_mock.return_value = saved_curriculum
+
+        response = self.client.post(
+            "/api/curriculums/save-generated/",
+            {"generated_curriculum": normalized_result},
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data["status"], "success")
+        self.assertEqual(response.data["curriculum_id"], saved_curriculum.id)
+        save_ai_generated_curriculum_mock.assert_called_once_with(
+            self.user,
+            normalized_result,
+        )
+
+    def test_save_generated_curriculum_rejects_non_success_preview(self):
+        """success가 아닌 생성 결과는 저장 버튼 API에서도 DB에 남기지 않는다."""
+        response = self.client.post(
+            "/api/curriculums/save-generated/",
+            {
+                "generated_curriculum": {
+                    "status": "no_results",
+                    "message": "검색 결과가 부족합니다.",
+                }
+            },
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(Curriculum.objects.count(), 0)
 
     def _mvp_payload(
         self,

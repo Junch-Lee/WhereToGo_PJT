@@ -158,7 +158,14 @@ def save_ai_generated_curriculum(user, ai_result: dict):
         goal=_clean_text(user_profile.get("goal")),
         status=Curriculum.Status.DRAFT,
         target_weeks=_as_int(user_profile.get("target_weeks"), default=8),
-        weekly_available_hours=_as_int(user_profile.get("weekly_hours"), default=7),
+        # PR3 이후 Generate API와 AI user_profile은 백엔드 저장 필드명에 맞춘
+        # weekly_available_hours를 우선 사용한다. 다만 이전 AI 계약이나 기존 테스트
+        # 데이터는 weekly_hours를 담을 수 있으므로, 실제 통합에서 학습 시간이 7시간
+        # 기본값으로 밀리는 회귀를 막기 위해 새 키를 먼저 보고 옛 키를 fallback으로 둔다.
+        weekly_available_hours=_as_int(
+            user_profile.get("weekly_available_hours", user_profile.get("weekly_hours")),
+            default=7,
+        ),
         difficulty_level=_clean_text(user_profile.get("difficulty_level")) or "beginner",
         preferred_learning_style=_clean_text(user_profile.get("preferred_learning_style")) or "balanced",
         recommendation_reason=_clean_text(ai_result.get("recommendation_reason")),
