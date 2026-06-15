@@ -620,10 +620,16 @@ const handleGenerateCurriculum = async () => {
     const response = await generateCurriculum(buildGeneratePayload());
 
     if (response.status === 'success') {
-      const curriculumId = response.curriculum_id || response.curriculum?.id;
+      const generatedCurriculum = response.generated_curriculum;
 
-      if (curriculumId) {
-        router.push(`/curriculum/${curriculumId}`);
+      if (generatedCurriculum) {
+        /**
+         * Generate API는 저장하지 않은 미리보기 결과만 반환한다.
+         * 결과 페이지가 이 데이터를 렌더링하고, 저장 버튼 클릭 시 별도 저장 API를 호출한다.
+         */
+        sessionStorage.removeItem('generated_curriculum_id');
+        sessionStorage.setItem('generated_curriculum_response', JSON.stringify(response));
+        router.push('/curriculum/result');
         return;
       }
 
