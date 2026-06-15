@@ -25,9 +25,162 @@ from apps.curriculum.models import (
     LearningSchedule,
     ResourceTopic,
 )
+from apps.curriculum.services.agent_response_service import normalize_agent_response
+from apps.curriculum.services.topic_catalog_service import build_topic_catalog
 
 
 User = get_user_model()
+
+
+class AgentResponseServiceTest(APITestCase):
+    """AI Agent 내부 결과를 백엔드 계약 schema로 바꾸는 순수 service를 검증한다."""
+
+    def test_generated_status_is_normalized_to_success(self):
+        result = normalize_agent_response(
+            {
+                "generation_status": "generated",
+                "user_profile": {
+                    "goal": "Python",
+                    "target_weeks": 8,
+                },
+                "curriculum": {
+                    "title": "Python roadmap",
+                    "recommendation_reason": "Matched Python resources.",
+                    "steps": [
+                        {
+                            "step_order": 1,
+                            "title": "Python basics",
+                            "description": "Learn syntax.",
+                            "target_topic_slug": "python",
+                            "difficulty_level": "beginner",
+                            "estimated_hours": 5,
+                            "prerequisite_note": "",
+                            "course_source_row_numbers": [10164],
+                            "resource_external_ids": ["resource-1"],
+                        }
+                    ],
+                },
+            }
+        )
+
+        self.assertEqual(result["status"], "success")
+        self.assertEqual(result["title"], "Python roadmap")
+        self.assertEqual(result["steps"][0]["order"], 1)
+        self.assertEqual(result["steps"][0]["target_topic_slug"], "python")
+        self.assertEqual(result["steps"][0]["course_source_row_numbers"], [10164])
+        self.assertEqual(result["steps"][0]["resource_external_ids"], ["resource-1"])
+
+    def test_insufficient_search_results_status_is_normalized_to_no_results(self):
+        result = normalize_agent_response(
+            {
+                "generation_status": "insufficient_search_results",
+                "message": "검색 결과가 부족합니다.",
+            }
+        )
+
+        self.assertEqual(result["status"], "no_results")
+        self.assertEqual(result["message"], "검색 결과가 부족합니다.")
+
+    def test_out_of_scope_status_is_preserved(self):
+        result = normalize_agent_response(
+            {
+                "generation_status": "out_of_scope",
+                "message": "컴퓨터공학 분야만 지원합니다.",
+                "topic_analysis": {
+                    "needs_clarification": True,
+                    "clarification_question": "컴퓨터공학 목표를 입력해 주세요.",
+                },
+            }
+        )
+
+        self.assertEqual(result["status"], "out_of_scope")
+        self.assertEqual(result["message"], "컴퓨터공학 분야만 지원합니다.")
+
+    def test_needs_clarification_is_detected_from_topic_analysis(self):
+        result = normalize_agent_response(
+            {
+                "topic_analysis": {
+                    "needs_clarification": True,
+                    "clarification_question": "어떤 주제를 배우고 싶나요?",
+                },
+            }
+        )
+
+        self.assertEqual(result["status"], "needs_clarification")
+        self.assertEqual(result["clarification_question"], "어떤 주제를 배우고 싶나요?")
+
+    def test_unknown_generation_status_raises_value_error(self):
+        with self.assertRaises(ValueError):
+            normalize_agent_response({"generation_status": "unexpected"})
+
+
+class TopicCatalogServiceTest(APITestCase):
+    """Topic/TopicAlias ORM 데이터를 AI Agent catalog dict로 변환하는 service를 검증한다."""
+
+    def test_build_topic_catalog_returns_active_topics_with_parent_and_aliases(self):
+        parent = Topic.objects.create(
+            name="Catalog Test Parent",
+            slug="catalog-test-parent",
+            depth=1,
+            topic_type=Topic.TopicType.DOMAIN,
+            is_learning_unit=False,
+            is_assessable=False,
+            is_active=True,
+        )
+        child = Topic.objects.create(
+            name="Catalog Test Child",
+            slug="catalog-test-child",
+            parent_topic=parent,
+            depth=2,
+            topic_type=Topic.TopicType.SUBJECT,
+            is_learning_unit=True,
+            is_assessable=True,
+            is_active=True,
+        )
+        Topic.objects.create(
+            name="Inactive",
+            slug="inactive-topic",
+            depth=2,
+            topic_type=Topic.TopicType.SUBJECT,
+            is_active=False,
+        )
+        TopicAlias.objects.create(
+            topic=child,
+            alias_name="파이썬",
+            match_policy="contains",
+        )
+        TopicAlias.objects.create(
+            topic=child,
+            alias_name="Python Programming",
+            match_policy="normalized_exact",
+        )
+
+        catalog = build_topic_catalog()
+        by_slug = {item["slug"]: item for item in catalog}
+
+        self.assertIn("catalog-test-parent", by_slug)
+        self.assertIn("catalog-test-child", by_slug)
+        self.assertNotIn("inactive-topic", by_slug)
+        self.assertEqual(by_slug["catalog-test-child"]["parent_slug"], "catalog-test-parent")
+        self.assertCountEqual(
+            by_slug["catalog-test-child"]["aliases"],
+            ["파이썬", "Python Programming"],
+        )
+        self.assertIsInstance(by_slug["catalog-test-child"]["aliases"], list)
+        self.assertIsNone(by_slug["catalog-test-parent"]["parent_slug"])
+
+        required_keys = {
+            "id",
+            "slug",
+            "name",
+            "parent_slug",
+            "depth",
+            "topic_type",
+            "is_learning_unit",
+            "is_assessable",
+            "aliases",
+        }
+        self.assertEqual(set(by_slug["catalog-test-child"].keys()), required_keys)
 
 
 class CurriculumListCreateAPITest(APITestCase):
