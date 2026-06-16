@@ -129,3 +129,103 @@ class CurriculumLearningAPITest(APITestCase):
         response = self._start()
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_pause_active_curriculum_pauses_current_progress(self):
+        self._start()
+
+        response = self.client.post(self._url("pause"), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.curriculum.refresh_from_db()
+        step_progress = CurriculumStepProgress.objects.get()
+        learning_progress = LearningProgress.objects.get()
+        self.assertEqual(self.curriculum.status, Curriculum.Status.PAUSED)
+        self.assertEqual(step_progress.status, CurriculumStepProgress.Status.PAUSED)
+        self.assertEqual(learning_progress.status, LearningProgress.Status.PAUSED)
+
+    def test_pause_does_not_create_or_modify_future_step_schedule(self):
+        self._start()
+
+        response = self.client.post(self._url("pause"), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(LearningSchedule.objects.count(), 1)
+        self.assertFalse(
+            LearningSchedule.objects.filter(curriculum_step=self.second_step).exists()
+        )
+
+    def test_pause_not_started_curriculum_returns_400(self):
+        self._login()
+
+        response = self.client.post(self._url("pause"), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_complete_current_step_sets_progress_percent_to_100(self):
+        self._start()
+
+        response = self.client.post(self._url("complete"), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        progress = LearningProgress.objects.get()
+        self.assertEqual(progress.progress_rate, 100)
+        self.assertEqual(response.data["progress_percent"], 100)
+
+    def test_complete_current_step_marks_schedule_done(self):
+        self._start()
+
+        response = self.client.post(self._url("complete"), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(LearningSchedule.objects.get().status, LearningSchedule.Status.DONE)
+
+    def test_complete_all_steps_marks_curriculum_completed(self):
+        self._start()
+        self.client.post(self._url("complete"), {}, format="json")
+        self.client.post(self._url("start"), {}, format="json")
+
+        response = self.client.post(self._url("complete"), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.curriculum.refresh_from_db()
+        self.assertEqual(self.curriculum.status, Curriculum.Status.COMPLETED)
+        self.assertFalse(response.data["next_step_exists"])
+
+    def test_other_users_curriculum_returns_404(self):
+        other_curriculum = Curriculum.objects.create(
+            user=self.other_user,
+            title="Other roadmap",
+            goal="Other goal",
+        )
+        self._login()
+
+        response = self.client.post(self._url("start", other_curriculum), {}, format="json")
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_unauthenticated_user_cannot_access_learning_api(self):
+        response = self.client.post(self._url("start"), {}, format="json")
+
+        self.assertIn(
+            response.status_code,
+            [status.HTTP_401_UNAUTHORIZED, status.HTTP_403_FORBIDDEN],
+        )
+
+    def test_start_is_atomic_when_progress_creation_fails(self):
+        def raise_after_schedule(*args, **kwargs):
+            raise RuntimeError("boom")
+
+        with self.assertRaises(RuntimeError):
+            with patch(
+                "apps.curriculum.services.curriculum_learning_service.get_or_create_learning_progress",
+                side_effect=raise_after_schedule,
+            ):
+                start_curriculum_learning(
+                    self.curriculum,
+                    self.user,
+                    scheduled_date=date(2026, 6, 16),
+                )
+
+        self.assertEqual(LearningSchedule.objects.count(), 0)
+        self.assertEqual(LearningProgress.objects.count(), 0)
+        self.assertEqual(CurriculumStepProgress.objects.count(), 0)
