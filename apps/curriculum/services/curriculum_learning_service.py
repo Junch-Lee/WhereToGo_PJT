@@ -188,3 +188,103 @@ def _has_next_pending_step(curriculum):
             ).values("curriculum_step_id")
         )
         .exists()
+    )
+
+
+def _build_learning_response(curriculum, step=None, schedule=None, progress=None):
+    step_progress = progress.step_progress if progress else None
+    current_step = step or (step_progress.curriculum_step if step_progress else None)
+
+    return {
+        "curriculum_id": curriculum.id,
+        "curriculum_status": curriculum.status,
+        "current_step_id": current_step.id if current_step else None,
+        "current_step_title": current_step.title if current_step else "",
+        "learning_schedule_id": schedule.id if schedule else None,
+        "learning_progress_id": progress.id if progress else None,
+        "progress_status": progress.status if progress else "",
+        "progress_percent": progress.progress_rate if progress else 0,
+        "started_at": progress.started_at if progress else curriculum.started_at,
+        "paused_at": step_progress.paused_at if step_progress else curriculum.paused_at,
+        "completed_at": progress.completed_at if progress else curriculum.completed_at,
+        "next_step_exists": _has_next_pending_step(curriculum),
+    }
+
+
+@transaction.atomic
+def start_curriculum_learning(curriculum, user, scheduled_date=None):
+    """커리큘럼의 현재 또는 다음 미진행 step 학습을 시작한다.
+
+    이 함수는 학습 시작 버튼의 단일 진입점이다. 커리큘럼 전체 step에 대한
+    schedule을 한 번에 만들지 않고, 지금 시작할 step 하나에 대해서만
+    schedule/progress를 만든다.
+    """
+    validate_curriculum_owner(curriculum, user)
+    curriculum = Curriculum.objects.select_for_update().get(id=curriculum.id)
+
+    if curriculum.status == Curriculum.Status.COMPLETED:
+        raise CurriculumLearningError("Completed curriculum cannot be started.")
+
+    now = timezone.now()
+    current_progress = get_current_progress(curriculum, user)
+    if current_progress and curriculum.status in [
+        Curriculum.Status.ACTIVE,
+        Curriculum.Status.PAUSED,
+    ]:
+        current_progress.status = CurriculumStepProgress.Status.IN_PROGRESS
+        current_progress.resumed_at = now
+        if not current_progress.started_at:
+            current_progress.started_at = now
+        current_progress.save(
+            update_fields=["status", "resumed_at", "started_at", "updated_at"]
+        )
+        schedule = get_or_create_learning_schedule(current_progress, scheduled_date)
+        progress = get_or_create_learning_progress(current_progress, schedule)
+        curriculum.status = Curriculum.Status.ACTIVE
+        curriculum.current_step = current_progress.curriculum_step
+        if not curriculum.started_at:
+            curriculum.started_at = now
+        curriculum.paused_at = None
+        curriculum.save(
+            update_fields=[
+                "status",
+                "current_step",
+                "started_at",
+                "paused_at",
+                "updated_at",
+            ]
+        )
+        return _build_learning_response(
+            curriculum,
+            current_progress.curriculum_step,
+            schedule,
+            progress,
+        )
+
+    next_step = get_next_pending_step(curriculum, user)
+    if not next_step:
+        curriculum.status = Curriculum.Status.COMPLETED
+        curriculum.completed_at = curriculum.completed_at or now
+        curriculum.save(update_fields=["status", "completed_at", "updated_at"])
+        return _build_learning_response(curriculum)
+
+    step_progress = _get_or_create_step_progress(curriculum, next_step)
+    step_progress.status = CurriculumStepProgress.Status.IN_PROGRESS
+    if not step_progress.started_at:
+        step_progress.started_at = now
+    step_progress.save(update_fields=["status", "started_at", "updated_at"])
+
+    schedule = get_or_create_learning_schedule(step_progress, scheduled_date)
+    progress = get_or_create_learning_progress(step_progress, schedule)
+
+    curriculum.status = Curriculum.Status.ACTIVE
+    curriculum.current_step = next_step
+    if not curriculum.started_at:
+        curriculum.started_at = now
+    curriculum.paused_at = None
+    curriculum.save(
+        update_fields=[
+            "status",
+            "current_step",
+            "started_at",
+            "paused_at",
