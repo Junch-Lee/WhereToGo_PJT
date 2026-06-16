@@ -77,6 +77,106 @@ class CurriculumCreateSerializer(serializers.Serializer):
     )
 
 
+class CurriculumGenerateSerializer(serializers.Serializer):
+    """MVP 최종 질문 6개로 AI 커리큘럼 생성 요청을 검증한다.
+
+    이 serializer는 ``POST /api/curriculums/generate/`` 전용 입력 계약이다. 기존
+    ``CurriculumCreateSerializer``는 rule-based 커리큘럼 생성 API의 저장용 입력을
+    검증하고, 이 serializer는 AI Agent 실행 전에 프론트의 MVP 질문 응답을 검증한다.
+
+    API 입력 필드명은 백엔드 저장 모델과 프론트 질문지에 가까운 ``goal``,
+    ``difficulty_level``, ``target_weeks`` 같은 이름을 사용한다. 반면 AI Agent의 입력
+    분석 노드는 기존 계약 때문에 ``goal_text``, ``level``, ``period`` 같은 key를
+    기대한다. 그래서 View가 request body를 그대로 넘기지 않고, 이 serializer가 검증한
+    값만 ``to_raw_input()``에서 명시적으로 변환한다.
+
+    MVP에서는 사용자의 걱정거리(Q7)를 질문하지 않기로 했으므로 ``concern``은 API 입력
+    스키마에서 제외한다. 다만 현재 AI 입력 분석 노드가 ``concern`` key를 참조할 수 있어
+    ``to_raw_input()``에서 사용자 입력이 아닌 빈 문자열을 호환 값으로만 넣는다.
+    """
+
+    # Choice 값은 프론트 분기형 질문의 내부 값과 백엔드 검증 기준을 맞추기 위한 계약이다.
+    # 표시 문구는 UI label이고, 실제 저장/AI 전달에는 왼쪽 내부 값만 사용한다.
+    PURPOSE_CHOICES = [
+        ("job", "취업·이직"),
+        ("portfolio", "포트폴리오"),
+        ("concept", "개념 이해"),
+        ("certificate", "자격증"),
+        ("etc", "기타"),
+    ]
+    DIFFICULTY_LEVEL_CHOICES = [
+        ("beginner", "완전 입문"),
+        ("intermediate", "기초 있음"),
+        ("advanced", "실무/심화 경험"),
+    ]
+    TARGET_WEEKS_CHOICES = [
+        (4, "1개월"),
+        (8, "2개월"),
+        (12, "3개월"),
+        (24, "6개월"),
+    ]
+    # MVP 질문에서 "10~15h"는 하나의 선택지지만 저장 값은 보수적으로 10을 사용한다.
+    # 실제 학습 가능 시간을 과대 추정하면 커리큘럼이 빡빡해질 수 있어서 하한에 맞춘다.
+    # "20h+" 역시 상한을 알 수 없으므로 MVP에서는 대표값 20으로 고정한다.
+    WEEKLY_AVAILABLE_HOURS_CHOICES = [
+        (5, "~5h"),
+        (7, "7h"),
+        (10, "10~15h"),
+        (20, "20h+"),
+    ]
+    PREFERRED_LEARNING_STYLE_CHOICES = [
+        ("lecture", "강의 중심"),
+        ("project", "프로젝트 중심"),
+        ("balanced", "균형"),
+    ]
+
+    goal = serializers.CharField(required=True, allow_blank=False)
+    purpose = serializers.ChoiceField(required=True, choices=PURPOSE_CHOICES)
+    difficulty_level = serializers.ChoiceField(
+        required=True,
+        choices=DIFFICULTY_LEVEL_CHOICES,
+    )
+    target_weeks = serializers.ChoiceField(required=True, choices=TARGET_WEEKS_CHOICES)
+    weekly_available_hours = serializers.ChoiceField(
+        required=True,
+        choices=WEEKLY_AVAILABLE_HOURS_CHOICES,
+    )
+    preferred_learning_style = serializers.ChoiceField(
+        required=True,
+        choices=PREFERRED_LEARNING_STYLE_CHOICES,
+    )
+
+    def to_raw_input(self) -> dict:
+        """검증된 MVP 질문 응답을 AI Agent가 기대하는 raw_input dict로 변환한다.
+
+        request.data에는 클라이언트가 보낸 임의 key나 미검증 값이 섞일 수 있으므로 AI에
+        직접 넘기지 않는다. ``serializer.validated_data`` 역시 백엔드/API 필드명 기준이라
+        AI 입력 분석 노드가 기대하는 key와 다르다. 따라서 이 메서드에서 필드별 의미를
+        드러내며 변환한다.
+
+        매핑 의미:
+            - ``goal``은 사용자의 학습 목표이므로 AI의 ``goal_text``가 된다.
+            - ``difficulty_level``은 현재 수준이며 AI의 ``level``로 전달한다.
+            - ``target_weeks``는 학습 가능 기간 선택값이며 AI의 ``period``로 전달한다.
+            - ``weekly_available_hours``는 주간 가능 시간이며 AI의 ``weekly_hours``가 된다.
+            - ``preferred_learning_style``은 선호 방식이며 AI의 ``learning_style``로 전달한다.
+
+        Q7 ``concern``은 MVP에서 제외되었다. 다만 기존 AI normalizer/입력 분석 로직이
+        ``concern`` key 존재를 전제로 할 수 있으므로, 사용자 입력이 아닌 빈 문자열을
+        호환성 값으로만 넣는다.
+        """
+        data = self.validated_data
+        return {
+            "goal_text": data["goal"],
+            "purpose": data["purpose"],
+            "level": data["difficulty_level"],
+            "period": data["target_weeks"],
+            "weekly_hours": data["weekly_available_hours"],
+            "learning_style": data["preferred_learning_style"],
+            "concern": "",
+        }
+
+
 class CurriculumListSerializer(serializers.ModelSerializer):
     """
     GET /api/curriculums/ 목록 응답을 위한 가벼운 serializer다.

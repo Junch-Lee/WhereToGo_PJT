@@ -1,9 +1,7 @@
 <template>
-  <LandingPage v-if="!isLoggedIn" />
-
-  <div v-else class="home-page">
+  <div class="summary-page">
     <aside
-      class="home-sidebar"
+      class="summary-sidebar"
       :class="{ 'is-open': sidebarOpen }"
       @click.stop
     >
@@ -92,9 +90,9 @@
                   <p>{{ item.title }}</p>
 
                   <div class="curriculum-meta">
-                    <span class="progress-track">
+                    <span class="sidebar-progress-track">
                       <span
-                        class="progress-fill"
+                        class="sidebar-progress-fill"
                         :style="{ width: `${item.progress}%` }"
                       ></span>
                     </span>
@@ -119,7 +117,9 @@
               >
                 <div class="curriculum-main">
                   <p>{{ item.title }}</p>
-                  <span class="completed-date">{{ item.statusLabel }} · {{ item.updated }}</span>
+                  <span class="completed-date">
+                    {{ item.statusLabel }} · {{ item.updated }}
+                  </span>
                 </div>
 
                 <span class="chevron">›</span>
@@ -152,8 +152,8 @@
       @click="closeSidebar"
     ></div>
 
-    <div class="home-main">
-      <header class="home-header">
+    <div class="summary-main">
+      <header class="summary-header">
         <button
           type="button"
           class="logo-menu-button"
@@ -182,66 +182,158 @@
           </span>
         </button>
 
-        <h1>AI 학습 코치</h1>
+        <h1>학습 정보 확인</h1>
       </header>
 
-      <main class="home-content">
-        <section class="hero-section">
-          <div class="hero-icon">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
-                fill="currentColor"
-              />
-              <path
-                d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
+      <main class="summary-content">
+        <div class="summary-container">
+          <section class="summary-hero">
+            <div class="summary-check-icon">
+              <svg viewBox="0 0 24 24" class="icon-large">
+                <path
+                  d="M9 12l2 2 4-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                />
+              </svg>
+            </div>
 
-          <h2>무엇을 배우고 싶으신가요?</h2>
+            <h2>학습 정보를 확인해주세요</h2>
 
-          <p>
-            AI 교육 컨설턴트와 상담하며 나만의 맞춤 커리큘럼을 만들어보세요.
-          </p>
+            <p>
+              AI가 아래 정보를 바탕으로 맞춤형 커리큘럼을 생성합니다.
+            </p>
+          </section>
 
-          <div class="prompt-box">
-            <textarea
-              v-model="input"
-              rows="3"
-              placeholder="무엇을 배우고 싶나요?"
-              @keydown="handleKeydown"
-            ></textarea>
+          <section class="summary-card">
+            <div class="summary-list">
+              <div
+                v-for="item in summaryItems"
+                :key="item.key"
+                class="summary-item"
+              >
+                <div class="summary-item-main">
+                  <p class="summary-label">
+                    {{ item.label }}
+                  </p>
+
+                  <p class="summary-value">
+                    {{ item.value }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section
+            v-if="isGenerating"
+            class="generating-card"
+          >
+            <div class="generating-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <div class="generating-content">
+              <p class="generating-title">
+                맞춤형 커리큘럼을 생성하고 있어요
+              </p>
+
+              <p class="generating-description">
+                학습 목표, 수준, 시간, 선호도를 반영하여 최적의 학습 경로를 구성하고 있습니다.
+              </p>
+
+              <div class="skeleton-list">
+                <div class="skeleton-line"></div>
+                <div class="skeleton-line short"></div>
+                <div class="skeleton-line medium"></div>
+              </div>
+            </div>
+          </section>
+
+          <section
+            v-if="!isGenerating"
+            class="summary-actions"
+          >
+            <div
+              v-if="generationMessage"
+              class="generation-message"
+              :class="`generation-message-${generationMessageType}`"
+            >
+              {{ generationMessage }}
+            </div>
 
             <button
               type="button"
-              class="send-button"
-              :disabled="!input.trim()"
-              aria-label="상담 시작"
-              @click="handleSubmit"
+              class="primary-action-button"
+              :disabled="isGenerating"
+              @click="handleGenerateCurriculum"
             >
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M22 2L11 13"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M22 2L15 22L11 13L2 9L22 2Z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              커리큘럼 생성하기
             </button>
-          </div>
-        </section>
+
+            <div class="secondary-action-row">
+              <button
+                type="button"
+                class="secondary-action-button"
+                @click="handleEditAnswers"
+              >
+                <svg viewBox="0 0 24 24" class="action-icon">
+                  <path
+                    d="M12 20h9"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                답변 수정하기
+              </button>
+
+              <button
+                type="button"
+                class="secondary-action-button"
+                @click="handleDiagnosis"
+              >
+                <svg viewBox="0 0 24 24" class="action-icon">
+                  <path
+                    d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
+                    fill="currentColor"
+                  />
+                </svg>
+
+                수준 진단하기
+              </button>
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   </div>
@@ -250,21 +342,22 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import LandingPage from '@/pages/user/LandingPage.vue';
-import { getMyCurriculums } from '@/api/curriculumApi';
+import { generateCurriculum, getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
-import './HomePage.css';
+import './InterviewSummary.css';
 
 const router = useRouter();
 const route = useRoute();
 
 const sidebarOpen = ref(false);
-const input = ref('');
 const curriculumSearchKeyword = ref('');
-const isLoggedIn = ref(isAuthenticated());
 const curriculums = ref([]);
 const isLoadingCurricula = ref(false);
 const curriculumLoadError = ref('');
+const isGenerating = ref(false);
+const generationMessage = ref('');
+const generationMessageType = ref('error');
+const interviewPayload = ref({});
 
 const icons = {
   user: `
@@ -307,9 +400,83 @@ const statusLabels = {
   ARCHIVED: '보관됨',
 };
 
+const valueLabels = {
+  purpose: {
+    job: '취업·이직',
+    portfolio: '포트폴리오',
+    concept: '개념 이해',
+    certificate: '자격증',
+    etc: '기타',
+  },
+  difficulty_level: {
+    beginner: '완전 입문',
+    intermediate: '기초 있음',
+    advanced: '실무·심화 경험',
+  },
+  target_weeks: {
+    4: '1개월',
+    8: '2개월',
+    12: '3개월',
+    24: '6개월',
+  },
+  weekly_available_hours: {
+    5: '~5h',
+    7: '7h',
+    10: '10~15h',
+    20: '20h+',
+  },
+  preferred_learning_style: {
+    lecture: '강의 중심',
+    project: '프로젝트 중심',
+    balanced: '균형',
+  },
+};
+
+const summaryItems = computed(() => {
+  const payload = interviewPayload.value;
+
+  return [
+    {
+      key: 'goal',
+      label: '배우고 싶은 주제',
+      value: payload.goal,
+    },
+    {
+      key: 'purpose',
+      label: '학습 목적',
+      value: valueLabels.purpose[payload.purpose] || payload.purpose,
+    },
+    {
+      key: 'difficulty_level',
+      label: '현재 수준',
+      value:
+        valueLabels.difficulty_level[payload.difficulty_level] ||
+        payload.difficulty_level,
+    },
+    {
+      key: 'target_weeks',
+      label: '목표 기간',
+      value: valueLabels.target_weeks[payload.target_weeks] || payload.target_weeks,
+    },
+    {
+      key: 'weekly_available_hours',
+      label: '주간 학습 시간',
+      value:
+        valueLabels.weekly_available_hours[payload.weekly_available_hours] ||
+        payload.weekly_available_hours,
+    },
+    {
+      key: 'preferred_learning_style',
+      label: '선호 학습 방식',
+      value:
+        valueLabels.preferred_learning_style[payload.preferred_learning_style] ||
+        payload.preferred_learning_style,
+    },
+  ].filter((item) => item.value !== undefined && item.value !== null && item.value !== '');
+});
+
 const formatDate = (dateString) => {
   if (!dateString) return '-';
-
   return new Date(dateString).toLocaleDateString('ko-KR');
 };
 
@@ -375,19 +542,13 @@ const loadCurriculums = async () => {
 };
 
 const syncAuthState = () => {
-  isLoggedIn.value = isAuthenticated();
-
-  if (!isLoggedIn.value) {
+  if (!isAuthenticated()) {
     curriculums.value = [];
     closeSidebar();
   }
 };
 
 const toggleSidebar = () => {
-  syncAuthState();
-
-  if (!isLoggedIn.value) return;
-
   if (!sidebarOpen.value) {
     loadCurriculums();
   }
@@ -404,34 +565,92 @@ const handleNavigate = (path) => {
   closeSidebar();
 };
 
-const handleSubmit = () => {
-  const goal = input.value.trim();
-
-  if (!goal) return;
-
-  /**
-   * 첫 대화창에서 입력한 학습 목표를 질문 화면에서 사용할 수 있도록 저장합니다.
-   *
-   * ChatInterview.vue에서는 이 값을 sessionStorage.getItem('interview_goal')로 읽습니다.
-   */
-  sessionStorage.setItem('interview_goal', goal);
-
-  /**
-   * 이전 상담 결과가 남아 있으면 새 상담과 섞일 수 있으므로 제거합니다.
-   */
-  sessionStorage.removeItem('interview_payload');
-
-  /**
-   * 현재 프로젝트에서 질문 화면 라우트가 /chat이면 그대로 둡니다.
-   * 만약 질문 화면 라우트를 /interview로 등록했다면 '/interview'로 바꾸면 됩니다.
-   */
+const handleEditAnswers = () => {
   router.push('/chat');
 };
 
-const handleKeydown = (event) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault();
-    handleSubmit();
+const handleDiagnosis = () => {
+  router.push('/diagnosis');
+};
+
+/**
+ * InterviewSummary가 보관한 MVP 6개 답변만 Generate API payload로 만든다.
+ *
+ * sessionStorage에는 질문 화면에서 선택한 내부 value가 저장되어 있다. 여기서는 화면 표시용
+ * label이나 AI raw_input 키(goal_text, level, period, weekly_hours, learning_style)를
+ * 만들지 않는다. 백엔드 Generate Serializer가 API 입력 스키마를 검증하고 AI 입력으로
+ * 변환해야 프론트와 AI 내부 계약이 느슨하게 분리된다.
+ */
+const buildGeneratePayload = () => {
+  const payload = interviewPayload.value;
+
+  return {
+    goal: payload.goal,
+    purpose: payload.purpose,
+    difficulty_level: payload.difficulty_level,
+    target_weeks: payload.target_weeks,
+    weekly_available_hours: payload.weekly_available_hours,
+    preferred_learning_style: payload.preferred_learning_style,
+  };
+};
+
+const getGenerationMessage = (response) => {
+  if (response?.status === 'out_of_scope') {
+    return response.message || '현재는 컴퓨터공학 분야의 학습 목표만 지원합니다.';
+  }
+
+  if (response?.status === 'needs_clarification') {
+    return response.clarification_question || '학습 목표를 조금 더 구체적으로 입력해주세요.';
+  }
+
+  if (response?.status === 'no_results') {
+    return response.message || '관련 학습 자료가 부족합니다. 다른 목표로 다시 시도해주세요.';
+  }
+
+  return '커리큘럼을 생성하지 못했습니다. 잠시 후 다시 시도해주세요.';
+};
+
+const handleGenerateCurriculum = async () => {
+  if (isGenerating.value) return;
+
+  isGenerating.value = true;
+  generationMessage.value = '';
+
+  try {
+    const response = await generateCurriculum(buildGeneratePayload());
+
+    if (response.status === 'success') {
+      const generatedCurriculum = response.generated_curriculum;
+
+      if (generatedCurriculum) {
+        /**
+         * Generate API는 저장하지 않은 미리보기 결과만 반환한다.
+         * 결과 페이지가 이 데이터를 렌더링하고, 저장 버튼 클릭 시 별도 저장 API를 호출한다.
+         */
+        sessionStorage.removeItem('generated_curriculum_id');
+        sessionStorage.setItem('generated_curriculum_response', JSON.stringify(response));
+        router.push('/curriculum/result');
+        return;
+      }
+
+      generationMessageType.value = 'error';
+      generationMessage.value = '커리큘럼은 생성됐지만 이동할 상세 정보를 찾지 못했습니다.';
+      return;
+    }
+
+    /**
+     * success 외 status는 저장된 커리큘럼이 없다는 의미다.
+     * 따라서 결과/상세 페이지로 이동하지 않고 요약 화면에 안내를 남겨 사용자가 입력을
+     * 수정하거나 다시 시도할 수 있게 한다.
+     */
+    generationMessageType.value = 'info';
+    generationMessage.value = getGenerationMessage(response);
+  } catch (error) {
+    generationMessageType.value = 'error';
+    generationMessage.value =
+      error?.message || '커리큘럼 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
+  } finally {
+    isGenerating.value = false;
   }
 };
 
@@ -443,7 +662,6 @@ const handleEscKey = (event) => {
 
 const handleLogout = () => {
   clearAuthStorage();
-  syncAuthState();
   closeSidebar();
 
   router.push('/');
@@ -453,6 +671,21 @@ onMounted(() => {
   window.addEventListener('keydown', handleEscKey);
   window.addEventListener('storage', syncAuthState);
   window.addEventListener('focus', syncAuthState);
+
+  const savedPayload = sessionStorage.getItem('interview_payload');
+
+  if (!savedPayload) {
+    router.replace('/chat');
+    return;
+  }
+
+  try {
+    interviewPayload.value = JSON.parse(savedPayload);
+  } catch (error) {
+    sessionStorage.removeItem('interview_payload');
+    router.replace('/chat');
+    return;
+  }
 
   syncAuthState();
   loadCurriculums();

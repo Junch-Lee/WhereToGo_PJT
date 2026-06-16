@@ -1,9 +1,7 @@
 <template>
-  <LandingPage v-if="!isLoggedIn" />
-
-  <div v-else class="home-page">
+  <div class="chat-interview-page">
     <aside
-      class="home-sidebar"
+      class="chat-sidebar"
       :class="{ 'is-open': sidebarOpen }"
       @click.stop
     >
@@ -92,9 +90,9 @@
                   <p>{{ item.title }}</p>
 
                   <div class="curriculum-meta">
-                    <span class="progress-track">
+                    <span class="sidebar-progress-track">
                       <span
-                        class="progress-fill"
+                        class="sidebar-progress-fill"
                         :style="{ width: `${item.progress}%` }"
                       ></span>
                     </span>
@@ -119,7 +117,9 @@
               >
                 <div class="curriculum-main">
                   <p>{{ item.title }}</p>
-                  <span class="completed-date">{{ item.statusLabel }} · {{ item.updated }}</span>
+                  <span class="completed-date">
+                    {{ item.statusLabel }} · {{ item.updated }}
+                  </span>
                 </div>
 
                 <span class="chevron">›</span>
@@ -152,8 +152,8 @@
       @click="closeSidebar"
     ></div>
 
-    <div class="home-main">
-      <header class="home-header">
+    <div class="chat-main">
+      <header class="chat-header">
         <button
           type="button"
           class="logo-menu-button"
@@ -185,63 +185,98 @@
         <h1>AI 학습 코치</h1>
       </header>
 
-      <main class="home-content">
-        <section class="hero-section">
-          <div class="hero-icon">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
-                fill="currentColor"
-              />
-              <path
-                d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
+      <main class="chat-content">
+        <div class="chat-container">
+          <section class="goal-card">
+            <p class="goal-label">
+              학습 목표
+            </p>
 
-          <h2>무엇을 배우고 싶으신가요?</h2>
+            <h2 class="goal-title">
+              {{ goal }}
+            </h2>
+          </section>
 
-          <p>
-            AI 교육 컨설턴트와 상담하며 나만의 맞춤 커리큘럼을 만들어보세요.
-          </p>
+          <section class="question-progress-section">
+            <div class="question-progress-meta">
+              <span>{{ currentStep + 1 }} / {{ questions.length }}</span>
+              <span>{{ progressPercent }}% 완료</span>
+            </div>
 
-          <div class="prompt-box">
-            <textarea
-              v-model="input"
-              rows="3"
-              placeholder="무엇을 배우고 싶나요?"
-              @keydown="handleKeydown"
-            ></textarea>
+            <div class="question-progress-track">
+              <div
+                class="question-progress-bar"
+                :style="{ width: `${progressPercent}%` }"
+              ></div>
+            </div>
+          </section>
 
-            <button
-              type="button"
-              class="send-button"
-              :disabled="!input.trim()"
-              aria-label="상담 시작"
-              @click="handleSubmit"
-            >
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M22 2L11 13"
+          <section class="question-card">
+            <div class="consultant-row">
+              <div class="consultant-icon-wrap">
+                <svg
+                  class="consultant-icon"
+                  viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
+                  stroke-width="2.2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                />
-                <path
-                  d="M22 2L15 22L11 13L2 9L22 2Z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </section>
+                >
+                  <path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3z" />
+                  <path d="M19 3v4" />
+                  <path d="M17 5h4" />
+                </svg>
+              </div>
+
+              <span class="consultant-label">
+                AI 컨설턴트
+              </span>
+            </div>
+
+            <h2 class="question-title">
+              {{ currentQuestion.question }}
+            </h2>
+
+            <p class="question-helper">
+              {{ currentQuestion.helperText }}
+            </p>
+
+            <div class="option-group">
+              <button
+                v-for="option in currentQuestion.options"
+                :key="option.label"
+                type="button"
+                class="option-button"
+                :class="{ 'option-button-selected': currentAnswer === option.value }"
+                @click="selectOption(option)"
+              >
+                {{ option.label }}
+              </button>
+            </div>
+
+            <div class="navigation-row">
+              <button
+                v-if="currentStep > 0"
+                type="button"
+                class="nav-button nav-button-secondary"
+                @click="goPrevious"
+              >
+                이전
+              </button>
+
+              <button
+                type="button"
+                class="nav-button nav-button-primary"
+                :class="{ 'nav-button-disabled': !isAnswered }"
+                :disabled="!isAnswered"
+                @click="goNext"
+              >
+                {{ currentStep === questions.length - 1 ? '완료' : '다음' }}
+              </button>
+            </div>
+          </section>
+        </div>
       </main>
     </div>
   </div>
@@ -250,21 +285,78 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import LandingPage from '@/pages/user/LandingPage.vue';
 import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
-import './HomePage.css';
+import './ChatInterview.css';
 
 const router = useRouter();
 const route = useRoute();
 
+const goal = ref('');
 const sidebarOpen = ref(false);
-const input = ref('');
 const curriculumSearchKeyword = ref('');
-const isLoggedIn = ref(isAuthenticated());
 const curriculums = ref([]);
 const isLoadingCurricula = ref(false);
 const curriculumLoadError = ref('');
+const currentStep = ref(0);
+const answers = ref({});
+
+const questions = [
+  {
+    id: 'purpose',
+    question: '학습 목적이나 기대 결과는 무엇인가요?',
+    helperText: '학습 목적에 따라 추천 이유와 커리큘럼 방향이 달라집니다.',
+    options: [
+      { label: '취업·이직', value: 'job' },
+      { label: '포트폴리오', value: 'portfolio' },
+      { label: '개념 이해', value: 'concept' },
+      { label: '자격증', value: 'certificate' },
+      { label: '기타', value: 'etc' },
+    ],
+  },
+  {
+    id: 'difficulty_level',
+    question: '현재 어느 정도 수준인가요?',
+    helperText: '현재 수준에 따라 커리큘럼의 시작 난이도를 결정합니다.',
+    options: [
+      { label: '완전 입문', value: 'beginner' },
+      { label: '기초 있음', value: 'intermediate' },
+      { label: '실무·심화 경험', value: 'advanced' },
+    ],
+  },
+  {
+    id: 'target_weeks',
+    question: '어느 정도 기간 동안 학습할 수 있나요?',
+    helperText: '학습 가능 기간을 기준으로 전체 커리큘럼 길이를 조정합니다.',
+    options: [
+      { label: '1개월', value: 4 },
+      { label: '2개월', value: 8 },
+      { label: '3개월', value: 12 },
+      { label: '6개월', value: 24 },
+    ],
+  },
+  {
+    id: 'weekly_available_hours',
+    question: '일주일에 몇 시간 정도 학습할 수 있나요?',
+    helperText: '주간 학습 가능 시간에 따라 주차별 학습량을 조정합니다.',
+    options: [
+      { label: '~5h', value: 5 },
+      { label: '7h', value: 7 },
+      { label: '10~15h', value: 10 },
+      { label: '20h+', value: 20 },
+    ],
+  },
+  {
+    id: 'preferred_learning_style',
+    question: '어떤 방식으로 배우는 걸 선호하시나요?',
+    helperText: '선호 학습 방식에 따라 강의, 실습, 프로젝트 비중을 조정합니다.',
+    options: [
+      { label: '강의 중심', value: 'lecture' },
+      { label: '프로젝트 중심', value: 'project' },
+      { label: '균형', value: 'balanced' },
+    ],
+  },
+];
 
 const icons = {
   user: `
@@ -307,9 +399,20 @@ const statusLabels = {
   ARCHIVED: '보관됨',
 };
 
+const currentQuestion = computed(() => questions[currentStep.value]);
+
+const currentAnswer = computed(() => answers.value[currentQuestion.value.id]);
+
+const progressPercent = computed(() =>
+  Math.round(((currentStep.value + 1) / questions.length) * 100),
+);
+
+const isAnswered = computed(() =>
+  currentAnswer.value !== undefined && currentAnswer.value !== '',
+);
+
 const formatDate = (dateString) => {
   if (!dateString) return '-';
-
   return new Date(dateString).toLocaleDateString('ko-KR');
 };
 
@@ -345,8 +448,11 @@ const completedCurricula = computed(() =>
 );
 
 const filteredInProgress = computed(() => filterCurricula(inProgressCurricula.value));
+
 const filteredCompleted = computed(() => filterCurricula(completedCurricula.value));
+
 const hasNoCurriculums = computed(() => curriculums.value.length === 0);
+
 const hasNoFilteredCurriculums = computed(
   () =>
     Boolean(curriculumSearchKeyword.value.trim()) &&
@@ -375,19 +481,13 @@ const loadCurriculums = async () => {
 };
 
 const syncAuthState = () => {
-  isLoggedIn.value = isAuthenticated();
-
-  if (!isLoggedIn.value) {
+  if (!isAuthenticated()) {
     curriculums.value = [];
     closeSidebar();
   }
 };
 
 const toggleSidebar = () => {
-  syncAuthState();
-
-  if (!isLoggedIn.value) return;
-
   if (!sidebarOpen.value) {
     loadCurriculums();
   }
@@ -404,35 +504,48 @@ const handleNavigate = (path) => {
   closeSidebar();
 };
 
-const handleSubmit = () => {
-  const goal = input.value.trim();
-
-  if (!goal) return;
-
-  /**
-   * 첫 대화창에서 입력한 학습 목표를 질문 화면에서 사용할 수 있도록 저장합니다.
-   *
-   * ChatInterview.vue에서는 이 값을 sessionStorage.getItem('interview_goal')로 읽습니다.
-   */
-  sessionStorage.setItem('interview_goal', goal);
-
-  /**
-   * 이전 상담 결과가 남아 있으면 새 상담과 섞일 수 있으므로 제거합니다.
-   */
-  sessionStorage.removeItem('interview_payload');
-
-  /**
-   * 현재 프로젝트에서 질문 화면 라우트가 /chat이면 그대로 둡니다.
-   * 만약 질문 화면 라우트를 /interview로 등록했다면 '/interview'로 바꾸면 됩니다.
-   */
-  router.push('/chat');
+const selectOption = (option) => {
+  answers.value[currentQuestion.value.id] = option.value;
 };
 
-const handleKeydown = (event) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault();
-    handleSubmit();
+const goPrevious = () => {
+  if (currentStep.value === 0) return;
+  currentStep.value -= 1;
+};
+
+const goNext = () => {
+  if (!isAnswered.value) return;
+
+  if (currentStep.value === questions.length - 1) {
+    submitInterview();
+    return;
   }
+
+  currentStep.value += 1;
+};
+
+const submitInterview = () => {
+  /**
+   * InterviewSummary와 Generate API가 공유하는 MVP 6개 질문 payload입니다.
+   *
+   * 화면에는 한국어 label을 보여주지만, sessionStorage에는 백엔드 serializer choices가
+   * 검증하는 내부 value를 저장합니다. 그래야 요약 화면에서 별도 변환 없이 그대로
+   * Generate API payload로 사용할 수 있고, 프론트가 AI raw_input 키를 직접 만들지 않습니다.
+   */
+  const payload = {
+    goal: goal.value,
+    purpose: answers.value.purpose,
+    difficulty_level: answers.value.difficulty_level,
+    target_weeks: answers.value.target_weeks,
+    weekly_available_hours: answers.value.weekly_available_hours,
+    preferred_learning_style: answers.value.preferred_learning_style,
+  };
+
+  sessionStorage.setItem('interview_payload', JSON.stringify(payload));
+
+  console.log('AI 상담 질문 응답:', payload);
+
+  router.push('/interview/summary');
 };
 
 const handleEscKey = (event) => {
@@ -443,7 +556,6 @@ const handleEscKey = (event) => {
 
 const handleLogout = () => {
   clearAuthStorage();
-  syncAuthState();
   closeSidebar();
 
   router.push('/');
@@ -453,6 +565,15 @@ onMounted(() => {
   window.addEventListener('keydown', handleEscKey);
   window.addEventListener('storage', syncAuthState);
   window.addEventListener('focus', syncAuthState);
+
+  const savedGoal = sessionStorage.getItem('interview_goal');
+
+  if (!savedGoal) {
+    router.replace('/');
+    return;
+  }
+
+  goal.value = savedGoal;
 
   syncAuthState();
   loadCurriculums();

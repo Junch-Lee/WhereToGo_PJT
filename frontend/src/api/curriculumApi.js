@@ -88,3 +88,28 @@ export function createCurriculum(payload) {
     body: JSON.stringify(payload),
   });
 }
+
+/**
+ * AI Generate API로 MVP 질문 6개 답변을 전송해 커리큘럼 생성을 요청한다.
+ *
+ * 프론트는 AI 내부 raw_input(goal_text, level, period 등)을 직접 만들지 않는다.
+ * 백엔드 Generate Serializer가 검증과 raw_input 변환을 담당해야 API 계약이 한 곳에
+ * 모이고, 프론트 화면 표시용 label이 AI 입력 스키마와 섞이지 않는다.
+ */
+export function generateCurriculum(payload) {
+  return request('/api/curriculums/generate/', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+/**
+ * 생성 완료 페이지에서 사용자가 확정한 AI 커리큘럼 미리보기를 실제 Curriculum row로 저장한다.
+ * Generate API는 미리보기만 반환하므로 이 함수가 호출되기 전까지는 DB에 저장되지 않는다.
+ */
+export function saveGeneratedCurriculum(generatedCurriculum) {
+  return request('/api/curriculums/save-generated/', {
+    method: 'POST',
+    body: JSON.stringify({ generated_curriculum: generatedCurriculum }),
+  });
+}
