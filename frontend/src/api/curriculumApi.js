@@ -78,6 +78,31 @@ export function getCurriculumDetail(curriculumId) {
   return request(`/api/curriculums/${curriculumId}/`);
 }
 
+export function startCurriculumLearning(curriculumId, payload = {}) {
+  return request(`/api/curriculums/${curriculumId}/start/`, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  });
+}
+
+export function pauseCurriculumLearning(curriculumId) {
+  return request(`/api/curriculums/${curriculumId}/pause/`, {
+    method: 'POST',
+    body: JSON.stringify({}),
+  });
+}
+
+export function resumeCurriculumLearning(curriculumId) {
+  return startCurriculumLearning(curriculumId);
+}
+
+export function completeCurrentStep(curriculumId) {
+  return request(`/api/curriculums/${curriculumId}/complete/`, {
+    method: 'POST',
+    body: JSON.stringify({}),
+  });
+}
+
 /**
  * 커리큘럼 생성 API를 호출한다.
  * 생성 버튼이나 입력 화면이 붙을 때 같은 인증/오류 처리 흐름을 재사용한다.

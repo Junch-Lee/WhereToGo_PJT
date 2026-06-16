@@ -77,6 +77,29 @@ class CurriculumCreateSerializer(serializers.Serializer):
     )
 
 
+class CurriculumStartRequestSerializer(serializers.Serializer):
+    """POST /api/curriculums/{id}/start/ 요청 body를 검증한다."""
+
+    scheduled_date = serializers.DateField(required=False)
+
+
+class CurriculumLearningResponseSerializer(serializers.Serializer):
+    """학습 시작/일시정지/현재 step 완료 API의 공통 응답 형식이다."""
+
+    curriculum_id = serializers.IntegerField()
+    curriculum_status = serializers.CharField()
+    current_step_id = serializers.IntegerField(allow_null=True)
+    current_step_title = serializers.CharField(allow_blank=True)
+    learning_schedule_id = serializers.IntegerField(allow_null=True)
+    learning_progress_id = serializers.IntegerField(allow_null=True)
+    progress_status = serializers.CharField(allow_blank=True)
+    progress_percent = serializers.IntegerField()
+    started_at = serializers.DateTimeField(allow_null=True)
+    paused_at = serializers.DateTimeField(allow_null=True)
+    completed_at = serializers.DateTimeField(allow_null=True)
+    next_step_exists = serializers.BooleanField()
+
+
 class CurriculumGenerateSerializer(serializers.Serializer):
     """MVP 최종 질문 6개로 AI 커리큘럼 생성 요청을 검증한다.
 

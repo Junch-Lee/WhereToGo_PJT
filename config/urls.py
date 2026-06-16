@@ -15,10 +15,13 @@ from django.conf.urls.static import static
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 from apps.curriculum.views import (
+    complete_curriculum,
     curriculum_detail,
     curriculums,
     generate_curriculum,
+    pause_curriculum,
     save_generated_curriculum,
+    start_curriculum,
 )
 
 
@@ -61,6 +64,21 @@ urlpatterns = [
         "api/curriculums/<int:curriculum_id>/",
         curriculum_detail,
         name="curriculum_detail",
+    ),
+    path(
+        "api/curriculums/<int:curriculum_id>/start/",
+        start_curriculum,
+        name="curriculum_start",
+    ),
+    path(
+        "api/curriculums/<int:curriculum_id>/pause/",
+        pause_curriculum,
+        name="curriculum_pause",
+    ),
+    path(
+        "api/curriculums/<int:curriculum_id>/complete/",
+        complete_curriculum,
+        name="curriculum_complete",
     ),
 
     # Swagger / OpenAPI 문서. 프론트와 API 계약을 확인할 때 사용한다.

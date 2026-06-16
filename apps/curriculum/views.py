@@ -27,13 +27,21 @@ from apps.curriculum.models import (
 from apps.curriculum.services.curriculum_create_service import create_curriculum_for_user
 from apps.curriculum.services.agent_response_service import normalize_agent_response
 from apps.curriculum.services.curriculum_save_service import save_ai_generated_curriculum
+from apps.curriculum.services.curriculum_learning_service import (
+    CurriculumLearningError,
+    complete_current_step,
+    pause_curriculum_learning,
+    start_curriculum_learning,
+)
 from apps.curriculum.services.topic_catalog_service import build_topic_catalog
 
 from .serializers import (
     CurriculumCreateSerializer,
     CurriculumDetailSerializer,
     CurriculumGenerateSerializer,
+    CurriculumLearningResponseSerializer,
     CurriculumListSerializer,
+    CurriculumStartRequestSerializer,
     TopicSerializer,
 )
 from apps.curriculum.models import (
@@ -367,6 +375,82 @@ def save_generated_curriculum(request):
         },
         status=status.HTTP_201_CREATED,
     )
+
+
+def _get_user_curriculum_or_404(user, curriculum_id):
+    """다른 사용자의 curriculum id 접근 시 존재 여부가 드러나지 않게 404로 처리한다."""
+    return get_object_or_404(Curriculum.objects.filter(user=user), id=curriculum_id)
+
+
+def _learning_error_response(exc):
+    return Response(
+        {
+            "status": "error",
+            "message": str(exc),
+        },
+        status=status.HTTP_400_BAD_REQUEST,
+    )
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def start_curriculum(request, curriculum_id):
+    """
+    POST /api/curriculums/{curriculum_id}/start/
+
+    현재 로그인한 사용자의 커리큘럼에서 다음 미완료 step 하나만 학습 시작 처리한다.
+    """
+    serializer = CurriculumStartRequestSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        result = start_curriculum_learning(
+            curriculum,
+            request.user,
+            scheduled_date=serializer.validated_data.get("scheduled_date"),
+        )
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def pause_curriculum(request, curriculum_id):
+    """
+    POST /api/curriculums/{curriculum_id}/pause/
+
+    가장 최근 진행 중인 step과 연결된 진행 기록만 일시정지한다.
+    """
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        result = pause_curriculum_learning(curriculum, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def complete_curriculum(request, curriculum_id):
+    """
+    POST /api/curriculums/{curriculum_id}/complete/
+
+    MVP에서는 전체 커리큘럼 강제 완료가 아니라 현재 진행 중인 step 완료로 처리한다.
+    """
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        result = complete_current_step(curriculum, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])
