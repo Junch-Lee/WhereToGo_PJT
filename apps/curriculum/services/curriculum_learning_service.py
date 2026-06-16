@@ -288,3 +288,145 @@ def start_curriculum_learning(curriculum, user, scheduled_date=None):
             "current_step",
             "started_at",
             "paused_at",
+            "updated_at",
+        ]
+    )
+
+    return _build_learning_response(curriculum, next_step, schedule, progress)
+
+
+@transaction.atomic
+def pause_curriculum_learning(curriculum, user):
+    """가장 최근 진행 중인 step 하나만 일시정지한다.
+
+    미래 step의 schedule은 생성하거나 수정하지 않는다. 이미 완료된 학습
+    기록도 보존하고, 현재 진행 row와 그 row에 연결된 미완료 schedule만
+    일시정지 상태로 맞춘다.
+    """
+    validate_curriculum_owner(curriculum, user)
+    curriculum = Curriculum.objects.select_for_update().get(id=curriculum.id)
+
+    if curriculum.status == Curriculum.Status.COMPLETED:
+        raise CurriculumLearningError("Completed curriculum cannot be paused.")
+    if not curriculum.started_at and curriculum.status == Curriculum.Status.DRAFT:
+        raise CurriculumLearningError("Not-started curriculum cannot be paused.")
+
+    step_progress = get_current_progress(curriculum, user)
+    if not step_progress:
+        raise CurriculumLearningError("No current step to pause.")
+
+    now = timezone.now()
+    curriculum.status = Curriculum.Status.PAUSED
+    curriculum.current_step = step_progress.curriculum_step
+    curriculum.paused_at = curriculum.paused_at or now
+    curriculum.save(
+        update_fields=["status", "current_step", "paused_at", "updated_at"]
+    )
+
+    step_progress.status = CurriculumStepProgress.Status.PAUSED
+    step_progress.paused_at = step_progress.paused_at or now
+    step_progress.save(update_fields=["status", "paused_at", "updated_at"])
+
+    schedule = (
+        LearningSchedule.objects.filter(step_progress=step_progress)
+        .exclude(
+            status__in=[
+                LearningSchedule.Status.DONE,
+                LearningSchedule.Status.CANCELLED,
+            ]
+        )
+        .order_by("-updated_at", "-id")
+        .first()
+    )
+
+    progress = (
+        LearningProgress.objects.filter(step_progress=step_progress)
+        .exclude(status=LearningProgress.Status.COMPLETED)
+        .order_by("-updated_at", "-id")
+        .first()
+    )
+    if progress:
+        progress.status = LearningProgress.Status.PAUSED
+        progress.save(update_fields=["status", "updated_at"])
+
+    return _build_learning_response(
+        curriculum,
+        step_progress.curriculum_step,
+        schedule,
+        progress,
+    )
+
+
+@transaction.atomic
+def complete_current_step(curriculum, user):
+    """현재 step을 완료하고, 모든 step 완료 시 커리큘럼도 완료한다.
+
+    이 API의 의미는 MVP에서 '전체 완료'가 아니라 '현재 step 완료'다. 다만
+    마지막 미완료 step을 완료한 경우에는 더 이상 남은 step이 없으므로
+    curriculum.status도 COMPLETED로 전환한다.
+    """
+    validate_curriculum_owner(curriculum, user)
+    curriculum = Curriculum.objects.select_for_update().get(id=curriculum.id)
+
+    step_progress = get_current_progress(curriculum, user)
+    if not step_progress:
+        raise CurriculumLearningError("No current step to complete.")
+
+    now = timezone.now()
+    step_progress.status = CurriculumStepProgress.Status.COMPLETED
+    step_progress.progress_rate = 100
+    step_progress.completed_at = step_progress.completed_at or now
+    step_progress.last_studied_at = now
+    step_progress.save(
+        update_fields=[
+            "status",
+            "progress_rate",
+            "completed_at",
+            "last_studied_at",
+            "updated_at",
+        ]
+    )
+
+    schedule = (
+        LearningSchedule.objects.filter(step_progress=step_progress)
+        .exclude(status=LearningSchedule.Status.CANCELLED)
+        .order_by("-updated_at", "-id")
+        .first()
+    )
+    if schedule:
+        schedule.status = LearningSchedule.Status.DONE
+        schedule.save(update_fields=["status", "updated_at"])
+
+    progress = (
+        LearningProgress.objects.filter(step_progress=step_progress)
+        .order_by("-updated_at", "-id")
+        .first()
+    )
+    if progress:
+        progress.status = LearningProgress.Status.COMPLETED
+        progress.progress_rate = 100
+        progress.completed_at = progress.completed_at or now
+        progress.save(
+            update_fields=["status", "progress_rate", "completed_at", "updated_at"]
+        )
+
+    next_step = get_next_pending_step(curriculum, user)
+    if next_step:
+        curriculum.status = Curriculum.Status.ACTIVE
+        curriculum.current_step = None
+    else:
+        curriculum.status = Curriculum.Status.COMPLETED
+        curriculum.current_step = None
+        curriculum.completed_at = curriculum.completed_at or now
+    curriculum.save(
+        update_fields=["status", "current_step", "completed_at", "updated_at"]
+    )
+
+    response = _build_learning_response(
+        curriculum,
+        step_progress.curriculum_step,
+        schedule,
+        progress,
+    )
+    response["next_step_exists"] = next_step is not None
+    return response
