@@ -13,6 +13,27 @@ from apps.curriculum.models import (
 )
 
 
+def to_api_curriculum_status(status):
+    return {
+        Curriculum.Status.DRAFT: "NOT_STARTED",
+        Curriculum.Status.ACTIVE: "IN_PROGRESS",
+        Curriculum.Status.PAUSED: "PAUSED",
+        Curriculum.Status.COMPLETED: "COMPLETED",
+    }.get(status, status)
+
+
+def to_api_step_status(status):
+    if status == CurriculumStepProgress.Status.COMPLETED:
+        return "COMPLETED"
+    if status in [
+        CurriculumStepProgress.Status.IN_PROGRESS,
+        CurriculumStepProgress.Status.PAUSED,
+    ]:
+        return "IN_PROGRESS"
+
+    return "PENDING"
+
+
 class TopicSerializer(serializers.ModelSerializer):
     """학습 토픽 목록 API에서 사용하는 기본 Topic serializer다."""
 
@@ -497,6 +518,9 @@ class CurriculumStepDetailSerializer(serializers.ModelSerializer):
     """
 
     target_topic = TargetTopicSerializer(read_only=True)
+    order = serializers.IntegerField(source="step_order", read_only=True)
+    difficulty = serializers.CharField(source="difficulty_level", read_only=True)
+    status = serializers.SerializerMethodField()
     resources = serializers.SerializerMethodField()
     courses = serializers.SerializerMethodField()
     step_progress = serializers.SerializerMethodField()
@@ -506,12 +530,15 @@ class CurriculumStepDetailSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "step_order",
+            "order",
             "title",
             "description",
             "target_topic",
             "difficulty_level",
+            "difficulty",
             "estimated_hours",
             "prerequisite_note",
+            "status",
             "resources",
             "courses",
             "step_progress",
@@ -533,6 +560,16 @@ class CurriculumStepDetailSerializer(serializers.ModelSerializer):
         )
         return CurriculumStepCourseDetailSerializer(step_courses, many=True).data
 
+    def get_status(self, step):
+        progress_records = sorted(
+            step.progress_records.all(),
+            key=lambda progress_record: progress_record.id,
+        )
+        if not progress_records:
+            return "PENDING"
+
+        return to_api_step_status(progress_records[0].status)
+
     def get_step_progress(self, step):
         """단계에 연결된 진행 row가 있으면 반환하고, 없으면 null을 반환한다."""
         progress_records = sorted(
@@ -543,6 +580,48 @@ class CurriculumStepDetailSerializer(serializers.ModelSerializer):
             return None
 
         return CurriculumStepProgressSerializer(progress_records[0]).data
+
+
+class CurrentCurriculumStepSerializer(serializers.ModelSerializer):
+    order = serializers.IntegerField(source="step_order", read_only=True)
+    difficulty = serializers.CharField(source="difficulty_level", read_only=True)
+    status = serializers.SerializerMethodField()
+    resources = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CurriculumStep
+        fields = (
+            "id",
+            "order",
+            "title",
+            "description",
+            "estimated_hours",
+            "difficulty",
+            "status",
+            "resources",
+        )
+
+    def get_status(self, step):
+        progress = self.context.get("step_progress")
+        if progress:
+            return to_api_step_status(progress.status)
+
+        return "PENDING"
+
+    def get_resources(self, step):
+        step_resources = sorted(
+            step.step_resources.all(),
+            key=lambda step_resource: (step_resource.sort_order, step_resource.id),
+        )
+        return [
+            {
+                "id": step_resource.learning_resource_id,
+                "title": step_resource.learning_resource.title,
+                "type": step_resource.learning_resource.resource_type,
+                "url": step_resource.learning_resource.url,
+            }
+            for step_resource in step_resources
+        ]
 
 
 class CurriculumDetailSerializer(serializers.ModelSerializer):
@@ -560,9 +639,15 @@ class CurriculumDetailSerializer(serializers.ModelSerializer):
         current_step_learning_progresses는 이미 저장된 row만 읽고 새 row를 만들지 않는다.
     """
 
+    description = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
     current_step_id = serializers.IntegerField(read_only=True)
     categories = serializers.SerializerMethodField()
     steps = serializers.SerializerMethodField()
+    progress_percent = serializers.SerializerMethodField()
+    completed_step_count = serializers.SerializerMethodField()
+    total_step_count = serializers.SerializerMethodField()
+    current_step = serializers.SerializerMethodField()
     current_step_progress = serializers.SerializerMethodField()
     current_step_schedules = serializers.SerializerMethodField()
     current_step_learning_progresses = serializers.SerializerMethodField()
@@ -572,6 +657,7 @@ class CurriculumDetailSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
+            "description",
             "goal",
             "status",
             "target_weeks",
@@ -582,6 +668,10 @@ class CurriculumDetailSerializer(serializers.ModelSerializer):
             "categories",
             "steps",
             "current_step_id",
+            "progress_percent",
+            "completed_step_count",
+            "total_step_count",
+            "current_step",
             "started_at",
             "paused_at",
             "completed_at",
@@ -591,6 +681,12 @@ class CurriculumDetailSerializer(serializers.ModelSerializer):
             "created_at",
             "updated_at",
         )
+
+    def get_status(self, curriculum):
+        return to_api_curriculum_status(curriculum.status)
+
+    def get_description(self, curriculum):
+        return curriculum.recommendation_reason or curriculum.goal
 
     def get_categories(self, curriculum):
         """커리큘럼에 연결된 카테고리를 대표 카테고리 우선으로 반환한다."""
@@ -610,6 +706,42 @@ class CurriculumDetailSerializer(serializers.ModelSerializer):
             key=lambda step: (step.step_order, step.id),
         )
         return CurriculumStepDetailSerializer(steps, many=True).data
+
+    def get_progress_percent(self, curriculum):
+        total_step_count = self.get_total_step_count(curriculum)
+        if total_step_count == 0:
+            return 0
+
+        return round(
+            self.get_completed_step_count(curriculum) / total_step_count * 100
+        )
+
+    def get_completed_step_count(self, curriculum):
+        return sum(
+            1
+            for progress_record in self._get_step_progresses(curriculum)
+            if progress_record.status == CurriculumStepProgress.Status.COMPLETED
+        )
+
+    def get_total_step_count(self, curriculum):
+        return len(self._get_steps(curriculum))
+
+    def get_current_step(self, curriculum):
+        step_progress = self._get_current_step_progress(curriculum)
+        current_step = curriculum.current_step
+        if not current_step and step_progress:
+            current_step = step_progress.curriculum_step
+
+        if not current_step:
+            return None
+
+        if not step_progress:
+            step_progress = self._get_progress_for_step(curriculum, current_step.id)
+
+        return CurrentCurriculumStepSerializer(
+            current_step,
+            context={"step_progress": step_progress},
+        ).data
 
     def get_current_step_progress(self, curriculum):
         """
@@ -675,14 +807,43 @@ class CurriculumDetailSerializer(serializers.ModelSerializer):
         related manager가 있으면 그 캐시를 사용하고, 없으면 DB에서 조회한다.
         """
         if not curriculum.current_step_id:
-            return None
+            in_progress_records = [
+                progress_record
+                for progress_record in self._get_step_progresses(curriculum)
+                if progress_record.status == CurriculumStepProgress.Status.IN_PROGRESS
+            ]
+            if not in_progress_records:
+                return None
 
-        progress_records = sorted(
-            curriculum.step_progresses.all(),
-            key=lambda progress_record: progress_record.id,
-        )
-        for progress_record in progress_records:
-            if progress_record.curriculum_step_id == curriculum.current_step_id:
+            step_order_by_id = {
+                step.id: (step.step_order, step.id)
+                for step in self._get_steps(curriculum)
+            }
+            return sorted(
+                in_progress_records,
+                key=lambda progress_record: step_order_by_id.get(
+                    progress_record.curriculum_step_id,
+                    (0, progress_record.curriculum_step_id),
+                ),
+            )[0]
+
+        return self._get_progress_for_step(curriculum, curriculum.current_step_id)
+
+    def _get_progress_for_step(self, curriculum, step_id):
+        for progress_record in self._get_step_progresses(curriculum):
+            if progress_record.curriculum_step_id == step_id:
                 return progress_record
 
         return None
+
+    def _get_step_progresses(self, curriculum):
+        return sorted(
+            curriculum.step_progresses.all(),
+            key=lambda progress_record: progress_record.id,
+        )
+
+    def _get_steps(self, curriculum):
+        return sorted(
+            curriculum.steps.all(),
+            key=lambda step: (step.step_order, step.id),
+        )

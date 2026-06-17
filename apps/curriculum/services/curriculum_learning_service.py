@@ -358,6 +358,95 @@ def pause_curriculum_learning(curriculum, user):
 
 
 @transaction.atomic
+def resume_curriculum_learning(curriculum, user):
+    validate_curriculum_owner(curriculum, user)
+    curriculum = Curriculum.objects.select_for_update().get(id=curriculum.id)
+
+    if curriculum.status != Curriculum.Status.PAUSED:
+        raise CurriculumLearningError(
+            "일시정지 상태의 커리큘럼만 재개할 수 있습니다."
+        )
+    if not curriculum.current_step_id:
+        raise CurriculumLearningError("No current step to resume.")
+
+    step_progress = (
+        CurriculumStepProgress.objects.select_related("curriculum_step")
+        .filter(
+            curriculum=curriculum,
+            curriculum_step_id=curriculum.current_step_id,
+            status__in=[
+                CurriculumStepProgress.Status.PAUSED,
+                CurriculumStepProgress.Status.IN_PROGRESS,
+            ],
+        )
+        .first()
+    )
+    if not step_progress:
+        raise CurriculumLearningError("No current step to resume.")
+
+    now = timezone.now()
+    step_progress.status = CurriculumStepProgress.Status.IN_PROGRESS
+    step_progress.resumed_at = now
+    if not step_progress.started_at:
+        step_progress.started_at = now
+    step_progress.save(
+        update_fields=["status", "resumed_at", "started_at", "updated_at"]
+    )
+
+    progress = (
+        LearningProgress.objects.filter(step_progress=step_progress)
+        .exclude(status=LearningProgress.Status.COMPLETED)
+        .order_by("-updated_at", "-id")
+        .first()
+    )
+    if progress:
+        progress.status = LearningProgress.Status.IN_PROGRESS
+        progress.save(update_fields=["status", "updated_at"])
+
+    curriculum.status = Curriculum.Status.ACTIVE
+    curriculum.current_step = step_progress.curriculum_step
+    curriculum.paused_at = None
+    curriculum.save(
+        update_fields=["status", "current_step", "paused_at", "updated_at"]
+    )
+
+    schedule = (
+        LearningSchedule.objects.filter(step_progress=step_progress)
+        .exclude(
+            status__in=[
+                LearningSchedule.Status.DONE,
+                LearningSchedule.Status.CANCELLED,
+            ]
+        )
+        .order_by("-updated_at", "-id")
+        .first()
+    )
+    return _build_learning_response(
+        curriculum,
+        step_progress.curriculum_step,
+        schedule,
+        progress,
+    )
+
+
+@transaction.atomic
+def complete_specific_step(curriculum, step, user):
+    validate_curriculum_owner(curriculum, user)
+    curriculum = Curriculum.objects.select_for_update().get(id=curriculum.id)
+
+    if step.curriculum_id != curriculum.id:
+        raise CurriculumLearningError("Step does not belong to this curriculum.")
+    if curriculum.status != Curriculum.Status.ACTIVE:
+        raise CurriculumLearningError(
+            "진행 중인 커리큘럼에서만 Step을 완료할 수 있습니다."
+        )
+    if step.id != curriculum.current_step_id:
+        raise CurriculumLearningError("현재 진행 중인 Step만 완료할 수 있습니다.")
+
+    return complete_current_step(curriculum, user)
+
+
+@transaction.atomic
 def complete_current_step(curriculum, user):
     """현재 step을 완료하고, 모든 step 완료 시 커리큘럼도 완료한다.
 
@@ -368,8 +457,28 @@ def complete_current_step(curriculum, user):
     validate_curriculum_owner(curriculum, user)
     curriculum = Curriculum.objects.select_for_update().get(id=curriculum.id)
 
-    step_progress = get_current_progress(curriculum, user)
-    if not step_progress:
+    if curriculum.status != Curriculum.Status.ACTIVE:
+        raise CurriculumLearningError(
+            "진행 중인 커리큘럼에서만 Step을 완료할 수 있습니다."
+        )
+
+    if curriculum.current_step_id:
+        step_progress = (
+            CurriculumStepProgress.objects.select_related("curriculum_step")
+            .filter(
+                curriculum=curriculum,
+                curriculum_step_id=curriculum.current_step_id,
+                status=CurriculumStepProgress.Status.IN_PROGRESS,
+            )
+            .first()
+        )
+    else:
+        step_progress = get_current_progress(curriculum, user)
+
+    if (
+        not step_progress
+        or step_progress.status != CurriculumStepProgress.Status.IN_PROGRESS
+    ):
         raise CurriculumLearningError("No current step to complete.")
 
     now = timezone.now()
@@ -412,9 +521,32 @@ def complete_current_step(curriculum, user):
 
     next_step = get_next_pending_step(curriculum, user)
     if next_step:
+        next_step_progress = _get_or_create_step_progress(curriculum, next_step)
+        next_step_progress.status = CurriculumStepProgress.Status.IN_PROGRESS
+        next_step_progress.progress_rate = next_step_progress.progress_rate or 0
+        if not next_step_progress.started_at:
+            next_step_progress.started_at = now
+        next_step_progress.paused_at = None
+        next_step_progress.save(
+            update_fields=[
+                "status",
+                "progress_rate",
+                "started_at",
+                "paused_at",
+                "updated_at",
+            ]
+        )
+        next_schedule = get_or_create_learning_schedule(next_step_progress)
+        next_progress = get_or_create_learning_progress(
+            next_step_progress,
+            next_schedule,
+        )
         curriculum.status = Curriculum.Status.ACTIVE
-        curriculum.current_step = None
+        curriculum.current_step = next_step
+        curriculum.completed_at = None
     else:
+        next_schedule = None
+        next_progress = None
         curriculum.status = Curriculum.Status.COMPLETED
         curriculum.current_step = None
         curriculum.completed_at = curriculum.completed_at or now
@@ -424,9 +556,9 @@ def complete_current_step(curriculum, user):
 
     response = _build_learning_response(
         curriculum,
-        step_progress.curriculum_step,
-        schedule,
-        progress,
+        next_step if next_step else step_progress.curriculum_step,
+        next_schedule if next_step else schedule,
+        next_progress if next_step else progress,
     )
     response["next_step_exists"] = next_step is not None
     return response

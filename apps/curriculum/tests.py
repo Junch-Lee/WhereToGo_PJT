@@ -1236,7 +1236,7 @@ class CurriculumDetailAPITest(APITestCase):
         response = self.client.get(f"/api/curriculums/{self.curriculum.id}/")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["status"], Curriculum.Status.DRAFT)
+        self.assertEqual(response.data["status"], "NOT_STARTED")
         self.assertEqual(response.data["current_step_id"], None)
         self.assertEqual(response.data["current_step_progress"], None)
         self.assertEqual(response.data["current_step_schedules"], [])

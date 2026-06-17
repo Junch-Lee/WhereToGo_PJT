@@ -30,7 +30,9 @@ from apps.curriculum.services.curriculum_save_service import save_ai_generated_c
 from apps.curriculum.services.curriculum_learning_service import (
     CurriculumLearningError,
     complete_current_step,
+    complete_specific_step,
     pause_curriculum_learning,
+    resume_curriculum_learning,
     start_curriculum_learning,
 )
 from apps.curriculum.services.topic_catalog_service import build_topic_catalog
@@ -437,6 +439,20 @@ def pause_curriculum(request, curriculum_id):
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
+def resume_curriculum(request, curriculum_id):
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        resume_curriculum_learning(curriculum, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    curriculum.refresh_from_db()
+    response_serializer = CurriculumDetailSerializer(curriculum)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def complete_curriculum(request, curriculum_id):
     """
     POST /api/curriculums/{curriculum_id}/complete/
@@ -450,6 +466,24 @@ def complete_curriculum(request, curriculum_id):
         return _learning_error_response(exc)
 
     response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def complete_curriculum_step(request, curriculum_id, step_id):
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    step = get_object_or_404(
+        CurriculumStep.objects.filter(curriculum=curriculum),
+        id=step_id,
+    )
+    try:
+        complete_specific_step(curriculum, step, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    curriculum.refresh_from_db()
+    response_serializer = CurriculumDetailSerializer(curriculum)
     return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
