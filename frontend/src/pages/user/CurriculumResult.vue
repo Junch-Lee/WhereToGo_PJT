@@ -184,18 +184,16 @@
           @click="toggleSidebar"
         >
           <span class="logo-menu-default">
-            <div class="logo-menu-circle">
-              <svg viewBox="0 0 24 24" class="logo-menu-icon">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                fill="currentColor"
+              />
+            </svg>
           </span>
 
           <span class="logo-menu-hover">
-            <svg viewBox="0 0 24 24" class="menu-hover-icon">
+            <svg viewBox="0 0 24 24" class="icon">
               <path
                 d="M4 7h16M4 12h16M4 17h16"
                 fill="none"
@@ -558,6 +556,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { getMyCurriculums, saveGeneratedCurriculum } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import './CurriculumResult.css';
+import '@/assets/styles/user-shell.css';
 
 const router = useRouter();
 const route = useRoute();
