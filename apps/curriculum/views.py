@@ -2,6 +2,7 @@ import json
 import logging
 
 from django.db.models import Prefetch
+from django.http import StreamingHttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404
@@ -143,6 +144,67 @@ def _attach_preview_references(normalized_result):
         ]
 
     return normalized_result
+
+
+def _build_generate_response_payload(normalized_result):
+    result_status = normalized_result["status"]
+
+    if result_status == "success":
+        logger.warning(
+            "[AI_GENERATED_CURRICULUM_PREVIEW] %s",
+            json.dumps(normalized_result, ensure_ascii=False, default=str),
+        )
+        return (
+            {
+                "status": "success",
+                "message": "커리큘럼 생성이 완료되었습니다.",
+                "generated_curriculum": normalized_result,
+            },
+            status.HTTP_200_OK,
+        )
+
+    if result_status == "needs_clarification":
+        return (
+            {
+                "status": "needs_clarification",
+                "clarification_question": normalized_result.get("clarification_question", ""),
+            },
+            status.HTTP_200_OK,
+        )
+
+    if result_status == "out_of_scope":
+        return (
+            {
+                "status": "out_of_scope",
+                "message": normalized_result.get("message", ""),
+            },
+            status.HTTP_200_OK,
+        )
+
+    if result_status == "no_results":
+        return (
+            {
+                "status": "no_results",
+                "message": normalized_result.get("message", ""),
+            },
+            status.HTTP_200_OK,
+        )
+
+    logger.error("Unexpected normalized AI status: %s", result_status)
+    return (
+        {
+            "status": "error",
+            "message": "AI 응답 상태를 해석할 수 없습니다.",
+        },
+        status.HTTP_502_BAD_GATEWAY,
+    )
+
+
+def _sse_event(event, data):
+    return "event: {event}\ndata: {data}\n\n".format(
+        event=event,
+        data=json.dumps(data, ensure_ascii=False, default=str),
+    )
 
 
 @api_view(["GET"])
@@ -325,6 +387,111 @@ def generate_curriculum(request):
         },
         status=status.HTTP_502_BAD_GATEWAY,
     )
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def generate_curriculum_stream(request):
+    """Stream curriculum generation progress with the same final payload as generate_curriculum."""
+
+    def event_stream():
+        serializer = CurriculumGenerateSerializer(data=request.data)
+        if not serializer.is_valid():
+            yield _sse_event(
+                "error",
+                {
+                    "message": "입력값을 확인해 주세요.",
+                    "detail": serializer.errors,
+                },
+            )
+            return
+
+        yield _sse_event(
+            "progress",
+            {
+                "message": "요청 정보를 확인하고 있습니다.",
+                "progress": 10,
+            },
+        )
+
+        raw_input = serializer.to_raw_input()
+
+        try:
+            yield _sse_event(
+                "progress",
+                {
+                    "message": "학습 주제 후보를 정리하고 있습니다.",
+                    "progress": 25,
+                },
+            )
+            catalog = build_topic_catalog()
+            yield _sse_event(
+                "progress",
+                {
+                    "message": "AI가 맞춤 커리큘럼 초안을 생성하고 있습니다.",
+                    "progress": 45,
+                },
+            )
+            agent_result = run_agent(raw_input, catalog)
+            logger.warning(
+                "[AI_AGENT_RAW_RESULT] %s",
+                json.dumps(agent_result, ensure_ascii=False, default=str),
+            )
+        except Exception:
+            logger.exception("AI curriculum generation failed.")
+            yield _sse_event(
+                "error",
+                {
+                    "message": "AI 커리큘럼 생성 중 오류가 발생했습니다.",
+                    "progress": 100,
+                },
+            )
+            return
+
+        try:
+            yield _sse_event(
+                "progress",
+                {
+                    "message": "생성 결과를 화면에서 볼 수 있는 형태로 정리하고 있습니다.",
+                    "progress": 80,
+                },
+            )
+            normalized_result = normalize_agent_response(agent_result)
+            if normalized_result.get("status") == "success":
+                normalized_result = _apply_request_profile_to_generated_result(
+                    normalized_result,
+                    serializer.validated_data,
+                )
+                normalized_result = _attach_preview_references(normalized_result)
+        except ValueError:
+            logger.exception("AI curriculum generation returned an unsupported status.")
+            yield _sse_event(
+                "error",
+                {
+                    "message": "AI 응답 상태를 해석할 수 없습니다.",
+                    "progress": 100,
+                },
+            )
+            return
+
+        payload, response_status = _build_generate_response_payload(normalized_result)
+        if response_status >= status.HTTP_400_BAD_REQUEST:
+            yield _sse_event("error", {**payload, "progress": 100})
+            return
+
+        yield _sse_event(
+            "done",
+            {
+                "message": payload.get("message", "커리큘럼 생성 처리가 완료되었습니다."),
+                "progress": 100,
+                **payload,
+            },
+        )
+
+    response = StreamingHttpResponse(event_stream(), content_type="text/event-stream")
+    response["Cache-Control"] = "no-cache"
+    response["X-Accel-Buffering"] = "no"
+    return response
 
 
 @api_view(["POST"])

@@ -199,9 +199,108 @@ export function generateCurriculum(payload) {
   });
 }
 
+function parseSseChunk(rawEvent) {
+  const event = { event: 'message', data: '' };
+
+  rawEvent.split('\n').forEach((line) => {
+    if (line.startsWith('event:')) {
+      event.event = line.slice(6).trim();
+    }
+
+    if (line.startsWith('data:')) {
+      event.data += line.slice(5).trim();
+    }
+  });
+
+  if (!event.data) return { event: event.event, data: null };
+
+  try {
+    return { event: event.event, data: JSON.parse(event.data) };
+  } catch {
+    return { event: event.event, data: { message: event.data } };
+  }
+}
+
+function handleStreamAuthError(response) {
+  if (response.status !== 401) return;
+
+  redirectToLogin();
+  throw createApiError('로그인이 필요합니다.', 401);
+}
+
+export async function generateCurriculumStream(payload, handlers = {}) {
+  const accessToken = getAccessToken();
+
+  if (!accessToken) {
+    redirectToLogin();
+    throw createApiError('로그인이 필요합니다.', 401);
+  }
+
+  const response = await fetch(`${API_BASE_URL}/api/curriculums/generate/stream/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify(payload),
+  });
+
+  handleStreamAuthError(response);
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => null);
+    throw createApiError(
+      getErrorMessage(data, '커리큘럼 생성 요청 처리에 실패했습니다.'),
+      response.status,
+    );
+  }
+
+  if (!response.body) {
+    throw createApiError('브라우저가 스트리밍 응답을 지원하지 않습니다.', 0);
+  }
+
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = '';
+
+  while (true) {
+    const { value, done } = await reader.read();
+    buffer += decoder.decode(value || new Uint8Array(), { stream: !done });
+
+    const events = buffer.split('\n\n');
+    buffer = events.pop() || '';
+
+    for (const rawEvent of events) {
+      if (!rawEvent.trim()) continue;
+
+      const { event, data } = parseSseChunk(rawEvent);
+
+      if (event === 'progress') {
+        handlers.onProgress?.(data);
+      }
+
+      if (event === 'done') {
+        handlers.onDone?.(data);
+        return data;
+      }
+
+      if (event === 'error') {
+        handlers.onError?.(data);
+        throw createApiError(
+          data?.message || '커리큘럼 생성 중 오류가 발생했습니다.',
+          response.status,
+        );
+      }
+    }
+
+    if (done) break;
+  }
+
+  throw createApiError('커리큘럼 생성 응답이 완료되지 않았습니다.', 0);
+}
+
 /**
- * 생성 완료 페이지에서 사용자가 확정한 AI 커리큘럼 미리보기를 실제 Curriculum row로 저장한다.
- * Generate API는 미리보기만 반환하므로 이 함수가 호출되기 전까지는 DB에 저장되지 않는다.
+ * 생성 완료 페이지에서 확정한 AI 커리큘럼 미리보기를 실제 Curriculum row로 저장한다.
  */
 export function saveGeneratedCurriculum(generatedCurriculum) {
   return request('/api/curriculums/save-generated/', {

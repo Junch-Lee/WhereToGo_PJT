@@ -20,6 +20,7 @@ from apps.curriculum.views import (
     curriculum_detail,
     curriculums,
     generate_curriculum,
+    generate_curriculum_stream,
     pause_curriculum,
     resume_curriculum,
     save_generated_curriculum,
@@ -56,6 +57,11 @@ urlpatterns = [
         "api/curriculums/generate/",
         generate_curriculum,
         name="curriculum_generate",
+    ),
+    path(
+        "api/curriculums/generate/stream/",
+        generate_curriculum_stream,
+        name="curriculum_generate_stream",
     ),
     path(
         "api/curriculums/save-generated/",
