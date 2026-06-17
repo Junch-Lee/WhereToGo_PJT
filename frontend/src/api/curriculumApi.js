@@ -74,10 +74,36 @@ export function getMyCurriculums() {
  * 현재 인증된 사용자가 소유한 특정 커리큘럼의 상세 정보를 조회한다.
  * 상세 페이지는 이 응답의 steps, resources, courses, schedules, progresses를 렌더링한다.
  */
+/**
+ * Fetches curriculum detail for the detail page.
+ *
+ * @param {number|string} curriculumId - Curriculum ID to fetch.
+ * @returns {Promise<object>} Curriculum detail response.
+ */
 export function getCurriculumDetail(curriculumId) {
   return request(`/api/curriculums/${curriculumId}/`);
 }
 
+/**
+ * Backwards-compatible alias for the curriculum detail API.
+ *
+ * @param {number|string} curriculumId - Curriculum ID to fetch.
+ * @returns {Promise<object>} Curriculum detail response.
+ */
+export function fetchCurriculumDetail(curriculumId) {
+  return getCurriculumDetail(curriculumId);
+}
+
+/**
+ * Starts a not-started curriculum.
+ *
+ * Some legacy start responses are action summaries, so detail-page callers
+ * refresh the full curriculum detail after this action.
+ *
+ * @param {number|string} curriculumId - Curriculum ID to start.
+ * @param {object} [payload={}] - Optional start payload.
+ * @returns {Promise<object>} Start API response.
+ */
 export function startCurriculumLearning(curriculumId, payload = {}) {
   return request(`/api/curriculums/${curriculumId}/start/`, {
     method: 'POST',
@@ -85,6 +111,12 @@ export function startCurriculumLearning(curriculumId, payload = {}) {
   });
 }
 
+/**
+ * Pauses an active curriculum.
+ *
+ * @param {number|string} curriculumId - Curriculum ID to pause.
+ * @returns {Promise<object>} Pause API response.
+ */
 export function pauseCurriculumLearning(curriculumId) {
   return request(`/api/curriculums/${curriculumId}/pause/`, {
     method: 'POST',
@@ -92,12 +124,51 @@ export function pauseCurriculumLearning(curriculumId) {
   });
 }
 
+/**
+ * Resumes a paused curriculum through the explicit resume endpoint.
+ *
+ * This must not reuse start: resume is a separate backend contract and only
+ * succeeds for paused curricula.
+ *
+ * @param {number|string} curriculumId - Curriculum ID to resume.
+ * @returns {Promise<object>} Updated curriculum detail response.
+ */
 export function resumeCurriculumLearning(curriculumId) {
-  return startCurriculumLearning(curriculumId);
+  return request(`/api/curriculums/${curriculumId}/resume/`, {
+    method: 'POST',
+    body: JSON.stringify({}),
+  });
 }
 
+/**
+ * Legacy current-step complete endpoint kept for existing callers.
+ *
+ * New detail-page code should use completeCurriculumStep(curriculumId, stepId)
+ * so the backend can validate the clicked step.
+ *
+ * @param {number|string} curriculumId - Curriculum ID.
+ * @returns {Promise<object>} Complete API response.
+ */
 export function completeCurrentStep(curriculumId) {
   return request(`/api/curriculums/${curriculumId}/complete/`, {
+    method: 'POST',
+    body: JSON.stringify({}),
+  });
+}
+
+/**
+ * Completes the specific current step.
+ *
+ * The backend validates ownership, curriculum membership, and that the step is
+ * currently in progress. It also advances the next step, so callers must not
+ * issue a follow-up start request.
+ *
+ * @param {number|string} curriculumId - Curriculum ID.
+ * @param {number|string} stepId - Step ID to complete.
+ * @returns {Promise<object>} Updated curriculum detail response.
+ */
+export function completeCurriculumStep(curriculumId, stepId) {
+  return request(`/api/curriculums/${curriculumId}/steps/${stepId}/complete/`, {
     method: 'POST',
     body: JSON.stringify({}),
   });

@@ -9,13 +9,19 @@
     <aside :class="['sidebar', { 'sidebar-open': sidebarOpen }]">
       <div class="sidebar-inner">
         <div class="sidebar-logo-section">
-          <button class="sidebar-logo-button" @click="navigateTo('/')">
-            <div class="logo">
-              <div class="logo-icon">WTG</div>
-              <div class="logo-text-wrap">
-                <span class="logo-title">Where To Go</span>
-                <span class="logo-subtitle">AI 학습 컨설턴트</span>
-              </div>
+          <button class="sidebar-logo-button" type="button" @click="navigateTo('/')">
+            <div class="sidebar-logo-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <div class="sidebar-logo-text">
+              <strong>Where To Go</strong>
+              <span>AI 학습 컨설턴트</span>
             </div>
           </button>
         </div>
@@ -111,17 +117,12 @@
         </div>
 
         <div class="sidebar-bottom">
-          <button class="sidebar-bottom-item" @click="toggleTheme">
-            <span class="menu-icon">{{ isDark ? '☀' : '☾' }}</span>
-            <span>{{ isDark ? '라이트 모드' : '다크 모드' }}</span>
-          </button>
-
-          <button class="sidebar-bottom-item">
+          <button class="sidebar-bottom-item" type="button" @click="navigateTo('/settings')">
             <span class="menu-icon">⚙</span>
             <span>설정</span>
           </button>
 
-          <button class="sidebar-bottom-item">
+          <button class="sidebar-bottom-item" type="button" @click="handleLogout">
             <span class="menu-icon">↩</span>
             <span>로그아웃</span>
           </button>
@@ -132,11 +133,31 @@
     <div class="main-layout">
       <header class="page-header">
         <button
+          type="button"
           class="logo-menu-button"
           aria-label="사이드바 열기"
           @click="toggleSidebar"
         >
-          <span class="logo-menu-icon">☰</span>
+          <span class="logo-menu-default">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+
+          <span class="logo-menu-hover">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M4 7h16M4 12h16M4 17h16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
         </button>
 
         <h1 class="page-title">{{ curriculum?.title || '커리큘럼 상세' }}</h1>
@@ -187,7 +208,7 @@
               </div>
 
               <button
-                v-if="curriculumStatus === 'NOT_STARTED'"
+                v-if="isCurriculumNotStarted"
                 class="primary-button"
                 :disabled="actionLoading"
                 @click="handleStart"
@@ -196,7 +217,7 @@
                 학습 시작하기
               </button>
 
-              <div v-else-if="curriculumStatus === 'IN_PROGRESS'" class="button-row">
+              <div v-else-if="isCurriculumInProgress" class="button-row">
                 <button
                   class="primary-button"
                   :disabled="actionLoading"
@@ -217,7 +238,7 @@
               </div>
 
               <button
-                v-else-if="curriculumStatus === 'PAUSED'"
+                v-else-if="isCurriculumPaused"
                 class="primary-button"
                 :disabled="actionLoading"
                 @click="handleResume"
@@ -226,7 +247,7 @@
                 학습 재개하기
               </button>
 
-              <p v-else class="complete-text">학습 완료</p>
+              <p v-else-if="isCurriculumCompleted" class="complete-text">학습 완료</p>
             </section>
 
             <div v-if="toastMessage" class="toast">
@@ -234,7 +255,7 @@
             </div>
 
             <section
-              v-if="curriculumStatus === 'IN_PROGRESS' && currentStep"
+              v-if="isCurriculumInProgress && currentStep"
               class="current-step-card"
             >
               <p class="current-step-label">현재 학습 중인 단계</p>
@@ -271,7 +292,7 @@
 
                     <span class="resource-label">{{ resource.label }}</span>
                     <a
-                      v-if="resource.url"
+                      v-if="isValidExternalUrl(resource.url)"
                       :href="resource.url"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -287,6 +308,15 @@
 
               <div class="button-row">
                 <button
+                  v-if="hasValidCurrentStepResourceUrl"
+                  class="outline-card-button"
+                  :disabled="actionLoading"
+                  @click="openFirstCurrentStepResource"
+                >
+                  학습 자료 보기
+                </button>
+
+                <button
                   class="primary-button"
                   :disabled="actionLoading"
                   @click="handleCompleteStep"
@@ -296,7 +326,7 @@
               </div>
             </section>
 
-            <section v-if="curriculumStatus === 'PAUSED'" class="paused-banner">
+            <section v-if="isCurriculumPaused" class="paused-banner">
               <p class="paused-title">현재 학습이 일시정지되어 있습니다.</p>
 
               <p v-if="currentStep" class="paused-description">
@@ -313,7 +343,7 @@
               </button>
             </section>
 
-            <section v-if="curriculumStatus === 'COMPLETED'" class="completion-banner">
+            <section v-if="isCurriculumCompleted" class="completion-banner">
               <p class="completion-title">커리큘럼을 모두 완료했습니다.</p>
               <p class="completion-description">
                 총 {{ totalCount }}개 Step을 모두 학습했습니다. 수고하셨습니다.
@@ -380,7 +410,7 @@
 
                           <span>{{ resource.label }}</span>
                           <a
-                            v-if="resource.url"
+                            v-if="isValidExternalUrl(resource.url)"
                             :href="resource.url"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -406,23 +436,24 @@
 
 <script setup>
 import './CurriculumDetailPage.css'
+import '@/assets/styles/user-shell.css'
 
 import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
-  completeCurrentStep,
+  completeCurriculumStep,
   getCurriculumDetail,
   getMyCurriculums,
   pauseCurriculumLearning,
   resumeCurriculumLearning,
   startCurriculumLearning,
 } from '@/api/curriculumApi'
+import { clearAuthStorage } from '@/utils/auth'
 
 const route = useRoute()
 const router = useRouter()
 
 const sidebarOpen = ref(false)
-const isDark = ref(false)
 const currentPath = computed(() => route.path)
 const curriculumSearchKeyword = ref('')
 const expandedStepId = ref(null)
@@ -479,9 +510,22 @@ const resourceTypeClass = {
 
 const curriculumId = computed(() => route.params.id)
 
-const curriculumStatus = computed(() => mapCurriculumStatus(curriculum.value?.status))
+const curriculumStatus = computed(() => normalizeCurriculumStatus(curriculum.value?.status))
+
+const isCurriculumNotStarted = computed(() =>
+  curriculumStatus.value === 'NOT_STARTED',
+)
+
+const isCurriculumInProgress = computed(() =>
+  curriculumStatus.value === 'IN_PROGRESS',
+)
+
+const isCurriculumPaused = computed(() => curriculumStatus.value === 'PAUSED')
+
+const isCurriculumCompleted = computed(() => curriculumStatus.value === 'COMPLETED')
 
 const curriculumDescription = computed(() =>
+  curriculum.value?.description ||
   curriculum.value?.recommendation_reason ||
   curriculum.value?.goal ||
   '커리큘럼 설명이 아직 등록되지 않았습니다.',
@@ -492,23 +536,26 @@ const steps = computed(() => {
   return rawSteps.map(mapStep)
 })
 
-const completedCount = computed(() =>
-  steps.value.filter((step) => step.status === 'COMPLETED').length,
-)
+const completedCount = computed(() => curriculum.value?.completed_step_count ?? 0)
 
-const totalCount = computed(() => steps.value.length)
+const totalCount = computed(() => curriculum.value?.total_step_count ?? steps.value.length)
 
-const progressPct = computed(() => {
-  if (totalCount.value === 0) return 0
-  return Math.round((completedCount.value / totalCount.value) * 100)
-})
+const progressPct = computed(() => curriculum.value?.progress_percent ?? 0)
 
 const currentStep = computed(() => {
+  if (curriculum.value?.current_step) {
+    return mapStep(curriculum.value.current_step)
+  }
+
   const currentStepId = curriculum.value?.current_step_id
   return steps.value.find((step) => step.id === currentStepId) ||
-    steps.value.find((step) => step.status === 'IN_PROGRESS') ||
+    steps.value.find((step) => step.status === 'IN_PROGRESS' || step.status === 'ACTIVE') ||
     null
 })
+
+const hasValidCurrentStepResourceUrl = computed(() =>
+  currentStep.value?.resources?.some((resource) => isValidExternalUrl(resource.url)) ?? false,
+)
 
 const filteredInProgress = computed(() =>
   filterCurricula(sidebarCurricula.value.filter((item) => item.status !== 'COMPLETED')),
@@ -563,7 +610,7 @@ async function loadSidebarCurricula() {
 }
 
 function mapSidebarCurriculum(item) {
-  const status = mapCurriculumStatus(item.status)
+  const status = normalizeCurriculumStatus(item.status)
   return {
     id: item.id,
     title: item.title,
@@ -573,40 +620,40 @@ function mapSidebarCurriculum(item) {
   }
 }
 
-function mapCurriculumStatus(status) {
-  if (status === 'ACTIVE') return 'IN_PROGRESS'
-  if (status === 'DRAFT') return 'NOT_STARTED'
-  if (status === 'PAUSED') return 'PAUSED'
-  if (status === 'COMPLETED') return 'COMPLETED'
+function normalizeCurriculumStatus(status) {
+  const value = normalizeStatusValue(status)
+  if (value === 'ACTIVE' || value === 'IN_PROGRESS') return 'IN_PROGRESS'
+  if (value === 'DRAFT' || value === 'NOT_STARTED') return 'NOT_STARTED'
+  if (value === 'PAUSED') return 'PAUSED'
+  if (value === 'COMPLETED') return 'COMPLETED'
   return 'NOT_STARTED'
 }
 
 function mapStep(step) {
-  const progress = step.step_progress
-  const status = mapStepStatus(progress?.status, step.id)
-
   return {
     id: step.id,
-    order: step.step_order,
+    order: step.order ?? step.step_order,
     title: step.title,
     description: step.description,
     estimatedHours: step.estimated_hours || 0,
-    difficulty: mapDifficulty(step.difficulty_level),
+    difficulty: step.difficulty || mapDifficulty(step.difficulty_level),
     resources: (step.resources || []).map(mapResource),
-    status,
+    status: normalizeStepStatus(step.status, step.step_progress?.status),
   }
 }
 
-function mapStepStatus(progressStatus, stepId) {
-  if (progressStatus === 'COMPLETED') return 'COMPLETED'
-  if (
-    progressStatus === 'IN_PROGRESS' ||
-    progressStatus === 'PAUSED' ||
-    curriculum.value?.current_step_id === stepId
-  ) {
-    return 'IN_PROGRESS'
-  }
+function normalizeStepStatus(status, legacyProgressStatus) {
+  const value = normalizeStatusValue(status || legacyProgressStatus)
+  if (value === 'COMPLETED') return 'COMPLETED'
+  if (value === 'IN_PROGRESS' || value === 'ACTIVE' || value === 'PAUSED') return 'IN_PROGRESS'
   return 'PENDING'
+}
+
+function normalizeStatusValue(status) {
+  return String(status || '')
+    .trim()
+    .replace(/[\s-]+/g, '_')
+    .toUpperCase()
 }
 
 function mapDifficulty(value) {
@@ -631,6 +678,27 @@ function normalizeResourceType(type) {
   if (value.includes('practice') || value.includes('exercise') || value.includes('kaggle')) return '실습'
   if (value.includes('document') || value.includes('text') || value.includes('docs')) return '문서'
   return type
+}
+
+function isValidExternalUrl(url) {
+  if (!url || typeof url !== 'string') {
+    return false
+  }
+
+  try {
+    const parsedUrl = new URL(url)
+    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+function openFirstCurrentStepResource() {
+  const resource = currentStep.value?.resources?.find((item) => isValidExternalUrl(item.url))
+
+  if (!resource) return
+
+  window.open(resource.url, '_blank', 'noopener,noreferrer')
 }
 
 function filterCurricula(curricula) {
@@ -670,22 +738,34 @@ async function runLearningAction(action, successMessage) {
   if (actionLoading.value) return
 
   actionLoading.value = true
+  errorMessage.value = ''
 
   try {
     const result = await action()
 
-    if (result?.next_step_exists && successMessage === '현재 Step을 완료했습니다.') {
-      await startCurriculumLearning(curriculumId.value)
+    if (isCurriculumDetailResponse(result)) {
+      curriculum.value = result
+      expandedStepId.value = currentStep.value?.id || steps.value[0]?.id || null
+    } else {
+      await loadPageData()
     }
-
-    await loadPageData()
     await loadSidebarCurricula()
     showToast(successMessage)
   } catch (error) {
-    showToast(error.message || '요청 처리에 실패했습니다.')
+    const message = getErrorMessage(error)
+    errorMessage.value = message
+    showToast(message)
   } finally {
     actionLoading.value = false
   }
+}
+
+function isCurriculumDetailResponse(data) {
+  return Boolean(data && Array.isArray(data.steps))
+}
+
+function getErrorMessage(error) {
+  return error?.message || '요청 처리에 실패했습니다.'
 }
 
 function handleStart() {
@@ -716,11 +796,11 @@ function handleResume() {
 }
 
 function handleCompleteStep() {
-  if (curriculumStatus.value !== 'IN_PROGRESS') return
-  if (!currentStep.value) return
+  if (!isCurriculumInProgress.value) return
+  if (!currentStep.value?.id) return
 
   runLearningAction(
-    () => completeCurrentStep(curriculumId.value),
+    () => completeCurriculumStep(curriculumId.value, currentStep.value.id),
     '현재 Step을 완료했습니다.',
   )
 }
@@ -748,8 +828,9 @@ function navigateTo(path) {
   sidebarOpen.value = false
 }
 
-function toggleTheme() {
-  isDark.value = !isDark.value
-  document.documentElement.classList.toggle('dark', isDark.value)
+function handleLogout() {
+  clearAuthStorage()
+  router.push('/')
+  sidebarOpen.value = false
 }
 </script>
