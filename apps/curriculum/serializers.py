@@ -424,6 +424,10 @@ class CurriculumStepCourseDetailSerializer(serializers.ModelSerializer):
     )
     grade = serializers.IntegerField(source="curriculum_course.grade", read_only=True)
     semester = serializers.CharField(source="curriculum_course.semester", read_only=True)
+    source_row_number = serializers.IntegerField(
+        source="curriculum_course.source_row_number",
+        read_only=True,
+    )
 
     class Meta:
         model = CurriculumStepCourse
@@ -434,6 +438,7 @@ class CurriculumStepCourseDetailSerializer(serializers.ModelSerializer):
             "department_name",
             "grade",
             "semester",
+            "source_row_number",
             "reason",
             "sort_order",
         )
