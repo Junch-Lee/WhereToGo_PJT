@@ -288,6 +288,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import './ChatInterview.css';
+import '@/assets/styles/user-shell.css';
 
 const router = useRouter();
 const route = useRoute();

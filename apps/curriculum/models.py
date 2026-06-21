@@ -431,8 +431,12 @@ class LearningProgress(models.Model):
     """
 
     class Status(models.TextChoices):
+        # IN_PROGRESS: 사용자가 현재 수행 중인 학습 기록
+        # PAUSED: 사용자가 일시정지한 학습 기록
         # COMPLETED: 해당 학습 기록을 완료 처리한 상태
-        # PARTIAL: 일부만 수행한 상태
+        # PARTIAL: 일부만 수행한 과거 호환 상태
+        IN_PROGRESS = "IN_PROGRESS", "In progress"
+        PAUSED = "PAUSED", "Paused"
         COMPLETED = "COMPLETED", "Completed"
         PARTIAL = "PARTIAL", "Partial"
 

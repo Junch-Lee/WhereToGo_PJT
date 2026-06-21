@@ -817,6 +817,53 @@ class CurriculumGenerateAPITest(APITestCase):
         normalize_agent_response_mock.assert_not_called()
         save_ai_generated_curriculum_mock.assert_not_called()
 
+    @patch("apps.curriculum.views.normalize_agent_response")
+    @patch("apps.curriculum.views.run_agent")
+    @patch("apps.curriculum.views.build_topic_catalog")
+    def test_generate_curriculum_stream_returns_progress_and_done_events(
+        self,
+        build_topic_catalog_mock,
+        run_agent_mock,
+        normalize_agent_response_mock,
+    ):
+        build_topic_catalog_mock.return_value = [{"slug": "python", "name": "Python"}]
+        run_agent_mock.return_value = {"generation_status": "generated"}
+        normalize_agent_response_mock.return_value = self._normalized_success_result()
+
+        response = self.client.post(
+            "/api/curriculums/generate/stream/",
+            self._mvp_payload(goal="Python 배우기"),
+            format="json",
+        )
+        stream_body = b"".join(response.streaming_content).decode("utf-8")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(response["Content-Type"].startswith("text/event-stream"))
+        self.assertIn("event: progress", stream_body)
+        self.assertIn("event: done", stream_body)
+        self.assertIn('"status": "success"', stream_body)
+        self.assertIn('"generated_curriculum"', stream_body)
+        run_agent_mock.assert_called_once()
+
+    def test_generate_curriculum_stream_returns_error_event_for_invalid_payload(self):
+        response = self.client.post(
+            "/api/curriculums/generate/stream/",
+            {
+                "purpose": "portfolio",
+                "difficulty_level": "beginner",
+                "target_weeks": 8,
+                "weekly_available_hours": 10,
+                "preferred_learning_style": "project",
+            },
+            format="json",
+        )
+        stream_body = b"".join(response.streaming_content).decode("utf-8")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn("event: error", stream_body)
+        self.assertIn('"detail"', stream_body)
+        self.assertIn('"goal"', stream_body)
+
     def test_generate_curriculum_requires_goal(self):
         """학습 목표가 빠진 요청은 AI 호출 전에 400으로 거부되는지 검증한다."""
         response = self.client.post(
@@ -1236,7 +1283,7 @@ class CurriculumDetailAPITest(APITestCase):
         response = self.client.get(f"/api/curriculums/{self.curriculum.id}/")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["status"], Curriculum.Status.DRAFT)
+        self.assertEqual(response.data["status"], "NOT_STARTED")
         self.assertEqual(response.data["current_step_id"], None)
         self.assertEqual(response.data["current_step_progress"], None)
         self.assertEqual(response.data["current_step_schedules"], [])

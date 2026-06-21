@@ -1,6 +1,12 @@
 <template>
-  <div class="curriculum-detail-page">
-    <aside class="detail-sidebar" :class="{ 'is-open': sidebarOpen }" @click.stop>
+  <div class="curriculum-page">
+    <div
+      v-if="sidebarOpen"
+      class="sidebar-overlay"
+      @click="closeSidebar"
+    ></div>
+
+    <aside :class="['sidebar', { 'sidebar-open': sidebarOpen }]">
       <div class="sidebar-inner">
         <div class="sidebar-logo-section">
           <button class="sidebar-logo-button" type="button" @click="navigateTo('/')">
@@ -15,920 +21,816 @@
 
             <div class="sidebar-logo-text">
               <strong>Where To Go</strong>
-              <span>AI 학습 커넥트</span>
+              <span>AI 학습 컨설턴트</span>
             </div>
           </button>
         </div>
 
         <div class="sidebar-search-section">
-          <div class="sidebar-search-box">
-            <svg viewBox="0 0 24 24" class="search-icon">
-              <path
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-
+          <div class="search-box">
+            <span class="search-icon">⌕</span>
             <input
               v-model="curriculumSearchKeyword"
               type="text"
+              class="search-input"
               placeholder="내 커리큘럼 검색"
             />
           </div>
         </div>
 
-        <nav class="sidebar-nav">
-          <button
-            v-for="item in menuItems"
-            :key="item.path"
-            type="button"
-            class="sidebar-nav-item"
-            :class="{ active: route.path === item.path }"
-            @click="navigateTo(item.path)"
-          >
-            <span class="nav-icon" v-html="item.icon"></span>
-            <span>{{ item.label }}</span>
-          </button>
-        </nav>
+        <div class="sidebar-menu-section">
+          <nav class="sidebar-nav">
+            <button
+              v-for="item in menuItems"
+              :key="item.path"
+              :class="['sidebar-menu-item', { active: currentPath === item.path }]"
+              @click="navigateTo(item.path)"
+            >
+              <span class="menu-icon">{{ item.icon }}</span>
+              <span>{{ item.label }}</span>
+            </button>
+          </nav>
+        </div>
 
-        <div class="sidebar-content">
-          <section class="curriculum-section">
-            <h3>진행 중인 커리큘럼</h3>
+        <div class="sidebar-curricula">
+          <div v-if="sidebarLoading" class="sidebar-empty">
+            <p>커리큘럼을 불러오는 중입니다.</p>
+          </div>
 
-            <div v-if="sidebarLoading" class="empty-search">커리큘럼을 불러오는 중입니다.</div>
+          <div v-if="filteredInProgress.length > 0" class="curriculum-list-group">
+            <h3 class="sidebar-section-title">진행 중인 커리큘럼</h3>
 
             <button
-              v-for="item in filteredCurriculums"
+              v-for="item in filteredInProgress"
               :key="item.id"
-              type="button"
-              class="curriculum-item"
-              :class="{ active: String(route.params.id) === String(item.id) }"
+              class="sidebar-curriculum-item"
               @click="navigateTo(`/curriculum/${item.id}`)"
             >
-              <div class="curriculum-main">
-                <p>{{ item.title }}</p>
+              <div class="sidebar-curriculum-content">
+                <p class="sidebar-curriculum-title">{{ item.title }}</p>
 
-                <div class="curriculum-meta">
-                  <span class="mini-progress-track">
-                    <span
-                      class="mini-progress-fill"
-                      :style="{ width: `${getListProgress(item)}%` }"
-                    ></span>
-                  </span>
-                  <span>{{ formatDate(item.updated_at || item.created_at) }}</span>
+                <div class="sidebar-progress-row">
+                  <div class="sidebar-progress-track">
+                    <div
+                      class="sidebar-progress-fill"
+                      :style="{ width: `${item.progress}%` }"
+                    ></div>
+                  </div>
+
+                  <span class="sidebar-updated">{{ item.updated }}</span>
                 </div>
               </div>
 
-              <span class="chevron">›</span>
+              <span class="sidebar-chevron">›</span>
             </button>
-          </section>
+          </div>
 
-          <div
-            v-if="!sidebarLoading && curriculumSearchKeyword.trim() && filteredCurriculums.length === 0"
-            class="empty-search"
-          >
-            검색 결과가 없습니다.
+          <div v-if="filteredCompleted.length > 0" class="curriculum-list-group">
+            <h3 class="sidebar-section-title">완료한 커리큘럼</h3>
+
+            <button
+              v-for="item in filteredCompleted"
+              :key="item.id"
+              class="sidebar-curriculum-item"
+              @click="navigateTo(`/curriculum/${item.id}`)"
+            >
+              <div class="sidebar-curriculum-content">
+                <p class="sidebar-curriculum-title completed">{{ item.title }}</p>
+                <span class="sidebar-updated">{{ item.updated }}</span>
+              </div>
+
+              <span class="sidebar-chevron">›</span>
+            </button>
           </div>
 
           <div
-            v-if="!sidebarLoading && !curriculumSearchKeyword.trim() && filteredCurriculums.length === 0"
-            class="empty-search"
+            v-if="
+              !sidebarLoading &&
+              curriculumSearchKeyword.trim() &&
+              filteredInProgress.length === 0 &&
+              filteredCompleted.length === 0
+            "
+            class="sidebar-empty"
           >
-            아직 생성한 커리큘럼이 없습니다.
+            <p>검색 결과가 없습니다</p>
           </div>
         </div>
 
         <div class="sidebar-bottom">
-          <button type="button" class="sidebar-nav-item" @click="navigateTo('/settings')">
-            <span class="nav-icon" v-html="icons.settings"></span>
+          <button class="sidebar-bottom-item" type="button" @click="navigateTo('/settings')">
+            <span class="menu-icon">⚙</span>
             <span>설정</span>
           </button>
 
-          <button type="button" class="sidebar-nav-item" @click="handleLogout">
-            <span class="nav-icon" v-html="icons.logout"></span>
+          <button class="sidebar-bottom-item" type="button" @click="handleLogout">
+            <span class="menu-icon">↩</span>
             <span>로그아웃</span>
           </button>
         </div>
       </div>
     </aside>
 
-    <div v-if="sidebarOpen" class="sidebar-backdrop" @click="closeSidebar"></div>
+    <div class="main-layout">
+      <header class="page-header">
+        <button
+          type="button"
+          class="logo-menu-button"
+          aria-label="사이드바 열기"
+          @click="toggleSidebar"
+        >
+          <span class="logo-menu-default">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
 
-    <div class="detail-main">
-      <header class="detail-topbar">
-        <div class="topbar-left">
-          <button
-            type="button"
-            class="logo-menu-button"
-            aria-label="사이드바 열기"
-            @click="toggleSidebar"
-          >
-            <span class="logo-menu-default">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </span>
+          <span class="logo-menu-hover">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M4 7h16M4 12h16M4 17h16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </button>
 
-            <span class="logo-menu-hover">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M4 7h16M4 12h16M4 17h16"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
-            </span>
-          </button>
-
-          <h1>{{ curriculum?.title || '커리큘럼 상세' }}</h1>
-        </div>
+        <h1 class="page-title">{{ curriculum?.title || '커리큘럼 상세' }}</h1>
       </header>
 
-      <main class="detail-content">
-        <section v-if="loading" class="main-card state-card">
-          <h2>커리큘럼 정보를 불러오는 중입니다.</h2>
-        </section>
-
-        <section v-else-if="errorMessage" class="main-card state-card">
-          <h2>{{ errorTitle }}</h2>
-          <p>{{ errorMessage }}</p>
-          <button type="button" class="secondary-large" @click="loadPageData">
-            다시 시도
-          </button>
-        </section>
-
-        <template v-else-if="curriculum">
-          <section class="main-card hero-card">
-            <div class="hero-header">
-              <div>
-                <h2>{{ curriculum.title }}</h2>
-
-                <p class="goal-text">
-                  <span class="target-icon">◎</span>
-                  목표: {{ curriculum.goal }}
-                </p>
-              </div>
-
-              <span class="status-pill" :class="statusClass">
-                {{ getStatusLabel(curriculum.status) }}
-              </span>
-            </div>
-
-            <div class="info-grid">
-              <div class="info-box">
-                <p>생성일</p>
-                <strong>{{ formatDate(curriculum.created_at) }}</strong>
-              </div>
-
-              <div class="info-box">
-                <p>수강 시작일</p>
-                <strong>{{ formatDate(curriculum.started_at) || '아직 시작 전' }}</strong>
-              </div>
-
-              <div class="info-box">
-                <p>완료일</p>
-                <strong>{{ formatDate(curriculum.completed_at) || '아직 완료 전' }}</strong>
-              </div>
-
-              <div class="info-box">
-                <p>현재 단계</p>
-                <strong>{{ currentStepText }}</strong>
-              </div>
-            </div>
-
-            <div class="overall-progress">
-              <div class="progress-title-row">
-                <strong>전체 진행률</strong>
-                <span>{{ overallProgress }}%</span>
-              </div>
-
-              <div class="progress-track">
-                <div class="progress-fill" :style="{ width: `${overallProgress}%` }"></div>
-              </div>
-
-              <p>총 {{ curriculum.target_weeks }}주 · 주 {{ curriculum.weekly_available_hours }}시간 기준</p>
-            </div>
+      <main class="page-main">
+        <div class="content-wrap">
+          <section v-if="loading" class="summary-card page-state-card">
+            <p>커리큘럼 정보를 불러오는 중입니다.</p>
           </section>
 
-          <section class="ai-message-card">
-            <div class="sparkle-icon">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
-                  fill="currentColor"
-                />
-                <path
-                  d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-
-            <p>{{ statusMessage }}</p>
-          </section>
-
-          <section v-if="hasCurrentStep" class="main-card current-step-card">
-            <div class="section-title-row">
-              <h3>현재 진행 중인 단계</h3>
-              <span class="blue-status">{{ getStepStatusLabel(currentStepProgress.status) }}</span>
-            </div>
-
-            <div class="current-step-summary">
-              <p>{{ currentStep.step_order }}단계</p>
-              <h4>{{ currentStep.title }}</h4>
-              <span>{{ currentStep.description }}</span>
-            </div>
-
-            <div class="step-progress-block">
-              <div class="progress-title-row">
-                <strong>단계 진행률</strong>
-                <span>{{ currentStepProgress.progress_rate }}%</span>
-              </div>
-
-              <div class="progress-track">
-                <div
-                  class="progress-fill"
-                  :style="{ width: `${currentStepProgress.progress_rate}%` }"
-                ></div>
-              </div>
-            </div>
-
-            <div class="metric-grid">
-              <div class="metric-box">
-                <p>예상 소요 시간</p>
-                <strong>{{ currentStep.estimated_hours }}시간</strong>
-              </div>
-
-              <div class="metric-box">
-                <p>실제 학습 시간</p>
-                <strong>{{ minutesToText(currentStepProgress.actual_minutes) }}</strong>
-              </div>
-
-              <div class="metric-box">
-                <p>남은 예상 시간</p>
-                <strong>약 {{ minutesToText(remainingMinutes) }}</strong>
-              </div>
-
-              <div class="metric-box">
-                <p>마지막 학습일</p>
-                <strong>{{ formatDate(currentStepProgress.last_studied_at) || '기록 없음' }}</strong>
-              </div>
-            </div>
-          </section>
-
-          <section v-if="curriculum.status === 'DRAFT'" class="main-card draft-card">
-            <h3>학습 시작 전 안내</h3>
-            <p>
-              아직 학습 일정은 생성되지 않았어요. 학습을 시작하면 첫 번째 단계에 대한
-              일정만 먼저 생성됩니다.
-            </p>
-
+          <section v-else-if="errorMessage" class="summary-card page-state-card error">
+            <p>{{ errorMessage }}</p>
             <button
-              type="button"
-              class="primary-action"
-              disabled
-              title="학습 시작 API 연결이 필요한 버튼입니다."
+              class="outline-button"
+              :disabled="actionLoading"
+              @click="loadPageData"
             >
-              첫 단계 시작하기
+              다시 시도
             </button>
           </section>
 
-          <section v-if="curriculum.status === 'PAUSED'" class="main-card draft-card">
-            <h3>현재 커리큘럼이 일시정지되어 있어요.</h3>
-            <p>
-              재개하면 완료된 기록은 유지되고, 미완료 일정만 다시 조정할 수 있습니다.
-            </p>
-          </section>
+          <template v-else-if="curriculum">
+            <section class="summary-card">
+              <div class="summary-header">
+                <div>
+                  <h2 class="summary-title">{{ curriculum.title }}</h2>
+                  <p class="summary-description">{{ curriculumDescription }}</p>
+                </div>
 
-          <section v-if="showCurrentStepTables" class="main-card table-card">
-            <h3>현재 단계 학습 일정</h3>
-
-            <p class="section-description">
-              현재 단계 진행 row에 연결된 일정만 표시합니다.
-            </p>
-
-            <div v-if="currentStepSchedules.length" class="detail-table">
-              <div class="table-row table-head">
-                <span>회차</span>
-                <span>예정일</span>
-                <span>계획 시간</span>
-                <span>상태</span>
-              </div>
-
-              <div
-                v-for="schedule in currentStepSchedules"
-                :key="schedule.id"
-                class="table-row"
-              >
-                <span>{{ schedule.sequence_no }}회차</span>
-                <span>{{ formatDate(schedule.scheduled_date) }}</span>
-                <span>{{ schedule.planned_hours }}시간</span>
-                <span>
-                  <span class="small-status" :class="getScheduleStatusClass(schedule.status)">
-                    {{ getScheduleStatusLabel(schedule.status) }}
-                  </span>
+                <span :class="['status-pill', curriculumStatusClass[curriculumStatus]]">
+                  {{ curriculumStatusLabel[curriculumStatus] }}
                 </span>
               </div>
-            </div>
 
-            <p v-else class="section-description">현재 단계에 생성된 학습 일정이 없습니다.</p>
-          </section>
+              <div class="progress-block">
+                <div class="progress-info">
+                  <span>{{ completedCount }} / {{ totalCount }} Step 완료</span>
+                  <strong>{{ progressPct }}%</strong>
+                </div>
 
-          <section v-if="showCurrentStepTables" class="main-card table-card">
-            <h3>실제 학습 기록</h3>
-
-            <p class="section-description">
-              현재 단계 진행 row에 연결된 실제 학습 기록만 표시합니다.
-            </p>
-
-            <div v-if="currentStepLearningProgresses.length" class="detail-table record-table">
-              <div class="table-row table-head">
-                <span>학습일</span>
-                <span>연결 일정</span>
-                <span>계획 / 실제</span>
-                <span>상태</span>
-                <span>메모</span>
+                <div class="progress-track">
+                  <div
+                    class="progress-fill"
+                    :style="{ width: `${progressPct}%` }"
+                  ></div>
+                </div>
               </div>
 
-              <div
-                v-for="record in currentStepLearningProgresses"
-                :key="record.id"
-                class="table-row"
+              <button
+                v-if="isCurriculumNotStarted"
+                class="primary-button"
+                :disabled="actionLoading"
+                @click="handleStart"
               >
-                <span>{{ formatDate(record.studied_at) || '-' }}</span>
-                <span>{{ getScheduleLabel(record.learning_schedule_id) }}</span>
-                <span>{{ getRecordTimeText(record) }}</span>
-                <span>
-                  <span class="small-status" :class="getProgressStatusClass(record.status)">
-                    {{ getProgressStatusLabel(record.status) }}
-                  </span>
-                </span>
-                <span>{{ record.memo || '-' }}</span>
-              </div>
-            </div>
+                <span>▶</span>
+                학습 시작하기
+              </button>
 
-            <p v-else class="section-description">아직 기록된 실제 학습 내역이 없습니다.</p>
-          </section>
-
-          <section v-if="curriculum.status === 'COMPLETED'" class="main-card completed-card">
-            <h3>학습 완료 요약</h3>
-            <p>전체 커리큘럼이 완료되었습니다. 아래 단계 목록에서 완료 기록을 확인할 수 있습니다.</p>
-
-            <div class="metric-grid">
-              <div class="metric-box">
-                <p>전체 시작일</p>
-                <strong>{{ formatDate(curriculum.started_at) || '-' }}</strong>
-              </div>
-
-              <div class="metric-box">
-                <p>전체 완료일</p>
-                <strong>{{ formatDate(curriculum.completed_at) || '-' }}</strong>
-              </div>
-
-              <div class="metric-box">
-                <p>완료 단계</p>
-                <strong>{{ completedStepCount }}단계</strong>
-              </div>
-
-              <div class="metric-box">
-                <p>최종 진행률</p>
-                <strong>{{ overallProgress }}%</strong>
-              </div>
-            </div>
-          </section>
-
-          <section class="main-card steps-card">
-            <h3>커리큘럼 단계</h3>
-
-            <div class="step-list">
-              <article
-                v-for="step in mappedSteps"
-                :key="step.id"
-                class="curriculum-step"
-                :class="{
-                  active: step.id === expandedStepId || step.isCurrent,
-                  waiting: step.statusClass === 'waiting',
-                }"
-              >
-                <button type="button" class="step-header" @click="toggleStep(step.id)">
-                  <div class="step-left">
-                    <span class="step-icon" :class="step.statusClass">
-                      <svg v-if="step.statusClass === 'active'" viewBox="0 0 24 24" class="icon">
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="9"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        />
-                      </svg>
-
-                      <svg v-else viewBox="0 0 24 24" class="icon">
-                        <rect
-                          x="5"
-                          y="11"
-                          width="14"
-                          height="10"
-                          rx="2"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        />
-                        <path
-                          d="M8 11V8a4 4 0 0 1 8 0v3"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                        />
-                      </svg>
-                    </span>
-
-                    <div class="step-title-block">
-                      <div class="step-title-line">
-                        <h4>{{ step.step_order }}단계. {{ step.title }}</h4>
-                        <span class="step-status" :class="step.statusClass">
-                          {{ step.statusText }}
-                        </span>
-                      </div>
-
-                      <div class="step-meta">
-                        <span>예상 {{ step.estimated_hours }}시간</span>
-                        <span :class="['difficulty', getDifficultyClass(step.difficulty_level)]">
-                          {{ getDifficultyLabel(step.difficulty_level) }}
-                        </span>
-                        <span>{{ step.scheduleText }}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <span class="step-arrow">{{ expandedStepId === step.id ? '⌃' : '⌄' }}</span>
+              <div v-else-if="isCurriculumInProgress" class="button-row">
+                <button
+                  class="primary-button"
+                  :disabled="actionLoading"
+                  @click="handleContinue"
+                >
+                  <span>▶</span>
+                  학습 이어가기
                 </button>
 
-                <div v-if="expandedStepId === step.id" class="step-body">
-                  <p>{{ step.description }}</p>
+                <button
+                  class="outline-button"
+                  :disabled="actionLoading"
+                  @click="handlePause"
+                >
+                  <span>Ⅱ</span>
+                  일시정지
+                </button>
+              </div>
 
-                  <div class="step-topic-block">
-                    <h5>핵심 주제</h5>
-                    <ul>
-                      <li v-for="topic in getStepTopics(step)" :key="topic">{{ topic }}</li>
-                    </ul>
-                  </div>
+              <button
+                v-else-if="isCurriculumPaused"
+                class="primary-button"
+                :disabled="actionLoading"
+                @click="handleResume"
+              >
+                <span>▶</span>
+                학습 재개하기
+              </button>
 
-                  <div v-if="step.resources.length" class="step-topic-block">
-                    <h5>추천 자료</h5>
-                    <ul>
-                      <li v-for="resource in step.resources" :key="resource.id">
-                        {{ resource.title }} · {{ resource.provider_name || '제공자 미상' }}
-                      </li>
-                    </ul>
-                  </div>
+              <p v-else-if="isCurriculumCompleted" class="complete-text">학습 완료</p>
+            </section>
 
-                  <div v-if="step.courses.length" class="step-topic-block">
-                    <h5>참고 강의</h5>
-                    <ul>
-                      <li v-for="course in step.courses" :key="course.id">
-                        {{ course.course_name }}
-                        <span v-if="course.university_name"> · {{ course.university_name }}</span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <p class="prerequisite">
-                    선수 조건: {{ step.prerequisite_note || '별도 선수 조건 없음' }}
-                  </p>
-                </div>
-              </article>
+            <div v-if="toastMessage" class="toast">
+              {{ toastMessage }}
             </div>
-          </section>
 
-          <section class="main-card action-card">
-            <button
-              v-if="curriculum.status === 'ACTIVE'"
-              type="button"
-              class="primary-large"
-              disabled
-              title="이어서 학습하기 API 연결이 필요합니다."
+            <section
+              v-if="isCurriculumInProgress && currentStep"
+              class="current-step-card"
             >
-              이어서 학습하기
-            </button>
+              <p class="current-step-label">현재 학습 중인 단계</p>
 
-            <button
-              v-if="curriculum.status === 'ACTIVE'"
-              type="button"
-              class="secondary-large"
-              disabled
-              title="일시정지 API 연결이 필요합니다."
-            >
-              일시정지
-            </button>
+              <div class="current-step-header">
+                <h3>Step {{ currentStep.order }}. {{ currentStep.title }}</h3>
 
-            <button
-              v-if="curriculum.status === 'PAUSED'"
-              type="button"
-              class="primary-large"
-              disabled
-              title="학습 재개 API 연결이 필요합니다."
-            >
-              학습 재개하기
-            </button>
+                <div class="current-step-meta">
+                  <span>예상 {{ currentStep.estimatedHours }}시간</span>
 
-            <button
-              v-if="curriculum.status === 'DRAFT'"
-              type="button"
-              class="primary-large"
-              disabled
-              title="학습 시작 API 연결이 필요합니다."
-            >
-              학습 시작하기
-            </button>
+                  <span :class="['difficulty-pill', difficultyClass[currentStep.difficulty]]">
+                    {{ currentStep.difficulty }}
+                  </span>
+                </div>
+              </div>
 
-            <button
-              v-if="curriculum.status === 'COMPLETED'"
-              type="button"
-              class="primary-large"
-              disabled
-              title="학습 리포트 API 연결이 필요합니다."
-            >
-              학습 리포트 보기
-            </button>
+              <div class="goal-box">
+                <p>학습 목표</p>
+                <span>{{ currentStep.description }}</span>
+              </div>
 
-            <button type="button" class="secondary-large" @click="navigateTo('/chat')">
-              AI 튜터에게 질문하기
-            </button>
-          </section>
-        </template>
+              <div v-if="currentStep.resources.length > 0" class="resource-block">
+                <p class="resource-title">추천 학습 자료</p>
+
+                <ul class="resource-list">
+                  <li
+                    v-for="resource in currentStep.resources"
+                    :key="resource.id"
+                    class="resource-item"
+                  >
+                    <span :class="['resource-type', resourceTypeClass[resource.type] || 'resource-muted']">
+                      {{ resource.type }}
+                    </span>
+
+                    <span class="resource-label">{{ resource.label }}</span>
+                    <a
+                      v-if="isValidExternalUrl(resource.url)"
+                      :href="resource.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="resource-open-link"
+                      :aria-label="`${resource.label} 열기`"
+                      title="새 탭에서 열기"
+                    >
+                      ↗
+                    </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="button-row">
+                <button
+                  v-if="hasValidCurrentStepResourceUrl"
+                  class="outline-card-button"
+                  :disabled="actionLoading"
+                  @click="openFirstCurrentStepResource"
+                >
+                  학습 자료 보기
+                </button>
+
+                <button
+                  class="primary-button"
+                  :disabled="actionLoading"
+                  @click="handleCompleteStep"
+                >
+                  Step 완료하기
+                </button>
+              </div>
+            </section>
+
+            <section v-if="isCurriculumPaused" class="paused-banner">
+              <p class="paused-title">현재 학습이 일시정지되어 있습니다.</p>
+
+              <p v-if="currentStep" class="paused-description">
+                진행 중이던 단계: Step {{ currentStep.order }}. {{ currentStep.title }}
+              </p>
+
+              <button
+                class="pause-resume-button"
+                :disabled="actionLoading"
+                @click="handleResume"
+              >
+                <span>▶</span>
+                학습 재개하기
+              </button>
+            </section>
+
+            <section v-if="isCurriculumCompleted" class="completion-banner">
+              <p class="completion-title">커리큘럼을 모두 완료했습니다.</p>
+              <p class="completion-description">
+                총 {{ totalCount }}개 Step을 모두 학습했습니다. 수고하셨습니다.
+              </p>
+            </section>
+
+            <section class="step-list-card">
+              <h3 class="step-list-title">전체 학습 단계</h3>
+
+              <div class="step-list">
+                <article
+                  v-for="step in steps"
+                  :key="step.id"
+                  :class="['step-item', { active: step.status === 'IN_PROGRESS' }]"
+                >
+                  <button class="step-toggle" @click="toggleStep(step.id)">
+                    <span
+                      :class="[
+                        'step-state-icon',
+                        {
+                          completed: step.status === 'COMPLETED',
+                          progress: step.status === 'IN_PROGRESS',
+                          pending: step.status === 'PENDING'
+                        }
+                      ]"
+                    >
+                      {{ getStepIcon(step.status) }}
+                    </span>
+
+                    <div class="step-toggle-content">
+                      <div class="step-title-row">
+                        <span :class="['step-name', { muted: step.status === 'PENDING' }]">
+                          Step {{ step.order }}. {{ step.title }}
+                        </span>
+
+                        <span :class="['step-status-badge', stepStatusClass[step.status]]">
+                          {{ stepStatusLabel[step.status] }}
+                        </span>
+                      </div>
+
+                      <span class="step-time">약 {{ step.estimatedHours }}시간</span>
+                    </div>
+
+                    <span class="step-chevron">
+                      {{ expandedStepId === step.id ? '⌃' : '⌄' }}
+                    </span>
+                  </button>
+
+                  <div v-if="expandedStepId === step.id" class="step-detail">
+                    <p class="step-description">{{ step.description }}</p>
+
+                    <div v-if="step.resources.length > 0">
+                      <p class="step-resource-title">추천 학습 자료</p>
+
+                      <ul class="step-resource-list">
+                        <li
+                          v-for="resource in step.resources"
+                          :key="resource.id"
+                          class="step-resource-item"
+                        >
+                          <span :class="['resource-type small', resourceTypeClass[resource.type] || 'resource-muted']">
+                            {{ resource.type }}
+                          </span>
+
+                          <span>{{ resource.label }}</span>
+                          <a
+                            v-if="isValidExternalUrl(resource.url)"
+                            :href="resource.url"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="resource-open-link small"
+                            :aria-label="`${resource.label} 열기`"
+                            title="새 탭에서 열기"
+                          >
+                            ↗
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </template>
+        </div>
       </main>
     </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import { getCurriculumDetail, getMyCurriculums } from '@/api/curriculumApi';
-import { clearAuthStorage } from '@/utils/auth';
-import './CurriculumDetailPage.css';
+import './CurriculumDetailPage.css'
+import '@/assets/styles/user-shell.css'
 
-const router = useRouter();
-const route = useRoute();
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import {
+  completeCurriculumStep,
+  getCurriculumDetail,
+  getMyCurriculums,
+  pauseCurriculumLearning,
+  resumeCurriculumLearning,
+  startCurriculumLearning,
+} from '@/api/curriculumApi'
+import { clearAuthStorage } from '@/utils/auth'
 
-const sidebarOpen = ref(false);
-const curriculumSearchKeyword = ref('');
-const curriculum = ref(null);
-const curriculums = ref([]);
-const loading = ref(false);
-const sidebarLoading = ref(false);
-const errorMessage = ref('');
-const errorStatus = ref(null);
-const expandedStepId = ref(null);
+const route = useRoute()
+const router = useRouter()
 
-const icons = {
-  user: `
-    <svg viewBox="0 0 24 24" class="icon">
-      <path d="M20 21a8 8 0 0 0-16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-    </svg>
-  `,
-  chart: `
-    <svg viewBox="0 0 24 24" class="icon">
-      <path d="M4 19V5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M8 16v-5M12 16V8M16 16v-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  `,
-  settings: `
-    <svg viewBox="0 0 24 24" class="icon">
-      <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z" fill="none" stroke="currentColor" stroke-width="2"/>
-      <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.04.04a2.1 2.1 0 0 1-2.97 2.97l-.04-.04a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.65V21a2.1 2.1 0 1 1-4.2 0v-.06a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-1.98.36l-.04.04a2.1 2.1 0 0 1-2.97-2.97l.04-.04A1.8 1.8 0 0 0 4.6 15a1.8 1.8 0 0 0-1.65-1.1H3a2.1 2.1 0 1 1 0-4.2h.06A1.8 1.8 0 0 0 4.7 8.6a1.8 1.8 0 0 0-.36-1.98l-.04-.04a2.1 2.1 0 0 1 2.97-2.97l.04.04a1.8 1.8 0 0 0 1.98.36 1.8 1.8 0 0 0 1.1-1.65V3a2.1 2.1 0 1 1 4.2 0v.06a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 1.98-.36l.04-.04a2.1 2.1 0 0 1 2.97 2.97l-.04.04A1.8 1.8 0 0 0 19.4 9c.18.67.7 1.1 1.35 1.1H21a2.1 2.1 0 1 1 0 4.2h-.06A1.8 1.8 0 0 0 19.4 15Z" fill="none" stroke="currentColor" stroke-width="2"/>
-    </svg>
-  `,
-  logout: `
-    <svg viewBox="0 0 24 24" class="icon">
-      <path d="M10 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M15 12H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      <path d="M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    </svg>
-  `,
-};
+const sidebarOpen = ref(false)
+const currentPath = computed(() => route.path)
+const curriculumSearchKeyword = ref('')
+const expandedStepId = ref(null)
+const toastMessage = ref('')
+const curriculum = ref(null)
+const sidebarCurricula = ref([])
+const loading = ref(false)
+const sidebarLoading = ref(false)
+const actionLoading = ref(false)
+const errorMessage = ref('')
 
 const menuItems = [
-  { icon: icons.user, label: '마이페이지', path: '/mypage' },
-  { icon: icons.chart, label: '학습 대시보드', path: '/learning' },
-];
+  { icon: '◇', label: '마이페이지', path: '/mypage' },
+  { icon: '▦', label: '학습 대시보드', path: '/learning' },
+]
 
-const filteredCurriculums = computed(() => {
-  const keyword = curriculumSearchKeyword.value.trim().toLowerCase();
-  const list = curriculums.value.filter((item) => item.status !== 'CANCELLED');
+const curriculumStatusLabel = {
+  NOT_STARTED: '시작 전',
+  IN_PROGRESS: '진행 중',
+  PAUSED: '일시정지',
+  COMPLETED: '완료',
+}
 
-  if (!keyword) return list;
+const curriculumStatusClass = {
+  NOT_STARTED: 'status-gray',
+  IN_PROGRESS: 'status-blue',
+  PAUSED: 'status-amber',
+  COMPLETED: 'status-emerald',
+}
 
-  return list.filter((item) => item.title.toLowerCase().includes(keyword));
-});
+const stepStatusLabel = {
+  PENDING: '대기 중',
+  IN_PROGRESS: '진행 중',
+  COMPLETED: '완료',
+}
 
-const currentStepProgress = computed(() => curriculum.value?.current_step_progress || null);
-const currentStepSchedules = computed(() => curriculum.value?.current_step_schedules || []);
-const currentStepLearningProgresses = computed(
-  () => curriculum.value?.current_step_learning_progresses || [],
-);
+const stepStatusClass = {
+  PENDING: 'status-gray',
+  IN_PROGRESS: 'status-blue',
+  COMPLETED: 'status-emerald',
+}
+
+const difficultyClass = {
+  쉬움: 'difficulty-easy',
+  보통: 'difficulty-normal',
+  어려움: 'difficulty-hard',
+}
+
+const resourceTypeClass = {
+  강의: 'resource-primary',
+  문서: 'resource-blue',
+  실습: 'resource-purple',
+}
+
+const curriculumId = computed(() => route.params.id)
+
+const curriculumStatus = computed(() => normalizeCurriculumStatus(curriculum.value?.status))
+
+const isCurriculumNotStarted = computed(() =>
+  curriculumStatus.value === 'NOT_STARTED',
+)
+
+const isCurriculumInProgress = computed(() =>
+  curriculumStatus.value === 'IN_PROGRESS',
+)
+
+const isCurriculumPaused = computed(() => curriculumStatus.value === 'PAUSED')
+
+const isCurriculumCompleted = computed(() => curriculumStatus.value === 'COMPLETED')
+
+const curriculumDescription = computed(() =>
+  curriculum.value?.description ||
+  curriculum.value?.recommendation_reason ||
+  curriculum.value?.goal ||
+  '커리큘럼 설명이 아직 등록되지 않았습니다.',
+)
+
+const steps = computed(() => {
+  const rawSteps = curriculum.value?.steps || []
+  return rawSteps.map(mapStep)
+})
+
+const completedCount = computed(() => curriculum.value?.completed_step_count ?? 0)
+
+const totalCount = computed(() => curriculum.value?.total_step_count ?? steps.value.length)
+
+const progressPct = computed(() => curriculum.value?.progress_percent ?? 0)
 
 const currentStep = computed(() => {
-  const steps = curriculum.value?.steps || [];
-  const progressStepId = currentStepProgress.value?.curriculum_step_id;
-  const currentStepId = progressStepId || curriculum.value?.current_step_id;
-
-  return steps.find((step) => step.id === currentStepId) || null;
-});
-
-const hasCurrentStep = computed(() => Boolean(currentStep.value && currentStepProgress.value));
-
-const showCurrentStepTables = computed(() =>
-  ['ACTIVE', 'PAUSED'].includes(curriculum.value?.status) && hasCurrentStep.value,
-);
-
-const completedStepCount = computed(() =>
-  (curriculum.value?.steps || []).filter((step) => step.step_progress?.status === 'COMPLETED').length,
-);
-
-const overallProgress = computed(() => {
-  const steps = curriculum.value?.steps || [];
-
-  if (!curriculum.value || curriculum.value.status === 'DRAFT') return 0;
-  if (curriculum.value.status === 'COMPLETED') return 100;
-  if (!steps.length) return currentStepProgress.value?.progress_rate || 0;
-
-  // 전체 진행률은 단계 완료 개수 기준으로 계산한다.
-  return Math.round((completedStepCount.value / steps.length) * 100);
-});
-
-const remainingMinutes = computed(() => {
-  if (!currentStep.value || !currentStepProgress.value) return 0;
-
-  return Math.max(
-    0,
-    currentStep.value.estimated_hours * 60 - currentStepProgress.value.actual_minutes,
-  );
-});
-
-const currentStepText = computed(() => {
-  if (!currentStep.value) return curriculum.value?.status === 'DRAFT' ? '시작 전' : '현재 단계 없음';
-
-  return `${currentStep.value.step_order}단계 ${currentStep.value.title}`;
-});
-
-const mappedSteps = computed(() =>
-  (curriculum.value?.steps || []).map((step) => {
-    const status = step.step_progress?.status || 'NOT_STARTED';
-
-    return {
-      ...step,
-      statusClass: getStepStatusClass(status),
-      statusText: getStepStatusLabel(status),
-      scheduleText: step.step_progress ? '일정 생성됨' : '아직 일정 없음',
-      isCurrent: currentStep.value?.id === step.id,
-    };
-  }),
-);
-
-const statusClass = computed(() => (curriculum.value?.status || 'DRAFT').toLowerCase());
-
-const statusMessage = computed(() => {
-  if (curriculum.value?.status === 'DRAFT') {
-    return 'AI가 커리큘럼 초안을 구성했어요. 학습을 시작하면 첫 번째 단계 일정이 생성됩니다.';
+  if (curriculum.value?.current_step) {
+    return mapStep(curriculum.value.current_step)
   }
 
-  if (curriculum.value?.status === 'PAUSED') {
-    return '현재 학습이 일시정지되어 있어요. 완료된 기록은 유지되고 미완료 일정만 조정 대상입니다.';
-  }
+  const currentStepId = curriculum.value?.current_step_id
+  return steps.value.find((step) => step.id === currentStepId) ||
+    steps.value.find((step) => step.status === 'IN_PROGRESS' || step.status === 'ACTIVE') ||
+    null
+})
 
-  if (curriculum.value?.status === 'COMPLETED') {
-    return '커리큘럼을 완료했어요. 단계별 기록을 바탕으로 다음 학습 방향을 정리할 수 있습니다.';
-  }
+const hasValidCurrentStepResourceUrl = computed(() =>
+  currentStep.value?.resources?.some((resource) => isValidExternalUrl(resource.url)) ?? false,
+)
 
-  return 'AI가 현재 학습 흐름을 분석했어요. 최근 진행 상황을 기준으로 다음 학습 단계를 추천합니다.';
-});
+const filteredInProgress = computed(() =>
+  filterCurricula(sidebarCurricula.value.filter((item) => item.status !== 'COMPLETED')),
+)
 
-const errorTitle = computed(() => {
-  if (errorStatus.value === 401) return '로그인이 필요합니다.';
-  if (errorStatus.value === 404) return '커리큘럼을 찾을 수 없습니다.';
-
-  return '커리큘럼 정보를 불러오지 못했습니다.';
-});
-
-async function loadPageData() {
-  const curriculumId = route.params.id;
-
-  loading.value = true;
-  sidebarLoading.value = true;
-  errorMessage.value = '';
-  errorStatus.value = null;
-
-  try {
-    const [detailData, listData] = await Promise.all([
-      getCurriculumDetail(curriculumId),
-      getMyCurriculums(),
-    ]);
-
-    curriculum.value = detailData;
-    curriculums.value = listData;
-    expandedStepId.value = detailData.steps?.[0]?.id || null;
-  } catch (error) {
-    curriculum.value = null;
-    errorStatus.value = error.status || null;
-    errorMessage.value = getFriendlyErrorMessage(error);
-  } finally {
-    loading.value = false;
-    sidebarLoading.value = false;
-  }
-}
-
-function getFriendlyErrorMessage(error) {
-  if (error.status === 401) return '로그인이 필요합니다.';
-  if (error.status === 404) return '커리큘럼을 찾을 수 없습니다.';
-
-  return error.message || '잠시 후 다시 시도해주세요.';
-}
-
-function getStatusLabel(status) {
-  return {
-    DRAFT: '초안',
-    ACTIVE: '진행 중',
-    PAUSED: '일시정지',
-    COMPLETED: '완료',
-    CANCELLED: '중단됨',
-  }[status] || status;
-}
-
-function getStepStatusClass(status) {
-  return {
-    IN_PROGRESS: 'active',
-    PAUSED: 'paused',
-    COMPLETED: 'completed',
-    SKIPPED: 'skipped',
-    NOT_STARTED: 'waiting',
-  }[status] || 'waiting';
-}
-
-function getStepStatusLabel(status) {
-  return {
-    NOT_STARTED: '대기 중',
-    IN_PROGRESS: '진행 중',
-    PAUSED: '일시정지',
-    COMPLETED: '완료',
-    SKIPPED: '건너뜀',
-  }[status] || '대기 중';
-}
-
-function getScheduleStatusLabel(status) {
-  return {
-    PLANNED: '예정',
-    DONE: '완료',
-    MISSED: '놓침',
-    CANCELLED: '취소됨',
-    RESCHEDULED: '재조정됨',
-  }[status] || status;
-}
-
-function getScheduleStatusClass(status) {
-  return {
-    DONE: 'done',
-    PLANNED: 'planned',
-    MISSED: 'missed',
-    CANCELLED: 'cancelled',
-    RESCHEDULED: 'rescheduled',
-  }[status] || 'planned';
-}
-
-function getProgressStatusLabel(status) {
-  return {
-    COMPLETED: '완료',
-    IN_PROGRESS: '진행 중',
-    PARTIAL: '일부 완료',
-  }[status] || status;
-}
-
-function getProgressStatusClass(status) {
-  return {
-    COMPLETED: 'done',
-    IN_PROGRESS: 'planned',
-    PARTIAL: 'rescheduled',
-  }[status] || 'planned';
-}
-
-function getDifficultyLabel(difficulty) {
-  return {
-    beginner: '쉬움',
-    intermediate: '보통',
-    advanced: '어려움',
-  }[difficulty] || difficulty || '보통';
-}
-
-function getDifficultyClass(difficulty) {
-  return {
-    beginner: 'easy',
-    intermediate: 'medium',
-    advanced: 'hard',
-  }[difficulty] || 'medium';
-}
-
-function getStepTopics(step) {
-  if (step.target_topic?.name) return [step.target_topic.name];
-
-  return ['주제 정보 없음'];
-}
-
-function getScheduleLabel(scheduleId) {
-  const schedule = currentStepSchedules.value.find((item) => item.id === scheduleId);
-  if (!schedule) return '-';
-
-  return `${schedule.sequence_no}회차`;
-}
-
-function getRecordTimeText(record) {
-  const schedule = currentStepSchedules.value.find((item) => item.id === record.learning_schedule_id);
-  const plannedText = schedule ? `계획 ${schedule.planned_hours}시간` : '계획 -';
-
-  return `${plannedText} / 실제 ${minutesToText(record.actual_minutes)}`;
-}
-
-function getListProgress(item) {
-  if (item.status === 'COMPLETED') return 100;
-  if (item.status === 'DRAFT') return 0;
-
-  return 0;
-}
-
-function minutesToText(minutes = 0) {
-  if (minutes < 60) return `${minutes}분`;
-
-  const hours = Math.floor(minutes / 60);
-  const rest = minutes % 60;
-
-  return rest ? `${hours}시간 ${rest}분` : `${hours}시간`;
-}
-
-function formatDate(value) {
-  if (!value) return '';
-
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return String(value).replaceAll('-', '.');
-
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-
-  return `${year}.${month}.${day}`;
-}
-
-const toggleSidebar = () => {
-  sidebarOpen.value = !sidebarOpen.value;
-};
-
-const closeSidebar = () => {
-  sidebarOpen.value = false;
-};
-
-const navigateTo = (path) => {
-  router.push(path);
-  closeSidebar();
-};
-
-const handleLogout = () => {
-  clearAuthStorage();
-  router.push('/');
-};
-
-const toggleStep = (stepId) => {
-  expandedStepId.value = expandedStepId.value === stepId ? null : stepId;
-};
-
-const handleEscKey = (event) => {
-  if (event.key === 'Escape' && sidebarOpen.value) {
-    closeSidebar();
-  }
-};
-
-watch(
-  () => route.params.id,
-  () => {
-    loadPageData();
-  },
-  { immediate: true },
-);
+const filteredCompleted = computed(() =>
+  filterCurricula(sidebarCurricula.value.filter((item) => item.status === 'COMPLETED')),
+)
 
 onMounted(() => {
-  window.addEventListener('keydown', handleEscKey);
-});
+  loadPageData()
+  loadSidebarCurricula()
+})
 
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleEscKey);
-});
+watch(curriculumId, () => {
+  loadPageData()
+  closeSidebar()
+})
+
+async function loadPageData() {
+  if (!curriculumId.value) {
+    errorMessage.value = '커리큘럼 ID를 찾을 수 없습니다.'
+    return
+  }
+
+  loading.value = true
+  errorMessage.value = ''
+
+  try {
+    curriculum.value = await getCurriculumDetail(curriculumId.value)
+    expandedStepId.value = currentStep.value?.id || steps.value[0]?.id || null
+  } catch (error) {
+    errorMessage.value = error.message || '커리큘럼 정보를 불러오지 못했습니다.'
+  } finally {
+    loading.value = false
+  }
+}
+
+async function loadSidebarCurricula() {
+  sidebarLoading.value = true
+
+  try {
+    const response = await getMyCurriculums()
+    sidebarCurricula.value = Array.isArray(response)
+      ? response.map(mapSidebarCurriculum)
+      : []
+  } catch {
+    sidebarCurricula.value = []
+  } finally {
+    sidebarLoading.value = false
+  }
+}
+
+function mapSidebarCurriculum(item) {
+  const status = normalizeCurriculumStatus(item.status)
+  return {
+    id: item.id,
+    title: item.title,
+    status,
+    progress: status === 'COMPLETED' ? 100 : 0,
+    updated: formatRelativeDate(item.updated_at || item.created_at),
+  }
+}
+
+function normalizeCurriculumStatus(status) {
+  const value = normalizeStatusValue(status)
+  if (value === 'ACTIVE' || value === 'IN_PROGRESS') return 'IN_PROGRESS'
+  if (value === 'DRAFT' || value === 'NOT_STARTED') return 'NOT_STARTED'
+  if (value === 'PAUSED') return 'PAUSED'
+  if (value === 'COMPLETED') return 'COMPLETED'
+  return 'NOT_STARTED'
+}
+
+function mapStep(step) {
+  return {
+    id: step.id,
+    order: step.order ?? step.step_order,
+    title: step.title,
+    description: step.description,
+    estimatedHours: step.estimated_hours || 0,
+    difficulty: step.difficulty || mapDifficulty(step.difficulty_level),
+    resources: (step.resources || []).map(mapResource),
+    status: normalizeStepStatus(step.status, step.step_progress?.status),
+  }
+}
+
+function normalizeStepStatus(status, legacyProgressStatus) {
+  const value = normalizeStatusValue(status || legacyProgressStatus)
+  if (value === 'COMPLETED') return 'COMPLETED'
+  if (value === 'IN_PROGRESS' || value === 'ACTIVE' || value === 'PAUSED') return 'IN_PROGRESS'
+  return 'PENDING'
+}
+
+function normalizeStatusValue(status) {
+  return String(status || '')
+    .trim()
+    .replace(/[\s-]+/g, '_')
+    .toUpperCase()
+}
+
+function mapDifficulty(value) {
+  if (value === 'beginner') return '쉬움'
+  if (value === 'advanced') return '어려움'
+  return '보통'
+}
+
+function mapResource(resource) {
+  return {
+    id: resource.id,
+    label: resource.title || resource.course_name || '학습 자료',
+    type: normalizeResourceType(resource.resource_type || resource.type),
+    url: resource.url || null,
+  }
+}
+
+function normalizeResourceType(type) {
+  if (!type) return '자료'
+  const value = String(type).toLowerCase()
+  if (value.includes('video') || value.includes('lecture') || value.includes('course')) return '강의'
+  if (value.includes('practice') || value.includes('exercise') || value.includes('kaggle')) return '실습'
+  if (value.includes('document') || value.includes('text') || value.includes('docs')) return '문서'
+  return type
+}
+
+function isValidExternalUrl(url) {
+  if (!url || typeof url !== 'string') {
+    return false
+  }
+
+  try {
+    const parsedUrl = new URL(url)
+    return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
+
+function openFirstCurrentStepResource() {
+  const resource = currentStep.value?.resources?.find((item) => isValidExternalUrl(item.url))
+
+  if (!resource) return
+
+  window.open(resource.url, '_blank', 'noopener,noreferrer')
+}
+
+function filterCurricula(curricula) {
+  const keyword = curriculumSearchKeyword.value.trim().toLowerCase()
+
+  if (!keyword) return curricula
+
+  return curricula.filter((item) =>
+    item.title.toLowerCase().includes(keyword),
+  )
+}
+
+function formatRelativeDate(value) {
+  if (!value) return ''
+
+  const date = new Date(value)
+  if (Number.isNaN(date.getTime())) return ''
+
+  const diffMs = Date.now() - date.getTime()
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24))
+
+  if (diffDays <= 0) return '오늘'
+  if (diffDays < 7) return `${diffDays}일 전`
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)}주 전`
+  return `${Math.floor(diffDays / 30)}개월 전`
+}
+
+function showToast(message) {
+  toastMessage.value = message
+
+  window.setTimeout(() => {
+    toastMessage.value = ''
+  }, 3500)
+}
+
+async function runLearningAction(action, successMessage) {
+  if (actionLoading.value) return
+
+  actionLoading.value = true
+  errorMessage.value = ''
+
+  try {
+    const result = await action()
+
+    if (isCurriculumDetailResponse(result)) {
+      curriculum.value = result
+      expandedStepId.value = currentStep.value?.id || steps.value[0]?.id || null
+    } else {
+      await loadPageData()
+    }
+    await loadSidebarCurricula()
+    showToast(successMessage)
+  } catch (error) {
+    const message = getErrorMessage(error)
+    errorMessage.value = message
+    showToast(message)
+  } finally {
+    actionLoading.value = false
+  }
+}
+
+function isCurriculumDetailResponse(data) {
+  return Boolean(data && Array.isArray(data.steps))
+}
+
+function getErrorMessage(error) {
+  return error?.message || '요청 처리에 실패했습니다.'
+}
+
+function handleStart() {
+  runLearningAction(
+    () => startCurriculumLearning(curriculumId.value),
+    '학습을 시작했습니다.',
+  )
+}
+
+function handleContinue() {
+  if (currentStep.value) {
+    expandedStepId.value = currentStep.value.id
+  }
+}
+
+function handlePause() {
+  runLearningAction(
+    () => pauseCurriculumLearning(curriculumId.value),
+    '현재 커리큘럼을 일시정지했습니다.',
+  )
+}
+
+function handleResume() {
+  runLearningAction(
+    () => resumeCurriculumLearning(curriculumId.value),
+    '학습을 재개했습니다.',
+  )
+}
+
+function handleCompleteStep() {
+  if (!isCurriculumInProgress.value) return
+  if (!currentStep.value?.id) return
+
+  runLearningAction(
+    () => completeCurriculumStep(curriculumId.value, currentStep.value.id),
+    '현재 Step을 완료했습니다.',
+  )
+}
+
+function toggleStep(stepId) {
+  expandedStepId.value = expandedStepId.value === stepId ? null : stepId
+}
+
+function getStepIcon(status) {
+  if (status === 'COMPLETED') return '✓'
+  if (status === 'IN_PROGRESS') return '●'
+  return '○'
+}
+
+function toggleSidebar() {
+  sidebarOpen.value = !sidebarOpen.value
+}
+
+function closeSidebar() {
+  sidebarOpen.value = false
+}
+
+function navigateTo(path) {
+  router.push(path)
+  sidebarOpen.value = false
+}
+
+function handleLogout() {
+  clearAuthStorage()
+  router.push('/')
+  sidebarOpen.value = false
+}
 </script>

@@ -2,6 +2,7 @@ import json
 import logging
 
 from django.db.models import Prefetch
+from django.http import StreamingHttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404
@@ -27,13 +28,23 @@ from apps.curriculum.models import (
 from apps.curriculum.services.curriculum_create_service import create_curriculum_for_user
 from apps.curriculum.services.agent_response_service import normalize_agent_response
 from apps.curriculum.services.curriculum_save_service import save_ai_generated_curriculum
+from apps.curriculum.services.curriculum_learning_service import (
+    CurriculumLearningError,
+    complete_current_step,
+    complete_specific_step,
+    pause_curriculum_learning,
+    resume_curriculum_learning,
+    start_curriculum_learning,
+)
 from apps.curriculum.services.topic_catalog_service import build_topic_catalog
 
 from .serializers import (
     CurriculumCreateSerializer,
     CurriculumDetailSerializer,
     CurriculumGenerateSerializer,
+    CurriculumLearningResponseSerializer,
     CurriculumListSerializer,
+    CurriculumStartRequestSerializer,
     TopicSerializer,
 )
 from apps.curriculum.models import (
@@ -133,6 +144,67 @@ def _attach_preview_references(normalized_result):
         ]
 
     return normalized_result
+
+
+def _build_generate_response_payload(normalized_result):
+    result_status = normalized_result["status"]
+
+    if result_status == "success":
+        logger.warning(
+            "[AI_GENERATED_CURRICULUM_PREVIEW] %s",
+            json.dumps(normalized_result, ensure_ascii=False, default=str),
+        )
+        return (
+            {
+                "status": "success",
+                "message": "커리큘럼 생성이 완료되었습니다.",
+                "generated_curriculum": normalized_result,
+            },
+            status.HTTP_200_OK,
+        )
+
+    if result_status == "needs_clarification":
+        return (
+            {
+                "status": "needs_clarification",
+                "clarification_question": normalized_result.get("clarification_question", ""),
+            },
+            status.HTTP_200_OK,
+        )
+
+    if result_status == "out_of_scope":
+        return (
+            {
+                "status": "out_of_scope",
+                "message": normalized_result.get("message", ""),
+            },
+            status.HTTP_200_OK,
+        )
+
+    if result_status == "no_results":
+        return (
+            {
+                "status": "no_results",
+                "message": normalized_result.get("message", ""),
+            },
+            status.HTTP_200_OK,
+        )
+
+    logger.error("Unexpected normalized AI status: %s", result_status)
+    return (
+        {
+            "status": "error",
+            "message": "AI 응답 상태를 해석할 수 없습니다.",
+        },
+        status.HTTP_502_BAD_GATEWAY,
+    )
+
+
+def _sse_event(event, data):
+    return "event: {event}\ndata: {data}\n\n".format(
+        event=event,
+        data=json.dumps(data, ensure_ascii=False, default=str),
+    )
 
 
 @api_view(["GET"])
@@ -319,6 +391,111 @@ def generate_curriculum(request):
 
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
+def generate_curriculum_stream(request):
+    """Stream curriculum generation progress with the same final payload as generate_curriculum."""
+
+    def event_stream():
+        serializer = CurriculumGenerateSerializer(data=request.data)
+        if not serializer.is_valid():
+            yield _sse_event(
+                "error",
+                {
+                    "message": "입력값을 확인해 주세요.",
+                    "detail": serializer.errors,
+                },
+            )
+            return
+
+        yield _sse_event(
+            "progress",
+            {
+                "message": "요청 정보를 확인하고 있습니다.",
+                "progress": 10,
+            },
+        )
+
+        raw_input = serializer.to_raw_input()
+
+        try:
+            yield _sse_event(
+                "progress",
+                {
+                    "message": "학습 주제 후보를 정리하고 있습니다.",
+                    "progress": 25,
+                },
+            )
+            catalog = build_topic_catalog()
+            yield _sse_event(
+                "progress",
+                {
+                    "message": "AI가 맞춤 커리큘럼 초안을 생성하고 있습니다.",
+                    "progress": 45,
+                },
+            )
+            agent_result = run_agent(raw_input, catalog)
+            logger.warning(
+                "[AI_AGENT_RAW_RESULT] %s",
+                json.dumps(agent_result, ensure_ascii=False, default=str),
+            )
+        except Exception:
+            logger.exception("AI curriculum generation failed.")
+            yield _sse_event(
+                "error",
+                {
+                    "message": "AI 커리큘럼 생성 중 오류가 발생했습니다.",
+                    "progress": 100,
+                },
+            )
+            return
+
+        try:
+            yield _sse_event(
+                "progress",
+                {
+                    "message": "생성 결과를 화면에서 볼 수 있는 형태로 정리하고 있습니다.",
+                    "progress": 80,
+                },
+            )
+            normalized_result = normalize_agent_response(agent_result)
+            if normalized_result.get("status") == "success":
+                normalized_result = _apply_request_profile_to_generated_result(
+                    normalized_result,
+                    serializer.validated_data,
+                )
+                normalized_result = _attach_preview_references(normalized_result)
+        except ValueError:
+            logger.exception("AI curriculum generation returned an unsupported status.")
+            yield _sse_event(
+                "error",
+                {
+                    "message": "AI 응답 상태를 해석할 수 없습니다.",
+                    "progress": 100,
+                },
+            )
+            return
+
+        payload, response_status = _build_generate_response_payload(normalized_result)
+        if response_status >= status.HTTP_400_BAD_REQUEST:
+            yield _sse_event("error", {**payload, "progress": 100})
+            return
+
+        yield _sse_event(
+            "done",
+            {
+                "message": payload.get("message", "커리큘럼 생성 처리가 완료되었습니다."),
+                "progress": 100,
+                **payload,
+            },
+        )
+
+    response = StreamingHttpResponse(event_stream(), content_type="text/event-stream")
+    response["Cache-Control"] = "no-cache"
+    response["X-Accel-Buffering"] = "no"
+    return response
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def save_generated_curriculum(request):
     """AI 생성 결과를 사용자가 확정했을 때만 DB에 저장한다.
 
@@ -367,6 +544,114 @@ def save_generated_curriculum(request):
         },
         status=status.HTTP_201_CREATED,
     )
+
+
+def _get_user_curriculum_or_404(user, curriculum_id):
+    """다른 사용자의 curriculum id 접근 시 존재 여부가 드러나지 않게 404로 처리한다."""
+    return get_object_or_404(Curriculum.objects.filter(user=user), id=curriculum_id)
+
+
+def _learning_error_response(exc):
+    return Response(
+        {
+            "status": "error",
+            "message": str(exc),
+        },
+        status=status.HTTP_400_BAD_REQUEST,
+    )
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def start_curriculum(request, curriculum_id):
+    """
+    POST /api/curriculums/{curriculum_id}/start/
+
+    현재 로그인한 사용자의 커리큘럼에서 다음 미완료 step 하나만 학습 시작 처리한다.
+    """
+    serializer = CurriculumStartRequestSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        result = start_curriculum_learning(
+            curriculum,
+            request.user,
+            scheduled_date=serializer.validated_data.get("scheduled_date"),
+        )
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def pause_curriculum(request, curriculum_id):
+    """
+    POST /api/curriculums/{curriculum_id}/pause/
+
+    가장 최근 진행 중인 step과 연결된 진행 기록만 일시정지한다.
+    """
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        result = pause_curriculum_learning(curriculum, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def resume_curriculum(request, curriculum_id):
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        resume_curriculum_learning(curriculum, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    curriculum.refresh_from_db()
+    response_serializer = CurriculumDetailSerializer(curriculum)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def complete_curriculum(request, curriculum_id):
+    """
+    POST /api/curriculums/{curriculum_id}/complete/
+
+    MVP에서는 전체 커리큘럼 강제 완료가 아니라 현재 진행 중인 step 완료로 처리한다.
+    """
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    try:
+        result = complete_current_step(curriculum, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    response_serializer = CurriculumLearningResponseSerializer(result)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
+def complete_curriculum_step(request, curriculum_id, step_id):
+    curriculum = _get_user_curriculum_or_404(request.user, curriculum_id)
+    step = get_object_or_404(
+        CurriculumStep.objects.filter(curriculum=curriculum),
+        id=step_id,
+    )
+    try:
+        complete_specific_step(curriculum, step, request.user)
+    except CurriculumLearningError as exc:
+        return _learning_error_response(exc)
+
+    curriculum.refresh_from_db()
+    response_serializer = CurriculumDetailSerializer(curriculum)
+    return Response(response_serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["GET"])

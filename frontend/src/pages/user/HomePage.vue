@@ -254,6 +254,7 @@ import LandingPage from '@/pages/user/LandingPage.vue';
 import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import './HomePage.css';
+import '@/assets/styles/user-shell.css';
 
 const router = useRouter();
 const route = useRoute();

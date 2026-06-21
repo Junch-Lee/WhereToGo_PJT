@@ -574,6 +574,7 @@ import {
   updateMyProfile,
 } from '@/api/myPageApi';
 import './MyPage.css';
+import '@/assets/styles/user-shell.css';
 
 const router = useRouter();
 const route = useRoute();

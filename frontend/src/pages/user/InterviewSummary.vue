@@ -262,6 +262,20 @@
                 학습 목표, 수준, 시간, 선호도를 반영하여 최적의 학습 경로를 구성하고 있습니다.
               </p>
 
+              <p class="generating-status">
+                {{ generationStatusMessage }}
+              </p>
+
+              <div
+                class="generation-progress"
+                role="progressbar"
+                :aria-valuenow="generationProgress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+              >
+                <span :style="{ width: `${generationProgress}%` }"></span>
+              </div>
+
               <div class="skeleton-list">
                 <div class="skeleton-line"></div>
                 <div class="skeleton-line short"></div>
@@ -342,9 +356,13 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
-import { generateCurriculum, getMyCurriculums } from '@/api/curriculumApi';
+import {
+  generateCurriculumStream,
+  getMyCurriculums,
+} from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import './InterviewSummary.css';
+import '@/assets/styles/user-shell.css';
 
 const router = useRouter();
 const route = useRoute();
@@ -357,7 +375,22 @@ const curriculumLoadError = ref('');
 const isGenerating = ref(false);
 const generationMessage = ref('');
 const generationMessageType = ref('error');
+const generationProgress = ref(0);
+const generationStatusMessage = ref('커리큘럼 생성 준비 중입니다.');
+const generationMessageTimer = ref(null);
+const generationMessageIndex = ref(0);
 const interviewPayload = ref({});
+
+const generationWaitingMessages = [
+  '답변에서 핵심 학습 목표를 뽑아내고 있습니다.',
+  '현재 수준에 맞는 시작 지점을 찾고 있습니다.',
+  '학습 기간과 주간 가능 시간을 계산하고 있습니다.',
+  '관련 주제와 선수 지식을 함께 확인하고 있습니다.',
+  '추천할 강의와 학습 자료 후보를 비교하고 있습니다.',
+  '단계별 학습 순서를 다듬고 있습니다.',
+  '너무 쉽거나 어려운 구간이 없는지 점검하고 있습니다.',
+  '커리큘럼 결과 화면에 보여줄 내용을 정리하고 있습니다.',
+];
 
 const icons = {
   user: `
@@ -610,14 +643,52 @@ const getGenerationMessage = (response) => {
   return '커리큘럼을 생성하지 못했습니다. 잠시 후 다시 시도해주세요.';
 };
 
+const clearGenerationMessageTimer = () => {
+  if (!generationMessageTimer.value) return;
+
+  clearInterval(generationMessageTimer.value);
+  generationMessageTimer.value = null;
+};
+
+const startGenerationMessageRotation = (initialMessage) => {
+  clearGenerationMessageTimer();
+
+  generationMessageIndex.value = 0;
+  generationStatusMessage.value = initialMessage || generationWaitingMessages[0];
+
+  generationMessageTimer.value = window.setInterval(() => {
+    if (!isGenerating.value) return;
+
+    generationMessageIndex.value =
+      (generationMessageIndex.value + 1) % generationWaitingMessages.length;
+    generationStatusMessage.value =
+      generationWaitingMessages[generationMessageIndex.value];
+  }, 2600);
+};
+
 const handleGenerateCurriculum = async () => {
   if (isGenerating.value) return;
 
   isGenerating.value = true;
   generationMessage.value = '';
+  generationProgress.value = 0;
+  startGenerationMessageRotation('커리큘럼 생성 요청을 보내고 있습니다.');
 
   try {
-    const response = await generateCurriculum(buildGeneratePayload());
+    const response = await generateCurriculumStream(buildGeneratePayload(), {
+      onProgress: (event) => {
+        generationProgress.value = event?.progress || generationProgress.value;
+        if (event?.message) {
+          generationStatusMessage.value = event.message;
+        }
+      },
+      onDone: (event) => {
+        clearGenerationMessageTimer();
+        generationProgress.value = event?.progress || 100;
+        generationStatusMessage.value =
+          event?.message || '커리큘럼 생성이 완료되었습니다.';
+      },
+    });
 
     if (response.status === 'success') {
       const generatedCurriculum = response.generated_curriculum;
@@ -650,6 +721,7 @@ const handleGenerateCurriculum = async () => {
     generationMessage.value =
       error?.message || '커리큘럼 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.';
   } finally {
+    clearGenerationMessageTimer();
     isGenerating.value = false;
   }
 };
@@ -692,6 +764,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
+  clearGenerationMessageTimer();
   window.removeEventListener('keydown', handleEscKey);
   window.removeEventListener('storage', syncAuthState);
   window.removeEventListener('focus', syncAuthState);
