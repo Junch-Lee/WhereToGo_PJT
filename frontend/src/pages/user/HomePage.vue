@@ -1,244 +1,89 @@
-<template>
+﻿<template>
   <LandingPage v-if="!isLoggedIn" />
 
   <div v-else class="home-page">
-    <aside
-      class="home-sidebar"
-      :class="{ 'is-open': sidebarOpen }"
-      @click.stop
-    >
-      <div class="sidebar-inner">
-        <div class="sidebar-logo-section">
-          <button class="sidebar-logo-button" type="button" @click="handleNavigate('/')">
-            <div class="sidebar-logo-icon">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
+    <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
 
-            <div class="sidebar-logo-text">
-              <strong>Where To Go</strong>
-              <span>AI 학습 컨설턴트</span>
-            </div>
-          </button>
-        </div>
-
-        <div class="sidebar-search-section">
-          <div class="sidebar-search-box">
-            <svg viewBox="0 0 24 24" class="search-icon">
-              <path
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-
-            <input
-              v-model="curriculumSearchKeyword"
-              type="text"
-              placeholder="내 커리큘럼 검색"
-            />
-          </div>
-        </div>
-
-        <nav class="sidebar-nav">
-          <button
-            v-for="item in menuItems"
-            :key="item.path"
-            type="button"
-            class="sidebar-nav-item"
-            :class="{ active: route.path === item.path }"
-            @click="handleNavigate(item.path)"
-          >
-            <span class="nav-icon" v-html="item.icon"></span>
-            <span>{{ item.label }}</span>
-          </button>
-        </nav>
-
-        <div class="sidebar-content">
-          <div v-if="isLoadingCurricula" class="empty-search">
-            커리큘럼을 불러오는 중입니다...
-          </div>
-
-          <div v-else-if="curriculumLoadError" class="empty-search">
-            커리큘럼 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
-          </div>
-
-          <div v-else-if="hasNoCurriculums" class="empty-search">
-            아직 생성한 커리큘럼이 없습니다.
-          </div>
-
-          <div v-else-if="hasNoFilteredCurriculums" class="empty-search">
-            검색 결과가 없습니다.
-          </div>
-
-          <div v-else>
-            <section v-if="filteredInProgress.length > 0" class="curriculum-section">
-              <h3>진행 중인 커리큘럼</h3>
-
-              <button
-                v-for="item in filteredInProgress"
-                :key="item.id"
-                type="button"
-                class="curriculum-item"
-                @click="handleNavigate(`/curriculum/${item.id}`)"
-              >
-                <div class="curriculum-main">
-                  <p>{{ item.title }}</p>
-
-                  <div class="curriculum-meta">
-                    <span class="progress-track">
-                      <span
-                        class="progress-fill"
-                        :style="{ width: `${item.progress}%` }"
-                      ></span>
-                    </span>
-                    <span>{{ item.statusLabel }}</span>
-                    <span>{{ item.updated }}</span>
-                  </div>
-                </div>
-
-                <span class="chevron">›</span>
-              </button>
-            </section>
-
-            <section v-if="filteredCompleted.length > 0" class="curriculum-section">
-              <h3>완료한 커리큘럼</h3>
-
-              <button
-                v-for="item in filteredCompleted"
-                :key="item.id"
-                type="button"
-                class="curriculum-item completed"
-                @click="handleNavigate(`/curriculum/${item.id}`)"
-              >
-                <div class="curriculum-main">
-                  <p>{{ item.title }}</p>
-                  <span class="completed-date">{{ item.statusLabel }} · {{ item.updated }}</span>
-                </div>
-
-                <span class="chevron">›</span>
-              </button>
-            </section>
-          </div>
-        </div>
-
-        <div class="sidebar-bottom">
-          <button type="button" class="sidebar-nav-item" @click="handleNavigate('/settings')">
-            <span class="nav-icon" v-html="icons.settings"></span>
-            <span>설정</span>
-          </button>
-
-          <button
-            type="button"
-            class="sidebar-nav-item"
-            @click="handleLogout"
-          >
-            <span class="nav-icon" v-html="icons.logout"></span>
-            <span>로그아웃</span>
-          </button>
-        </div>
-      </div>
-    </aside>
-
-    <div
-      v-if="sidebarOpen"
-      class="sidebar-backdrop"
-      @click="closeSidebar"
-    ></div>
-
-    <div class="home-main">
+    <div class="home-main-layout">
       <header class="home-header">
-        <button
-          type="button"
-          class="logo-menu-button"
-          aria-label="사이드바 열기"
-          @click="toggleSidebar"
-        >
-          <span class="logo-menu-default">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
+        <div class="home-header-left">
+          <BrandMenuButton @click="toggleSidebar" />
 
-          <span class="logo-menu-hover">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </span>
-        </button>
+          <div class="journey-navigation" aria-label="현재 서비스 단계">
+            <template
+              v-for="(stage, index) in journeyStages"
+              :key="stage"
+            >
+              <span
+                :class="[
+                  'journey-stage',
+                  {
+                    current: stage === currentJourneyStage,
+                    completed: index < currentJourneyIndex,
+                    upcoming: index > currentJourneyIndex,
+                  },
+                ]"
+              >
+                {{ stage }}
+              </span>
 
-        <h1>AI 학습 코치</h1>
+              <span
+                v-if="index < journeyStages.length - 1"
+                class="journey-divider-line"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </template>
+          </div>
+        </div>
       </header>
 
       <main class="home-content">
-        <section class="hero-section">
-          <div class="hero-icon">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
-                fill="currentColor"
-              />
-              <path
-                d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
+        <section class="where-section">
+          <div class="where-keyword" aria-hidden="true">WHERE</div>
 
-          <h2>무엇을 배우고 싶으신가요?</h2>
+          <h1>어디까지 성장하고 싶나요?</h1>
 
-          <p>
-            AI 교육 컨설턴트와 상담하며 나만의 맞춤 커리큘럼을 만들어보세요.
+          <p class="where-description">
+            막연한 목표도 괜찮아요. 당신의 현재와 목표를 함께 정리해드릴게요.
           </p>
 
-          <div class="prompt-box">
+          <form class="goal-form" @submit.prevent="handleSubmit">
             <textarea
               v-model="input"
-              rows="3"
-              placeholder="무엇을 배우고 싶나요?"
-              @keydown="handleKeydown"
+              rows="4"
+              aria-label="학습 목표"
+              placeholder="무엇을 배우고 싶은지 자유롭게 적어주세요.
+예: 백엔드 개발자로 취업하고 싶어요"
+              @keydown.enter.exact.prevent="handleSubmit"
             ></textarea>
 
+            <div class="goal-form-footer">
+              <button
+                type="submit"
+                class="goal-submit-button"
+                :disabled="!input.trim()"
+              >
+                <span>시작하기</span>
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="m14 7 5 5-5 5"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="suggestion-area">
             <button
+              v-for="suggestion in suggestions"
+              :key="suggestion"
               type="button"
-              class="send-button"
-              :disabled="!input.trim()"
-              aria-label="상담 시작"
-              @click="handleSubmit"
+              class="suggestion-chip"
+              @click="selectSuggestion(suggestion)"
             >
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M22 2L11 13"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M22 2L15 22L11 13L2 9L22 2Z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              {{ suggestion }}
             </button>
           </div>
         </section>
@@ -249,23 +94,41 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import BrandMenuButton from '@/components/user/BrandMenuButton.vue';
 import { useRoute, useRouter } from 'vue-router';
 import LandingPage from '@/pages/user/LandingPage.vue';
 import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
-import './HomePage.css';
 import '@/assets/styles/user-shell.css';
+import './HomePage.css';
 
 const router = useRouter();
 const route = useRoute();
 
 const sidebarOpen = ref(false);
+const logoHovered = ref(false);
 const input = ref('');
 const curriculumSearchKeyword = ref('');
 const isLoggedIn = ref(isAuthenticated());
 const curriculums = ref([]);
 const isLoadingCurricula = ref(false);
 const curriculumLoadError = ref('');
+
+const currentJourneyStage = 'WHERE';
+const journeyStages = ['WHERE', 'TO', 'GO'];
+const currentJourneyIndex = computed(() =>
+  journeyStages.indexOf(currentJourneyStage),
+);
+const currentPath = computed(() => route.path);
+
+const suggestions = [
+  '백엔드 개발',
+  '데이터 분석',
+  'AI 엔지니어링',
+  '프론트엔드',
+  '머신러닝',
+];
 
 const icons = {
   user: `
@@ -405,6 +268,10 @@ const handleNavigate = (path) => {
   closeSidebar();
 };
 
+const selectSuggestion = (suggestion) => {
+  input.value = `${suggestion} 관련 학습을 하고 싶어요`;
+};
+
 const handleSubmit = () => {
   const goal = input.value.trim();
 
@@ -427,13 +294,6 @@ const handleSubmit = () => {
    * 만약 질문 화면 라우트를 /interview로 등록했다면 '/interview'로 바꾸면 됩니다.
    */
   router.push('/chat');
-};
-
-const handleKeydown = (event) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault();
-    handleSubmit();
-  }
 };
 
 const handleEscKey = (event) => {

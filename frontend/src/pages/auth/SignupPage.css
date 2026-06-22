@@ -2,13 +2,13 @@
   min-height: 100vh;
   padding: 48px 20px;
   background:
-    radial-gradient(circle at top left, rgba(34, 197, 94, 0.12), transparent 32%),
+    radial-gradient(circle at top left, rgba(0, 194, 72, 0.12), transparent 32%),
     radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.08), transparent 28%),
-    #f8fafc;
+    #050705;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #0f172a;
+  color: #F2F5F2;
 }
 
 .signup-container {
@@ -28,12 +28,12 @@
   width: 42px;
   height: 42px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ffffff;
+  background: linear-gradient(135deg, #00C248, #00D955);
+  color: #F2F5F2;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 28px rgba(34, 197, 94, 0.28);
+  box-shadow: 0 12px 28px rgba(0, 194, 72, 0.28);
 }
 
 .brand-logo-icon {
@@ -52,14 +52,14 @@
 .brand-subtitle {
   margin: 3px 0 0;
   font-size: 12px;
-  color: #64748b;
+  color: #A8B3AA;
 }
 
 .signup-card {
   padding: 36px 32px;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #1E2A20;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(15, 23, 42, 0.94);
   backdrop-filter: blur(16px);
   box-shadow:
     0 20px 60px rgba(15, 23, 42, 0.08),
@@ -81,7 +81,7 @@
 .signup-card-header p {
   margin: 0;
   font-size: 14px;
-  color: #64748b;
+  color: #A8B3AA;
   word-break: keep-all;
 }
 
@@ -100,7 +100,7 @@
   margin-bottom: 7px;
   font-size: 14px;
   font-weight: 700;
-  color: #0f172a;
+  color: #F2F5F2;
 }
 
 .form-group input,
@@ -108,10 +108,10 @@
   width: 100%;
   height: 44px;
   padding: 0 16px;
-  border: 1px solid #dbe3ee;
+  border: 1px solid #1E2A20;
   border-radius: 12px;
-  background: #ffffff;
-  color: #0f172a;
+  background: #0B0F0C;
+  color: #F2F5F2;
   font-size: 14px;
   outline: none;
   transition:
@@ -122,13 +122,13 @@
 
 .form-group input::placeholder,
 .password-field input::placeholder {
-  color: #94a3b8;
+  color: #A8B3AA;
 }
 
 .form-group input:focus,
 .password-field input:focus {
-  border-color: #22c55e;
-  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.14);
+  border-color: #00C248;
+  box-shadow: 0 0 0 4px rgba(0, 194, 72, 0.14);
 }
 
 .form-group input.is-error,
@@ -151,14 +151,14 @@
   transform: translateY(-50%);
   border: 0;
   background: transparent;
-  color: #64748b;
+  color: #A8B3AA;
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
 }
 
 .password-toggle:hover {
-  color: #16a34a;
+  color: #00C248;
 }
 
 .error-message {
@@ -178,7 +178,7 @@
   gap: 9px;
   font-size: 14px;
   font-weight: 600;
-  color: #0f172a;
+  color: #F2F5F2;
   line-height: 1.5;
   cursor: pointer;
 }
@@ -188,10 +188,10 @@
   height: 17px;
   margin-top: 2px;
   flex-shrink: 0;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #475569;
   border-radius: 5px;
-  background-color: #ffffff;
-  accent-color: #22c55e;
+  background-color: #0B0F0C;
+  accent-color: #00C248;
   cursor: pointer;
 }
 
@@ -199,7 +199,7 @@
   padding: 0;
   border: 0;
   background: none;
-  color: #16a34a;
+  color: #00C248;
   font-size: inherit;
   font-weight: 800;
   cursor: pointer;
@@ -215,12 +215,12 @@
   margin-top: 4px;
   border: 0;
   border-radius: 12px;
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #ffffff;
+  background: linear-gradient(135deg, #00C248, #00D955);
+  color: #F2F5F2;
   font-size: 15px;
   font-weight: 800;
   cursor: pointer;
-  box-shadow: 0 12px 24px rgba(34, 197, 94, 0.25);
+  box-shadow: 0 12px 24px rgba(0, 194, 72, 0.25);
   transition:
     transform 0.16s ease,
     box-shadow 0.16s ease,
@@ -229,7 +229,7 @@
 
 .signup-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(34, 197, 94, 0.32);
+  box-shadow: 0 16px 30px rgba(0, 194, 72, 0.32);
 }
 
 .signup-button:disabled {
@@ -248,12 +248,12 @@
 .divider span {
   height: 1px;
   flex: 1;
-  background: #e2e8f0;
+  background: #1E2A20;
 }
 
 .divider p {
   margin: 0;
-  color: #64748b;
+  color: #A8B3AA;
   font-size: 13px;
   font-weight: 600;
 }
@@ -284,14 +284,14 @@
 }
 
 .google-button {
-  border: 1px solid #dadce0;
-  background: #ffffff;
-  color: #3c4043;
+  border: 1px solid #475569;
+  background: #0B0F0C;
+  color: #F2F5F2;
   box-shadow: 0 1px 2px rgba(60, 64, 67, 0.12);
 }
 
 .google-button:hover {
-  background: #f8faff;
+  background: #111711;
   border-color: #c7d2fe;
   box-shadow: 0 4px 12px rgba(60, 64, 67, 0.12);
   transform: translateY(-1px);
@@ -317,13 +317,13 @@
 .login-guide {
   margin: 24px 0 0;
   text-align: center;
-  color: #64748b;
+  color: #A8B3AA;
   font-size: 14px;
   font-weight: 500;
 }
 
 .login-guide a {
-  color: #16a34a;
+  color: #00C248;
   font-weight: 800;
   text-decoration: none;
 }

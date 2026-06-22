@@ -1,164 +1,10 @@
-<template>
+﻿<template>
   <div class="curriculum-page">
-    <div
-      v-if="sidebarOpen"
-      class="sidebar-overlay"
-      @click="closeSidebar"
-    ></div>
-
-    <aside :class="['sidebar', { 'sidebar-open': sidebarOpen }]">
-      <div class="sidebar-inner">
-        <div class="sidebar-logo-section">
-          <button class="sidebar-logo-button" type="button" @click="navigateTo('/')">
-            <div class="sidebar-logo-icon">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-
-            <div class="sidebar-logo-text">
-              <strong>Where To Go</strong>
-              <span>AI 학습 컨설턴트</span>
-            </div>
-          </button>
-        </div>
-
-        <div class="sidebar-search-section">
-          <div class="search-box">
-            <span class="search-icon">⌕</span>
-            <input
-              v-model="curriculumSearchKeyword"
-              type="text"
-              class="search-input"
-              placeholder="내 커리큘럼 검색"
-            />
-          </div>
-        </div>
-
-        <div class="sidebar-menu-section">
-          <nav class="sidebar-nav">
-            <button
-              v-for="item in menuItems"
-              :key="item.path"
-              :class="['sidebar-menu-item', { active: currentPath === item.path }]"
-              @click="navigateTo(item.path)"
-            >
-              <span class="menu-icon">{{ item.icon }}</span>
-              <span>{{ item.label }}</span>
-            </button>
-          </nav>
-        </div>
-
-        <div class="sidebar-curricula">
-          <div v-if="sidebarLoading" class="sidebar-empty">
-            <p>커리큘럼을 불러오는 중입니다.</p>
-          </div>
-
-          <div v-if="filteredInProgress.length > 0" class="curriculum-list-group">
-            <h3 class="sidebar-section-title">진행 중인 커리큘럼</h3>
-
-            <button
-              v-for="item in filteredInProgress"
-              :key="item.id"
-              class="sidebar-curriculum-item"
-              @click="navigateTo(`/curriculum/${item.id}`)"
-            >
-              <div class="sidebar-curriculum-content">
-                <p class="sidebar-curriculum-title">{{ item.title }}</p>
-
-                <div class="sidebar-progress-row">
-                  <div class="sidebar-progress-track">
-                    <div
-                      class="sidebar-progress-fill"
-                      :style="{ width: `${item.progress}%` }"
-                    ></div>
-                  </div>
-
-                  <span class="sidebar-updated">{{ item.updated }}</span>
-                </div>
-              </div>
-
-              <span class="sidebar-chevron">›</span>
-            </button>
-          </div>
-
-          <div v-if="filteredCompleted.length > 0" class="curriculum-list-group">
-            <h3 class="sidebar-section-title">완료한 커리큘럼</h3>
-
-            <button
-              v-for="item in filteredCompleted"
-              :key="item.id"
-              class="sidebar-curriculum-item"
-              @click="navigateTo(`/curriculum/${item.id}`)"
-            >
-              <div class="sidebar-curriculum-content">
-                <p class="sidebar-curriculum-title completed">{{ item.title }}</p>
-                <span class="sidebar-updated">{{ item.updated }}</span>
-              </div>
-
-              <span class="sidebar-chevron">›</span>
-            </button>
-          </div>
-
-          <div
-            v-if="
-              !sidebarLoading &&
-              curriculumSearchKeyword.trim() &&
-              filteredInProgress.length === 0 &&
-              filteredCompleted.length === 0
-            "
-            class="sidebar-empty"
-          >
-            <p>검색 결과가 없습니다</p>
-          </div>
-        </div>
-
-        <div class="sidebar-bottom">
-          <button class="sidebar-bottom-item" type="button" @click="navigateTo('/settings')">
-            <span class="menu-icon">⚙</span>
-            <span>설정</span>
-          </button>
-
-          <button class="sidebar-bottom-item" type="button" @click="handleLogout">
-            <span class="menu-icon">↩</span>
-            <span>로그아웃</span>
-          </button>
-        </div>
-      </div>
-    </aside>
+    <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
 
     <div class="main-layout">
       <header class="page-header">
-        <button
-          type="button"
-          class="logo-menu-button"
-          aria-label="사이드바 열기"
-          @click="toggleSidebar"
-        >
-          <span class="logo-menu-default">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-
-          <span class="logo-menu-hover">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </span>
-        </button>
+        <BrandMenuButton @click="toggleSidebar" />
 
         <h1 class="page-title">{{ curriculum?.title || '커리큘럼 상세' }}</h1>
       </header>
@@ -439,6 +285,8 @@ import './CurriculumDetailPage.css'
 import '@/assets/styles/user-shell.css'
 
 import { computed, onMounted, ref, watch } from 'vue'
+import UserSidebar from '@/components/user/UserSidebar.vue'
+import BrandMenuButton from '@/components/user/BrandMenuButton.vue'
 import { useRoute, useRouter } from 'vue-router'
 import {
   completeCurriculumStep,
@@ -465,9 +313,38 @@ const sidebarLoading = ref(false)
 const actionLoading = ref(false)
 const errorMessage = ref('')
 
+const icons = {
+  user: `
+    <svg viewBox="0 0 24 24" class="icon">
+      <path d="M20 21a8 8 0 0 0-16 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="12" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  chart: `
+    <svg viewBox="0 0 24 24" class="icon">
+      <path d="M4 19V5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M4 19h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 16v-5M12 16V8M16 16v-9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  `,
+  settings: `
+    <svg viewBox="0 0 24 24" class="icon">
+      <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.04.04a2.1 2.1 0 0 1-2.97 2.97l-.04-.04a1.8 1.8 0 0 0-1.98-.36 1.8 1.8 0 0 0-1.1 1.65V21a2.1 2.1 0 1 1-4.2 0v-.06a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-1.98.36l-.04.04a2.1 2.1 0 0 1-2.97-2.97l.04-.04A1.8 1.8 0 0 0 4.6 15a1.8 1.8 0 0 0-1.65-1.1H3a2.1 2.1 0 1 1 0-4.2h.06A1.8 1.8 0 0 0 4.7 8.6a1.8 1.8 0 0 0-.36-1.98l-.04-.04a2.1 2.1 0 0 1 2.97-2.97l.04.04a1.8 1.8 0 0 0 1.98.36 1.8 1.8 0 0 0 1.1-1.65V3a2.1 2.1 0 1 1 4.2 0v.06a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 1.98-.36l.04-.04a2.1 2.1 0 0 1 2.97 2.97l-.04.04A1.8 1.8 0 0 0 19.4 9c.18.67.7 1.1 1.35 1.1H21a2.1 2.1 0 1 1 0 4.2h-.06A1.8 1.8 0 0 0 19.4 15Z" fill="none" stroke="currentColor" stroke-width="2"/>
+    </svg>
+  `,
+  logout: `
+    <svg viewBox="0 0 24 24" class="icon">
+      <path d="M10 17l5-5-5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M15 12H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M14 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  `,
+}
+
 const menuItems = [
-  { icon: '◇', label: '마이페이지', path: '/mypage' },
-  { icon: '▦', label: '학습 대시보드', path: '/learning' },
+  { icon: icons.user, label: '마이페이지', path: '/mypage' },
+  { icon: icons.chart, label: '학습 대시보드', path: '/learning' },
 ]
 
 const curriculumStatusLabel = {

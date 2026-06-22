@@ -1,29 +1,29 @@
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --primary: #22c55e;
-  --primary-foreground: #ffffff;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --border: #e2e8f0;
-  --sidebar: #ffffff;
-  --ring: #22c55e;
+  --background: #050705;
+  --foreground: #F2F5F2;
+  --card: #0B0F0C;
+  --primary: #00C248;
+  --primary-foreground: #F2F5F2;
+  --muted: #111711;
+  --muted-foreground: #6F7A72;
+  --accent: #111711;
+  --border: #1E2A20;
+  --sidebar: #0B0F0C;
+  --ring: #00C248;
 }
 
 .dark {
-  --background: #020617;
-  --foreground: #f8fafc;
-  --card: #0f172a;
-  --primary: #22c55e;
-  --primary-foreground: #ffffff;
-  --muted: #1e293b;
-  --muted-foreground: #94a3b8;
-  --accent: #1e293b;
-  --border: #1e293b;
-  --sidebar: #0f172a;
-  --ring: #22c55e;
+  --background: #050705;
+  --foreground: #F2F5F2;
+  --card: #0B0F0C;
+  --primary: #00C248;
+  --primary-foreground: #F2F5F2;
+  --muted: #111711;
+  --muted-foreground: #A8B3AA;
+  --accent: #111711;
+  --border: #111711;
+  --sidebar: #0B0F0C;
+  --ring: #00C248;
 }
 
 * {
@@ -163,7 +163,7 @@ button {
 }
 
 .search-input:focus {
-  box-shadow: 0 0 0 2px rgb(34 197 94 / 30%);
+  box-shadow: 0 0 0 2px rgb(0 194 72 / 30%);
 }
 
 .sidebar-nav {
@@ -191,7 +191,7 @@ button {
 
 .sidebar-menu-item.active {
   color: var(--primary);
-  background: rgb(34 197 94 / 10%);
+  background: rgb(0 194 72 / 10%);
 }
 
 .menu-icon {
@@ -457,8 +457,8 @@ button {
 }
 
 .status-emerald {
-  color: #047857;
-  background: #ecfdf5;
+  color: #00C248;
+  background: #052e16;
 }
 
 .progress-block {
@@ -555,7 +555,7 @@ button {
 }
 
 .pause-resume-button {
-  color: #ffffff;
+  color: #F2F5F2;
   background: #d97706;
   font-weight: 700;
 }
@@ -570,8 +570,8 @@ button {
 .toast {
   padding: 12px 16px;
   color: var(--primary);
-  background: rgb(34 197 94 / 10%);
-  border: 1px solid rgb(34 197 94 / 30%);
+  background: rgb(0 194 72 / 10%);
+  border: 1px solid rgb(0 194 72 / 30%);
   border-radius: 8px;
   font-size: 14px;
 }
@@ -600,8 +600,8 @@ button {
 
 .current-step-card {
   padding: 24px;
-  background: rgb(34 197 94 / 5%);
-  border: 1px solid rgb(34 197 94 / 30%);
+  background: rgb(0 194 72 / 5%);
+  border: 1px solid rgb(0 194 72 / 30%);
   border-radius: 12px;
 }
 
@@ -634,8 +634,8 @@ button {
 }
 
 .difficulty-easy {
-  color: #047857;
-  background: #ecfdf5;
+  color: #00C248;
+  background: #052e16;
 }
 
 .difficulty-normal {
@@ -718,7 +718,7 @@ button {
 
 .resource-primary {
   color: var(--primary);
-  background: rgb(34 197 94 / 10%);
+  background: rgb(0 194 72 / 10%);
 }
 
 .resource-blue {
@@ -771,7 +771,7 @@ button {
 
 .resource-open-link:hover {
   color: var(--primary);
-  background: rgb(34 197 94 / 10%);
+  background: rgb(0 194 72 / 10%);
 }
 
 .resource-open-link.small {
@@ -800,21 +800,21 @@ button {
 
 .completion-banner {
   padding: 24px;
-  background: #ecfdf5;
-  border: 1px solid #a7f3d0;
+  background: #052e16;
+  border: 1px solid #047857;
   border-radius: 12px;
 }
 
 .completion-title {
   margin: 0 0 4px;
-  color: #065f46;
+  color: #00C248;
   font-size: 16px;
   font-weight: 700;
 }
 
 .completion-description {
   margin: 0;
-  color: #047857;
+  color: #00C248;
   font-size: 14px;
 }
 
@@ -840,8 +840,8 @@ button {
 }
 
 .step-item.active {
-  background: rgb(34 197 94 / 5%);
-  border-color: rgb(34 197 94 / 30%);
+  background: rgb(0 194 72 / 5%);
+  border-color: rgb(0 194 72 / 30%);
 }
 
 .step-toggle {
@@ -1010,7 +1010,7 @@ button {
 
 .dark .completion-banner {
   background: rgb(6 78 59 / 20%);
-  border-color: #065f46;
+  border-color: #047857;
 }
 
 .dark .completion-title {

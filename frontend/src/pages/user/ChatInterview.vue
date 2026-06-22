@@ -1,282 +1,132 @@
-<template>
-  <div class="chat-interview-page">
-    <aside
-      class="chat-sidebar"
-      :class="{ 'is-open': sidebarOpen }"
-      @click.stop
-    >
-      <div class="sidebar-inner">
-        <div class="sidebar-logo-section">
-          <button class="sidebar-logo-button" type="button" @click="handleNavigate('/')">
-            <div class="sidebar-logo-icon">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
+﻿<template>
+  <div class="chat-page">
+    <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
 
-            <div class="sidebar-logo-text">
-              <strong>Where To Go</strong>
-              <span>AI 학습 컨설턴트</span>
-            </div>
-          </button>
-        </div>
-
-        <div class="sidebar-search-section">
-          <div class="sidebar-search-box">
-            <svg viewBox="0 0 24 24" class="search-icon">
-              <path
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-
-            <input
-              v-model="curriculumSearchKeyword"
-              type="text"
-              placeholder="내 커리큘럼 검색"
-            />
-          </div>
-        </div>
-
-        <nav class="sidebar-nav">
-          <button
-            v-for="item in menuItems"
-            :key="item.path"
-            type="button"
-            class="sidebar-nav-item"
-            :class="{ active: route.path === item.path }"
-            @click="handleNavigate(item.path)"
-          >
-            <span class="nav-icon" v-html="item.icon"></span>
-            <span>{{ item.label }}</span>
-          </button>
-        </nav>
-
-        <div class="sidebar-content">
-          <div v-if="isLoadingCurricula" class="empty-search">
-            커리큘럼을 불러오는 중입니다...
-          </div>
-
-          <div v-else-if="curriculumLoadError" class="empty-search">
-            커리큘럼 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
-          </div>
-
-          <div v-else-if="hasNoCurriculums" class="empty-search">
-            아직 생성한 커리큘럼이 없습니다.
-          </div>
-
-          <div v-else-if="hasNoFilteredCurriculums" class="empty-search">
-            검색 결과가 없습니다.
-          </div>
-
-          <div v-else>
-            <section v-if="filteredInProgress.length > 0" class="curriculum-section">
-              <h3>진행 중인 커리큘럼</h3>
-
-              <button
-                v-for="item in filteredInProgress"
-                :key="item.id"
-                type="button"
-                class="curriculum-item"
-                @click="handleNavigate(`/curriculum/${item.id}`)"
-              >
-                <div class="curriculum-main">
-                  <p>{{ item.title }}</p>
-
-                  <div class="curriculum-meta">
-                    <span class="sidebar-progress-track">
-                      <span
-                        class="sidebar-progress-fill"
-                        :style="{ width: `${item.progress}%` }"
-                      ></span>
-                    </span>
-                    <span>{{ item.statusLabel }}</span>
-                    <span>{{ item.updated }}</span>
-                  </div>
-                </div>
-
-                <span class="chevron">›</span>
-              </button>
-            </section>
-
-            <section v-if="filteredCompleted.length > 0" class="curriculum-section">
-              <h3>완료한 커리큘럼</h3>
-
-              <button
-                v-for="item in filteredCompleted"
-                :key="item.id"
-                type="button"
-                class="curriculum-item completed"
-                @click="handleNavigate(`/curriculum/${item.id}`)"
-              >
-                <div class="curriculum-main">
-                  <p>{{ item.title }}</p>
-                  <span class="completed-date">
-                    {{ item.statusLabel }} · {{ item.updated }}
-                  </span>
-                </div>
-
-                <span class="chevron">›</span>
-              </button>
-            </section>
-          </div>
-        </div>
-
-        <div class="sidebar-bottom">
-          <button type="button" class="sidebar-nav-item" @click="handleNavigate('/settings')">
-            <span class="nav-icon" v-html="icons.settings"></span>
-            <span>설정</span>
-          </button>
-
-          <button
-            type="button"
-            class="sidebar-nav-item"
-            @click="handleLogout"
-          >
-            <span class="nav-icon" v-html="icons.logout"></span>
-            <span>로그아웃</span>
-          </button>
-        </div>
-      </div>
-    </aside>
-
-    <div
-      v-if="sidebarOpen"
-      class="sidebar-backdrop"
-      @click="closeSidebar"
-    ></div>
-
-    <div class="chat-main">
+    <div class="chat-main-layout">
       <header class="chat-header">
-        <button
-          type="button"
-          class="logo-menu-button"
-          aria-label="사이드바 열기"
-          @click="toggleSidebar"
-        >
-          <span class="logo-menu-default">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
+        <div class="chat-header-left">
+          <BrandMenuButton @click="toggleSidebar" />
 
-          <span class="logo-menu-hover">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </span>
-        </button>
+          <div class="journey-navigation" aria-label="현재 서비스 단계">
+            <template
+              v-for="(stage, index) in journeyStages"
+              :key="stage"
+            >
+              <span
+                :class="[
+                  'journey-stage',
+                  {
+                    current: stage === currentJourneyStage,
+                    completed: index < currentJourneyIndex,
+                    upcoming: index > currentJourneyIndex,
+                  },
+                ]"
+              >
+                {{ stage }}
+              </span>
 
-        <h1>AI 학습 코치</h1>
+              <span
+                v-if="index < journeyStages.length - 1"
+                class="journey-divider-line"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </template>
+          </div>
+        </div>
       </header>
 
       <main class="chat-content">
-        <div class="chat-container">
-          <section class="goal-card">
-            <p class="goal-label">
-              학습 목표
-            </p>
+        <section class="interview-section">
+          <div class="stage-keyword" aria-hidden="true">TO</div>
 
-            <h2 class="goal-title">
-              {{ goal }}
-            </h2>
-          </section>
+          <div class="interview-progress">
+            <span class="progress-number">
+              {{ formattedCurrentStep }}
+            </span>
 
-          <section class="question-progress-section">
-            <div class="question-progress-meta">
-              <span>{{ currentStep + 1 }} / {{ questions.length }}</span>
-              <span>{{ progressPercent }}% 완료</span>
-            </div>
-
-            <div class="question-progress-track">
+            <div class="progress-line">
               <div
-                class="question-progress-bar"
+                class="progress-fill"
                 :style="{ width: `${progressPercent}%` }"
               ></div>
-            </div>
-          </section>
 
-          <section class="question-card">
-            <div class="consultant-row">
-              <div class="consultant-icon-wrap">
-                <svg
-                  class="consultant-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M12 3l1.6 5.4L19 10l-5.4 1.6L12 17l-1.6-5.4L5 10l5.4-1.6L12 3z" />
-                  <path d="M19 3v4" />
-                  <path d="M17 5h4" />
-                </svg>
-              </div>
-
-              <span class="consultant-label">
-                AI 컨설턴트
-              </span>
+              <div
+                class="progress-dot"
+                :style="{ left: `calc(${progressPercent}% - 5px)` }"
+              ></div>
             </div>
 
-            <h2 class="question-title">
-              {{ currentQuestion.question }}
-            </h2>
+            <span class="progress-number">
+              {{ formattedTotal }}
+            </span>
+          </div>
 
-            <p class="question-helper">
-              {{ currentQuestion.helperText }}
+          <div
+            :key="currentQuestion.id"
+            class="question-content"
+          >
+            <p class="question-category">
+              QUESTION {{ formattedCurrentStep }}
             </p>
 
-            <div class="option-group">
+            <h1>{{ currentQuestion.question }}</h1>
+
+            <div class="choice-list">
               <button
                 v-for="option in currentQuestion.options"
                 :key="option.label"
                 type="button"
-                class="option-button"
-                :class="{ 'option-button-selected': currentAnswer === option.value }"
+                :class="[
+                  'choice-button',
+                  { selected: currentAnswer === option.value },
+                ]"
                 @click="selectOption(option)"
               >
-                {{ option.label }}
+                <span class="choice-radio" aria-hidden="true">
+                  <span></span>
+                </span>
+
+                <span>{{ option.label }}</span>
               </button>
             </div>
+          </div>
 
-            <div class="navigation-row">
-              <button
-                v-if="currentStep > 0"
-                type="button"
-                class="nav-button nav-button-secondary"
-                @click="goPrevious"
-              >
-                이전
-              </button>
+          <div class="question-navigation">
+            <button
+              v-if="currentStep > 0"
+              type="button"
+              class="previous-button"
+              @click="goPrevious"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H5"></path>
+                <path d="m10 17-5-5 5-5"></path>
+              </svg>
 
-              <button
-                type="button"
-                class="nav-button nav-button-primary"
-                :class="{ 'nav-button-disabled': !isAnswered }"
-                :disabled="!isAnswered"
-                @click="goNext"
-              >
-                {{ currentStep === questions.length - 1 ? '완료' : '다음' }}
-              </button>
-            </div>
-          </section>
-        </div>
+              <span>이전 질문</span>
+            </button>
+
+            <span v-else></span>
+
+            <button
+              type="button"
+              class="next-button"
+              :disabled="!isAnswered"
+              @click="goNext"
+            >
+              <span>
+                {{ currentStep === questions.length - 1 ? '완료' : '다음 질문' }}
+              </span>
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m14 7 5 5-5 5"></path>
+              </svg>
+            </button>
+          </div>
+        </section>
       </main>
     </div>
   </div>
@@ -284,23 +134,28 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import BrandMenuButton from '@/components/user/BrandMenuButton.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
-import './ChatInterview.css';
 import '@/assets/styles/user-shell.css';
+import './ChatInterview.css';
 
 const router = useRouter();
 const route = useRoute();
 
 const goal = ref('');
 const sidebarOpen = ref(false);
+const logoHovered = ref(false);
 const curriculumSearchKeyword = ref('');
 const curriculums = ref([]);
 const isLoadingCurricula = ref(false);
 const curriculumLoadError = ref('');
 const currentStep = ref(0);
 const answers = ref({});
+const journeyStages = ['WHERE', 'TO', 'GO'];
+const currentJourneyStage = 'TO';
 
 const questions = [
   {
@@ -393,6 +248,10 @@ const menuItems = [
   { icon: icons.chart, label: '학습 대시보드', path: '/learning' },
 ];
 
+const currentPath = computed(() => route.path);
+const currentJourneyIndex = computed(() =>
+  journeyStages.indexOf(currentJourneyStage),
+);
 const statusLabels = {
   DRAFT: '초안',
   ACTIVE: '진행 중',
@@ -406,6 +265,12 @@ const currentAnswer = computed(() => answers.value[currentQuestion.value.id]);
 
 const progressPercent = computed(() =>
   Math.round(((currentStep.value + 1) / questions.length) * 100),
+);
+const formattedCurrentStep = computed(() =>
+  String(currentStep.value + 1).padStart(2, '0'),
+);
+const formattedTotal = computed(() =>
+  String(questions.length).padStart(2, '0'),
 );
 
 const isAnswered = computed(() =>

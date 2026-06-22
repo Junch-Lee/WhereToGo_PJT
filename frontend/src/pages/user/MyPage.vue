@@ -1,180 +1,10 @@
-<template>
+﻿<template>
   <div class="mypage-page">
-    <aside
-      class="home-sidebar"
-      :class="{ 'is-open': sidebarOpen }"
-      @click.stop
-    >
-      <div class="sidebar-inner">
-        <div class="sidebar-logo-section">
-          <button class="sidebar-logo-button" type="button" @click="navigateTo('/')">
-            <div class="sidebar-logo-icon">
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                  fill="currentColor"
-                />
-              </svg>
-            </div>
-
-            <div class="sidebar-logo-text">
-              <strong>Where To Go</strong>
-              <span>AI 학습 컨설턴트</span>
-            </div>
-          </button>
-        </div>
-
-        <div class="sidebar-search-section">
-          <div class="sidebar-search-box">
-            <svg viewBox="0 0 24 24" class="search-icon">
-              <path
-                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-
-            <input
-              v-model="curriculumSearchKeyword"
-              type="text"
-              placeholder="내 커리큘럼 검색"
-            />
-          </div>
-        </div>
-
-        <nav class="sidebar-nav">
-          <button
-            v-for="item in menuItems"
-            :key="item.path"
-            type="button"
-            class="sidebar-nav-item"
-            :class="{ active: route.path === item.path }"
-            @click="navigateTo(item.path)"
-          >
-            <span class="nav-icon" v-html="item.icon"></span>
-            <span>{{ item.label }}</span>
-          </button>
-        </nav>
-
-        <div class="sidebar-content">
-          <div v-if="isLoadingCurricula" class="empty-search">
-            커리큘럼을 불러오는 중입니다...
-          </div>
-
-          <div v-else-if="curriculumLoadError" class="empty-search">
-            커리큘럼 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
-          </div>
-
-          <div v-else-if="hasNoCurriculums" class="empty-search">
-            아직 생성한 커리큘럼이 없습니다.
-          </div>
-
-          <div v-else-if="hasNoFilteredCurriculums" class="empty-search">
-            검색 결과가 없습니다.
-          </div>
-
-          <div v-else>
-            <section v-if="filteredInProgressCurricula.length > 0" class="curriculum-section">
-              <h3>진행 중인 커리큘럼</h3>
-
-              <button
-                v-for="item in filteredInProgressCurricula"
-                :key="item.id"
-                type="button"
-                class="curriculum-item"
-                @click="navigateTo(`/curriculum/${item.id}`)"
-              >
-                <div class="curriculum-main">
-                  <p>{{ item.title }}</p>
-
-                  <div class="curriculum-meta">
-                    <span class="progress-track">
-                      <span
-                        class="progress-fill"
-                        :style="{ width: `${item.progress}%` }"
-                      ></span>
-                    </span>
-                    <span>{{ item.statusLabel }}</span>
-                    <span>{{ item.updated }}</span>
-                  </div>
-                </div>
-
-                <span class="chevron">›</span>
-              </button>
-            </section>
-
-            <section v-if="filteredCompletedCurricula.length > 0" class="curriculum-section">
-              <h3>완료한 커리큘럼</h3>
-
-              <button
-                v-for="item in filteredCompletedCurricula"
-                :key="item.id"
-                type="button"
-                class="curriculum-item completed"
-                @click="navigateTo(`/curriculum/${item.id}`)"
-              >
-                <div class="curriculum-main">
-                  <p>{{ item.title }}</p>
-                  <span class="completed-date">{{ item.statusLabel }} · {{ item.updated }}</span>
-                </div>
-
-                <span class="chevron">›</span>
-              </button>
-            </section>
-          </div>
-        </div>
-
-        <div class="sidebar-bottom">
-          <button type="button" class="sidebar-nav-item" @click="navigateTo('/settings')">
-            <span class="nav-icon" v-html="icons.settings"></span>
-            <span>설정</span>
-          </button>
-
-          <button type="button" class="sidebar-nav-item" @click="handleLogout">
-            <span class="nav-icon" v-html="icons.logout"></span>
-            <span>로그아웃</span>
-          </button>
-        </div>
-      </div>
-    </aside>
-
-    <div
-      v-if="sidebarOpen"
-      class="sidebar-backdrop"
-      @click="closeSidebar"
-    ></div>
+    <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
 
     <div class="mypage-main">
       <header class="mypage-header">
-        <button
-          type="button"
-          class="logo-menu-button"
-          aria-label="사이드바 열기"
-          @click="toggleSidebar"
-        >
-          <span class="logo-menu-default">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
-                fill="currentColor"
-              />
-            </svg>
-          </span>
-
-          <span class="logo-menu-hover">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M4 7h16M4 12h16M4 17h16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-              />
-            </svg>
-          </span>
-        </button>
+        <BrandMenuButton @click="toggleSidebar" />
 
         <h1>마이페이지</h1>
       </header>
@@ -562,6 +392,8 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import BrandMenuButton from '@/components/user/BrandMenuButton.vue';
 import { useRoute, useRouter } from 'vue-router';
 import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage } from '@/utils/auth';
