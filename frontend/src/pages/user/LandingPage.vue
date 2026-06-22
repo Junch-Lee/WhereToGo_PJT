@@ -186,7 +186,7 @@
             <div class="journey-copy">
               <p class="journey-index">02</p>
               <h2 class="journey-word">TO</h2>
-              <p class="journey-heading">당신에게 맞는 방향을 찾습니다.</p>
+              <p class="journey-heading">당신에게 맞는 방향을 찾습니다</p>
 
               <p class="journey-description">
                 AI 인터뷰를 통해 현재 수준과 목표,<br />
@@ -390,19 +390,23 @@
       </section>
 
       <!-- 핵심 가치 -->
-      <section class="value-section">
+      <section
+        ref="valueSection"
+        class="value-section"
+      >
         <article
           v-for="(value, index) in serviceValues"
           :key="value.strong"
           class="value-panel"
           :class="`value-panel-${index + 1}`"
+          :style="getValuePanelStyle(index)"
         >
           <div>
             <p>{{ value.label }}</p>
 
             <h2>
-              <strong>{{ value.strong }}</strong>
-              <span>{{ value.soft }}</span>
+              <strong v-html="value.strong"></strong>
+              <span v-html="value.soft"></span>
             </h2>
           </div>
         </article>
@@ -470,11 +474,13 @@ const router = useRouter()
 const heroSection = ref(null)
 const journeySection = ref(null)
 const experienceSection = ref(null)
+const valueSection = ref(null)
 
 const isHeaderScrolled = ref(false)
 const heroProgress = ref(0)
 const journeyProgress = ref(0)
 const experienceProgress = ref(0)
+const valueProgress = ref(0)
 
 const whereKeywords = [
   '백엔드 개발',
@@ -514,7 +520,7 @@ const serviceValues = [
   {
     label: 'MADE FOR YOU',
     strong: '모두에게 같은 강의가 아니라,',
-    soft: '당신에게 필요한 학습만.',
+    soft: '당신에게 필요한 학습만',
   },
   {
     label: 'KEEP MOVING',
@@ -608,6 +614,10 @@ const previewSteps = computed(() => [
   },
 ])
 
+const activeValueIndex = computed(() =>
+  Math.min(serviceValues.length - 1, Math.floor(valueProgress.value * serviceValues.length)),
+)
+
 const heroContentOpacity = computed(
   () => 1 - clamp(heroProgress.value * 1.9),
 )
@@ -648,6 +658,7 @@ function handleScroll() {
   heroProgress.value = calculateSectionProgress(heroSection.value)
   journeyProgress.value = calculateSectionProgress(journeySection.value)
   experienceProgress.value = calculateSectionProgress(experienceSection.value)
+  valueProgress.value = calculateSectionProgress(valueSection.value)
 }
 
 function getPhaseStyle(phase) {
@@ -706,6 +717,18 @@ function getCurriculumStepStyle(index) {
   return {
     opacity,
     transform: `translate3d(${(1 - opacity) * 24}px, 0, 0)`,
+  }
+}
+
+function getValuePanelStyle(index) {
+  const panelProgress = clamp((valueProgress.value * serviceValues.length) - index)
+  const isActive = activeValueIndex.value === index
+
+  return {
+    opacity: 0.18 + panelProgress * 0.82,
+    transform: `translate3d(0, ${(1 - panelProgress) * 46}px, 0)
+      scale(${0.96 + panelProgress * 0.04})`,
+    zIndex: isActive ? 3 : index + 1,
   }
 }
 

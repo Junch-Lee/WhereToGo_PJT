@@ -717,6 +717,10 @@ button {
 }
 
 .journey-navigation .journey-stage:last-of-type {
+  color: #f2f5f2 !important;
+}
+
+.home-header .journey-navigation .journey-stage:first-of-type {
   color: #10b981 !important;
 }
 

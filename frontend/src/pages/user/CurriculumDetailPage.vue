@@ -1,21 +1,31 @@
 ﻿<template>
-  <div class="curriculum-page">
+  <div class="curriculum-page curriculum-detail-page" :class="{ 'is-paused': isCurriculumPaused }">
     <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
 
-    <div class="main-layout">
-      <header class="page-header">
-        <BrandMenuButton @click="toggleSidebar" />
+    <div class="main-layout curriculum-layout">
+      <header class="page-header curriculum-header">
+        <div class="curriculum-header-left">
+          <BrandMenuButton @click="toggleSidebar" />
 
-        <h1 class="page-title">{{ curriculum?.title || '커리큘럼 상세' }}</h1>
+          <div class="journey-navigation" aria-label="WhereToGo 진행 단계">
+            <span class="journey-stage">WHERE</span>
+            <span class="journey-arrow">→</span>
+            <span class="journey-stage">TO</span>
+            <span class="journey-arrow">→</span>
+            <span class="journey-stage active">GO</span>
+          </div>
+        </div>
+
+        <h1 class="page-title curriculum-header-title">{{ curriculum?.title || '커리큘럼 상세' }}</h1>
       </header>
 
       <main class="page-main">
         <div class="content-wrap">
-          <section v-if="loading" class="summary-card page-state-card">
+          <section v-if="loading" class="curriculum-summary-card page-state-card">
             <p>커리큘럼 정보를 불러오는 중입니다.</p>
           </section>
 
-          <section v-else-if="errorMessage" class="summary-card page-state-card error">
+          <section v-else-if="errorMessage" class="curriculum-summary-card page-state-card error">
             <p>{{ errorMessage }}</p>
             <button
               class="outline-button"
@@ -27,9 +37,10 @@
           </section>
 
           <template v-else-if="curriculum">
-            <section class="summary-card">
-              <div class="summary-header">
+            <section class="curriculum-summary-card">
+              <div class="summary-heading-row">
                 <div>
+                  <p class="summary-kicker">학습 커리큘럼</p>
                   <h2 class="summary-title">{{ curriculum.title }}</h2>
                   <p class="summary-description">{{ curriculumDescription }}</p>
                 </div>
@@ -39,9 +50,9 @@
                 </span>
               </div>
 
-              <div class="progress-block">
+              <div class="curriculum-progress-area">
                 <div class="progress-info">
-                  <span>{{ completedCount }} / {{ totalCount }} Step 완료</span>
+                  <span>전체 진행률</span>
                   <strong>{{ progressPct }}%</strong>
                 </div>
 
@@ -51,11 +62,15 @@
                     :style="{ width: `${progressPct}%` }"
                   ></div>
                 </div>
+
+                <p class="progress-copy">
+                  {{ completedCount }} / {{ totalCount }} Step 완료
+                </p>
               </div>
 
               <button
                 v-if="isCurriculumNotStarted"
-                class="primary-button"
+                class="primary-button primary-action-button"
                 :disabled="actionLoading"
                 @click="handleStart"
               >
@@ -63,9 +78,9 @@
                 학습 시작하기
               </button>
 
-              <div v-else-if="isCurriculumInProgress" class="button-row">
+              <div v-else-if="isCurriculumInProgress" class="button-row summary-actions">
                 <button
-                  class="primary-button"
+                  class="primary-button primary-action-button"
                   :disabled="actionLoading"
                   @click="handleContinue"
                 >
@@ -74,7 +89,7 @@
                 </button>
 
                 <button
-                  class="outline-button"
+                  class="outline-button secondary-action-button"
                   :disabled="actionLoading"
                   @click="handlePause"
                 >
@@ -85,7 +100,7 @@
 
               <button
                 v-else-if="isCurriculumPaused"
-                class="primary-button"
+                class="primary-button primary-action-button"
                 :disabled="actionLoading"
                 @click="handleResume"
               >
@@ -104,14 +119,14 @@
               v-if="isCurriculumInProgress && currentStep"
               class="current-step-card"
             >
-              <p class="current-step-label">현재 학습 중인 단계</p>
-
               <div class="current-step-header">
-                <h3>Step {{ currentStep.order }}. {{ currentStep.title }}</h3>
+                <div>
+                  <p class="current-step-label">현재 학습 중인 단계</p>
+                  <h3>Step {{ currentStep.order }}. {{ currentStep.title }}</h3>
+                </div>
 
                 <div class="current-step-meta">
                   <span>예상 {{ currentStep.estimatedHours }}시간</span>
-
                   <span :class="['difficulty-pill', difficultyClass[currentStep.difficulty]]">
                     {{ currentStep.difficulty }}
                   </span>
@@ -123,7 +138,7 @@
                 <span>{{ currentStep.description }}</span>
               </div>
 
-              <div v-if="currentStep.resources.length > 0" class="resource-block">
+              <div v-if="currentStep.resources.length > 0" class="resource-block current-step-resources">
                 <p class="resource-title">추천 학습 자료</p>
 
                 <ul class="resource-list">
@@ -152,10 +167,10 @@
                 </ul>
               </div>
 
-              <div class="button-row">
+              <div class="button-row current-step-actions">
                 <button
                   v-if="hasValidCurrentStepResourceUrl"
-                  class="outline-card-button"
+                  class="outline-card-button resource-view-button"
                   :disabled="actionLoading"
                   @click="openFirstCurrentStepResource"
                 >
@@ -163,7 +178,7 @@
                 </button>
 
                 <button
-                  class="primary-button"
+                  class="primary-button complete-step-button"
                   :disabled="actionLoading"
                   @click="handleCompleteStep"
                 >
@@ -196,16 +211,23 @@
               </p>
             </section>
 
-            <section class="step-list-card">
-              <h3 class="step-list-title">전체 학습 단계</h3>
+            <section class="step-list-card all-steps-card">
+              <div class="all-steps-heading">
+                <div>
+                  <p class="summary-kicker">Roadmap</p>
+                  <h3 class="step-list-title">전체 학습 단계</h3>
+                </div>
+
+                <span class="all-steps-count">{{ totalCount }} Steps</span>
+              </div>
 
               <div class="step-list">
                 <article
                   v-for="step in steps"
                   :key="step.id"
-                  :class="['step-item', { active: step.status === 'IN_PROGRESS' }]"
+                  :class="['step-item step-card', { active: step.status === 'IN_PROGRESS' }]"
                 >
-                  <button class="step-toggle" @click="toggleStep(step.id)">
+                  <button class="step-toggle step-card-header" @click="toggleStep(step.id)">
                     <span
                       :class="[
                         'step-state-icon',
@@ -219,7 +241,7 @@
                       {{ getStepIcon(step.status) }}
                     </span>
 
-                    <div class="step-toggle-content">
+                    <div class="step-toggle-content step-header-copy">
                       <div class="step-title-row">
                         <span :class="['step-name', { muted: step.status === 'PENDING' }]">
                           Step {{ step.order }}. {{ step.title }}
@@ -230,7 +252,7 @@
                         </span>
                       </div>
 
-                      <span class="step-time">약 {{ step.estimatedHours }}시간</span>
+                      <span class="step-time">예상 {{ step.estimatedHours }}시간</span>
                     </div>
 
                     <span class="step-chevron">

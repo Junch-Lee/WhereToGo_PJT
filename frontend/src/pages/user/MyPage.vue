@@ -15,13 +15,13 @@
             {{ pageError }}
           </p>
 
-          <section class="mypage-card">
-            <div class="card-header">
+          <section class="mypage-card basic-info-card">
+            <div class="card-header basic-info-header">
               <h2>기본 정보</h2>
 
               <button
                 type="button"
-                class="outline-button"
+                class="outline-button basic-info-edit-button"
                 @click="openAccountModal"
               >
                 <span v-html="icons.edit"></span>
@@ -29,28 +29,40 @@
               </button>
             </div>
 
-            <div class="info-grid">
-              <div class="info-item">
+            <div class="basic-info-grid">
+              <div class="basic-info-item basic-info-email">
                 <p>이메일</p>
                 <strong>{{ accountInfo.email || '-' }}</strong>
               </div>
 
-              <div class="info-item">
+              <div class="basic-info-item">
                 <p>닉네임</p>
                 <strong>{{ accountInfo.nickname || '-' }}</strong>
+              </div>
+
+              <div class="basic-info-item">
+                <p>가입일</p>
+                <strong>{{ formatDate(accountInfo.created_at) }}</strong>
+              </div>
+            </div>
+
+            <div class="account-security-section">
+              <h3>계정 보안</h3>
+
+              <div class="account-security-row">
+                <div class="account-security-copy">
+                  <p>비밀번호</p>
+                  <span>계정 보안을 위해 주기적으로 변경해주세요.</span>
+                </div>
 
                 <button
                   type="button"
-                  class="text-action-button"
+                  class="password-change-button"
                   @click="openPasswordModal"
                 >
-                  비밀번호 변경
+                  <span>변경하기</span>
+                  <span class="password-change-arrow" aria-hidden="true">→</span>
                 </button>
-              </div>
-
-              <div class="info-item">
-                <p>가입일</p>
-                <strong>{{ formatDate(accountInfo.created_at) }}</strong>
               </div>
             </div>
           </section>

@@ -238,84 +238,8 @@
   transform: none;
 }
 
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin: 28px 0 20px;
-}
-
-.divider span {
-  height: 1px;
-  flex: 1;
-  background: #1E2A20;
-}
-
-.divider p {
-  margin: 0;
-  color: #A8B3AA;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.social-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.google-button,
-.kakao-button {
-  width: 100%;
-  height: 44px;
-  border-radius: 12px;
-  font-size: 14px;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  cursor: pointer;
-  transition:
-    transform 0.16s ease,
-    background-color 0.16s ease,
-    border-color 0.16s ease,
-    box-shadow 0.16s ease;
-}
-
-.google-button {
-  border: 1px solid #475569;
-  background: #0B0F0C;
-  color: #F2F5F2;
-  box-shadow: 0 1px 2px rgba(60, 64, 67, 0.12);
-}
-
-.google-button:hover {
-  background: #111711;
-  border-color: #c7d2fe;
-  box-shadow: 0 4px 12px rgba(60, 64, 67, 0.12);
-  transform: translateY(-1px);
-}
-
-.kakao-button {
-  border: 1px solid #f4d900;
-  background: #fee500;
-  color: #000000;
-}
-
-.kakao-button:hover {
-  background: #fdd835;
-  transform: translateY(-1px);
-}
-
-.social-icon {
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
 .login-guide {
-  margin: 24px 0 0;
+  margin: 22px 0 0;
   text-align: center;
   color: #A8B3AA;
   font-size: 14px;

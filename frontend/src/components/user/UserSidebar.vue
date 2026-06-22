@@ -15,7 +15,7 @@
         <button
           class="app-sidebar-logo-button"
           type="button"
-          @click="handleNavigate('/home')"
+          @click="handleNavigate('/')"
         >
           <span class="brand-icon" aria-hidden="true"></span>
 

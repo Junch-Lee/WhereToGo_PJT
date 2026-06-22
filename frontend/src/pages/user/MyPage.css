@@ -444,6 +444,123 @@
   height: 16px;
 }
 
+.basic-info-card {
+  padding: 28px 30px;
+}
+
+.basic-info-header {
+  margin-bottom: 26px;
+}
+
+.basic-info-edit-button {
+  min-width: 78px;
+}
+
+.basic-info-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+.basic-info-item {
+  min-width: 0;
+}
+
+.basic-info-item p {
+  margin: 0 0 8px;
+  color: #A8B3AA;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.basic-info-item strong {
+  display: block;
+  color: #F2F5F2;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.basic-info-email strong {
+  word-break: break-word;
+}
+
+.account-security-section {
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid #1E2A20;
+}
+
+.account-security-section h3 {
+  margin: 0 0 14px;
+  color: #F2F5F2;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.account-security-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.account-security-copy {
+  min-width: 0;
+}
+
+.account-security-copy p {
+  margin: 0 0 6px;
+  color: #F2F5F2;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.account-security-copy span {
+  display: block;
+  color: #A8B3AA;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.password-change-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  gap: 8px;
+  min-width: 112px;
+  min-height: 40px;
+  padding: 0 14px;
+  color: #050705;
+  background: #00C248;
+  border: 1px solid #00C248;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 150ms ease;
+}
+
+.password-change-button:hover {
+  background: #00D955;
+  border-color: #00D955;
+  transform: translateY(-1px);
+}
+
+.password-change-arrow {
+  line-height: 1;
+  transition: transform 150ms ease;
+}
+
+.password-change-button:hover .password-change-arrow {
+  transform: translateX(2px);
+}
+
 .info-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -856,6 +973,34 @@
   .info-grid,
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .basic-info-card {
+    padding: 22px;
+  }
+
+  .basic-info-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .basic-info-edit-button {
+    align-self: flex-end;
+  }
+
+  .basic-info-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .account-security-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .password-change-button {
+    width: 100%;
+    min-height: 44px;
   }
 
   .curriculum-row {
