@@ -680,7 +680,8 @@ button {
 }
 
 .resource-list,
-.step-resource-list {
+.step-resource-list,
+.course-list {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -694,8 +695,25 @@ button {
 
 .resource-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
+  padding: 10px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.course-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.course-list.compact {
+  gap: 6px;
+}
+
+.course-item {
   padding: 10px 16px;
   background: var(--card);
   border: 1px solid var(--border);
@@ -744,6 +762,48 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.resource-copy,
+.course-copy {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.resource-copy .resource-label,
+.course-label {
+  overflow: visible;
+  color: var(--foreground);
+  font-size: 14px;
+  font-weight: 700;
+  text-overflow: clip;
+  white-space: normal;
+}
+
+.resource-copy.compact .resource-label,
+.course-copy.compact .course-label {
+  font-weight: 600;
+}
+
+.resource-meta,
+.course-meta {
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.resource-description,
+.course-description {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.55;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .resource-link-icon {
@@ -936,13 +996,14 @@ button {
 
 .step-resource-item {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 8px;
   color: var(--foreground);
   font-size: 14px;
 }
 
-.step-resource-item > span:not(.resource-type) {
+.step-resource-item > span:not(.resource-type),
+.step-resource-item .resource-copy {
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -1338,9 +1399,22 @@ button {
   border-color: var(--curriculum-border);
 }
 
+.curriculum-detail-page .course-item {
+  background: rgb(5 7 5 / 72%);
+  border-color: var(--curriculum-border);
+}
+
 .curriculum-detail-page .resource-label,
+.curriculum-detail-page .course-label,
 .curriculum-detail-page .step-resource-item > span:not(.resource-type) {
   color: var(--curriculum-text);
+}
+
+.curriculum-detail-page .resource-meta,
+.curriculum-detail-page .course-meta,
+.curriculum-detail-page .resource-description,
+.curriculum-detail-page .course-description {
+  color: var(--curriculum-subtle);
 }
 
 .curriculum-detail-page .resource-blue,

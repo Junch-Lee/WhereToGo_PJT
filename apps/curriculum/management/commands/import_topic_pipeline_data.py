@@ -190,6 +190,7 @@ class Command(BaseCommand):
                     "url": clean(row.get("url")),
                     "provider": clean(row.get("source_type")),
                     "provider_name": clean(row.get("provider_name")),
+                    "instructor_name": clean(row.get("instructor_name")),
                     "resource_type": clean(row.get("content_type")),
                     "difficulty_level": clean(row.get("difficulty_level")),
                 },

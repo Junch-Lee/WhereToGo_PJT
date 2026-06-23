@@ -229,6 +229,10 @@ class CurriculumListSerializer(serializers.ModelSerializer):
     필요하고, 상세 데이터는 /api/curriculums/{id}/에서 분리해서 조회한다.
     """
 
+    progress_percent = serializers.SerializerMethodField()
+    completed_step_count = serializers.SerializerMethodField()
+    total_step_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Curriculum
         fields = (
@@ -241,9 +245,31 @@ class CurriculumListSerializer(serializers.ModelSerializer):
             "preferred_learning_style",
             "difficulty_level",
             "recommendation_reason",
+            "progress_percent",
+            "completed_step_count",
+            "total_step_count",
             "created_at",
             "updated_at",
         )
+
+    def get_progress_percent(self, curriculum):
+        total_step_count = self.get_total_step_count(curriculum)
+        if total_step_count == 0:
+            return 0
+
+        return round(
+            self.get_completed_step_count(curriculum) / total_step_count * 100
+        )
+
+    def get_completed_step_count(self, curriculum):
+        return sum(
+            1
+            for progress_record in curriculum.step_progresses.all()
+            if progress_record.status == CurriculumStepProgress.Status.COMPLETED
+        )
+
+    def get_total_step_count(self, curriculum):
+        return len(curriculum.steps.all())
 
 
 class CurriculumStepSerializer(serializers.ModelSerializer):
@@ -374,12 +400,24 @@ class CurriculumStepResourceDetailSerializer(serializers.ModelSerializer):
 
     id = serializers.IntegerField(source="learning_resource.id", read_only=True)
     title = serializers.CharField(source="learning_resource.title", read_only=True)
+    description = serializers.CharField(
+        source="learning_resource.description",
+        read_only=True,
+    )
+    provider = serializers.CharField(
+        source="learning_resource.provider",
+        read_only=True,
+    )
     resource_type = serializers.CharField(
         source="learning_resource.resource_type",
         read_only=True,
     )
     provider_name = serializers.CharField(
         source="learning_resource.provider_name",
+        read_only=True,
+    )
+    instructor_name = serializers.CharField(
+        source="learning_resource.instructor_name",
         read_only=True,
     )
     difficulty_level = serializers.CharField(
@@ -393,8 +431,11 @@ class CurriculumStepResourceDetailSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "title",
+            "description",
+            "provider",
             "resource_type",
             "provider_name",
+            "instructor_name",
             "difficulty_level",
             "url",
             "reason",
@@ -592,6 +633,7 @@ class CurrentCurriculumStepSerializer(serializers.ModelSerializer):
     difficulty = serializers.CharField(source="difficulty_level", read_only=True)
     status = serializers.SerializerMethodField()
     resources = serializers.SerializerMethodField()
+    courses = serializers.SerializerMethodField()
 
     class Meta:
         model = CurriculumStep
@@ -604,6 +646,7 @@ class CurrentCurriculumStepSerializer(serializers.ModelSerializer):
             "difficulty",
             "status",
             "resources",
+            "courses",
         )
 
     def get_status(self, step):
@@ -622,11 +665,26 @@ class CurrentCurriculumStepSerializer(serializers.ModelSerializer):
             {
                 "id": step_resource.learning_resource_id,
                 "title": step_resource.learning_resource.title,
+                "description": step_resource.learning_resource.description,
+                "provider": step_resource.learning_resource.provider,
+                "provider_name": step_resource.learning_resource.provider_name,
+                "instructor_name": step_resource.learning_resource.instructor_name,
+                "resource_type": step_resource.learning_resource.resource_type,
                 "type": step_resource.learning_resource.resource_type,
+                "difficulty_level": step_resource.learning_resource.difficulty_level,
                 "url": step_resource.learning_resource.url,
+                "reason": step_resource.reason,
+                "sort_order": step_resource.sort_order,
             }
             for step_resource in step_resources
         ]
+
+    def get_courses(self, step):
+        step_courses = sorted(
+            step.step_courses.all(),
+            key=lambda step_course: (step_course.sort_order, step_course.id),
+        )
+        return CurriculumStepCourseDetailSerializer(step_courses, many=True).data
 
 
 class CurriculumDetailSerializer(serializers.ModelSerializer):

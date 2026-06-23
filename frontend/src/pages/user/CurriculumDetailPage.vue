@@ -151,7 +151,15 @@
                       {{ resource.type }}
                     </span>
 
-                    <span class="resource-label">{{ resource.label }}</span>
+                    <div class="resource-copy">
+                      <span class="resource-label">{{ resource.label }}</span>
+                      <span v-if="resourceMetaItems(resource).length > 0" class="resource-meta">
+                        {{ resourceMetaItems(resource).join(' · ') }}
+                      </span>
+                      <span v-if="resource.description" class="resource-description">
+                        {{ resource.description }}
+                      </span>
+                    </div>
                     <a
                       v-if="isValidExternalUrl(resource.url)"
                       :href="resource.url"
@@ -163,6 +171,28 @@
                     >
                       ↗
                     </a>
+                  </li>
+                </ul>
+              </div>
+
+              <div v-if="currentStep.courses.length > 0" class="resource-block current-step-courses">
+                <p class="resource-title">추천 강의/과목</p>
+
+                <ul class="course-list">
+                  <li
+                    v-for="course in currentStep.courses"
+                    :key="course.id"
+                    class="course-item"
+                  >
+                    <div class="course-copy">
+                      <span class="course-label">{{ course.label }}</span>
+                      <span v-if="courseMetaItems(course).length > 0" class="course-meta">
+                        {{ courseMetaItems(course).join(' · ') }}
+                      </span>
+                      <span v-if="course.description" class="course-description">
+                        {{ course.description }}
+                      </span>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -276,7 +306,12 @@
                             {{ resource.type }}
                           </span>
 
-                          <span>{{ resource.label }}</span>
+                          <div class="resource-copy compact">
+                            <span class="resource-label">{{ resource.label }}</span>
+                            <span v-if="resourceMetaItems(resource).length > 0" class="resource-meta">
+                              {{ resourceMetaItems(resource).join(' · ') }}
+                            </span>
+                          </div>
                           <a
                             v-if="isValidExternalUrl(resource.url)"
                             :href="resource.url"
@@ -288,6 +323,25 @@
                           >
                             ↗
                           </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div v-if="step.courses.length > 0">
+                      <p class="step-resource-title">추천 강의/과목</p>
+
+                      <ul class="course-list compact">
+                        <li
+                          v-for="course in step.courses"
+                          :key="course.id"
+                          class="course-item"
+                        >
+                          <div class="course-copy compact">
+                            <span class="course-label">{{ course.label }}</span>
+                            <span v-if="courseMetaItems(course).length > 0" class="course-meta">
+                              {{ courseMetaItems(course).join(' · ') }}
+                            </span>
+                          </div>
                         </li>
                       </ul>
                     </div>
@@ -514,9 +568,19 @@ function mapSidebarCurriculum(item) {
     id: item.id,
     title: item.title,
     status,
-    progress: status === 'COMPLETED' ? 100 : 0,
+    progress: normalizeProgress(item.progress_percent, status),
     updated: formatRelativeDate(item.updated_at || item.created_at),
   }
+}
+
+function normalizeProgress(progress, status) {
+  const numericProgress = Number(progress)
+
+  if (Number.isFinite(numericProgress)) {
+    return Math.min(100, Math.max(0, Math.round(numericProgress)))
+  }
+
+  return status === 'COMPLETED' ? 100 : 0
 }
 
 function normalizeCurriculumStatus(status) {
@@ -537,6 +601,7 @@ function mapStep(step) {
     estimatedHours: step.estimated_hours || 0,
     difficulty: step.difficulty || mapDifficulty(step.difficulty_level),
     resources: (step.resources || []).map(mapResource),
+    courses: (step.courses || []).map(mapCourse),
     status: normalizeStepStatus(step.status, step.step_progress?.status),
   }
 }
@@ -566,8 +631,52 @@ function mapResource(resource) {
     id: resource.id,
     label: resource.title || resource.course_name || '학습 자료',
     type: normalizeResourceType(resource.resource_type || resource.type),
+    rawType: resource.resource_type || resource.type || '',
+    provider: resource.provider || '',
+    providerName: resource.provider_name || '',
+    instructorName: resource.instructor_name || '',
+    difficultyLevel: resource.difficulty_level || '',
+    description: resource.description || '',
+    reason: resource.reason || '',
     url: resource.url || null,
   }
+}
+
+function mapCourse(course) {
+  return {
+    id: course.id,
+    label: course.course_name || '추천 강의',
+    universityName: course.university_name || '',
+    departmentName: course.department_name || '',
+    grade: course.grade || '',
+    semester: course.semester || '',
+    description: course.learning_objective || course.description || '',
+    reason: course.reason || '',
+  }
+}
+
+function resourceMetaItems(resource) {
+  return [
+    formatSource(resource.provider),
+    resource.providerName,
+    resource.rawType,
+    resource.instructorName ? `교수자 ${resource.instructorName}` : '',
+    resource.difficultyLevel ? `난이도 ${mapDifficulty(resource.difficultyLevel)}` : '',
+  ].filter(Boolean)
+}
+
+function courseMetaItems(course) {
+  return [
+    course.universityName,
+    course.departmentName,
+    course.grade ? `${course.grade}학년` : '',
+    course.semester,
+  ].filter(Boolean)
+}
+
+function formatSource(source) {
+  if (!source) return ''
+  return String(source).toUpperCase()
 }
 
 function normalizeResourceType(type) {

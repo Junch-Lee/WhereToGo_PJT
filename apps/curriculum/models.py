@@ -39,6 +39,7 @@ class LearningResource(models.Model):
     url = models.URLField(blank=True)
     provider = models.CharField(max_length=100, blank=True)
     provider_name = models.CharField(max_length=100, blank=True)
+    instructor_name = models.CharField(max_length=100, blank=True)
     resource_type = models.CharField(max_length=50, blank=True)
     difficulty_level = models.CharField(max_length=30, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

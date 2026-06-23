@@ -247,6 +247,16 @@ const normalizeStatus = (status) =>
     .replace(/[\s-]+/g, '_')
     .toUpperCase();
 
+const normalizeProgress = (progress, status) => {
+  const numericProgress = Number(progress);
+
+  if (Number.isFinite(numericProgress)) {
+    return Math.min(100, Math.max(0, Math.round(numericProgress)));
+  }
+
+  return status === 'COMPLETED' ? 100 : 0;
+};
+
 const mapCurriculumForSidebar = (curriculum) => {
   const status = normalizeStatus(curriculum.status);
 
@@ -255,7 +265,7 @@ const mapCurriculumForSidebar = (curriculum) => {
     title: curriculum.title,
     status,
     statusLabel: statusLabels[status] || status,
-    progress: status === 'COMPLETED' ? 100 : 0,
+    progress: normalizeProgress(curriculum.progress_percent, status),
     updated: formatDate(curriculum.updated_at || curriculum.created_at),
   };
 };

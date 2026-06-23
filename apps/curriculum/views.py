@@ -240,9 +240,13 @@ def curriculums(request):
         사용자 프로필 fallback, 단계 저장 같은 비즈니스 로직은 service 계층에 둔다.
     """
     if request.method == "GET":
-        queryset = Curriculum.objects.filter(user=request.user).order_by(
-            "-created_at",
-            "-id",
+        queryset = (
+            Curriculum.objects.filter(user=request.user)
+            .prefetch_related("steps", "step_progresses")
+            .order_by(
+                "-created_at",
+                "-id",
+            )
         )
         serializer = CurriculumListSerializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)

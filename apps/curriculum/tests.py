@@ -1156,6 +1156,44 @@ class CurriculumListCreateAPITest(APITestCase):
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]["title"], "Mine")
 
+    def test_list_includes_progress_summary_fields(self):
+        curriculum = Curriculum.objects.create(
+            user=self.user,
+            title="Roadmap with progress",
+            goal="Track progress",
+        )
+        first_step = CurriculumStep.objects.create(
+            curriculum=curriculum,
+            step_order=1,
+            title="First",
+            description="First step",
+        )
+        CurriculumStep.objects.create(
+            curriculum=curriculum,
+            step_order=2,
+            title="Second",
+            description="Second step",
+        )
+        CurriculumStep.objects.create(
+            curriculum=curriculum,
+            step_order=3,
+            title="Third",
+            description="Third step",
+        )
+        CurriculumStepProgress.objects.create(
+            curriculum=curriculum,
+            curriculum_step=first_step,
+            status=CurriculumStepProgress.Status.COMPLETED,
+            progress_rate=100,
+        )
+
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data[0]["completed_step_count"], 1)
+        self.assertEqual(response.data[0]["total_step_count"], 3)
+        self.assertEqual(response.data[0]["progress_percent"], 33)
+
     def test_unauthenticated_request_returns_401(self):
         self.client.force_authenticate(user=None)
 
@@ -1195,6 +1233,7 @@ class CurriculumDetailAPITest(APITestCase):
             url="https://www.django-rest-framework.org/",
             provider="DRF",
             provider_name="DRF",
+            instructor_name="Encode Team",
             resource_type="document",
             difficulty_level="beginner",
         )
@@ -1268,8 +1307,12 @@ class CurriculumDetailAPITest(APITestCase):
         first_step = response.data["steps"][0]
         self.assertEqual(first_step["target_topic"]["name"], "Django")
         self.assertEqual(first_step["resources"][0]["title"], "DRF 공식 문서")
+        self.assertEqual(first_step["resources"][0]["provider"], "DRF")
         self.assertEqual(first_step["resources"][0]["provider_name"], "DRF")
+        self.assertEqual(first_step["resources"][0]["instructor_name"], "Encode Team")
+        self.assertEqual(first_step["resources"][0]["resource_type"], "document")
         self.assertEqual(first_step["resources"][0]["difficulty_level"], "beginner")
+        self.assertIn("Django REST Framework", first_step["resources"][0]["description"])
         self.assertEqual(first_step["courses"][0]["course_name"], "웹 백엔드 실전")
         self.assertEqual(
             first_step["courses"][0]["university_name"],
@@ -1385,6 +1428,8 @@ class CurriculumDetailAPITest(APITestCase):
             "Django 프로젝트 구조 학습",
         )
         self.assertEqual(response.data["steps"][0]["step_progress"]["progress_rate"], 40)
+        self.assertEqual(response.data["current_step"]["courses"][0]["course_name"], "웹 백엔드 실전")
+        self.assertEqual(response.data["current_step"]["resources"][0]["provider"], "DRF")
 
     def test_paused_curriculum_detail_returns_only_incomplete_current_schedules(self):
         now = timezone.now()
