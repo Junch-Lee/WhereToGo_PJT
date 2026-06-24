@@ -65,15 +65,13 @@ const routes = [
   name: 'CurriculumResult',
   component: () => import('@/pages/user/CurriculumResult.vue'),
   meta: { requiresAuth: true },
-  }
-
-
-  // {
-  //   path: '/learning',
-  //   name: 'Learning',
-  //   component: () => import('@/pages/user/LearningDashboard.vue'),
-  //   meta: { requiresAuth: true },
-  // },
+  },
+  {
+    path: '/learning',
+    name: 'Learning',
+    component: () => import('@/pages/user/LearningDashboard.vue'),
+    meta: { requiresAuth: true },
+  },
 ];
 
 const router = createRouter({

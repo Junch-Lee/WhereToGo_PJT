@@ -183,9 +183,11 @@ const curriculumLoadError = ref('');
 const isGenerating = ref(false);
 const generationMessage = ref('');
 const generationMessageType = ref('error');
-const generationProgress = ref(0);
+const displayedGenerationProgress = ref(0);
+const generationProgressTarget = ref(0);
 const generationStatusMessage = ref('커리큘럼 생성 준비 중입니다.');
 const generationMessageTimer = ref(null);
+const generationProgressTimer = ref(null);
 const generationMessageIndex = ref(0);
 const interviewPayload = ref({});
 
@@ -250,6 +252,9 @@ const valueLabels = {
 const currentPath = computed(() => route.path);
 const currentJourneyIndex = computed(() =>
   journeyStages.indexOf(currentJourneyStage),
+);
+const generationProgress = computed(() =>
+  Math.min(100, Math.max(0, Math.round(displayedGenerationProgress.value))),
 );
 
 const goalText = computed(() => interviewPayload.value.goal || '새로운 목표');
@@ -456,6 +461,57 @@ function clearGenerationMessageTimer() {
   generationMessageTimer.value = null;
 }
 
+function clearGenerationProgressTimer() {
+  if (!generationProgressTimer.value) return;
+
+  clearInterval(generationProgressTimer.value);
+  generationProgressTimer.value = null;
+}
+
+function getGenerationProgressCap(progress) {
+  if (progress >= 100) return 100;
+  if (progress >= 80) return 96;
+  if (progress >= 45) return 82;
+  if (progress >= 25) return 44;
+  if (progress >= 10) return 24;
+  return 10;
+}
+
+function updateGenerationProgressTarget(progress) {
+  const numericProgress = Number(progress);
+
+  if (!Number.isFinite(numericProgress)) return;
+
+  generationProgressTarget.value = Math.max(
+    generationProgressTarget.value,
+    Math.min(100, Math.max(0, numericProgress)),
+  );
+
+  displayedGenerationProgress.value = Math.max(
+    displayedGenerationProgress.value,
+    Math.min(generationProgressTarget.value, 100),
+  );
+}
+
+function startGenerationProgressInterpolation() {
+  clearGenerationProgressTimer();
+
+  generationProgressTimer.value = window.setInterval(() => {
+    if (!isGenerating.value) return;
+
+    const cap = getGenerationProgressCap(generationProgressTarget.value);
+
+    if (displayedGenerationProgress.value >= cap) return;
+
+    const remaining = cap - displayedGenerationProgress.value;
+    const increment = Math.min(0.8, Math.max(0.12, remaining * 0.035));
+    displayedGenerationProgress.value = Math.min(
+      cap,
+      displayedGenerationProgress.value + increment,
+    );
+  }, 120);
+}
+
 function startGenerationMessageRotation(initialMessage) {
   clearGenerationMessageTimer();
 
@@ -477,20 +533,23 @@ async function handleGenerateCurriculum() {
 
   isGenerating.value = true;
   generationMessage.value = '';
-  generationProgress.value = 0;
+  displayedGenerationProgress.value = 0;
+  generationProgressTarget.value = 0;
+  startGenerationProgressInterpolation();
   startGenerationMessageRotation('커리큘럼 생성 요청을 보내고 있습니다.');
 
   try {
     const response = await generateCurriculumStream(buildGeneratePayload(), {
       onProgress: (event) => {
-        generationProgress.value = event?.progress || generationProgress.value;
+        updateGenerationProgressTarget(event?.progress);
         if (event?.message) {
           generationStatusMessage.value = event.message;
         }
       },
       onDone: (event) => {
         clearGenerationMessageTimer();
-        generationProgress.value = event?.progress || 100;
+        updateGenerationProgressTarget(event?.progress || 100);
+        displayedGenerationProgress.value = 100;
         generationStatusMessage.value =
           event?.message || '커리큘럼 생성이 완료되었습니다.';
       },
@@ -521,6 +580,7 @@ async function handleGenerateCurriculum() {
       '커리큘럼 생성 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.';
   } finally {
     clearGenerationMessageTimer();
+    clearGenerationProgressTimer();
     isGenerating.value = false;
   }
 }
@@ -563,6 +623,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   clearGenerationMessageTimer();
+  clearGenerationProgressTimer();
   window.removeEventListener('keydown', handleEscKey);
   window.removeEventListener('storage', syncAuthState);
   window.removeEventListener('focus', syncAuthState);

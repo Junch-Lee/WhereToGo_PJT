@@ -21,6 +21,10 @@ from apps.curriculum.views import (
     curriculums,
     generate_curriculum,
     generate_curriculum_stream,
+    learning_current,
+    learning_curriculums_progress,
+    learning_dashboard,
+    learning_roadmap,
     pause_curriculum,
     resume_curriculum,
     save_generated_curriculum,
@@ -97,6 +101,26 @@ urlpatterns = [
         "api/curriculums/<int:curriculum_id>/steps/<int:step_id>/complete/",
         complete_curriculum_step,
         name="curriculum_step_complete",
+    ),
+    path(
+        "api/learning/dashboard/",
+        learning_dashboard,
+        name="learning_dashboard",
+    ),
+    path(
+        "api/learning/curriculums/progress/",
+        learning_curriculums_progress,
+        name="learning_curriculums_progress",
+    ),
+    path(
+        "api/learning/current/",
+        learning_current,
+        name="learning_current",
+    ),
+    path(
+        "api/learning/roadmap/",
+        learning_roadmap,
+        name="learning_roadmap",
     ),
 
     # Swagger / OpenAPI 문서. 프론트와 API 계약을 확인할 때 사용한다.

@@ -10,6 +10,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from drf_spectacular.utils import OpenApiParameter, extend_schema
 
 from ai.agent import run_agent
 from apps.accounts.models import Topic
@@ -67,6 +68,21 @@ from .serializers import (
     CurriculumGenerateSerializer,
     CurriculumListSerializer,
     TopicSerializer,
+)
+from .learning_serializers import (
+    CurrentLearningResponseSerializer,
+    CurriculumProgressListSerializer,
+    CurriculumProgressQuerySerializer,
+    LearningDashboardSerializer,
+    RoadmapQuerySerializer,
+    RoadmapSerializer,
+)
+from apps.curriculum.services.learning_dashboard_service import (
+    build_current_learning,
+    build_curriculum_progress_list,
+    build_learning_dashboard,
+    build_roadmap,
+    get_user_curriculum_for_dashboard,
 )
 
 
@@ -563,6 +579,98 @@ def _learning_error_response(exc):
         },
         status=status.HTTP_400_BAD_REQUEST,
     )
+
+
+@extend_schema(
+    responses=LearningDashboardSerializer,
+    description="로그인 사용자의 학습 대시보드 요약, 현재 학습 항목, 최근 활동을 반환합니다.",
+)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def learning_dashboard(request):
+    """Return the dashboard aggregate for the authenticated learner.
+
+    The aggregation is delegated to a service so all learning dashboard endpoints
+    share the same progress, current-curriculum, and current-step rules.
+    """
+    dashboard_data = build_learning_dashboard(request.user)
+    serializer = LearningDashboardSerializer(dashboard_data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@extend_schema(
+    parameters=[
+        OpenApiParameter(
+            name="status",
+            required=False,
+            type=str,
+            description="Optional public status filter: NOT_STARTED, IN_PROGRESS, PAUSED, COMPLETED.",
+        )
+    ],
+    responses=CurriculumProgressListSerializer,
+    description="로그인 사용자의 커리큘럼별 진행 현황 카드 데이터를 반환합니다.",
+)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def learning_curriculums_progress(request):
+    """Return one progress-card row per curriculum owned by the authenticated user."""
+    query_serializer = CurriculumProgressQuerySerializer(data=request.query_params)
+    query_serializer.is_valid(raise_exception=True)
+
+    progress_data = build_curriculum_progress_list(
+        request.user,
+        status_filter=query_serializer.validated_data.get("status"),
+    )
+    serializer = CurriculumProgressListSerializer(progress_data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@extend_schema(
+    responses=CurrentLearningResponseSerializer,
+    description="오늘 이어서 학습할 현재 커리큘럼, Step, 추천 자료, 일정을 반환합니다.",
+)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def learning_current(request):
+    """Return the most relevant current learning item or ``{"current": null}``."""
+    current_data = build_current_learning(request.user)
+    serializer = CurrentLearningResponseSerializer(current_data)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@extend_schema(
+    parameters=[
+        OpenApiParameter(
+            name="curriculum_id",
+            required=True,
+            type=int,
+            description="Roadmap을 조회할 로그인 사용자 소유 커리큘럼 ID.",
+        )
+    ],
+    responses=RoadmapSerializer,
+    description="선택한 커리큘럼의 가벼운 Step 로드맵 데이터를 반환합니다.",
+)
+@api_view(["GET"])
+@permission_classes([IsAuthenticated])
+def learning_roadmap(request):
+    """Return a lightweight roadmap for one user-owned curriculum.
+
+    A missing or malformed ``curriculum_id`` is a 400 validation error. A valid
+    ID that does not belong to the authenticated user is intentionally returned
+    as 404 so ownership information is not exposed.
+    """
+    query_serializer = RoadmapQuerySerializer(data=request.query_params)
+    query_serializer.is_valid(raise_exception=True)
+
+    curriculum = get_user_curriculum_for_dashboard(
+        request.user,
+        query_serializer.validated_data["curriculum_id"],
+    )
+    if not curriculum:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    serializer = RoadmapSerializer(build_roadmap(curriculum))
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 @api_view(["POST"])
