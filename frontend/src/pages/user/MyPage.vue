@@ -1,10 +1,98 @@
-﻿<template>
+<template>
   <div class="mypage-page">
-    <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
+    <aside
+      class="home-sidebar"
+      :class="{ 'is-open': sidebarOpen }"
+      @click.stop
+    >
+      <div class="sidebar-inner">
+        <div class="sidebar-logo-section">
+          <button class="sidebar-logo-button" type="button" @click="navigateTo('/')">
+            <div class="sidebar-logo-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <div class="sidebar-logo-text">
+              <strong>Where To Go</strong>
+              <span>AI 학습 커넥트</span>
+            </div>
+          </button>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button
+            type="button"
+            class="sidebar-nav-item active"
+            @click="navigateTo('/mypage')"
+          >
+            <span class="nav-icon" v-html="icons.user"></span>
+            <span>마이페이지</span>
+          </button>
+
+          <button
+            type="button"
+            class="sidebar-nav-item"
+            @click="navigateTo('/learning')"
+          >
+            <span class="nav-icon" v-html="icons.chart"></span>
+            <span>학습 대시보드</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <button type="button" class="sidebar-nav-item" @click="navigateTo('/settings')">
+            <span class="nav-icon" v-html="icons.settings"></span>
+            <span>설정</span>
+          </button>
+
+          <button type="button" class="sidebar-nav-item" @click="handleLogout">
+            <span class="nav-icon" v-html="icons.logout"></span>
+            <span>로그아웃</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div
+      v-if="sidebarOpen"
+      class="sidebar-backdrop"
+      @click="closeSidebar"
+    ></div>
 
     <div class="mypage-main">
       <header class="mypage-header">
-        <BrandMenuButton @click="toggleSidebar" />
+        <button
+          type="button"
+          class="logo-menu-button"
+          aria-label="사이드바 열기"
+          @click="toggleSidebar"
+        >
+          <span class="logo-menu-default">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+
+          <span class="logo-menu-hover">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M4 7h16M4 12h16M4 17h16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </button>
 
         <h1>마이페이지</h1>
       </header>
@@ -15,13 +103,13 @@
             {{ pageError }}
           </p>
 
-          <section class="mypage-card basic-info-card">
-            <div class="card-header basic-info-header">
+          <section class="mypage-card">
+            <div class="card-header">
               <h2>기본 정보</h2>
 
               <button
                 type="button"
-                class="outline-button basic-info-edit-button"
+                class="outline-button"
                 @click="openAccountModal"
               >
                 <span v-html="icons.edit"></span>
@@ -29,40 +117,28 @@
               </button>
             </div>
 
-            <div class="basic-info-grid">
-              <div class="basic-info-item basic-info-email">
+            <div class="info-grid">
+              <div class="info-item">
                 <p>이메일</p>
                 <strong>{{ accountInfo.email || '-' }}</strong>
               </div>
 
-              <div class="basic-info-item">
+              <div class="info-item">
                 <p>닉네임</p>
                 <strong>{{ accountInfo.nickname || '-' }}</strong>
-              </div>
-
-              <div class="basic-info-item">
-                <p>가입일</p>
-                <strong>{{ formatDate(accountInfo.created_at) }}</strong>
-              </div>
-            </div>
-
-            <div class="account-security-section">
-              <h3>계정 보안</h3>
-
-              <div class="account-security-row">
-                <div class="account-security-copy">
-                  <p>비밀번호</p>
-                  <span>계정 보안을 위해 주기적으로 변경해주세요.</span>
-                </div>
 
                 <button
                   type="button"
-                  class="password-change-button"
+                  class="text-action-button"
                   @click="openPasswordModal"
                 >
-                  <span>변경하기</span>
-                  <span class="password-change-arrow" aria-hidden="true">→</span>
+                  비밀번호 변경
                 </button>
+              </div>
+
+              <div class="info-item">
+                <p>가입일</p>
+                <strong>{{ formatDate(accountInfo.created_at) }}</strong>
               </div>
             </div>
           </section>
@@ -91,30 +167,13 @@
                 <p>주간 학습 가능 시간</p>
                 <strong>주 {{ profileInfo.available_weekly_hours || 0 }}시간</strong>
               </div>
-
-              <div class="info-item">
-                <p>선호 학습 방식</p>
-                <strong>{{ preferredLearningStyleLabel }}</strong>
-              </div>
             </div>
           </section>
 
           <section class="mypage-card">
             <h2 class="section-title">생성한 커리큘럼</h2>
 
-            <p v-if="isLoadingCurricula" class="empty-topic-text">
-              커리큘럼을 불러오는 중입니다...
-            </p>
-
-            <p v-else-if="curriculumLoadError" class="modal-error">
-              커리큘럼 목록을 불러오지 못했습니다. 잠시 후 다시 시도해주세요.
-            </p>
-
-            <p v-else-if="curricula.length === 0" class="empty-topic-text">
-              아직 생성한 커리큘럼이 없습니다.
-            </p>
-
-            <div v-else class="curriculum-list">
+            <div class="curriculum-list">
               <div
                 v-for="curriculum in curricula"
                 :key="curriculum.id"
@@ -125,13 +184,18 @@
                   <p>{{ curriculum.title }}</p>
 
                   <div class="curriculum-meta">
-                    <span>{{ curriculum.goal }}</span>
-                    <span>{{ getStatusLabel(curriculum.status) }}</span>
-                    <span>{{ curriculum.target_weeks }}주</span>
-                    <span>주 {{ curriculum.weekly_available_hours }}시간</span>
-                    <span>{{ getLearningStyleLabel(curriculum.preferred_learning_style) }}</span>
-                    <span>생성 {{ formatDate(curriculum.created_at) }}</span>
-                    <span>수정 {{ formatDate(curriculum.updated_at) }}</span>
+                    <span>{{ curriculum.status }}</span>
+
+                    <div class="progress-wrap">
+                      <div class="progress-track">
+                        <div
+                          class="progress-fill"
+                          :style="{ width: `${curriculum.progress}%` }"
+                        ></div>
+                      </div>
+
+                      <strong>{{ curriculum.progress }}%</strong>
+                    </div>
                   </div>
                 </div>
 
@@ -147,12 +211,12 @@
 
             <div class="stats-grid">
               <div class="stat-card">
-                <strong>{{ curricula.length }}</strong>
+                <strong>3</strong>
                 <span>생성한 커리큘럼</span>
               </div>
 
               <div class="stat-card">
-                <strong>{{ completedCurriculumCount }}</strong>
+                <strong>1</strong>
                 <span>완료한 커리큘럼</span>
               </div>
 
@@ -318,20 +382,6 @@
           />
         </label>
 
-        <label class="form-field">
-          <span>선호 학습 방식</span>
-          <select v-model="profileDraft.preferred_learning_style">
-            <option value="">선택하지 않음</option>
-            <option
-              v-for="style in learningStyleOptions"
-              :key="style.value"
-              :value="style.value"
-            >
-              {{ style.label }}
-            </option>
-          </select>
-        </label>
-
         <div class="topic-picker">
           <div class="selected-topic-area">
             <p class="field-label">선택한 관심 분야</p>
@@ -404,10 +454,7 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
-import UserSidebar from '@/components/user/UserSidebar.vue';
-import BrandMenuButton from '@/components/user/BrandMenuButton.vue';
-import { useRoute, useRouter } from 'vue-router';
-import { getMyCurriculums } from '@/api/curriculumApi';
+import { useRouter } from 'vue-router';
 import { clearAuthStorage } from '@/utils/auth';
 import {
   changePassword,
@@ -418,10 +465,8 @@ import {
   updateMyProfile,
 } from '@/api/myPageApi';
 import './MyPage.css';
-import '@/assets/styles/user-shell.css';
 
 const router = useRouter();
-const route = useRoute();
 
 const sidebarOpen = ref(false);
 const pageError = ref('');
@@ -439,10 +484,6 @@ const passwordModalError = ref('');
 const passwordModalMessage = ref('');
 const profileModalError = ref('');
 const topicSearchKeyword = ref('');
-const curriculumSearchKeyword = ref('');
-const curricula = ref([]);
-const isLoadingCurricula = ref(false);
-const curriculumLoadError = ref('');
 
 const accountInfo = reactive({
   email: '',
@@ -456,13 +497,11 @@ const accountDraft = reactive({
 
 const profileInfo = reactive({
   available_weekly_hours: 0,
-  preferred_learning_style: '',
   topic_ids: [],
 });
 
 const profileDraft = reactive({
   available_weekly_hours: 0,
-  preferred_learning_style: '',
   topic_ids: [],
 });
 
@@ -473,22 +512,6 @@ const passwordForm = reactive({
 });
 
 const topics = ref([]);
-
-const learningStyleOptions = [
-  { value: 'theory', label: '이론 중심' },
-  { value: 'practice', label: '실습 중심' },
-  { value: 'project', label: '프로젝트 중심' },
-  { value: 'video', label: '영상 강의 중심' },
-  { value: 'text', label: '문서/책 중심' },
-  { value: 'balanced', label: '균형형' },
-];
-
-const statusLabels = {
-  DRAFT: '초안',
-  ACTIVE: '진행 중',
-  COMPLETED: '완료',
-  ARCHIVED: '보관됨',
-};
 
 const icons = {
   user: `
@@ -525,9 +548,10 @@ const icons = {
   `,
 };
 
-const menuItems = [
-  { icon: icons.user, label: '마이페이지', path: '/mypage' },
-  { icon: icons.chart, label: '학습 대시보드', path: '/learning' },
+const curricula = [
+  { id: 'new', title: '데이터 분석 8주 로드맵', status: '진행중', progress: 35 },
+  { id: '1', title: 'Django 백엔드 입문', status: '진행중', progress: 20 },
+  { id: '3', title: 'Python 기초 완성', status: '완료', progress: 100 },
 ];
 
 const selectedTopicNames = computed(() => {
@@ -536,65 +560,6 @@ const selectedTopicNames = computed(() => {
   );
 
   return selected.map((topic) => topic.name).join(', ');
-});
-
-const completedCurriculumCount = computed(() => {
-  return curricula.value.filter((curriculum) => curriculum.status === 'COMPLETED').length;
-});
-
-const filterSidebarCurricula = (items) => {
-  const keyword = curriculumSearchKeyword.value.trim().toLowerCase();
-
-  if (!keyword) return items;
-
-  return items.filter((curriculum) =>
-    curriculum.title.toLowerCase().includes(keyword),
-  );
-};
-
-const mapCurriculumForSidebar = (curriculum) => ({
-  id: curriculum.id,
-  title: curriculum.title,
-  status: curriculum.status,
-  statusLabel: getStatusLabel(curriculum.status),
-  progress: curriculum.status === 'COMPLETED' ? 100 : 0,
-  updated: formatDate(curriculum.updated_at || curriculum.created_at),
-});
-
-const inProgressCurricula = computed(() =>
-  curricula.value
-    .filter((curriculum) => curriculum.status !== 'COMPLETED')
-    .map(mapCurriculumForSidebar),
-);
-
-const completedCurricula = computed(() =>
-  curricula.value
-    .filter((curriculum) => curriculum.status === 'COMPLETED')
-    .map(mapCurriculumForSidebar),
-);
-
-const filteredInProgressCurricula = computed(() =>
-  filterSidebarCurricula(inProgressCurricula.value),
-);
-
-const filteredCompletedCurricula = computed(() =>
-  filterSidebarCurricula(completedCurricula.value),
-);
-
-const hasNoCurriculums = computed(() => curricula.value.length === 0);
-const hasNoFilteredCurriculums = computed(
-  () =>
-    Boolean(curriculumSearchKeyword.value.trim()) &&
-    filteredInProgressCurricula.value.length === 0 &&
-    filteredCompletedCurricula.value.length === 0,
-);
-
-const preferredLearningStyleLabel = computed(() => {
-  const selected = learningStyleOptions.find(
-    (style) => style.value === profileInfo.preferred_learning_style,
-  );
-
-  return selected?.label || '선택한 선호 학습 방식이 없습니다.';
 });
 
 const draftSelectedTopics = computed(() => {
@@ -611,26 +576,7 @@ const filteredTopics = computed(() => {
   );
 });
 
-const loadCurriculums = async () => {
-  curriculumLoadError.value = '';
-  isLoadingCurricula.value = true;
-
-  try {
-    const curriculumList = await getMyCurriculums();
-    curricula.value = Array.isArray(curriculumList) ? curriculumList : [];
-  } catch (error) {
-    curriculumLoadError.value =
-      error?.message || '커리큘럼 목록을 불러오지 못했습니다.';
-  } finally {
-    isLoadingCurricula.value = false;
-  }
-};
-
 const toggleSidebar = () => {
-  if (!sidebarOpen.value) {
-    loadCurriculums();
-  }
-
   sidebarOpen.value = !sidebarOpen.value;
 };
 
@@ -679,43 +625,25 @@ const setAccountInfo = (data) => {
 
 const setProfileInfo = (data) => {
   profileInfo.available_weekly_hours = data.available_weekly_hours || 0;
-  profileInfo.preferred_learning_style = data.preferred_learning_style || '';
   profileInfo.topic_ids = (data.interest_topics || []).map((topic) => topic.id);
-};
-
-const getStatusLabel = (status) => {
-  return statusLabels[status] || status || '-';
-};
-
-const getLearningStyleLabel = (value) => {
-  const selected = learningStyleOptions.find((style) => style.value === value);
-  return selected?.label || '-';
 };
 
 const loadMyPage = async () => {
   pageError.value = '';
-  curriculumLoadError.value = '';
-  isLoadingCurricula.value = true;
 
   try {
-    const [myInfo, myProfile, topicList, curriculumList] = await Promise.all([
+    const [myInfo, myProfile, topicList] = await Promise.all([
       getMyInfo(),
       getMyProfile(),
       getTopics(),
-      getMyCurriculums(),
     ]);
 
     setAccountInfo(myInfo);
     setProfileInfo(myProfile);
     topics.value = topicList;
-    curricula.value = Array.isArray(curriculumList) ? curriculumList : [];
   } catch (error) {
     pageError.value =
       error?.message || '마이페이지 정보를 불러오지 못했습니다.';
-    curriculumLoadError.value =
-      error?.message || '커리큘럼 목록을 불러오지 못했습니다.';
-  } finally {
-    isLoadingCurricula.value = false;
   }
 };
 
@@ -751,7 +679,6 @@ function closePasswordModal() {
 
 const openProfileModal = () => {
   profileDraft.available_weekly_hours = profileInfo.available_weekly_hours;
-  profileDraft.preferred_learning_style = profileInfo.preferred_learning_style;
   profileDraft.topic_ids = [...profileInfo.topic_ids];
   topicSearchKeyword.value = '';
   profileModalError.value = '';
@@ -763,7 +690,6 @@ function closeProfileModal() {
   profileModalError.value = '';
   topicSearchKeyword.value = '';
   profileDraft.available_weekly_hours = profileInfo.available_weekly_hours;
-  profileDraft.preferred_learning_style = profileInfo.preferred_learning_style;
   profileDraft.topic_ids = [...profileInfo.topic_ids];
 }
 
@@ -814,7 +740,6 @@ const saveProfileInfo = async () => {
   try {
     const updated = await updateMyProfile({
       available_weekly_hours: hours,
-      preferred_learning_style: profileDraft.preferred_learning_style || null,
       topic_ids: profileDraft.topic_ids,
     });
 

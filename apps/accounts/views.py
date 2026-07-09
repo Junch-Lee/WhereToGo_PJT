@@ -83,12 +83,6 @@ def login(request):
 @api_view(["GET", "PATCH"])
 @permission_classes([IsAuthenticated])
 def me(request):
-    """
-    GET/PATCH /api/users/me/
-
-    현재 로그인한 사용자의 기본 계정 정보를 조회하거나 수정한다. URL에 user_id를 받지 않고
-    request.user만 사용하므로 다른 사용자의 계정 정보에 접근할 수 없다.
-    """
     if request.method == "GET":
         serializer = UserMeSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -109,12 +103,6 @@ def me(request):
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
 def change_password(request):
-    """
-    PATCH /api/users/me/password/
-
-    현재 로그인한 사용자의 비밀번호를 변경한다. 현재 비밀번호 확인과 새 비밀번호 정책 검증은
-    PasswordChangeSerializer에서 처리한다.
-    """
     serializer = PasswordChangeSerializer(
         data=request.data,
         context={"request": request},
@@ -133,12 +121,6 @@ def change_password(request):
 @api_view(["GET", "PATCH"])
 @permission_classes([IsAuthenticated])
 def my_profile(request):
-    """
-    GET/PATCH /api/users/me/profile/
-
-    현재 로그인한 사용자의 학습 프로필을 조회하거나 수정한다. 프로필 row가 아직 없으면 생성해
-    빈 프로필도 안정적으로 조회할 수 있게 한다.
-    """
     profile, _ = UserProfile.objects.get_or_create(user=request.user)
 
     if request.method == "GET":

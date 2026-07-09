@@ -185,12 +185,6 @@ class LoginSerializer(serializers.Serializer):
 
 
 class UserMeSerializer(serializers.ModelSerializer):
-    """
-    GET/PATCH /api/users/me/ 응답과 수정 요청에 사용하는 serializer다.
-
-    email은 로그인 식별자이므로 이 API에서는 수정하지 않고, nickname만 부분 수정할 수 있다.
-    """
-
     class Meta:
         model = User
         fields = ("id", "email", "nickname", "created_at")
@@ -206,13 +200,6 @@ class UserMeSerializer(serializers.ModelSerializer):
 
 
 class PasswordChangeSerializer(serializers.Serializer):
-    """
-    PATCH /api/users/me/password/ 요청을 검증하는 serializer다.
-
-    현재 비밀번호가 맞는지 먼저 확인하고, 새 비밀번호와 확인값 일치 여부 및 Django 기본
-    비밀번호 정책을 함께 검증한다.
-    """
-
     current_password = serializers.CharField(write_only=True, trim_whitespace=False)
     new_password = serializers.CharField(write_only=True, trim_whitespace=False)
     new_password_confirm = serializers.CharField(write_only=True, trim_whitespace=False)
@@ -245,12 +232,6 @@ class PasswordChangeSerializer(serializers.Serializer):
 
 
 class UserProfileTopicSerializer(serializers.ModelSerializer):
-    """
-    사용자 프로필 조회 응답에 포함되는 관심 토픽 표현용 serializer다.
-
-    Topic 전체 모델 중 프로필 화면에서 관심 분야를 보여주는 데 필요한 필드를 그대로 내려준다.
-    """
-
     class Meta:
         model = Topic
         fields = (
@@ -266,13 +247,6 @@ class UserProfileTopicSerializer(serializers.ModelSerializer):
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-    """
-    GET/PATCH /api/users/me/profile/ 응답과 수정 요청에 사용하는 serializer다.
-
-    interest_topics는 읽기 전용 중첩 응답이고, topic_ids는 관심 토픽 교체를 위한 쓰기 전용
-    입력이다. preferred_learning_style은 커리큘럼 생성 요청에 값이 없을 때 fallback으로 쓰인다.
-    """
-
     interest_topics = serializers.SerializerMethodField()
     topic_ids = serializers.ListField(
         child=serializers.IntegerField(),
@@ -282,20 +256,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = (
-            "available_weekly_hours",
-            "preferred_learning_style",
-            "interest_topics",
-            "topic_ids",
-        )
+        fields = ("available_weekly_hours", "interest_topics", "topic_ids")
 
     def get_interest_topics(self, obj):
-        """
-        사용자가 선택한 활성 관심 토픽만 id 오름차순으로 반환한다.
-
-        비활성 토픽은 과거에 선택됐더라도 프로필 응답에서 제외해 화면과 추천 로직이 현재 사용
-        가능한 토픽만 다루도록 한다.
-        """
         topics = Topic.objects.filter(
             interested_users__user=obj.user,
             is_active=True,
@@ -324,12 +287,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         return unique_ids
 
     def update(self, instance, validated_data):
-        """
-        프로필 기본 필드와 관심 토픽 목록을 함께 갱신한다.
-
-        topic_ids가 전달된 경우 기존 관심 토픽을 삭제한 뒤 새 목록을 bulk_create한다. 부분 수정에서
-        topic_ids가 생략되면 기존 관심 토픽은 그대로 유지된다.
-        """
         topic_ids = validated_data.pop("topic_ids", None)
         instance = super().update(instance, validated_data)
 

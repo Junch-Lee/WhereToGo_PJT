@@ -72,6 +72,27 @@ const routes = [
     component: () => import('@/pages/user/LearningDashboard.vue'),
     meta: { requiresAuth: true },
   },
+  {
+    path: '/mypage',
+    name: 'MyPage',
+    component: () => import('@/pages/user/MyPage.vue'),
+    meta: { requiresAuth: true },
+  },
+  // {
+  //   path: '/chat',
+  //   name: 'Chat',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
+  // {
+  //   path: '/learning',
+  //   name: 'Learning',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
+  // {
+  //   path: '/curriculum/:id',
+  //   name: 'CurriculumDetail',
+  //   component: () => import('@/pages/user/HomePage.vue'),
+  // },
 ];
 
 const router = createRouter({

@@ -1,5 +1,50 @@
-﻿<template>
+<template>
   <LandingPage v-if="!isLoggedIn" />
+
+  <div v-else class="home-page">
+    <aside
+      class="home-sidebar"
+      :class="{ 'is-open': sidebarOpen }"
+      @click.stop
+    >
+      <div class="sidebar-inner">
+        <div class="sidebar-logo-section">
+          <button class="sidebar-logo-button" type="button" @click="handleNavigate('/')">
+            <div class="sidebar-logo-icon">
+              <svg viewBox="0 0 24 24" class="icon">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </div>
+
+            <div class="sidebar-logo-text">
+              <strong>Where To Go</strong>
+              <span>AI 학습 컨설턴트</span>
+            </div>
+          </button>
+        </div>
+
+        <div class="sidebar-search-section">
+          <div class="sidebar-search-box">
+            <svg viewBox="0 0 24 24" class="search-icon">
+              <path
+                d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+
+            <input
+              v-model="curriculumSearchKeyword"
+              type="text"
+              placeholder="내 커리큘럼 검색"
+            />
+          </div>
+        </div>
 
   <div v-else class="home-page">
     <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
@@ -37,6 +82,62 @@
             </template>
           </div>
         </div>
+
+        <div class="sidebar-bottom">
+          <button type="button" class="sidebar-nav-item" @click="handleNavigate('/settings')">
+            <span class="nav-icon" v-html="icons.settings"></span>
+            <span>설정</span>
+          </button>
+
+          <button
+            type="button"
+            class="sidebar-nav-item"
+            @click="handleLogout"
+          >
+            <span class="nav-icon" v-html="icons.logout"></span>
+            <span>로그아웃</span>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div
+      v-if="sidebarOpen"
+      class="sidebar-backdrop"
+      @click="closeSidebar"
+    ></div>
+
+    <div class="home-main">
+      <header class="home-header">
+        <button
+          type="button"
+          class="logo-menu-button"
+          aria-label="사이드바 열기"
+          @click="toggleSidebar"
+        >
+          <span class="logo-menu-default">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm3.86 6.14-2.12 6.36a1.5 1.5 0 0 1-.94.94l-6.36 2.12 2.12-6.36a1.5 1.5 0 0 1 .94-.94l6.36-2.12Z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+
+          <span class="logo-menu-hover">
+            <svg viewBox="0 0 24 24" class="icon">
+              <path
+                d="M4 7h16M4 12h16M4 17h16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </span>
+        </button>
+
+        <h1>AI 학습 코치</h1>
       </header>
 
       <main class="home-content">
@@ -98,7 +199,6 @@ import UserSidebar from '@/components/user/UserSidebar.vue';
 import BrandMenuButton from '@/components/user/BrandMenuButton.vue';
 import { useRoute, useRouter } from 'vue-router';
 import LandingPage from '@/pages/user/LandingPage.vue';
-import { getMyCurriculums } from '@/api/curriculumApi';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
 import '@/assets/styles/user-shell.css';
 import './HomePage.css';
@@ -164,27 +264,15 @@ const menuItems = [
   { icon: icons.chart, label: '학습 대시보드', path: '/learning' },
 ];
 
-const statusLabels = {
-  DRAFT: '초안',
-  ACTIVE: '진행 중',
-  COMPLETED: '완료',
-  ARCHIVED: '보관됨',
-};
+const inProgressCurricula = [
+  { id: '1', title: '데이터 분석 8주 로드맵', progress: 45, updated: '2일 전' },
+  { id: '2', title: 'Django 백엔드 입문', progress: 20, updated: '5일 전' },
+  { id: 'new', title: 'Backend Developer Portfolio', progress: 28, updated: '오늘' },
+];
 
-const formatDate = (dateString) => {
-  if (!dateString) return '-';
-
-  return new Date(dateString).toLocaleDateString('ko-KR');
-};
-
-const mapCurriculumForSidebar = (curriculum) => ({
-  id: curriculum.id,
-  title: curriculum.title,
-  status: curriculum.status,
-  statusLabel: statusLabels[curriculum.status] || curriculum.status,
-  progress: curriculum.status === 'COMPLETED' ? 100 : 0,
-  updated: formatDate(curriculum.updated_at || curriculum.created_at),
-});
+const completedCurricula = [
+  { id: '3', title: 'Python 기초 완성', progress: 100, updated: '1주 전' },
+];
 
 const filterCurricula = (curricula) => {
   const keyword = curriculumSearchKeyword.value.trim().toLowerCase();
@@ -247,14 +335,18 @@ const syncAuthState = () => {
   }
 };
 
+const syncAuthState = () => {
+  isLoggedIn.value = isAuthenticated();
+
+  if (!isLoggedIn.value) {
+    closeSidebar();
+  }
+};
+
 const toggleSidebar = () => {
   syncAuthState();
 
   if (!isLoggedIn.value) return;
-
-  if (!sidebarOpen.value) {
-    loadCurriculums();
-  }
 
   sidebarOpen.value = !sidebarOpen.value;
 };
@@ -268,31 +360,12 @@ const handleNavigate = (path) => {
   closeSidebar();
 };
 
-const selectSuggestion = (suggestion) => {
-  input.value = `${suggestion} 관련 학습을 하고 싶어요`;
-};
-
 const handleSubmit = () => {
   const goal = input.value.trim();
 
   if (!goal) return;
 
-  /**
-   * 첫 대화창에서 입력한 학습 목표를 질문 화면에서 사용할 수 있도록 저장합니다.
-   *
-   * ChatInterview.vue에서는 이 값을 sessionStorage.getItem('interview_goal')로 읽습니다.
-   */
-  sessionStorage.setItem('interview_goal', goal);
-
-  /**
-   * 이전 상담 결과가 남아 있으면 새 상담과 섞일 수 있으므로 제거합니다.
-   */
-  sessionStorage.removeItem('interview_payload');
-
-  /**
-   * 현재 프로젝트에서 질문 화면 라우트가 /chat이면 그대로 둡니다.
-   * 만약 질문 화면 라우트를 /interview로 등록했다면 '/interview'로 바꾸면 됩니다.
-   */
+  sessionStorage.setItem('initialLearningGoal', goal);
   router.push('/chat');
 };
 
