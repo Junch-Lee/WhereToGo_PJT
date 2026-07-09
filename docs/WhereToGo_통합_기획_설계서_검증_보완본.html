@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>WhereToGo 통합 기획 설계서 검증 보완본</title>
+  <style>
+    @page { size: A4; margin: 18mm 16mm; }
+    body {
+      margin: 0;
+      color: #111827;
+      font-family: "Malgun Gothic", "Apple SD Gothic Neo", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.62;
+      background: #fff;
+    }
+    h1, h2, h3 { color: #0f172a; line-height: 1.3; }
+    h1 { margin: 0 0 12px; font-size: 28px; letter-spacing: -0.02em; }
+    h2 {
+      margin: 34px 0 12px;
+      padding-bottom: 7px;
+      border-bottom: 2px solid #0f172a;
+      font-size: 20px;
+      break-after: avoid;
+    }
+    h3 { margin: 22px 0 8px; font-size: 15px; }
+    p { margin: 6px 0; }
+    ul { margin: 6px 0 10px 20px; padding: 0; }
+    li { margin: 3px 0; }
+    table {
+      width: 100%;
+      margin: 10px 0 16px;
+      border-collapse: collapse;
+      font-size: 10.5px;
+      break-inside: avoid;
+    }
+    th, td {
+      padding: 7px 8px;
+      border: 1px solid #cbd5e1;
+      vertical-align: top;
+    }
+    th {
+      color: #0f172a;
+      background: #f1f5f9;
+      font-weight: 700;
+    }
+    code {
+      padding: 1px 4px;
+      border-radius: 4px;
+      background: #f1f5f9;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10.5px;
+    }
+    pre {
+      overflow: hidden;
+      white-space: pre-wrap;
+      padding: 10px 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #f8fafc;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 10.5px;
+      line-height: 1.5;
+    }
+    .cover {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-top: 8px solid #16a34a;
+    }
+    .subtitle {
+      margin-top: 8px;
+      color: #475569;
+      font-size: 15px;
+    }
+    .meta {
+      margin-top: 34px;
+      width: 82%;
+      font-size: 12px;
+    }
+    .badge {
+      display: inline-block;
+      margin: 0 4px 4px 0;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+    .warn { background: #fff7ed; }
+    .ok { background: #f0fdf4; }
+    .muted { color: #64748b; }
+    .page-break { break-before: page; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <h1>WhereToGo 통합 기획 설계서<br>검증 및 보완본</h1>
+    <p class="subtitle">원본 PDF 설계서와 실제 Django/Vue/AI 구현 코드 대조 결과</p>
+    <table class="meta">
+      <tr><th>프로젝트</th><td>WhereToGo - 교육 컨설턴트 AI</td></tr>
+      <tr><th>기준 코드</th><td><code>C:\Users\SSAFY\Desktop\WhereToGo_PJT</code></td></tr>
+      <tr><th>검토 대상</th><td><code>WhereToGo_통합_기획_설계서.pdf</code></td></tr>
+      <tr><th>문서 성격</th><td>실제 구현 기준 검증, 불일치 항목 정정, 누락 구현 사항 보완</td></tr>
+      <tr><th>작성 기준일</th><td>2026.06.24</td></tr>
+    </table>
+    <p>
+      <span class="badge">Django</span>
+      <span class="badge">Vue</span>
+      <span class="badge">OpenAI</span>
+      <span class="badge">LangGraph</span>
+      <span class="badge">ChromaDB</span>
+      <span class="badge">StreamingHttpResponse</span>
+    </p>
+  </section>
+
+  <h2>1. 검증 요약</h2>
+  <p>
+    원본 설계서는 WhereToGo의 문제 정의, RAG + Agent 방향, Topic 중심 설계,
+    학습 계획/진행 데이터 분리 의사결정을 전반적으로 잘 설명한다.
+    다만 일부 항목은 초기 기획 또는 미래 확장안이 현재 구현 사실처럼 포함되어 있어,
+    최종 제출용 문서에서는 실제 코드 기준으로 수정해야 한다.
+  </p>
+
+  <h3>1.1 실제 구현과 일치하는 핵심 내용</h3>
+  <table>
+    <tr><th>영역</th><th>검증 결과</th><th>근거 코드</th></tr>
+    <tr>
+      <td>RAG + Agent 구조</td>
+      <td>입력 분석, 검색, 커리큘럼 생성으로 이어지는 LangGraph 기반 Agent 구조가 구현되어 있다.</td>
+      <td><code>ai/agent/graph.py</code>, <code>ai/agent/nodes/</code></td>
+    </tr>
+    <tr>
+      <td>ChromaDB 검색</td>
+      <td><code>courses</code>, <code>resources</code> collection을 나누어 강의/자료를 검색한다.</td>
+      <td><code>ai/core/config.py</code>, <code>ai/search/searcher.py</code></td>
+    </tr>
+    <tr>
+      <td>Topic 중심 설계</td>
+      <td>Category보다 Topic/TopicAlias/CourseTopic/ResourceTopic이 추천 로직의 중심이다.</td>
+      <td><code>apps/accounts/models.py</code>, <code>apps/curriculum/models.py</code></td>
+    </tr>
+    <tr>
+      <td>계획/진행/일정/기록 분리</td>
+      <td><code>CurriculumStep</code>, <code>CurriculumStepProgress</code>, <code>LearningSchedule</code>, <code>LearningProgress</code>가 분리되어 있다.</td>
+      <td><code>apps/curriculum/models.py</code>, <code>apps/curriculum/services/curriculum_learning_service.py</code></td>
+    </tr>
+    <tr>
+      <td>Streaming 생성 상태</td>
+      <td><code>StreamingHttpResponse</code>로 progress/done/error 이벤트를 전달한다.</td>
+      <td><code>apps/curriculum/views.py</code>, <code>frontend/src/api/curriculumApi.js</code></td>
+    </tr>
+  </table>
+
+  <h3>1.2 수정이 필요한 핵심 불일치</h3>
+  <table>
+    <tr><th>원본 설계서 표현</th><th>실제 구현</th><th>보완 방향</th></tr>
+    <tr class="warn">
+      <td><code>interview_sessions</code>, <code>interview_messages</code>가 핵심 ERD에 포함됨</td>
+      <td>별도 Django interview 앱/모델/API는 구현되어 있지 않다. 프론트의 <code>/chat</code> 화면은 sessionStorage 기반 질문 흐름이다.</td>
+      <td>현재 구현 ERD에서는 제외하고, 향후 확장 항목으로 분리한다.</td>
+    </tr>
+    <tr class="warn">
+      <td><code>user_skill_profiles</code>, <code>learning_notes</code> 포함</td>
+      <td>해당 모델은 존재하지 않는다.</td>
+      <td>미구현 확장 항목으로 명시한다.</td>
+    </tr>
+    <tr class="warn">
+      <td><code>/api/auth/logout/</code>, <code>/api/auth/me/</code></td>
+      <td>실제 구현은 <code>/api/users/me/</code>, <code>/api/users/me/profile/</code>이다. logout API는 없다.</td>
+      <td>API 표를 실제 URL 기준으로 수정한다.</td>
+    </tr>
+    <tr class="warn">
+      <td><code>/api/interviews/...</code> API</td>
+      <td>백엔드 interview API는 구현되어 있지 않다.</td>
+      <td>현재 프론트 질문 흐름은 <code>/chat</code>, <code>/interview/summary</code> 화면으로 설명한다.</td>
+    </tr>
+    <tr class="warn">
+      <td><code>generation_id</code> 초기화/상태 조회 API</td>
+      <td>실제 구현은 <code>/api/curriculums/generate/stream/</code> 단일 스트리밍 응답이며 별도 generation 상태 테이블/API는 없다.</td>
+      <td>“보완 설계/향후 개선”으로 이동한다.</td>
+    </tr>
+    <tr class="warn">
+      <td><code>/curriculums/:id</code> 프론트 라우트</td>
+      <td>실제 Vue route는 단수형 <code>/curriculum/:id</code>이다.</td>
+      <td>화면 경로 표를 실제 router 기준으로 수정한다.</td>
+    </tr>
+  </table>
+
+  <h2>2. 실제 프로젝트 구조 기준 보완</h2>
+  <p>
+    원본 설계서는 시스템 계층 구조를 잘 설명하지만, 최종 문서에는 실제 저장소 구조를 함께 명시하는 것이 좋다.
+    현재 Django 프로젝트는 별도 <code>backend/</code> 폴더가 아니라 repository root에 위치한다.
+  </p>
+  <pre>WhereToGo_PJT/
+├─ manage.py
+├─ config/
+├─ apps/
+│  ├─ accounts/
+│  └─ curriculum/
+├─ ai/
+│  ├─ agent/
+│  ├─ core/
+│  ├─ indexing/
+│  └─ search/
+├─ scripts/topic_pipeline/
+├─ curriculum-data/
+└─ frontend/</pre>
+
+  <h3>2.1 실제 프론트엔드 화면 경로</h3>
+  <table>
+    <tr><th>실제 경로</th><th>화면</th><th>설명</th></tr>
+    <tr><td><code>/</code></td><td>HomePage</td><td>목표 입력 및 서비스 진입</td></tr>
+    <tr><td><code>/signup</code></td><td>SignupPage</td><td>회원가입</td></tr>
+    <tr><td><code>/login</code></td><td>LoginPage</td><td>로그인</td></tr>
+    <tr><td><code>/mypage</code></td><td>MyPage</td><td>사용자 정보와 학습 프로필</td></tr>
+    <tr><td><code>/chat</code></td><td>ChatInterview</td><td>프론트엔드 질문 흐름</td></tr>
+    <tr><td><code>/interview/summary</code></td><td>InterviewSummary</td><td>답변 요약 확인 및 AI 생성 요청</td></tr>
+    <tr><td><code>/curriculum/result</code></td><td>CurriculumResult</td><td>생성된 커리큘럼 preview/저장</td></tr>
+    <tr><td><code>/curriculum/:id</code></td><td>CurriculumDetailPage</td><td>저장된 커리큘럼 상세 및 학습 제어</td></tr>
+    <tr><td><code>/learning</code></td><td>LearningDashboard</td><td>개인 학습 대시보드</td></tr>
+  </table>
+
+  <h2>3. ERD 보완: 실제 구현 기준</h2>
+  <p>
+    원본 설계서의 ERD 설명에는 현재 구현되지 않은 면담/진단/노트 엔티티가 섞여 있다.
+    최종 제출용 문서에서는 아래 실제 Django 모델 기준 ERD를 중심으로 설명하고,
+    미구현 항목은 향후 확장으로 분리하는 것이 정확하다.
+  </p>
+
+  <h3>3.1 실제 구현 테이블</h3>
+  <table>
+    <tr><th>도메인</th><th>실제 테이블</th><th>설명</th></tr>
+    <tr><td>사용자</td><td><code>users</code>, <code>user_profiles</code>, <code>user_interest_topics</code></td><td>계정, 학습 선호, 관심 topic</td></tr>
+    <tr><td>Topic</td><td><code>topics</code>, <code>topic_aliases</code></td><td>표준 학습 개념과 별칭</td></tr>
+    <tr><td>교육 데이터</td><td><code>learning_resources</code>, <code>curriculum_courses</code></td><td>온라인 학습 자료와 대학 강의계획서</td></tr>
+    <tr><td>Topic 연결</td><td><code>resource_topics</code>, <code>course_topics</code></td><td>강의/자료와 topic의 다대다 연결</td></tr>
+    <tr><td>커리큘럼</td><td><code>curricula</code>, <code>curriculum_categories</code>, <code>curriculum_steps</code></td><td>사용자별 커리큘럼과 단계별 계획</td></tr>
+    <tr><td>추천 근거</td><td><code>curriculum_step_resources</code>, <code>curriculum_step_courses</code></td><td>step별 추천 자료/강의 연결</td></tr>
+    <tr><td>학습 실행</td><td><code>curriculum_step_progresses</code>, <code>learning_schedules</code>, <code>learning_progresses</code></td><td>진행 상태, 일정, 실제 학습 기록</td></tr>
+  </table>
+
+  <h3>3.2 ERD에서 제외하거나 확장 항목으로 내려야 하는 테이블</h3>
+  <ul>
+    <li><code>interview_sessions</code>, <code>interview_messages</code>: 현재 백엔드 모델/API 없음</li>
+    <li><code>diagnostic_questions</code>, <code>diagnostic_attempts</code>, <code>diagnostic_answers</code>: 진단 기능 미구현</li>
+    <li><code>learning_notes</code>: 학습 메모 전용 모델 없음. 현재 memo는 <code>LearningProgress.memo</code>에 저장 가능</li>
+    <li><code>user_skill_profiles</code>: topic별 수준 프로필 모델 없음</li>
+  </ul>
+
+  <h2>4. API 설계 보완: 실제 구현 기준</h2>
+
+  <h3>4.1 인증/사용자 API</h3>
+  <table>
+    <tr><th>Method</th><th>Endpoint</th><th>상태</th><th>근거</th></tr>
+    <tr><td>POST</td><td><code>/api/auth/signup/</code></td><td>구현</td><td><code>apps/accounts/urls.py</code></td></tr>
+    <tr><td>POST</td><td><code>/api/auth/login/</code></td><td>구현</td><td><code>apps/accounts/urls.py</code></td></tr>
+    <tr><td>POST</td><td><code>/api/auth/token/refresh/</code></td><td>구현</td><td><code>apps/accounts/urls.py</code></td></tr>
+    <tr><td>GET/PATCH</td><td><code>/api/users/me/</code></td><td>구현</td><td><code>apps/accounts/urls.py</code></td></tr>
+    <tr><td>GET/PATCH</td><td><code>/api/users/me/profile/</code></td><td>구현</td><td><code>apps/accounts/urls.py</code></td></tr>
+    <tr><td>POST</td><td><code>/api/users/me/password/</code></td><td>구현</td><td><code>apps/accounts/urls.py</code></td></tr>
+  </table>
+
+  <h3>4.2 커리큘럼 API</h3>
+  <table>
+    <tr><th>Method</th><th>Endpoint</th><th>설명</th></tr>
+    <tr><td>GET/POST</td><td><code>/api/curriculums/</code></td><td>목록 조회 / 일반 생성</td></tr>
+    <tr><td>GET</td><td><code>/api/curriculums/{id}/</code></td><td>상세 조회</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/generate/</code></td><td>AI 커리큘럼 일반 생성</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/generate/stream/</code></td><td>AI 생성 진행 상태 스트리밍</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/save-generated/</code></td><td>AI preview 결과 저장</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/{id}/start/</code></td><td>학습 시작</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/{id}/pause/</code></td><td>학습 일시정지</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/{id}/resume/</code></td><td>학습 재개</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/{id}/complete/</code></td><td>커리큘럼 완료</td></tr>
+    <tr><td>POST</td><td><code>/api/curriculums/{id}/steps/{step_id}/complete/</code></td><td>특정 step 완료</td></tr>
+  </table>
+
+  <h3>4.3 학습 대시보드 API: 원본 설계서에 보완 필요</h3>
+  <p>
+    현재 코드에는 개인 학습자용 학습 대시보드 API가 추가되어 있다.
+    원본 설계서가 이 내용을 충분히 반영하지 않았다면 최종본에 반드시 포함해야 한다.
+  </p>
+  <table>
+    <tr><th>Method</th><th>Endpoint</th><th>설명</th><th>근거 코드</th></tr>
+    <tr><td>GET</td><td><code>/api/learning/dashboard/</code></td><td>요약, 현재 학습, 최근 활동</td><td><code>learning_dashboard_service.py</code></td></tr>
+    <tr><td>GET</td><td><code>/api/learning/curriculums/progress/</code></td><td>커리큘럼별 진행률 카드</td><td><code>learning_serializers.py</code></td></tr>
+    <tr><td>GET</td><td><code>/api/learning/current/</code></td><td>현재 이어서 학습할 항목</td><td><code>learning_dashboard_service.py</code></td></tr>
+    <tr><td>GET</td><td><code>/api/learning/roadmap/?curriculum_id={id}</code></td><td>선택 커리큘럼 step 로드맵</td><td><code>views.py</code></td></tr>
+  </table>
+
+  <h2>5. AI/RAG/Agent 구현 보완</h2>
+  <p>
+    원본 설계서의 RAG + Agent 방향은 실제 구현과 대체로 일치한다.
+    보완할 점은 “Topic Resolver”가 독립 API나 별도 저장 모델이라기보다
+    <code>ai/agent/nodes/input_analysis</code>와 <code>topic_catalog_service</code>를 통해 Agent 입력 분석 과정에 포함된다는 점이다.
+  </p>
+  <table>
+    <tr><th>구성</th><th>실제 구현</th></tr>
+    <tr><td>Agent 실행</td><td><code>ai.agent.run_agent(raw_input, catalog)</code>가 <code>ai/agent/graph.py</code>의 graph를 실행</td></tr>
+    <tr><td>Topic catalog</td><td><code>apps/curriculum/services/topic_catalog_service.py</code>에서 활성 topic 후보 구성</td></tr>
+    <tr><td>검색</td><td><code>ai/search/searcher.py</code>가 ChromaDB courses/resources collection 조회</td></tr>
+    <tr><td>생성 prompt</td><td><code>ai/agent/nodes/curriculum/01_prompt_builder.py</code></td></tr>
+    <tr><td>식별자 검증</td><td><code>ai/agent/nodes/curriculum/03_validator.py</code>에서 검색 결과에 없는 course/resource 제거</td></tr>
+    <tr><td>저장</td><td><code>apps/curriculum/services/curriculum_save_service.py</code>에서 FK 변환 및 transaction 처리</td></tr>
+  </table>
+
+  <h2>6. StreamingHttpResponse 구현 보완</h2>
+  <p>
+    원본 설계서의 Streaming 방향은 실제 구현과 일치한다.
+    다만 별도 <code>generation_id</code> 기반 상태 조회 API는 현재 구현되어 있지 않으므로,
+    현행 구현은 “단일 streaming 요청에서 progress/done/error를 전달하는 방식”으로 설명해야 한다.
+  </p>
+  <pre>event: progress
+data: {"message": "...", "progress": 45}
+
+event: done
+data: {"message": "...", "progress": 100, "status": "success", ...}</pre>
+
+  <table>
+    <tr><th>백엔드 단계</th><th>progress</th><th>설명</th></tr>
+    <tr><td>입력 검증</td><td>10</td><td>serializer 검증 및 raw_input 변환</td></tr>
+    <tr><td>Topic catalog 구성</td><td>25</td><td>AI Agent에 전달할 topic 후보 구성</td></tr>
+    <tr><td>Agent 실행</td><td>45</td><td>RAG 검색과 LLM 생성 수행</td></tr>
+    <tr><td>결과 정규화</td><td>80</td><td>프론트 preview 응답으로 변환</td></tr>
+    <tr><td>완료</td><td>100</td><td>최종 payload 반환</td></tr>
+  </table>
+
+  <p>
+    프론트엔드는 <code>fetch</code>와 <code>ReadableStream</code>으로 SSE chunk를 읽고,
+    <code>InterviewSummary.vue</code>에서 progress bar와 문구를 갱신한다.
+    또한 progress interpolation을 적용해 45% 이후 AI 호출 구간에서 화면이 멈춰 보이는 문제를 완화했다.
+  </p>
+
+  <h2>7. 중요한데 원본 설계서에서 보완해야 할 구현 사항</h2>
+  <table>
+    <tr><th>보완 항목</th><th>이유</th><th>반영 위치 제안</th></tr>
+    <tr>
+      <td>학습 대시보드 API와 화면</td>
+      <td>현재 <code>/learning</code> 화면과 4개 backend API가 구현되어 있다.</td>
+      <td>13. 프론트엔드 설계, 12. API 설계, E. 핵심 기능</td>
+    </tr>
+    <tr>
+      <td>AI 생성 preview/save 분리</td>
+      <td>생성 결과를 즉시 저장하지 않고 사용자가 확인 후 <code>save-generated</code>로 저장한다.</td>
+      <td>10. 커리큘럼 생성·저장 설계</td>
+    </tr>
+    <tr>
+      <td>스트리밍 진행률 보간</td>
+      <td>실제 AI 호출 구간에서 progress bar가 멈춰 보이지 않도록 프론트 보간 로직이 있다.</td>
+      <td>10.3 StreamingHttpResponse, 13. 프론트엔드 설계</td>
+    </tr>
+    <tr>
+      <td>실제 URL 단수/복수 표기</td>
+      <td>프론트는 <code>/curriculum/:id</code>, 백엔드는 <code>/api/curriculums/{id}/</code>를 사용한다.</td>
+      <td>5. 사용자 화면 구조, 12. API 설계</td>
+    </tr>
+    <tr>
+      <td>미구현 면담/진단 모델 분리</td>
+      <td>현재 구현 사실처럼 두면 심사자가 코드와 대조할 때 불일치가 발생한다.</td>
+      <td>9. ERD 설계, 18. 향후 고도화</td>
+    </tr>
+    <tr>
+      <td>데모 데이터 seed</td>
+      <td>발표용 유저와 다중 커리큘럼/진행 기록 seed 스크립트가 추가되어 시연 안정성을 높인다.</td>
+      <td>15. 테스트 및 검증 계획, 16. 제출/시연 준비</td>
+    </tr>
+  </table>
+
+  <h2>8. 최종 보완 결론</h2>
+  <p>
+    WhereToGo의 실제 구현은 원본 설계서의 핵심 방향인 “Topic 기반 RAG + Agent 추천”,
+    “학습 계획과 실행 상태 분리”, “Streaming 기반 생성 UX”를 충실히 반영한다.
+    다만 최종 제출 PDF에서는 초기 설계로 남은 면담/진단/상태조회 API를 현재 구현 범위와 분리해야 한다.
+  </p>
+  <p>
+    최종 문서에는 다음 원칙을 적용하는 것이 가장 정확하다.
+  </p>
+  <ul>
+    <li>실제 Django 모델에 없는 ERD 테이블은 핵심 구현에서 제외하고 향후 확장으로 표기한다.</li>
+    <li>API 표는 <code>config/urls.py</code>, <code>apps/accounts/urls.py</code> 기준으로 다시 작성한다.</li>
+    <li>프론트 화면 경로는 <code>frontend/src/router/index.js</code> 기준으로 교정한다.</li>
+    <li>학습 대시보드 API와 데모 seed 데이터는 중요한 구현 사항으로 추가한다.</li>
+    <li><code>generation_id</code> 상태 조회는 현재 구현이 아니라 향후 고도화 항목으로 둔다.</li>
+  </ul>
+
+  <h2>부록. 검증에 사용한 주요 코드 경로</h2>
+  <table>
+    <tr><th>영역</th><th>코드 경로</th></tr>
+    <tr><td>URL</td><td><code>config/urls.py</code>, <code>apps/accounts/urls.py</code>, <code>apps/curriculum/urls.py</code></td></tr>
+    <tr><td>모델</td><td><code>apps/accounts/models.py</code>, <code>apps/curriculum/models.py</code></td></tr>
+    <tr><td>AI Agent</td><td><code>ai/agent/graph.py</code>, <code>ai/agent/nodes/</code></td></tr>
+    <tr><td>RAG</td><td><code>ai/core/config.py</code>, <code>ai/indexing/</code>, <code>ai/search/searcher.py</code></td></tr>
+    <tr><td>커리큘럼 저장</td><td><code>apps/curriculum/services/curriculum_save_service.py</code></td></tr>
+    <tr><td>학습 진행</td><td><code>apps/curriculum/services/curriculum_learning_service.py</code></td></tr>
+    <tr><td>학습 대시보드</td><td><code>apps/curriculum/services/learning_dashboard_service.py</code>, <code>apps/curriculum/learning_serializers.py</code></td></tr>
+    <tr><td>프론트 라우팅</td><td><code>frontend/src/router/index.js</code></td></tr>
+    <tr><td>스트리밍 프론트</td><td><code>frontend/src/api/curriculumApi.js</code>, <code>frontend/src/pages/user/InterviewSummary.vue</code></td></tr>
+  </table>
+</body>
+</html>

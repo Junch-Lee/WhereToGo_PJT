@@ -12,6 +12,13 @@ User = get_user_model()
 
 
 class SignupSerializer(serializers.ModelSerializer):
+    """
+    POST /api/auth/signup/ 요청을 검증하고 User를 생성하는 serializer다.
+
+    password_confirm은 DB에 저장하지 않는 검증 전용 필드이며, create 단계에서 제거한다.
+    이메일 중복은 validate_email과 DB unique 제약 양쪽에서 방어한다.
+    """
+
     password = serializers.CharField(
         write_only=True, # 요청에서는 받을 수 있지만, 응답에서는 절대 나가지 않도록 하는 설정
         min_length=8,
@@ -128,6 +135,13 @@ class SignupSerializer(serializers.ModelSerializer):
     
 
 class LoginSerializer(serializers.Serializer):
+    """
+    POST /api/auth/login/ 요청을 검증하는 serializer다.
+
+    authenticate를 통해 이메일/비밀번호를 확인하고, 비활성 계정이나 소프트 삭제 계정은
+    토큰 발급 대상에서 제외한다. 실제 JWT 생성은 view에서 처리한다.
+    """
+
     email = serializers.EmailField(
         required=True,
         error_messages={

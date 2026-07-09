@@ -17,11 +17,99 @@ body {
     BlinkMacSystemFont,
     'Segoe UI',
     sans-serif;
-  background: #f8fafc;
-  color: #0f172a;
+  background: #050705;
+  color: #F2F5F2;
 }
 
 button,
 input {
   font-family: inherit;
+}
+
+.brand-icon,
+.header-brand-icon,
+.sidebar-logo-icon,
+.result-sidebar-logo-icon,
+.landing-brand-icon,
+.brand-symbol,
+.brand-logo,
+.logo-menu-default {
+  overflow: hidden !important;
+  background: transparent url('/wheretogo_mark.png') center / contain no-repeat !important;
+  color: transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.brand-icon svg,
+.header-brand-icon svg,
+.sidebar-logo-icon svg,
+.result-sidebar-logo-icon svg,
+.landing-brand-icon svg,
+.brand-symbol svg,
+.brand-logo svg,
+.logo-menu-default svg {
+  opacity: 0 !important;
+}
+
+.logo-menu-default {
+  width: 28px;
+  height: 28px;
+}
+
+.brand-copy strong,
+.sidebar-logo-text strong,
+.result-sidebar-logo-text strong,
+.brand-title,
+.brand-name {
+  font-weight: 850;
+  letter-spacing: -0.035em;
+}
+
+.journey-navigation,
+.journey-nav {
+  display: inline-flex !important;
+  align-items: center !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  gap: 12px !important;
+  font-family:
+    Inter,
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+}
+
+.journey-stage,
+.journey-step,
+.journey-nav span {
+  color: #f2f5f2 !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  letter-spacing: -0.06em !important;
+  text-transform: uppercase !important;
+}
+
+.journey-stage.current,
+.journey-stage.completed,
+.journey-stage.upcoming {
+  color: #f2f5f2 !important;
+}
+
+.journey-navigation .journey-stage:last-of-type,
+.journey-nav .journey-step:last-of-type {
+  color: #10b981 !important;
+}
+
+.journey-divider,
+.journey-divider-line {
+  color: rgba(16, 185, 129, 0.72) !important;
+  font-size: 9px !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
 }

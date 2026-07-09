@@ -46,77 +46,40 @@
           </div>
         </div>
 
-        <nav class="sidebar-nav">
-          <button
-            v-for="item in menuItems"
-            :key="item.path"
-            type="button"
-            class="sidebar-nav-item"
-            :class="{ active: route.path === item.path }"
-            @click="handleNavigate(item.path)"
-          >
-            <span class="nav-icon" v-html="item.icon"></span>
-            <span>{{ item.label }}</span>
-          </button>
-        </nav>
+  <div v-else class="home-page">
+    <UserSidebar :open="sidebarOpen" @close="closeSidebar" />
 
-        <div class="sidebar-content">
-          <section v-if="filteredInProgress.length > 0" class="curriculum-section">
-            <h3>진행 중인 커리큘럼</h3>
+    <div class="home-main-layout">
+      <header class="home-header">
+        <div class="home-header-left">
+          <BrandMenuButton @click="toggleSidebar" />
 
-            <button
-              v-for="item in filteredInProgress"
-              :key="item.id"
-              type="button"
-              class="curriculum-item"
-              @click="handleNavigate(`/curriculum/${item.id}`)"
+          <div class="journey-navigation" aria-label="현재 서비스 단계">
+            <template
+              v-for="(stage, index) in journeyStages"
+              :key="stage"
             >
-              <div class="curriculum-main">
-                <p>{{ item.title }}</p>
+              <span
+                :class="[
+                  'journey-stage',
+                  {
+                    current: stage === currentJourneyStage,
+                    completed: index < currentJourneyIndex,
+                    upcoming: index > currentJourneyIndex,
+                  },
+                ]"
+              >
+                {{ stage }}
+              </span>
 
-                <div class="curriculum-meta">
-                  <span class="progress-track">
-                    <span
-                      class="progress-fill"
-                      :style="{ width: `${item.progress}%` }"
-                    ></span>
-                  </span>
-                  <span>{{ item.updated }}</span>
-                </div>
-              </div>
-
-              <span class="chevron">›</span>
-            </button>
-          </section>
-
-          <section v-if="filteredCompleted.length > 0" class="curriculum-section">
-            <h3>완료한 커리큘럼</h3>
-
-            <button
-              v-for="item in filteredCompleted"
-              :key="item.id"
-              type="button"
-              class="curriculum-item completed"
-              @click="handleNavigate(`/curriculum/${item.id}`)"
-            >
-              <div class="curriculum-main">
-                <p>{{ item.title }}</p>
-                <span class="completed-date">{{ item.updated }}</span>
-              </div>
-
-              <span class="chevron">›</span>
-            </button>
-          </section>
-
-          <div
-            v-if="
-              curriculumSearchKeyword.trim() &&
-              filteredInProgress.length === 0 &&
-              filteredCompleted.length === 0
-            "
-            class="empty-search"
-          >
-            검색 결과가 없습니다
+              <span
+                v-if="index < journeyStages.length - 1"
+                class="journey-divider-line"
+                aria-hidden="true"
+              >
+                →
+              </span>
+            </template>
           </div>
         </div>
 
@@ -178,59 +141,50 @@
       </header>
 
       <main class="home-content">
-        <section class="hero-section">
-          <div class="hero-icon">
-            <svg viewBox="0 0 24 24" class="icon">
-              <path
-                d="M12 2l1.8 5.7L20 10l-6.2 2.3L12 18l-1.8-5.7L4 10l6.2-2.3L12 2Z"
-                fill="currentColor"
-              />
-              <path
-                d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8L19 15Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
+        <section class="where-section">
+          <div class="where-keyword" aria-hidden="true">WHERE</div>
 
-          <h2>무엇을 배우고 싶으신가요?</h2>
+          <h1>어디까지 성장하고 싶나요?</h1>
 
-          <p>
-            AI 교육 컨설턴트와 상담하며 나만의 맞춤 커리큘럼을 만들어보세요.
+          <p class="where-description">
+            막연한 목표도 괜찮아요. 당신의 현재와 목표를 함께 정리해드릴게요.
           </p>
 
-          <div class="prompt-box">
+          <form class="goal-form" @submit.prevent="handleSubmit">
             <textarea
               v-model="input"
-              rows="3"
-              placeholder="무엇을 배우고 싶나요?"
-              @keydown="handleKeydown"
+              rows="4"
+              aria-label="학습 목표"
+              placeholder="무엇을 배우고 싶은지 자유롭게 적어주세요.
+예: 백엔드 개발자로 취업하고 싶어요"
+              @keydown.enter.exact.prevent="handleSubmit"
             ></textarea>
 
+            <div class="goal-form-footer">
+              <button
+                type="submit"
+                class="goal-submit-button"
+                :disabled="!input.trim()"
+              >
+                <span>시작하기</span>
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="m14 7 5 5-5 5"></path>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="suggestion-area">
             <button
+              v-for="suggestion in suggestions"
+              :key="suggestion"
               type="button"
-              class="send-button"
-              :disabled="!input.trim()"
-              aria-label="상담 시작"
-              @click="handleSubmit"
+              class="suggestion-chip"
+              @click="selectSuggestion(suggestion)"
             >
-              <svg viewBox="0 0 24 24" class="icon">
-                <path
-                  d="M22 2L11 13"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M22 2L15 22L11 13L2 9L22 2Z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+              {{ suggestion }}
             </button>
           </div>
         </section>
@@ -241,18 +195,40 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import UserSidebar from '@/components/user/UserSidebar.vue';
+import BrandMenuButton from '@/components/user/BrandMenuButton.vue';
 import { useRoute, useRouter } from 'vue-router';
 import LandingPage from '@/pages/user/LandingPage.vue';
 import { clearAuthStorage, isAuthenticated } from '@/utils/auth';
+import '@/assets/styles/user-shell.css';
 import './HomePage.css';
 
 const router = useRouter();
 const route = useRoute();
 
 const sidebarOpen = ref(false);
+const logoHovered = ref(false);
 const input = ref('');
 const curriculumSearchKeyword = ref('');
 const isLoggedIn = ref(isAuthenticated());
+const curriculums = ref([]);
+const isLoadingCurricula = ref(false);
+const curriculumLoadError = ref('');
+
+const currentJourneyStage = 'WHERE';
+const journeyStages = ['WHERE', 'TO', 'GO'];
+const currentJourneyIndex = computed(() =>
+  journeyStages.indexOf(currentJourneyStage),
+);
+const currentPath = computed(() => route.path);
+
+const suggestions = [
+  '백엔드 개발',
+  '데이터 분석',
+  'AI 엔지니어링',
+  '프론트엔드',
+  '머신러닝',
+];
 
 const icons = {
   user: `
@@ -308,8 +284,56 @@ const filterCurricula = (curricula) => {
   );
 };
 
-const filteredInProgress = computed(() => filterCurricula(inProgressCurricula));
-const filteredCompleted = computed(() => filterCurricula(completedCurricula));
+const inProgressCurricula = computed(() =>
+  curriculums.value
+    .filter((curriculum) => curriculum.status !== 'COMPLETED')
+    .map(mapCurriculumForSidebar),
+);
+
+const completedCurricula = computed(() =>
+  curriculums.value
+    .filter((curriculum) => curriculum.status === 'COMPLETED')
+    .map(mapCurriculumForSidebar),
+);
+
+const filteredInProgress = computed(() => filterCurricula(inProgressCurricula.value));
+const filteredCompleted = computed(() => filterCurricula(completedCurricula.value));
+const hasNoCurriculums = computed(() => curriculums.value.length === 0);
+const hasNoFilteredCurriculums = computed(
+  () =>
+    Boolean(curriculumSearchKeyword.value.trim()) &&
+    filteredInProgress.value.length === 0 &&
+    filteredCompleted.value.length === 0,
+);
+
+const loadCurriculums = async () => {
+  if (!isAuthenticated()) {
+    curriculums.value = [];
+    return;
+  }
+
+  isLoadingCurricula.value = true;
+  curriculumLoadError.value = '';
+
+  try {
+    const response = await getMyCurriculums();
+    curriculums.value = Array.isArray(response) ? response : [];
+  } catch (error) {
+    curriculumLoadError.value =
+      error?.message || '커리큘럼 목록을 불러오지 못했습니다.';
+  } finally {
+    isLoadingCurricula.value = false;
+  }
+};
+
+const syncAuthState = () => {
+  isLoggedIn.value = isAuthenticated();
+
+  if (!isLoggedIn.value) {
+    curriculums.value = [];
+    closeSidebar();
+  }
+};
 
 const syncAuthState = () => {
   isLoggedIn.value = isAuthenticated();
@@ -345,13 +369,6 @@ const handleSubmit = () => {
   router.push('/chat');
 };
 
-const handleKeydown = (event) => {
-  if (event.key === 'Enter' && !event.shiftKey) {
-    event.preventDefault();
-    handleSubmit();
-  }
-};
-
 const handleEscKey = (event) => {
   if (event.key === 'Escape' && sidebarOpen.value) {
     closeSidebar();
@@ -372,6 +389,7 @@ onMounted(() => {
   window.addEventListener('focus', syncAuthState);
 
   syncAuthState();
+  loadCurriculums();
 });
 
 onBeforeUnmount(() => {

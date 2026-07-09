@@ -17,6 +17,12 @@ from .serializers import (
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def signup(request):
+    """
+    POST /api/auth/signup/
+
+    비인증 사용자의 회원가입 요청을 처리한다. 입력 검증과 User 생성은 SignupSerializer가
+    담당하고, view는 성공/실패 응답 형태만 결정한다.
+    """
     serializer = SignupSerializer(data=request.data)
 
     if serializer.is_valid():
@@ -43,6 +49,12 @@ def signup(request):
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def login(request):
+    """
+    POST /api/auth/login/
+
+    이메일과 비밀번호를 검증한 뒤 Simple JWT access/refresh 토큰을 발급한다. 인증 실패나
+    비활성 계정 처리는 LoginSerializer에서 수행한다.
+    """
     serializer = LoginSerializer(
         data=request.data,
         context={"request": request},
